@@ -1,78 +1,73 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import MonogramScene from "./MonogramScene";
+import PlaceholderImage from "./PlaceholderImage";
 
-// Immersion — a second 3D moment mid-page. Sticky dark stage with the
-// monogram sculpture and an editorial pull quote fading in as the section
-// crosses the viewport.
+// Editorial mid-page immersion: full-bleed atelier photo with a slow
+// parallax and a pull quote centred over top. No 3D, no ornament.
 export default function Immersion() {
   const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const quoteOpacity = useTransform(scrollYProgress, [0.15, 0.45, 0.65, 0.9], [0, 1, 1, 0]);
-  const quoteY = useTransform(scrollYProgress, [0.15, 0.5], [30, 0]);
-  const sceneY = useTransform(scrollYProgress, [0, 1], [-40, 40]);
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    reduced ? [0, 0] : [-140, 140]
+  );
 
   return (
     <section
       ref={ref}
-      className="relative h-[180vh] w-full bg-black"
+      className="relative w-full overflow-hidden bg-black h-[85dvh] min-h-[560px]"
     >
-      <div className="sticky top-0 h-[100dvh] w-full overflow-hidden">
-        {/* Ambient warmth */}
-        <div
-          aria-hidden
-          className="absolute inset-0 pointer-events-none"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 50% 45%, rgba(198,154,90,0.2), transparent 60%), #050505",
-          }}
+      <motion.div
+        style={{ y }}
+        className="absolute -inset-y-[18%] inset-x-0 will-change-transform"
+      >
+        <PlaceholderImage
+          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2600&q=82"
+          alt="Atelier · Detail"
+          sizes="100vw"
+          quality={82}
+          className="object-cover"
         />
+      </motion.div>
 
-        {/* 3D scene, drifting */}
-        <motion.div
-          style={{ y: sceneY }}
-          className="absolute inset-0"
+      <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/25 to-black/55" />
+
+      <div className="relative z-10 flex h-full items-center justify-center px-6">
+        <motion.blockquote
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-8%" }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-3xl text-center text-white"
         >
-          <MonogramScene metal="gold" scale={0.9} />
-        </motion.div>
-
-        {/* Vignette */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 90% 70% at 50% 45%, transparent 45%, rgba(0,0,0,0.6) 100%)",
-          }}
-        />
-
-        {/* Editorial quote */}
-        <motion.div
-          style={{ opacity: quoteOpacity, y: quoteY }}
-          className="absolute inset-0 flex flex-col items-center justify-end pb-24 md:pb-32 px-6 text-center text-white"
-        >
-          <p className="text-[10px] uppercase text-white/70" style={{ letterSpacing: "0.4em" }}>
+          <p
+            className="text-[10px] uppercase text-white/70"
+            style={{ letterSpacing: "0.4em" }}
+          >
             Immersion · Atelier
           </p>
-          <span className="mt-6 block h-px w-16 bg-white/50" />
-          <blockquote className="mt-10 max-w-3xl">
-            <p
-              className="font-light text-[clamp(1.4rem,2.6vw,2.2rem)] leading-[1.3] tracking-[-0.01em]"
-              style={{ fontFamily: "var(--font-fraunces), serif", fontStyle: "italic" }}
-            >
-              „Ein Objekt bleibt nur so lange lebendig, wie eine Hand es
-              weiterträgt."
-            </p>
-            <p className="mt-8 text-[10px] uppercase text-white/70" style={{ letterSpacing: "0.4em" }}>
-              Rémi Kessler · Maître Fondateur
-            </p>
-          </blockquote>
-        </motion.div>
+          <span className="mt-6 mx-auto block h-px w-14 bg-white/50" />
+          <p
+            className="mt-10 font-light text-[clamp(1.5rem,2.8vw,2.4rem)] leading-[1.3] tracking-[-0.01em]"
+            style={{ fontFamily: "var(--font-fraunces), serif", fontStyle: "italic" }}
+          >
+            „Ein Objekt bleibt nur so lange lebendig, wie eine Hand es
+            weiterträgt."
+          </p>
+          <p
+            className="mt-8 text-[10px] uppercase text-white/70"
+            style={{ letterSpacing: "0.4em" }}
+          >
+            Rémi Kessler · Maître Fondateur
+          </p>
+        </motion.blockquote>
       </div>
     </section>
   );
