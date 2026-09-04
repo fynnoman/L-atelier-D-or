@@ -15,16 +15,18 @@ export default async function ProductPage({
   if (!product) notFound();
 
   return (
-    <div className="pt-32 pb-24">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <Link
-          href="/kollektion"
-          className="eyebrow inline-flex items-center gap-2 hover:text-ink transition"
-        >
-          ← Zur Kollektion
-        </Link>
+    <>
+      <div className="bg-bg pt-28 md:pt-32">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-12">
+          <Link
+            href="/kollektion"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-ink link-underline"
+          >
+            ← Kollektion
+          </Link>
+        </div>
       </div>
       <ProductDetail product={product} />
-    </div>
+    </>
   );
 }

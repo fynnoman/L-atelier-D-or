@@ -1,45 +1,49 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
-import IntroOverlay from "@/components/IntroOverlay";
-import SmoothScroll from "@/components/SmoothScroll";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import IntroOverlay from "@/components/IntroOverlay";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  weight: ["300", "400", "500"],
 });
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
   display: "swap",
-  axes: ["opsz", "SOFT"],
+  axes: ["opsz"],
 });
 
 export const metadata: Metadata = {
-  title: "L'Atelier D'Or · Maison d'Optique",
+  title: {
+    default: "L'ATELIER D'OR",
+    template: "%s · L'ATELIER D'OR",
+  },
   description:
-    "Handgefertigte Brillen in limitierter Auflage. Titan, Acetat, 18 Karat. Ein Atelier für seltene Objekte.",
+    "Handgefertigte Brillen in limitierter Auflage. Titan, Acetat, 18 Karat. Zwischen Paris, Berlin und dem Jura.",
+  metadataBase: new URL("https://latelier-dor.example"),
   openGraph: {
-    title: "L'Atelier D'Or",
-    description: "Maison d'Optique. Handgefertigte Brillen in limitierter Auflage.",
+    title: "L'ATELIER D'OR",
+    description:
+      "Handgefertigte Brillen in limitierter Auflage. Zwischen Paris, Berlin und dem Jura.",
     type: "website",
+    locale: "de_DE",
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="de" className={`${inter.variable} ${fraunces.variable} h-full`}>
-      <body className="min-h-full flex flex-col">
+    <html lang="de" className={`${inter.variable} ${fraunces.variable}`}>
+      <body className="bg-bg text-ink">
         <IntroOverlay />
-        <SmoothScroll>
-          <Nav />
-          <main className="relative">{children}</main>
-          <Footer />
-        </SmoothScroll>
+        <Nav />
+        <main className="relative">{children}</main>
+        <Footer />
       </body>
     </html>
   );

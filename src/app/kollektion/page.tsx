@@ -1,27 +1,48 @@
+import { Metadata } from "next";
+import PageHeader from "@/components/PageHeader";
+import CategoryGrid from "@/components/CategoryGrid";
+import EssentielsGrid from "@/components/EssentielsGrid";
 import { products } from "@/data/products";
-import ProductCard from "@/components/ProductCard";
 
-export const metadata = {
-  title: "Kollektion · L'Atelier D'Or",
-  description: "Vier Fassungen in limitierter Auflage.",
+export const metadata: Metadata = {
+  title: "Kollektion",
+  description:
+    "Vier Fassungen in limitierter Auflage. Titan, Acetat, 18 Karat.",
 };
+
+const optique = products.filter((p) =>
+  p.subtitle.toLowerCase().includes("optische")
+);
+const solaire = products.filter((p) =>
+  p.subtitle.toLowerCase().includes("sonnenbrille")
+);
 
 export default function KollektionPage() {
   return (
-    <div className="pt-40 pb-32">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-        <div className="eyebrow">Kollektion Automne / Hiver</div>
-        <h1 className="mt-6 font-display text-6xl md:text-8xl leading-[0.95] max-w-4xl">
-          Vier <span className="serif-italic gold-text">Objekte</span>.
-          <br /> Ausgewählt für Sie.
-        </h1>
+    <>
+      <PageHeader
+        eyebrow="Kollektion · Automne / Hiver"
+        title="Neue Fassungen."
+        intro="Vier eng aufeinander abgestimmte Fassungen — Aviator, Panto, Rund, Cat-Eye. Jede in kleiner Serie, jede von Hand signiert."
+      />
 
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
-          {products.map((p, i) => (
-            <ProductCard key={p.slug} product={p} index={i} />
-          ))}
-        </div>
-      </div>
-    </div>
+      <CategoryGrid
+        eyebrow="Optique"
+        title="Optische Fassungen."
+        paragraph="Titan Béta, Vergoldung, Perlmutt-Detail — kalt gebogen und dreifach gehärtet."
+        products={optique}
+        columns={optique.length >= 4 ? 4 : 2}
+      />
+
+      <CategoryGrid
+        eyebrow="Solaire"
+        title="Sonnenbrillen."
+        paragraph="Acetat Mazzucchelli, Titan-Kern, Zeiss Mineralglas — sechs Wochen Reifezeit."
+        products={solaire}
+        columns={solaire.length >= 4 ? 4 : 2}
+      />
+
+      <EssentielsGrid />
+    </>
   );
 }
