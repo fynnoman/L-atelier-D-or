@@ -3,10 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-const SESSION_KEY = "lad-intro-v3";
+const SESSION_KEY = "lad-intro-v4";
 
-// Cinematic opening: fullscreen video plays once per session, wordmark
-// reveals over top, then curtain fades out to reveal the site.
+// Cinematic opening: brief typography moment with gold hairline sweep.
+// Video plays underneath for texture. Fades to reveal the site.
 export default function IntroOverlay() {
   const [mounted, setMounted] = useState(false);
   const [active, setActive] = useState(false);
@@ -16,14 +16,22 @@ export default function IntroOverlay() {
 
   useEffect(() => {
     setMounted(true);
-    const seen =
+    const skipParam =
       typeof window !== "undefined" &&
-      window.sessionStorage.getItem(SESSION_KEY);
+      new URLSearchParams(window.location.search).has("nointro");
+    const seen =
+      skipParam ||
+      (typeof window !== "undefined" &&
+        window.sessionStorage.getItem(SESSION_KEY));
     if (!seen) {
       setActive(true);
       document.documentElement.style.overflow = "hidden";
-      const t = window.setTimeout(() => setCanSkip(true), 1600);
-      return () => window.clearTimeout(t);
+      const skipTimer = window.setTimeout(() => setCanSkip(true), 1400);
+      const autoTimer = window.setTimeout(() => finish(), 5200);
+      return () => {
+        window.clearTimeout(skipTimer);
+        window.clearTimeout(autoTimer);
+      };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -45,43 +53,85 @@ export default function IntroOverlay() {
       {active && (
         <motion.div
           key="intro"
-          className="fixed inset-0 z-[100] bg-black flex items-center justify-center overflow-hidden"
+          className="fixed inset-0 z-[100] bg-noir flex items-center justify-center overflow-hidden grain grain-dark"
           initial={{ opacity: 1 }}
           animate={{ opacity: fading ? 0 : 1 }}
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          style={{ backgroundColor: "var(--noir)" }}
         >
           <video
             ref={videoRef}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover opacity-60"
             src="/video/intro.mp4"
             autoPlay
             muted
             playsInline
             preload="auto"
-            onEnded={finish}
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-black/40" />
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 55%, rgba(10,8,6,0.35) 0%, rgba(10,8,6,0.85) 55%, rgba(10,8,6,0.98) 100%)",
+            }}
+          />
 
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: fading ? 0 : 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-white"
-          >
-            <p
-              className="text-[10px] uppercase text-white/70"
-              style={{ letterSpacing: "0.4em" }}
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: fading ? 0 : 1 }}
+              transition={{ delay: 0.35, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[10px] uppercase"
+              style={{
+                letterSpacing: "0.44em",
+                color: "rgba(230, 201, 138, 0.75)",
+              }}
             >
               Maison d&apos;Optique · Depuis 1972
-            </p>
-            <span className="mt-4 block h-px w-14 bg-white/60" />
-            <h1
-              className="wordmark text-white mt-8 text-[clamp(1.6rem,4vw,3rem)] font-light"
-              style={{ letterSpacing: "0.3em" }}
+            </motion.p>
+
+            <motion.span
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: fading ? 0 : 1 }}
+              transition={{ delay: 0.7, duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-6 block h-px w-24 origin-left"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, var(--or-glow) 50%, transparent)",
+              }}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              animate={{ opacity: fading ? 0 : 1, y: 0 }}
+              transition={{ delay: 1.05, duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-10"
             >
-              L&apos;Atelier d&apos;Or
-            </h1>
-          </motion.div>
+              <h1
+                className="display gilded-shimmer"
+                style={{
+                  fontSize: "clamp(2.6rem, 6vw, 5.4rem)",
+                  letterSpacing: "-0.02em",
+                }}
+              >
+                L&apos;Atelier d&apos;Or
+              </h1>
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: fading ? 0 : 1, y: 0 }}
+              transition={{ delay: 1.55, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="mt-8 max-w-md text-[12.5px] leading-[1.9]"
+              style={{
+                color: "rgba(245, 239, 225, 0.72)",
+              }}
+            >
+              Handgefertigte Fassungen in kleiner Serie.
+              <br />
+              Titan, Acetat, 18 Karat — zwischen Paris, Berlin und dem Jura.
+            </motion.p>
+          </div>
 
           <AnimatePresence>
             {canSkip && !fading && (
@@ -92,18 +142,35 @@ export default function IntroOverlay() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
                 onClick={finish}
-                className="absolute bottom-8 right-8 text-white/75 hover:text-white text-[11px] uppercase"
+                className="absolute bottom-10 right-8 group inline-flex items-center gap-3 text-[10.5px] uppercase"
                 style={{
-                  letterSpacing: "0.32em",
-                  transition: "color 200ms cubic-bezier(0.23,1,0.32,1)",
+                  letterSpacing: "0.34em",
+                  color: "var(--or)",
+                  transition: "color 220ms var(--ease-out)",
                 }}
               >
-                Eintreten →
+                <span className="link-gold">Entrer</span>
+                <ArrowIcon />
               </motion.button>
             )}
           </AnimatePresence>
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+function ArrowIcon() {
+  return (
+    <svg width="22" height="8" viewBox="0 0 22 8" aria-hidden>
+      <path
+        d="M0 4h20M16 1l5 3-5 3"
+        stroke="currentColor"
+        strokeWidth="1"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
