@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
@@ -10,6 +9,7 @@ import DrawerHost from "@/components/boutique/DrawerHost";
 import PageTransitions from "@/components/PageTransitions";
 import SignatureCursor from "@/components/SignatureCursor";
 import MagneticButtons from "@/components/MagneticButtons";
+import QueryScroll from "@/components/QueryScroll";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -56,10 +56,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <DrawerHost />
           <SignatureCursor />
           <MagneticButtons />
+          <QueryScroll />
         </BoutiqueProvider>
-        <Script id="qa-scroll" strategy="beforeInteractive">
-          {`(()=>{const p=new URLSearchParams(location.search);const y=p.get('y');if(!y)return;const n=parseInt(y,10);const s=()=>window.scrollTo(0,n);s();window.addEventListener('load',s);setTimeout(s,50);setTimeout(s,300);setTimeout(s,1200);})();`}
-        </Script>
       </body>
     </html>
   );

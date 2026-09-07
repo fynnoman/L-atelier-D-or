@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import styles from "./intro/intro.module.css";
-const SESSION_KEY = "lad-cinematic-v1";
+const SESSION_KEY = "lad-cinematic-v2";
 export default function IntroOverlay() {
   const root = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -47,7 +47,7 @@ export default function IntroOverlay() {
     const button = skip.current;
     button?.addEventListener("click", finish);
     document.addEventListener("keydown", onKey);
-    const watchdog = setTimeout(finish, 18000);
+    const watchdog = setTimeout(finish, 30000);
     import("./intro/createBoutique").then(({ createBoutique }) => {
       if (disposed || finished) return;
       destroy = createBoutique(stage.current!, (phase, progress) => {

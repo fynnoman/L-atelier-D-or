@@ -1,5 +1,8 @@
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { mergeGeometries } from "three/addons/utils/BufferGeometryUtils.js";
+import { surfaceMaps } from "./boutiqueTextures";
+import { addBoutiqueDetails } from "./boutiqueDetails";
 
 const ease = (a: number, b: number, t: number) => {
   const x = THREE.MathUtils.clamp((t - a) / (b - a), 0, 1);
@@ -23,7 +26,7 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
   const room = new RoomEnvironment();
   const environment = pmrem.fromScene(room, .04);
   scene.environment = environment.texture;
-  scene.environmentIntensity = .35;
+  scene.environmentIntensity = .55;
   room.dispose();
   pmrem.dispose();
   const materials: THREE.Material[] = [];
@@ -32,19 +35,30 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
     const m = new THREE.MeshStandardMaterial({ color, roughness, metalness });
     materials.push(m); return m;
   };
-  const stone = material("#928675", .88);
+  const stone = material("#ffffff", .88);
   const dark = material("#192323", .33, .25);
-  const gold = material("#bd914b", .25, .82);
-  const wood = material("#35221a", .48);
+  const gold = material("#ffffff", .35, .82);
+  const wood = material("#ffffff", .62);
   const plaster = material("#ad9270", .86);
   const black = material("#151411", .42);
+  const marble = material("#ffffff", .31);
+  const leather = material("#ffffff", .8);
+  for (const [surface, mat, bumpScale] of [
+    ["limestone", stone, .045], ["walnut", wood, .018],
+    ["marble", marble, .007], ["leather", leather, .015], ["brass", gold, .002],
+  ] as const) {
+    const maps = surfaceMaps(surface, Math.min(renderer.capabilities.getMaxAnisotropy(), 8));
+    mat.map = maps.map; mat.bumpMap = maps.bumpMap;
+    mat.roughnessMap = maps.roughnessMap; mat.bumpScale = bumpScale;
+    textures.push(...maps.textures);
+  }
   const glow = material("#ffe5b0", .3);
   glow.emissive.set("#ffcd83"); glow.emissiveIntensity = 3;
   const glass = new THREE.MeshPhysicalMaterial({ color: "#b0b6a7", metalness: .15, roughness: .09, transmission: .82, thickness: .12, transparent: true, opacity: .45 });
   materials.push(glass);
   function box(parent: THREE.Object3D, x: number, y: number, z: number, w: number, h: number, d: number, mat: THREE.Material) {
     const mesh = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
-    mesh.position.set(x, y, z); mesh.castShadow = true; mesh.receiveShadow = true; parent.add(mesh); return mesh;
+    mesh.position.set(x, y, z); mesh.castShadow = !mat.transparent && mat !== glow; mesh.receiveShadow = true; parent.add(mesh); return mesh;
   }
   function sphere(parent: THREE.Object3D, x: number, y: number, z: number, radius: number, mat: THREE.Material) {
     const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 20, 12), mat);
@@ -128,9 +142,10 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
   box(scene,0,2.5,-8.2,11,5,.2,wood);
   box(scene,-5.3,2.5,-4,.2,5,8,plaster); box(scene,5.3,2.5,-4,.2,5,8,plaster);
   box(scene,0,5,-4,11,.15,8,plaster);
-  for(let x=-5;x<=5;x++) for(let z=-8;z<=0;z++) box(scene,x,.008,z,.985,.025,.985,(x+z)%2===0?stone:black);
-  for (let x=-4.5;x<=4.5;x+=1.5) frame(scene,x,2.5,-8.07,1.3,4.3,gold,.025);
-  box(scene,0,4.65,-4,10,.035,7.5,gold);
+  for(let x=-5;x<=5;x++) for(let z=-8;z<=0;z++) {
+    const tile = box(scene,x,.008,z,.985,.025,.985,(x+z)%2===0?marble:black);
+    tile.rotation.y = ((x*7+z*3)%4)*Math.PI/2;
+  }
   for (const z of [-2.2,-5.8]) {
     const ring = new THREE.Mesh(new THREE.TorusGeometry(.9,.028,8,64),gold); ring.rotation.x=Math.PI/2; ring.position.set(0,3.8,z);scene.add(ring);
     for (let i=0;i<10;i++) { const a=i*Math.PI/5;sphere(scene,Math.cos(a)*.9,3.77,z+Math.sin(a)*.9,.085,glow); }
@@ -138,11 +153,48 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
   }
   for(const side of [-1,1]) {
     box(scene,side*3.6,.7,-4.7,1.35,1.4,3.5,wood);
-    box(scene,side*3.6,1.43,-4.7,1.45,.08,3.6,stone);
+    box(scene,side*3.6,1.43,-4.7,1.45,.08,3.6,marble);
     frame(scene,side*3.6,1,-2.92,1.15,.58,gold,.025);
   }
+  const details = addBoutiqueDetails(scene, {gold,wood,stone,dark,glow,black,leather,marble,glass}, materials);
+  point(-3.5, 3.8, -6.9, 42); point(3.5, 3.8, -6.9, 42);
+  lettering("L’ATELIER D’OR", 3.05, -8.055, 2.35);
   const key = new THREE.SpotLight("#ffe0ac",150,22,.8,.7,1.5); key.position.set(0,4.4,-3);key.target.position.set(0,0,2);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.bias=-.0003;scene.add(key,key.target);
   const moon = new THREE.DirectionalLight("#b2c2dc",1.5);moon.position.set(-5,9,7);scene.add(moon,new THREE.AmbientLight("#c4b59d",.35));
+  // Batch stationary opaque geometry by material. The detailed display walls
+  // remain a handful of GPU draw calls; door leaves retain their own pivots.
+  scene.updateMatrixWorld(true);
+  const originals = new Set<THREE.BufferGeometry>();
+  function batch(parent: THREE.Object3D, exclusions: THREE.Object3D[] = []) {
+    const inverse = parent.matrixWorld.clone().invert();
+    const buckets = new Map<THREE.Material, THREE.Mesh[]>();
+    const collect = (object: THREE.Object3D) => {
+      if (exclusions.includes(object)) return;
+      if (object instanceof THREE.Mesh && !Array.isArray(object.material) && (!object.material.transparent || object.material.userData.batchTransparent) && !details.mirrors.some(mirror => mirror === object)) {
+        const bucket = buckets.get(object.material) ?? []; bucket.push(object); buckets.set(object.material, bucket);
+      }
+      object.children.forEach(collect);
+    };
+    parent.children.forEach(collect);
+    for (const [mat, meshes] of buckets) {
+      if (meshes.length < 2) continue;
+      const copies = meshes.map(object => {
+        // RoundedBoxGeometry is non-indexed; normalize all geometry before merging.
+        const copy = object.geometry.index ? object.geometry.toNonIndexed() : object.geometry.clone();
+        return copy.applyMatrix4(new THREE.Matrix4().multiplyMatrices(inverse, object.matrixWorld));
+      });
+      const geometry = mergeGeometries(copies);
+      copies.forEach(copy => copy.dispose());
+      if (!geometry) continue;
+      const combined = new THREE.Mesh(geometry, mat);
+      combined.castShadow = meshes.some(object => object.castShadow); combined.receiveShadow = true;
+      for (const object of meshes) { originals.add(object.geometry); object.removeFromParent(); }
+      parent.add(combined);
+    }
+  }
+  doors.forEach(door => batch(door));
+  batch(scene, doors);
+  originals.forEach(geometry => geometry.dispose());
   const resize = () => { const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.fov=w<h?54:43;camera.updateProjectionMatrix(); };
   resize();window.addEventListener("resize",resize);
   const lost = (event: Event) => { event.preventDefault();finish(); };renderer.domElement.addEventListener("webglcontextlost",lost);
@@ -152,22 +204,25 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
     // A hidden tab never consumes the cinematic timeline.
     if(!document.hidden) elapsed+=Math.min((now-last)/1000,.05);
     last=now;
-    const opening=ease(1.6,4.8,elapsed), travel=ease(3.4,8.6,elapsed);
+    const opening=ease(1.6,4.8,elapsed), travel=ease(3.4,10.4,elapsed);
     doors[0].rotation.y=-opening*Math.PI*.585;doors[1].rotation.y=opening*Math.PI*.585;
     const portrait=camera.aspect<1;
-    camera.position.set(.35*(1-travel),2.4-.15*travel,(portrait?13:10.8)*(1-travel)-4.4*travel);
+    camera.position.set(.35*(1-travel)+Math.sin(travel*Math.PI)*.24,2.4-.15*travel,(portrait?13:10.8)*(1-travel)-4.4*travel);
     camera.lookAt(0,2.2,-7);
-    renderer.toneMappingExposure=1.05-.22*ease(8,10,elapsed);
-    update(elapsed>8.2?"reveal":"approach",Math.min(elapsed/12.2,1));
+    renderer.toneMappingExposure=1.12-.15*ease(10,12,elapsed);
+    update(elapsed>10.5?"reveal":"approach",Math.min(elapsed/14.5,1));
     renderer.render(scene,camera);
-    if(elapsed>=12.2)finish();
+    if(elapsed>=14.5)finish();
     else frameId=requestAnimationFrame(draw);
   };
   frameId=requestAnimationFrame(draw);
   return () => {
     if(stopped)return;stopped=true;cancelAnimationFrame(frameId);window.removeEventListener("resize",resize);
     renderer.domElement.removeEventListener("webglcontextlost",lost);
-    scene.traverse(object=>{if(object instanceof THREE.Mesh)object.geometry.dispose();});
+    details.dispose();
+    const geometries = new Set<THREE.BufferGeometry>();
+    scene.traverse(object=>{if(object instanceof THREE.Mesh)geometries.add(object.geometry);});
+    geometries.forEach(geometry=>geometry.dispose());
     materials.forEach(m=>m.dispose());textures.forEach(t=>t.dispose());environment.dispose();renderer.dispose();renderer.domElement.remove();
   };
 }

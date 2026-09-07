@@ -1,15 +1,22 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+
+const POINTER_QUERY = "(hover: hover) and (pointer: fine)";
+const getServerSnapshot = () => false;
+const getPointerSnapshot = () => window.matchMedia(POINTER_QUERY).matches;
+function subscribeToPointer(callback: () => void) {
+  const query = window.matchMedia(POINTER_QUERY);
+  query.addEventListener("change", callback);
+  return () => query.removeEventListener("change", callback);
+}
 
 // Gold cursor dot that follows the pointer with a subtle spring lag.
 // Grows on hoverable elements. Hidden on touch devices.
 export default function SignatureCursor() {
-  const [enabled] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
-      : false,
-  );
+  // The server snapshot is also used for the first hydration render. Only
+  // after hydration may the pointer capability introduce cursor elements.
+  const enabled = useSyncExternalStore(subscribeToPointer, getPointerSnapshot, getServerSnapshot);
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const dotRef = useRef<HTMLDivElement | null>(null);
