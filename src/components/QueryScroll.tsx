@@ -9,7 +9,9 @@ export default function QueryScroll() {
     if (value === null || !/^\d+$/.test(value)) return;
     const position = Number(value);
     if (!Number.isSafeInteger(position)) return;
-    const scroll = () => window.scrollTo(0, position);
+    const scroll = () => {
+      if (document.documentElement.dataset.introActive !== "true") window.scrollTo(0, position);
+    };
     scroll();
     window.addEventListener("load", scroll);
     const timers = [50, 300, 1200].map(delay => window.setTimeout(scroll, delay));

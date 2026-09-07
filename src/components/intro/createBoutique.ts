@@ -199,26 +199,29 @@ export function createBoutique(host: HTMLElement, update: (phase: string, progre
   resize();window.addEventListener("resize",resize);
   const lost = (event: Event) => { event.preventDefault();finish(); };renderer.domElement.addEventListener("webglcontextlost",lost);
   let frameId = 0;let elapsed=0;let last=performance.now();let stopped=false;
+  const onVisibility = () => { last = performance.now(); };
+  document.addEventListener("visibilitychange", onVisibility);
   const draw = (now: number) => {
     if(stopped)return;
     // A hidden tab never consumes the cinematic timeline.
-    if(!document.hidden) elapsed+=Math.min((now-last)/1000,.05);
+    if(!document.hidden) elapsed+=Math.max((now-last)/1000,0);
     last=now;
-    const opening=ease(1.6,4.8,elapsed), travel=ease(3.4,10.4,elapsed);
+    const opening=ease(.3,1.7,elapsed), travel=ease(.95,3.8,elapsed);
     doors[0].rotation.y=-opening*Math.PI*.585;doors[1].rotation.y=opening*Math.PI*.585;
     const portrait=camera.aspect<1;
     camera.position.set(.35*(1-travel)+Math.sin(travel*Math.PI)*.24,2.4-.15*travel,(portrait?13:10.8)*(1-travel)-4.4*travel);
     camera.lookAt(0,2.2,-7);
-    renderer.toneMappingExposure=1.12-.15*ease(10,12,elapsed);
-    update(elapsed>10.5?"reveal":"approach",Math.min(elapsed/14.5,1));
+    renderer.toneMappingExposure=1.12-.15*ease(3.7,4.6,elapsed);
+    update(elapsed>3.8?"reveal":"approach",Math.min(elapsed/5.4,1));
     renderer.render(scene,camera);
-    if(elapsed>=14.5)finish();
+    if(elapsed>=5.4)finish();
     else frameId=requestAnimationFrame(draw);
   };
   frameId=requestAnimationFrame(draw);
   return () => {
     if(stopped)return;stopped=true;cancelAnimationFrame(frameId);window.removeEventListener("resize",resize);
     renderer.domElement.removeEventListener("webglcontextlost",lost);
+    document.removeEventListener("visibilitychange", onVisibility);
     details.dispose();
     const geometries = new Set<THREE.BufferGeometry>();
     scene.traverse(object=>{if(object instanceof THREE.Mesh)geometries.add(object.geometry);});

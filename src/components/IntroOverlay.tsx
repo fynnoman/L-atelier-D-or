@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import styles from "./intro/intro.module.css";
+import { lockIntroScroll } from "./intro/lockIntroScroll";
 const SESSION_KEY = "lad-cinematic-v2";
 export default function IntroOverlay() {
   const root = useRef<HTMLDivElement>(null);
@@ -16,16 +17,15 @@ export default function IntroOverlay() {
     let finished = false;
     let destroy: (() => void) | undefined;
     let fadeTimer: ReturnType<typeof setTimeout>;
-    const previousOverflow = document.documentElement.style.overflow;
+    const releaseScroll = lockIntroScroll();
     const previousFocus = document.activeElement as HTMLElement | null;
     const siblings = Array.from(document.body.children).filter((el): el is HTMLElement => el instanceof HTMLElement && el !== overlay && !el.contains(overlay));
     const inertStates = siblings.map(el => el.inert);
     siblings.forEach(el => { el.inert = true; });
     overlay.hidden = false;
-    document.documentElement.style.overflow = "hidden";
     skip.current?.focus({ preventScroll: true });
     const restore = () => {
-      document.documentElement.style.overflow = previousOverflow;
+      releaseScroll();
       siblings.forEach((el, i) => { el.inert = inertStates[i]; });
     };
     const finish = () => {
@@ -38,7 +38,7 @@ export default function IntroOverlay() {
         destroy?.();
         restore();
         previousFocus?.focus({ preventScroll: true });
-      }, 850);
+      }, 450);
     };
     const onKey = (event: KeyboardEvent) => {
       if (event.key === "Escape") finish();
