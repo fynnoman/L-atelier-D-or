@@ -52,10 +52,10 @@ class SceneBoundary extends Component<{children:ReactNode;fallback:ReactNode},{f
   render(){return this.state.failed?this.props.fallback:this.props.children;}
 }
 export default function AtelierScene(props:Props){
-  const [supported,setSupported]=useState(false);
+  const [supported]=useState(()=>{if(typeof document === "undefined")return false;const c=document.createElement("canvas");const gl=c.getContext("webgl2");const available=!!gl;gl?.getExtension("WEBGL_lose_context")?.loseContext();return available;});
   const [visible,setVisible]=useState(true);
   const container=useRef<HTMLDivElement>(null);
-  useEffect(()=>{const c=document.createElement("canvas");const gl=c.getContext("webgl2");setSupported(!!gl);gl?.getExtension("WEBGL_lose_context")?.loseContext();const observer=new IntersectionObserver(([e])=>setVisible(e.isIntersecting));if(container.current)observer.observe(container.current);return()=>observer.disconnect();},[]);
+  useEffect(()=>{const observer=new IntersectionObserver(([e])=>setVisible(e.isIntersecting));if(container.current)observer.observe(container.current);return()=>observer.disconnect();},[]);
   const fallback=<div className="atelier-scene-fallback" style={{position:"relative"}}><Image src="/models/orphee-03.png" alt="Orphée 03 – Produktvisualisierung" fill sizes="75vw" style={{objectFit:"contain",mixBlendMode:"multiply"}} /></div>;
   return <div ref={container} className="atelier-canvas" role="img" aria-label="Dreidimensionale goldene Orphée-Fassung, die sich beim Scrollen dreht und in ihre Bestandteile öffnet"><SceneBoundary fallback={fallback}>{supported?<Canvas style={{touchAction:"pan-y"}} camera={{position:[0,0,7.2],fov:36}} dpr={[1,1.5]} frameloop={visible?"always":"never"} gl={{antialias:true,alpha:true}}><ambientLight intensity={.8}/><directionalLight position={[3,5,4]} intensity={3}/><Frame {...props}/><Environment resolution={128}><Lightformer intensity={4} position={[0,5,0]} scale={[10,2,1]}/><Lightformer intensity={3} position={[-4,1,3]} scale={[3,8,1]}/><Lightformer intensity={2} color="#f3d49c" position={[4,-2,2]} scale={[3,5,1]}/></Environment></Canvas>:fallback}</SceneBoundary></div>;
 }

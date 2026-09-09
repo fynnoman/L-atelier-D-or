@@ -69,7 +69,7 @@ export default function Immersion() {
           >
             „Ein Objekt bleibt nur so lange lebendig, wie eine{" "}
             <span style={{ color: "var(--or-glow)" }}>Hand</span> es
-            weiterträgt."
+            weiterträgt.“
           </p>
 
           <div className="mt-14 flex items-center justify-center gap-4">

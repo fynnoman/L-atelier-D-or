@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   description:
     "Handgefertigte Brillen in limitierter Auflage. Titan, Acetat, 18 Karat. Zwischen Paris, Berlin und dem Jura.",
-  metadataBase: new URL("https://latelier-dor.example"),
+  metadataBase: new URL("https://latelier-dor-immersion.steady-beech-6914.chatgpt.site"),
   openGraph: {
     title: "L'ATELIER D'OR",
     description:
