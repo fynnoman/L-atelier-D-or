@@ -33,7 +33,7 @@ export const products: Product[] = [
       { label: "Bügellänge", value: "145 mm" },
       { label: "Gewicht", value: "12,4 g" },
     ],
-    image: "/models/solene-01.jpg",
+    image: "/models/solene-01.png",
     imageAlt: "Solène 01, Titanfassung mit Vergoldung",
   },
   {
@@ -56,7 +56,7 @@ export const products: Product[] = [
       { label: "Bügellänge", value: "148 mm" },
       { label: "Gewicht", value: "22,1 g" },
     ],
-    image: "/models/malbec-02.jpg",
+    image: "/models/malbec-02.png",
     imageAlt: "Malbec 02, Panto-Silhouette aus Acetat",
   },
   {
@@ -78,7 +78,7 @@ export const products: Product[] = [
       { label: "Bügellänge", value: "145 mm" },
       { label: "Gewicht", value: "8,9 g" },
     ],
-    image: "/models/orphee-03.jpg",
+    image: "/models/orphee-03.png",
     imageAlt: "Orphée 03, runde Titanfassung mit Perlmutt",
   },
   {
@@ -101,7 +101,7 @@ export const products: Product[] = [
       { label: "Bügellänge", value: "140 mm" },
       { label: "Gewicht", value: "24,6 g" },
     ],
-    image: "/models/valois-04.jpg",
+    image: "/models/valois-04.png",
     imageAlt: "Valois 04, Cat-Eye Sonnenbrille",
   },
 ];

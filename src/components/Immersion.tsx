@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import PlaceholderImage from "./PlaceholderImage";
 
 // Mid-page immersion moment: full-bleed atelier photo, slow parallax,
 // pull quote centred with gold flourishes and hairlines.
@@ -25,17 +24,8 @@ export default function Immersion() {
       className="relative w-full overflow-hidden bg-noir grain grain-dark h-[92dvh] min-h-[620px]"
       style={{ backgroundColor: "var(--noir)" }}
     >
-      <motion.div
-        style={{ y }}
-        className="absolute -inset-y-[18%] inset-x-0 will-change-transform"
-      >
-        <PlaceholderImage
-          src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=2600&q=86"
-          alt="Atelier · Detail — Jura"
-          sizes="100vw"
-          quality={82}
-          className="object-cover opacity-90"
-        />
+      <motion.div style={{ y }} className="absolute -inset-y-[18%] inset-x-0 will-change-transform">
+        <video className="w-full h-full object-cover opacity-70" src="/video/intro.mp4" autoPlay={!reduced} muted loop playsInline preload="metadata" aria-hidden />
       </motion.div>
 
       <div

@@ -1,12 +1,11 @@
 import Hero from "@/components/Hero";
 import Campaign from "@/components/Campaign";
-import CategoryGrid from "@/components/CategoryGrid";
+import CollectionJourney from "@/components/CollectionJourney";
 import EssentielsGrid from "@/components/EssentielsGrid";
 import MaisonTrio from "@/components/MaisonTrio";
 import Immersion from "@/components/Immersion";
 import Manifesto from "@/components/Manifesto";
 import GoldMarquee from "@/components/GoldMarquee";
-import { products } from "@/data/products";
 
 export default function Home() {
   return (
@@ -15,21 +14,7 @@ export default function Home() {
 
       <GoldMarquee tone="noir" />
 
-      <CategoryGrid
-        eyebrow="Nouvelles Créations"
-        title={
-          <>
-            Vier Fassungen,{" "}
-            <span style={{ fontStyle: "italic", color: "var(--or-2)" }}>
-              vom Draht bis zur Signatur.
-            </span>
-          </>
-        }
-        paragraph="Jedes Modell wird in kleiner Serie zwischen 60 und 120 Stück gefertigt und im Bügel handnummeriert."
-        products={products}
-        cta={{ href: "/kollektion", label: "Alle Fassungen" }}
-        columns={4}
-      />
+      <CollectionJourney />
 
       <Manifesto />
 

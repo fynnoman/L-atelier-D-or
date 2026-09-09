@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import ScrollExperience from "@/components/ScrollExperience";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import IntroOverlay from "@/components/IntroOverlay";
 import { BoutiqueProvider } from "@/lib/boutique/BoutiqueProvider";
 import DrawerHost from "@/components/boutique/DrawerHost";
 import PageTransitions from "@/components/PageTransitions";
@@ -47,8 +47,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="de" className={`${inter.variable} ${fraunces.variable}`}>
       <body className="bg-bg text-ink">
         <BoutiqueProvider>
-          <IntroOverlay />
           <Nav />
+          <ScrollExperience />
           <PageTransitions>
             <main className="relative">{children}</main>
           </PageTransitions>

@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import {useRef} from "react";
+import {motion, useScroll, useTransform, useReducedMotion} from "framer-motion";
 import PlaceholderImage from "./PlaceholderImage";
 
 type Props = {
@@ -30,6 +32,11 @@ export default function Campaign({
   height = "h-[96dvh] min-h-[640px]",
   plaque,
 }: Props) {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const {scrollYProgress} = useScroll({target:ref,offset:["start end","end start"]});
+  const y = useTransform(scrollYProgress,[0,1],reduced?[0,0]:[-70,70]);
+  const scale = useTransform(scrollYProgress,[0,1],reduced?[1,1]:[1.16,1.02]);
   const alignItems =
     align === "center"
       ? "items-center text-center"
@@ -40,7 +47,8 @@ export default function Campaign({
     align === "right" ? "left-6 md:left-12" : "right-6 md:right-12";
 
   return (
-    <section className={`relative w-full overflow-hidden ${height} grain grain-dark bg-noir`}>
+    <section ref={ref} className={`relative w-full overflow-hidden ${height} grain grain-dark bg-noir`}>
+      <motion.div className="absolute inset-0" style={{y,scale}}>
       <PlaceholderImage
         src={image}
         alt={imageAlt}
@@ -48,6 +56,7 @@ export default function Campaign({
         quality={82}
         className="object-cover"
       />
+      </motion.div>
       {/* Warm cinematic wash */}
       <div
         className="absolute inset-0"
