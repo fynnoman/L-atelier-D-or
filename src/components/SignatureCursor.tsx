@@ -5,11 +5,12 @@ import { useEffect, useRef, useState } from "react";
 // Gold cursor dot that follows the pointer with a subtle spring lag.
 // Grows on hoverable elements. Hidden on touch devices.
 export default function SignatureCursor() {
-  const [enabled] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(hover: hover) and (pointer: fine)").matches
-      : false,
-  );
+  const [enabled, setEnabled] = useState(false);
+  useEffect(() => {
+    setEnabled(
+      window.matchMedia("(hover: hover) and (pointer: fine)").matches,
+    );
+  }, []);
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const dotRef = useRef<HTMLDivElement | null>(null);
