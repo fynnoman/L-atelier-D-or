@@ -1,135 +1,95 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import PlaceholderImage from "@/components/PlaceholderImage";
-import { journal } from "@/data/journal";
+import PageHead from "@/components/PageHead";
+import Reveal from "@/components/Reveal";
+import { articles } from "@/data/journal";
 
 export const metadata: Metadata = {
-  title: "Livre d'Or · Journal",
+  title: "Journal — les cahiers de la maison",
   description:
-    "Journal der Maison: Atelier-Berichte, Materialkunde, Portraits. Aus Paris, Berlin und dem Jura.",
+    "Cahiers, lettres et notes de l’atelier. La maison raconte ses gestes, ses matières, ses choix.",
 };
 
-export default function JournalIndex() {
-  const [hero, ...rest] = journal;
+const heroBg: Record<string, string> = {
+  boutique: "linear-gradient(135deg, var(--parchment-3) 0%, var(--parchment-2) 55%, var(--parchment) 100%)",
+  rouge: "linear-gradient(135deg, #1c0a07 0%, #7e1f14 100%)",
+  foret: "linear-gradient(135deg, #0a1710 0%, #1f3d24 100%)",
+  cristal: "linear-gradient(135deg, #f2f5f8 0%, #b6d2e3 100%)",
+  emeraude: "linear-gradient(135deg, #12102a 0%, #1f6b4a 60%, #6a3f8e 100%)",
+};
 
+export default function JournalPage() {
   return (
-    <div className="relative min-h-[100dvh] bg-bg pt-32 pb-24 md:pt-40 md:pb-32">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-12">
-        <header className="mb-14 md:mb-20 flex flex-wrap items-end justify-between gap-8">
-          <div>
-            <p className="eyebrow-gold">Livre d&apos;Or · Journal</p>
-            <h1 className="mt-5 display text-ink text-[clamp(2.2rem,5.4vw,4.6rem)] leading-[0.98] tracking-[-0.02em]">
-              Aus der Werkstatt,
-              <span
-                className="block"
-                style={{
-                  fontStyle: "italic",
-                  fontFamily: "var(--font-fraunces), serif",
-                  color: "var(--or-2)",
-                }}
-              >
-                gedruckt auf Bütten.
-              </span>
-            </h1>
-          </div>
-          <p className="max-w-md text-[14px] text-muted leading-[1.9]">
-            Berichte aus dem Atelier, Portraits der Handwerker, Materialkunde
-            in fünf Minuten Lesezeit. Erscheint saisonal, nummeriert wie unsere
-            Fassungen.
-          </p>
-        </header>
+    <>
+      <PageHead
+        chapter="Cahier — Notes de la maison"
+        eyebrow="Journal"
+        title="Cahiers,"
+        italic="lettres, silences."
+        intro="Trois cahiers pour l’instant. Nous en publions un ou deux par saison, quand nous avons quelque chose à dire — et jamais autrement."
+      />
 
-        {/* Hero article */}
-        <Link
-          href={`/journal/${hero.slug}`}
-          className="group block border-t border-b border-line-soft py-10 md:py-14"
-        >
-          <article className="grid gap-8 md:grid-cols-[1.15fr_1fr] items-center">
-            <div className="relative aspect-[4/3] overflow-hidden bg-bg-3">
-              <PlaceholderImage
-                src={hero.cover}
-                alt={hero.coverAlt}
-                sizes="(min-width: 768px) 55vw, 100vw"
-                className="object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
-                priority
-              />
-            </div>
-            <div>
-              <p className="eyebrow-gold">{hero.category} · Une</p>
-              <h2 className="mt-5 display text-ink text-[clamp(1.9rem,4vw,3.4rem)] leading-[1.02] tracking-[-0.02em]">
-                {hero.title}
-                <span
-                  className="block mt-2"
-                  style={{
-                    fontStyle: "italic",
-                    fontFamily: "var(--font-fraunces), serif",
-                    color: "var(--or-2)",
-                    fontSize: "0.7em",
-                  }}
+      <section
+        className="relative"
+        style={{
+          paddingInline: "var(--page-x)",
+          paddingBlock: "clamp(60px, 10vh, 120px)",
+          background: "var(--bg)",
+        }}
+      >
+        <div className="mx-auto max-w-[1400px] grid gap-10 md:grid-cols-3">
+          {articles.map((a, i) => (
+            <Reveal key={a.slug} delay={i * 80}>
+              <Link href={`/journal/${a.slug}`} className="group block">
+                <div
+                  className="relative overflow-hidden"
+                  style={{ aspectRatio: "4 / 5", background: heroBg[a.hero] ?? heroBg.boutique, borderRadius: 2 }}
                 >
-                  {hero.italic}
-                </span>
-              </h2>
-              <p className="mt-6 text-[14px] text-muted leading-[1.9] max-w-lg">
-                {hero.excerpt}
-              </p>
-              <div className="mt-6 flex flex-wrap items-center gap-4 text-[11px] uppercase tracking-[0.24em] text-muted">
-                <span>{hero.author}</span>
-                <span className="dot" />
-                <span>{hero.location}</span>
-                <span className="dot" />
-                <span>{hero.reading}</span>
-              </div>
-              <span className="link-gold mt-8 inline-block text-[11.5px] uppercase tracking-[0.22em]">
-                Lire l&apos;article
-              </span>
-            </div>
-          </article>
-        </Link>
-
-        {/* Rest grid */}
-        <div className="grid gap-x-8 gap-y-14 md:grid-cols-3 mt-14 md:mt-20">
-          {rest.map((entry) => (
-            <Link
-              key={entry.slug}
-              href={`/journal/${entry.slug}`}
-              className="group block"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden bg-bg-3">
-                <PlaceholderImage
-                  src={entry.cover}
-                  alt={entry.coverAlt}
-                  sizes="(min-width: 768px) 30vw, 90vw"
-                  className="object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]"
-                />
-              </div>
-              <p className="eyebrow-gold mt-6">{entry.category}</p>
-              <h3 className="mt-3 display text-ink text-[clamp(1.4rem,2vw,1.8rem)] leading-[1.05] tracking-[-0.015em]">
-                {entry.title}
-                <span
-                  className="block mt-1.5"
-                  style={{
-                    fontStyle: "italic",
-                    fontFamily: "var(--font-fraunces), serif",
-                    color: "var(--or-2)",
-                    fontSize: "0.72em",
-                  }}
-                >
-                  {entry.italic}
-                </span>
-              </h3>
-              <p className="mt-4 text-[13.5px] text-muted leading-[1.8]">
-                {entry.excerpt}
-              </p>
-              <div className="mt-5 flex items-center gap-3 text-[10.5px] uppercase tracking-[0.24em] text-muted">
-                <span>{entry.author}</span>
-                <span className="dot" />
-                <span>{entry.reading}</span>
-              </div>
-            </Link>
+                  <div aria-hidden className="absolute inset-0 grain pointer-events-none" style={{ opacity: 0.32 }} />
+                  <div className="absolute inset-0 flex flex-col justify-between" style={{ padding: 26 }}>
+                    <span
+                      style={{
+                        fontSize: 10,
+                        letterSpacing: "0.32em",
+                        textTransform: "uppercase",
+                        color: a.hero === "cristal" ? "var(--noir-2)" : "var(--or-glow)",
+                      }}
+                    >
+                      {a.chapter} · {a.kicker}
+                    </span>
+                    <div
+                      className="serif"
+                      style={{
+                        fontSize: 24,
+                        lineHeight: 1.15,
+                        color: a.hero === "cristal" ? "var(--noir)" : "var(--parchment)",
+                      }}
+                    >
+                      {a.title}
+                    </div>
+                  </div>
+                </div>
+                <div className="mt-6">
+                  <p className="serif" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--muted)" }}>
+                    {a.dek}
+                  </p>
+                  <div
+                    style={{
+                      marginTop: 12,
+                      fontSize: 11,
+                      letterSpacing: "0.24em",
+                      textTransform: "uppercase",
+                      color: "var(--or-2)",
+                    }}
+                  >
+                    {a.date} · {a.read} de lecture
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
           ))}
         </div>
-      </div>
-    </div>
+      </section>
+    </>
   );
 }

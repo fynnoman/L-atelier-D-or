@@ -1,147 +1,128 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import PlaceholderImage from "@/components/PlaceholderImage";
-import { getJournal, journal } from "@/data/journal";
-import JournalArticle from "@/components/journal/JournalArticle";
+import { notFound } from "next/navigation";
+import Link from "next/link";
+import { articleBySlug, articles } from "@/data/journal";
+import Reveal from "@/components/Reveal";
 
-export function generateStaticParams() {
-  return journal.map((e) => ({ slug: e.slug }));
+type Params = { slug: string };
+
+export function generateStaticParams(): Params[] {
+  return articles.map((a) => ({ slug: a.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: PageProps<"/journal/[slug]">): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: Promise<Params> },
+): Promise<Metadata> {
   const { slug } = await params;
-  const entry = getJournal(slug);
-  if (!entry) return { title: "Journal" };
-  return {
-    title: `${entry.title} · Livre d'Or`,
-    description: entry.excerpt,
-    openGraph: {
-      title: entry.title,
-      description: entry.excerpt,
-      images: [{ url: entry.cover }],
-    },
-  };
+  const a = articleBySlug(slug);
+  if (!a) return {};
+  return { title: a.title, description: a.dek };
 }
 
-export default async function JournalArticlePage({
-  params,
-}: PageProps<"/journal/[slug]">) {
-  const { slug } = await params;
-  const entry = getJournal(slug);
-  if (!entry) notFound();
+const heroBg: Record<string, string> = {
+  boutique: "linear-gradient(135deg, var(--parchment-3) 0%, var(--parchment-2) 55%, var(--parchment) 100%)",
+  rouge: "linear-gradient(135deg, #1c0a07 0%, #7e1f14 100%)",
+  foret: "linear-gradient(135deg, #0a1710 0%, #1f3d24 100%)",
+  cristal: "linear-gradient(135deg, #f2f5f8 0%, #b6d2e3 100%)",
+  emeraude: "linear-gradient(135deg, #12102a 0%, #1f6b4a 60%, #6a3f8e 100%)",
+};
 
-  const others = journal.filter((e) => e.slug !== entry.slug).slice(0, 2);
+export default async function ArticlePage(
+  { params }: { params: Promise<Params> },
+) {
+  const { slug } = await params;
+  const a = articleBySlug(slug);
+  if (!a) notFound();
+
+  const light = a.hero === "cristal";
 
   return (
     <>
-      <section className="relative h-[86dvh] min-h-[560px] w-full overflow-hidden bg-noir text-parchment grain grain-dark">
-        <PlaceholderImage
-          src={entry.cover}
-          alt={entry.coverAlt}
-          sizes="100vw"
-          quality={82}
-          className="object-cover"
-          priority
-        />
-        <div
-          className="absolute inset-0"
-          aria-hidden
-          style={{
-            background:
-              "linear-gradient(180deg, rgba(10,8,6,0.4) 0%, rgba(10,8,6,0.25) 40%, rgba(10,8,6,0.85) 100%)",
-          }}
-        />
-        <div className="absolute inset-0 flex items-end pb-16 md:pb-24 px-6 md:px-12">
-          <div className="mx-auto w-full max-w-[1200px]">
-            <p className="eyebrow-light">{entry.category}</p>
-            <h1
-              className="mt-6 display text-parchment"
+      <section
+        className="relative overflow-hidden"
+        style={{
+          minHeight: "70svh",
+          paddingInline: "var(--page-x)",
+          paddingTop: "clamp(140px, 20vh, 240px)",
+          paddingBottom: "clamp(60px, 10vh, 120px)",
+          background: heroBg[a.hero] ?? heroBg.boutique,
+          color: light ? "var(--noir)" : "var(--parchment)",
+        }}
+      >
+        <div aria-hidden className="absolute inset-0 grain pointer-events-none" style={{ opacity: 0.28 }} />
+        <div className="relative mx-auto max-w-[1000px]">
+          <Reveal>
+            <div
               style={{
-                fontSize: "clamp(2.2rem, 6vw, 5.4rem)",
-                lineHeight: 0.98,
-                letterSpacing: "-0.025em",
+                fontSize: 11,
+                letterSpacing: "0.32em",
+                textTransform: "uppercase",
+                color: light ? "var(--noir-2)" : "var(--or-glow)",
+                marginBottom: 24,
               }}
             >
-              {entry.title}
-              <span
-                className="block mt-3"
+              {a.chapter} · {a.kicker} · {a.date}
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <h1
+              className="display"
+              style={{
+                fontSize: "clamp(40px, 6vw, 92px)",
+                lineHeight: 1.02,
+                color: light ? "var(--noir)" : "var(--parchment)",
+              }}
+            >
+              {a.title}
+            </h1>
+          </Reveal>
+          <Reveal delay={160}>
+            <p
+              className="serif mt-8"
+              style={{
+                fontSize: "clamp(18px, 1.8vw, 22px)",
+                lineHeight: 1.55,
+                maxWidth: 720,
+                color: light ? "var(--ink-2)" : "color-mix(in oklab, var(--parchment) 82%, transparent)",
+              }}
+            >
+              {a.dek}
+            </p>
+          </Reveal>
+        </div>
+      </section>
+
+      <article
+        className="relative"
+        style={{
+          paddingInline: "var(--page-x)",
+          paddingBlock: "clamp(80px, 12vh, 140px)",
+          background: "var(--bg)",
+        }}
+      >
+        <div className="mx-auto max-w-[720px] space-y-8">
+          {a.body.map((p, i) => (
+            <Reveal key={i} delay={i * 60}>
+              <p
+                className="serif"
                 style={{
-                  fontStyle: "italic",
-                  fontFamily: "var(--font-fraunces), serif",
-                  color: "var(--or-glow)",
-                  fontSize: "0.6em",
+                  fontSize: i === 0 ? "clamp(20px, 1.7vw, 24px)" : "clamp(17px, 1.3vw, 19px)",
+                  lineHeight: 1.75,
+                  color: i === 0 ? "var(--ink)" : "var(--ink-2)",
                 }}
               >
-                {entry.italic}
-              </span>
-            </h1>
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-[10.5px] uppercase tracking-[0.28em] text-parchment/70">
-              <span>{entry.author}</span>
-              <span className="dot" />
-              <span>{entry.location}</span>
-              <span className="dot" />
-              <span>{entry.reading}</span>
-              <span className="dot" />
-              <span>{formatDate(entry.date)}</span>
-            </div>
-          </div>
+                {p}
+              </p>
+            </Reveal>
+          ))}
         </div>
-      </section>
 
-      <JournalArticle entry={entry} />
-
-      <section className="bg-bg py-20 md:py-28 border-t border-line-soft">
-        <div className="mx-auto max-w-[1300px] px-6 md:px-12">
-          <div className="flex items-end justify-between mb-10">
-            <div>
-              <p className="eyebrow-gold">À lire ensuite</p>
-              <h2 className="mt-4 display text-ink text-[clamp(1.6rem,2.8vw,2.4rem)] leading-[1.02]">
-                Weiter im Livre d&apos;Or.
-              </h2>
-            </div>
-            <Link href="/journal" className="link-gold text-[11px] uppercase tracking-[0.22em]">
-              Alle Beiträge
-            </Link>
-          </div>
-          <div className="grid gap-10 md:grid-cols-2">
-            {others.map((e) => (
-              <Link
-                key={e.slug}
-                href={`/journal/${e.slug}`}
-                className="group block"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden bg-bg-3">
-                  <PlaceholderImage
-                    src={e.cover}
-                    alt={e.coverAlt}
-                    sizes="(min-width: 768px) 45vw, 90vw"
-                    className="object-cover transition-transform duration-[900ms] group-hover:scale-[1.03]"
-                  />
-                </div>
-                <p className="eyebrow-gold mt-5">{e.category}</p>
-                <h3 className="mt-3 display text-ink text-[clamp(1.4rem,2vw,1.8rem)] leading-[1.05]">
-                  {e.title}
-                </h3>
-                <p className="mt-3 text-[13px] text-muted leading-[1.8]">
-                  {e.excerpt}
-                </p>
-              </Link>
-            ))}
-          </div>
+        <div className="mx-auto max-w-[720px] mt-16" style={{ borderTop: "1px solid var(--line-soft)", paddingTop: 24 }}>
+          <Link href="/journal" className="link" data-underline style={{ fontSize: 12, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--ink-2)" }}>
+            ← Retour au journal
+          </Link>
         </div>
-      </section>
+      </article>
     </>
   );
-}
-
-function formatDate(iso: string) {
-  const date = new Date(iso);
-  return new Intl.DateTimeFormat("fr-FR", {
-    day: "numeric",
-    month: "long",
-    year: "numeric",
-  }).format(date);
 }

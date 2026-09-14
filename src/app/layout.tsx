@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
-
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
-import ScrollExperience from "@/components/ScrollExperience";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import { BoutiqueProvider } from "@/lib/boutique/BoutiqueProvider";
-import DrawerHost from "@/components/boutique/DrawerHost";
-import PageTransitions from "@/components/PageTransitions";
-
-import MagneticButtons from "@/components/MagneticButtons";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,37 +20,28 @@ const fraunces = Fraunces({
 
 export const metadata: Metadata = {
   title: {
-    default: "L'ATELIER D'OR",
-    template: "%s · L'ATELIER D'OR",
+    default: "L’Atelier d’Or — Maison de lunetterie française",
+    template: "%s · L’Atelier d’Or",
   },
   description:
-    "Handgefertigte Brillen in limitierter Auflage. Titan, Acetat, 18 Karat. Zwischen Paris, Berlin und dem Jura.",
-  metadataBase: new URL("https://latelier-dor-immersion.ddks25sqbd.chatgpt.site"),
+    "Une vision d’exception. Quatre paires, quatre atmosphères. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude — la première collection de L’Atelier d’Or.",
+  metadataBase: new URL("https://latelier-dor.com"),
   openGraph: {
-    title: "L'ATELIER D'OR",
+    title: "L’Atelier d’Or",
     description:
-      "Handgefertigte Brillen in limitierter Auflage. Zwischen Paris, Berlin und dem Jura.",
+      "Entrez dans une vision d’exception. Voyez le monde à votre dimension.",
     type: "website",
-    locale: "de_DE",
+    locale: "fr_FR",
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="de" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="bg-bg text-ink">
-        <BoutiqueProvider>
-          <Nav />
-          <ScrollExperience />
-          <PageTransitions>
-            <main className="relative">{children}</main>
-          </PageTransitions>
-          <Footer />
-          <DrawerHost />
-
-          <MagneticButtons />
-        </BoutiqueProvider>
-
+    <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
+      <body>
+        <Nav />
+        <main className="relative">{children}</main>
+        <Footer />
       </body>
     </html>
   );

@@ -2,22 +2,40 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className="relative flex min-h-[80dvh] items-center bg-bg pt-32 md:pt-40 pb-24">
-      <div className="mx-auto max-w-[900px] px-6 md:px-12">
-        <p className="eyebrow">404 · Seite nicht gefunden</p>
-        <h1 className="mt-6 font-light text-ink text-[clamp(2rem,5vw,4.4rem)] leading-[1.02] tracking-[-0.02em]">
-          Hier war einmal etwas anderes.
+    <section
+      className="relative"
+      style={{
+        minHeight: "80svh",
+        paddingInline: "var(--page-x)",
+        paddingTop: "clamp(160px, 22vh, 260px)",
+        paddingBottom: "clamp(80px, 12vh, 140px)",
+        background:
+          "radial-gradient(1000px 600px at 22% 20%, rgba(215,170,90,0.20), transparent 60%), linear-gradient(180deg, var(--parchment) 0%, var(--parchment-2) 100%)",
+      }}
+    >
+      <div className="mx-auto max-w-[900px] text-center">
+        <div className="eyebrow-or">Cahier introuvable</div>
+        <h1
+          className="display mt-6"
+          style={{
+            fontSize: "clamp(56px, 10vw, 148px)",
+            lineHeight: 0.94,
+            color: "var(--ink)",
+          }}
+        >
+          404
         </h1>
-        <p className="mt-8 max-w-lg text-[15px] leading-[1.75] text-muted">
-          Die Seite existiert nicht mehr oder ist umgezogen. Zurück zur
-          Startseite oder direkt in die Kollektion.
+        <p
+          className="serif mt-8 mx-auto"
+          style={{ fontSize: "clamp(17px, 1.5vw, 20px)", lineHeight: 1.55, maxWidth: 520, color: "var(--ink-2)" }}
+        >
+          La page que vous cherchez n’est pas ici. Elle a peut-être été retirée
+          — ou bien elle n’a pas encore été écrite.
         </p>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <Link href="/" className="lv-btn lv-btn-solid">
-            Startseite
-          </Link>
-          <Link href="/kollektion" className="lv-btn">
-            Kollektion
+        <div className="mt-10 flex items-center justify-center gap-4">
+          <Link href="/" className="btn-or">Retour à la maison</Link>
+          <Link href="/collection" className="btn-ghost" style={{ color: "var(--ink)", borderColor: "var(--line)" }}>
+            Voir la collection
           </Link>
         </div>
       </div>

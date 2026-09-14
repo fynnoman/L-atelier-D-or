@@ -1,58 +1,44 @@
-type Props = {
-  size?: "sm" | "md" | "lg" | "xl" | "hero";
-  className?: string;
-  variant?: "dark" | "light" | "gold" | "shimmer";
-  as?: "span" | "h1" | "h2";
-};
+import Link from "next/link";
+import { clsx } from "clsx";
 
-const sizeMap = {
-  sm: "text-[12px] tracking-[0.28em]",
-  md: "text-[14px] md:text-[15px] tracking-[0.26em]",
-  lg: "text-[20px] md:text-[26px] tracking-[0.24em]",
-  xl: "text-[32px] md:text-[44px] tracking-[0.22em]",
-  hero: "text-[clamp(2.2rem,5.6vw,4.4rem)] tracking-[0.18em]",
-};
+type Props = { className?: string; muted?: boolean };
 
-// Engraved-plate wordmark: L'ATELIER · D'OR — separated by a small
-// diamond glyph. Available in ink, parchment, static gold, or shimmering gold.
-export default function Wordmark({
-  size = "md",
-  className = "",
-  variant = "dark",
-  as = "span",
-}: Props) {
-  const Tag = as;
-
-  const colorClass =
-    variant === "light"
-      ? "text-parchment"
-      : variant === "dark"
-        ? "text-ink"
-        : "";
-
-  const goldClass =
-    variant === "gold"
-      ? "gilded"
-      : variant === "shimmer"
-        ? "gilded-shimmer"
-        : "";
-
+export default function Wordmark({ className, muted }: Props) {
   return (
-    <Tag
-      className={`wordmark leading-none inline-flex items-center ${sizeMap[size]} ${colorClass} ${goldClass} ${className}`}
-      aria-label="L'Atelier d'Or"
-      style={{ fontWeight: 500 }}
+    <Link
+      href="/"
+      aria-label="L’Atelier d’Or, retour à l’accueil"
+      className={clsx(
+        "inline-flex flex-col items-center leading-none",
+        muted ? "text-current" : "text-ink",
+        className,
+      )}
     >
-      <span>L&apos;ATELIER</span>
       <span
-        aria-hidden
-        className="mx-[0.55em] inline-block h-[0.32em] w-[0.32em] rotate-45"
+        className="serif"
         style={{
-          background: variant === "gold" || variant === "shimmer" ? "var(--or)" : "currentColor",
-          opacity: variant === "gold" || variant === "shimmer" ? 0.9 : 0.75,
+          fontSize: "clamp(14px, 1.05vw, 18px)",
+          letterSpacing: "0.4em",
+          textTransform: "uppercase",
+          fontWeight: 400,
         }}
-      />
-      <span>D&apos;OR</span>
-    </Tag>
+      >
+        L’Atelier
+      </span>
+      <span
+        className="serif"
+        aria-hidden="true"
+        style={{
+          fontSize: "clamp(12px, 0.9vw, 15px)",
+          letterSpacing: "0.34em",
+          textTransform: "uppercase",
+          color: "var(--or)",
+          marginTop: 2,
+          fontWeight: 400,
+        }}
+      >
+        d’Or
+      </span>
+    </Link>
   );
 }

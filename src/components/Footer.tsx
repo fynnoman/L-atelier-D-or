@@ -1,42 +1,31 @@
 import Link from "next/link";
 import Wordmark from "./Wordmark";
-import { maison } from "@/data/maison";
 
-const cols = [
+const columns: { title: string; items: { href: string; label: string }[] }[] = [
   {
-    title: "Service",
-    links: [
-      { href: "/kontakt", label: "Salon Privé" },
-      { href: "/kontakt", label: "Réservation" },
-      { href: "/kontakt", label: "Réparation à vie" },
-      { href: "/kontakt", label: "Größenberatung" },
+    title: "La Maison",
+    items: [
+      { href: "/atelier", label: "L’Atelier" },
+      { href: "/journal", label: "Journal" },
+      { href: "/concierge", label: "Concierge" },
     ],
   },
   {
-    title: "Maison",
-    links: [
-      { href: "/atelier", label: "Histoire" },
-      { href: "/atelier#artisans", label: "Les Artisans" },
-      { href: "/referenzen", label: "Journal · Presse" },
-      { href: "/kontakt", label: "Karriere" },
+    title: "Collection",
+    items: [
+      { href: "/collection", label: "La Première Collection" },
+      { href: "/collection/roi-rouge", label: "Roi Rouge" },
+      { href: "/collection/roi-noir", label: "Roi Noir" },
+      { href: "/collection/roi-cristal", label: "Roi Cristal" },
+      { href: "/collection/roi-emeraude", label: "Roi Émeraude" },
     ],
   },
   {
-    title: "Boutiquen",
-    links: [
-      { href: "/kontakt", label: "Paris · Rue de la Paix" },
-      { href: "/kontakt", label: "Berlin · Torstraße" },
-      { href: "/kontakt", label: "Jura · Le Sentier" },
-      { href: "/kontakt", label: "Termin vereinbaren" },
-    ],
-  },
-  {
-    title: "Rechtliches",
-    links: [
-      { href: "/impressum", label: "Impressum" },
-      { href: "/datenschutz", label: "Datenschutz" },
-      { href: "/barrierefreiheit", label: "Barrierefreiheit" },
-      { href: "/kontakt", label: "AGB" },
+    title: "Discrétion",
+    items: [
+      { href: "/mentions-legales", label: "Mentions légales" },
+      { href: "/confidentialite", label: "Confidentialité" },
+      { href: "/accessibilite", label: "Accessibilité" },
     ],
   },
 ];
@@ -44,78 +33,72 @@ const cols = [
 export default function Footer() {
   return (
     <footer
-      className="relative bg-noir text-parchment grain grain-dark"
-      style={{ backgroundColor: "var(--noir)" }}
+      className="relative"
+      style={{
+        background: "var(--noir)",
+        color: "var(--parchment)",
+        paddingInline: "var(--page-x)",
+        paddingBlock: "88px",
+      }}
     >
-      {/* Top gold hairline */}
-      <div className="h-px w-full rule-gold" aria-hidden />
-
-      {/* Newsletter row */}
-      <div className="border-b border-line-noir">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-16 md:py-20 grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:items-end">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(1200px 500px at 20% 0%, rgba(215,170,90,0.10), transparent 60%), radial-gradient(900px 400px at 90% 100%, rgba(215,170,90,0.06), transparent 60%)",
+        }}
+      />
+      <div className="relative">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-10">
           <div>
-            <div className="flex items-center gap-4 mb-4">
-              <span className="eyebrow-gold">Journal · Newsletter</span>
-              <span className="h-px w-16 rule-gold-hard" />
-            </div>
-            <h3
-              className="display text-parchment"
-              style={{
-                fontSize: "clamp(1.5rem, 2.6vw, 2.4rem)",
-                lineHeight: 1.05,
-                letterSpacing: "-0.02em",
-              }}
-            >
-              Neuigkeiten aus dem{" "}
-              <span
-                style={{
-                  fontStyle: "italic",
-                  color: "var(--or-glow)",
-                }}
-              >
-                Atelier.
-              </span>
-            </h3>
+            <Wordmark muted className="[&_span:first-child]:text-parchment" />
             <p
-              className="mt-4 max-w-md text-[13.5px] leading-[1.85]"
-              style={{ color: "rgba(245, 239, 225, 0.62)" }}
+              className="serif mt-6"
+              style={{ fontSize: "clamp(20px, 2vw, 26px)", maxWidth: 460, lineHeight: 1.25 }}
             >
-              Zwei Ausgaben pro Jahr. Neue Éditionen, Werkstattnotizen,
-              Einladungen zu Anproben.
+              Entrez dans une vision d’exception.
+              <br />
+              Voyez le monde à votre dimension.
             </p>
           </div>
-          <form
-            className="flex items-center gap-3 border-b pb-3"
-            style={{ borderColor: "rgba(230, 201, 138, 0.35)" }}
+          <div
+            className="flex items-center gap-3"
+            style={{ fontSize: 11, letterSpacing: "0.24em", textTransform: "uppercase", opacity: 0.75 }}
           >
-            <input
-              type="email"
-              placeholder="Ihre E-Mail"
-              className="flex-1 bg-transparent text-[14px] text-parchment outline-none placeholder:text-parchment/40"
-            />
-            <button
-              type="button"
-              className="text-[10.5px] uppercase tracking-[0.28em] link-gold"
-            >
-              Abonnieren
-            </button>
-          </form>
+            <span>Paris</span>
+            <span className="hair" aria-hidden style={{ background: "var(--or-soft)", width: 28 }} />
+            <span>Berlin</span>
+            <span className="hair" aria-hidden style={{ background: "var(--or-soft)", width: 28 }} />
+            <span>Londres</span>
+          </div>
         </div>
-      </div>
 
-      {/* Sitemap grid */}
-      <div className="mx-auto max-w-[1600px] px-6 md:px-12 py-16 md:py-24">
-        <div className="grid gap-12 md:grid-cols-4">
-          {cols.map((col) => (
-            <div key={col.title}>
-              <p className="eyebrow-gold">{col.title}</p>
-              <ul className="mt-6 space-y-3.5">
-                {col.links.map((l) => (
-                  <li key={`${col.title}-${l.label}`}>
+        <div
+          className="grid gap-10 md:grid-cols-4 mt-14 pt-10"
+          style={{ borderTop: "1px solid rgba(215,170,90,0.18)" }}
+        >
+          {columns.map((c) => (
+            <div key={c.title}>
+              <div
+                style={{
+                  fontSize: 11,
+                  letterSpacing: "0.26em",
+                  textTransform: "uppercase",
+                  color: "var(--or-soft)",
+                  marginBottom: 16,
+                }}
+              >
+                {c.title}
+              </div>
+              <ul className="flex flex-col gap-3">
+                {c.items.map((l) => (
+                  <li key={l.href}>
                     <Link
                       href={l.href}
-                      className="text-[13.5px] link-underline"
-                      style={{ color: "rgba(245, 239, 225, 0.75)" }}
+                      className="link"
+                      data-underline
+                      style={{ fontSize: 14, color: "var(--parchment)" }}
                     >
                       {l.label}
                     </Link>
@@ -124,36 +107,51 @@ export default function Footer() {
               </ul>
             </div>
           ))}
-        </div>
-
-        <div className="mt-20 h-px w-full rule-gold" />
-
-        <div className="mt-10 flex flex-col-reverse gap-8 md:flex-row md:items-end md:justify-between">
-          <div
-            className="flex flex-col gap-2 text-[11.5px]"
-            style={{ color: "rgba(245, 239, 225, 0.5)" }}
-          >
-            <span>
-              © {new Date().getFullYear()} {maison.legalForm}. Tous droits
-              réservés.
-            </span>
-            <span>
-              {maison.address.street} · {maison.address.zip} {maison.address.city} ·{" "}
-              {maison.address.country}
-            </span>
-          </div>
-          <div className="flex items-baseline gap-8">
-            <Wordmark size="sm" variant="shimmer" />
+          <div>
             <div
-              className="text-[10.5px] uppercase"
               style={{
-                color: "rgba(230, 201, 138, 0.72)",
-                letterSpacing: "0.34em",
+                fontSize: 11,
+                letterSpacing: "0.26em",
+                textTransform: "uppercase",
+                color: "var(--or-soft)",
+                marginBottom: 16,
               }}
             >
-              Paris · Berlin · Jura
+              Correspondance
             </div>
+            <p style={{ fontSize: 14, lineHeight: 1.7, opacity: 0.85 }}>
+              L’Atelier d’Or
+              <br />
+              14, rue de l’Éclipse
+              <br />
+              75008 Paris — France
+            </p>
+            <p style={{ fontSize: 14, marginTop: 12, opacity: 0.85 }}>
+              <a
+                className="link"
+                data-underline
+                href="mailto:concierge@latelier-dor.com"
+                style={{ color: "var(--or-glow)" }}
+              >
+                concierge@latelier-dor.com
+              </a>
+            </p>
           </div>
+        </div>
+
+        <div
+          className="mt-14 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+          style={{
+            borderTop: "1px solid rgba(215,170,90,0.18)",
+            paddingTop: 22,
+            fontSize: 11,
+            letterSpacing: "0.22em",
+            textTransform: "uppercase",
+            opacity: 0.7,
+          }}
+        >
+          <span>© {new Date().getFullYear()} L’Atelier d’Or — Fait main en France</span>
+          <span>Première collection — Édition brève et numérotée</span>
         </div>
       </div>
     </footer>
