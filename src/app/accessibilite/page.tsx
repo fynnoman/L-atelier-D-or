@@ -1,47 +1,46 @@
-import type { Metadata } from "next";
-import PageHead from "@/components/PageHead";
-import LegalBody from "@/components/LegalBody";
+import LegalPage from "@/components/LegalPage";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Accessibilité",
-  description: "Notre engagement d’accessibilité.",
+  description: "Nos engagements en matière d'accessibilité : WCAG 2.2 AA, respect des préférences de mouvement, contact.",
 };
 
 export default function AccessibilitePage() {
   return (
-    <>
-      <PageHead
-        chapter="Cahier — Discrétion"
-        eyebrow="Accessibilité"
-        title="Accessibilité,"
-        italic="notre engagement."
-      />
-      <LegalBody>
-        <p>
-          Nous concevons ce site pour qu’il soit lisible, navigable et utilisable
-          par le plus grand nombre. Le contraste, la taille des textes, la
-          navigation au clavier, l’ordre de lecture et l’étiquetage sémantique
-          sont vérifiés à chaque évolution.
-        </p>
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Ce que nous respectons
-        </h2>
-        <p>
-          Nous nous alignons sur les recommandations WCAG 2.2 niveau AA. Les
-          animations décoratives respectent la préférence « réduction de
-          mouvement » de votre appareil.
-        </p>
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Nous prévenir
-        </h2>
-        <p>
-          Si un contenu du site vous est difficilement accessible, écrivez à{" "}
-          <a href="mailto:concierge@latelier-dor.com" className="link" data-underline>
-            concierge@latelier-dor.com
-          </a>{" "}
-          et nous vous répondrons rapidement.
-        </p>
-      </LegalBody>
-    </>
+    <LegalPage
+      numeral="Cahier — Discrétion"
+      rubric="Accessibilité"
+      title="Une lecture, à vue et à voix, pour tout le monde."
+      chapo="Le site vise le niveau WCAG 2.2 AA et respecte les préférences de mouvement du système."
+      sections={[
+        {
+          title: "Notre visée",
+          body: [
+            "Le site est conçu pour atteindre le niveau de conformité WCAG 2.2 AA (Web Content Accessibility Guidelines).",
+            "Nous vérifions régulièrement contraste, ordre du contenu, navigation au clavier et compatibilité avec les lecteurs d'écran.",
+          ],
+        },
+        {
+          title: "Mouvement réduit",
+          body: [
+            "Les animations d'entrée, révélations et transitions du site sont désactivées automatiquement lorsque votre système est réglé sur « réduire les animations » (prefers-reduced-motion).",
+            "Aucune animation essentielle à la compréhension n'est présente.",
+          ],
+        },
+        {
+          title: "Navigation",
+          body: [
+            "Toute la navigation est accessible au clavier. Les zones interactives disposent d'un état de focus visible.",
+            "Les liens et boutons sont annoncés en toutes lettres, sans jargon.",
+          ],
+        },
+        {
+          title: "Signalement",
+          body: [
+            "Si vous rencontrez une difficulté d'accès à un contenu, écrivez-nous à concierge@latelier-dor.com. Nous répondons sous vingt-quatre heures ouvrées et corrigeons dans la mesure du possible sans délai.",
+          ],
+        },
+      ]}
+    />
   );
 }

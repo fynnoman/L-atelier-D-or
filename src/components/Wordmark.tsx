@@ -1,44 +1,24 @@
-import Link from "next/link";
 import { clsx } from "clsx";
 
-type Props = { className?: string; muted?: boolean };
+type Props = {
+  className?: string;
+  size?: "sm" | "md" | "lg";
+};
 
-export default function Wordmark({ className, muted }: Props) {
+export default function Wordmark({ className, size = "md" }: Props) {
+  const scale = size === "sm" ? "text-[14px]" : size === "lg" ? "text-[22px]" : "text-[17px]";
   return (
-    <Link
-      href="/"
-      aria-label="L’Atelier d’Or, retour à l’accueil"
+    <span
       className={clsx(
-        "inline-flex flex-col items-center leading-none",
-        muted ? "text-current" : "text-ink",
-        className,
+        "n-serif inline-flex items-baseline gap-[2px] tracking-[-0.01em] leading-none",
+        scale,
+        className
       )}
+      aria-label="L'Atelier d'Or"
     >
-      <span
-        className="serif"
-        style={{
-          fontSize: "clamp(14px, 1.05vw, 18px)",
-          letterSpacing: "0.4em",
-          textTransform: "uppercase",
-          fontWeight: 400,
-        }}
-      >
-        L’Atelier
-      </span>
-      <span
-        className="serif"
-        aria-hidden="true"
-        style={{
-          fontSize: "clamp(12px, 0.9vw, 15px)",
-          letterSpacing: "0.34em",
-          textTransform: "uppercase",
-          color: "var(--or)",
-          marginTop: 2,
-          fontWeight: 400,
-        }}
-      >
-        d’Or
-      </span>
-    </Link>
+      <span>L&rsquo;Atelier</span>
+      <span className="mx-[3px] opacity-70">d&rsquo;</span>
+      <span>Or</span>
+    </span>
   );
 }

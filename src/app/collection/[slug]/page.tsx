@@ -1,50 +1,335 @@
-import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import { bySlug, collection } from "@/data/collection";
-import ProductStage from "@/components/ProductStage";
-import ProductScene from "@/components/ProductScene";
-import ProductSpecs from "@/components/ProductSpecs";
-import ProductNotes from "@/components/ProductNotes";
-import ProductPrice from "@/components/ProductPrice";
-import OtherPieces from "@/components/OtherPieces";
+import LineReveal from "@/components/LineReveal";
+import MaskedImage from "@/components/MaskedImage";
+import Numeral from "@/components/Numeral";
+import PageEyebrow from "@/components/PageEyebrow";
+import MoodClient from "@/components/MoodClient";
+import { PIECES, getPiece } from "@/data/collection";
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }>;
 
-export function generateStaticParams(): Params[] {
-  return collection.map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return PIECES.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const piece = bySlug(slug);
+  const piece = getPiece(slug);
   if (!piece) return {};
   return {
-    title: `${piece.name} — ${piece.chapter.split(" — ")[1] ?? piece.chapter}`,
-    description: `${piece.tagline} · ${piece.scene.title}`,
-    openGraph: {
-      title: `${piece.name} · L’Atelier d’Or`,
-      description: piece.tagline,
-    },
+    title: `${piece.name} — ${piece.tagline}`,
+    description: `${piece.chapter}. ${piece.materie}. Fait main à Paris, 80 €.`,
   };
 }
 
-export default async function ProductPage(
-  { params }: { params: Promise<Params> },
-) {
+export default async function PiecePage({ params }: { params: Params }) {
   const { slug } = await params;
-  const piece = bySlug(slug);
+  const piece = getPiece(slug);
   if (!piece) notFound();
+  const others = PIECES.filter((p) => p.slug !== piece.slug);
 
   return (
-    <div data-mood={piece.mood}>
-      <ProductStage piece={piece} />
-      <ProductScene piece={piece} />
-      <ProductSpecs piece={piece} />
-      <ProductNotes piece={piece} />
-      <ProductPrice piece={piece} />
-      <OtherPieces current={piece} />
-    </div>
+    <>
+      <MoodClient mood={piece.mood} />
+
+      {/* Chapitre — hero */}
+      <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
+        <div className="n-page relative">
+          <PageEyebrow numeral={`Chapitre ${piece.numeral}`} label={piece.chapter.replace(/^Chapitre [IVX]+\s—\s/, "")} className="mb-14" />
+
+          <div className="grid grid-cols-12 gap-x-6 items-end relative">
+            <div className="col-span-12 md:col-span-8">
+              <LineReveal
+                as="h1"
+                className="n-display leading-[0.94]"
+                lines={[piece.name.split(" ")[0], piece.name.split(" ").slice(1).join(" ")]}
+                delayStep={130}
+                style={{ fontSize: "clamp(72px, 14vw, 240px)" }}
+              />
+            </div>
+            <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
+              <p
+                className="n-serif-italic text-[22px] leading-[1.35]"
+                style={{ color: "var(--n-muted)" }}
+              >
+                « {piece.tagline} »
+              </p>
+            </div>
+          </div>
+
+          {/* Numéral géant en filigrane */}
+          <span
+            aria-hidden
+            className="pointer-events-none absolute -top-8 right-[3vw] opacity-[0.08] select-none"
+          >
+            <span
+              className="n-display leading-none"
+              style={{ fontSize: "clamp(220px, 42vw, 640px)" }}
+            >
+              <Numeral n={piece.index} />
+            </span>
+          </span>
+        </div>
+
+        {/* Composition principale — image + carte scène */}
+        <div className="n-page mt-24 grid grid-cols-12 gap-x-6 items-start">
+          <div className="col-span-12 md:col-span-8 relative">
+            <MaskedImage
+              src={piece.image}
+              alt={`${piece.name} — ${piece.tagline}`}
+              tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
+              ratio="16 / 10"
+              className="shadow-[0_60px_120px_-60px_rgba(0,0,0,0.6)]"
+            />
+
+            {/* Petit crop détail — flottant */}
+            <div
+              className="hidden md:block absolute -right-8 -bottom-14 w-[260px] h-[170px] z-10 border"
+              style={{ borderColor: "var(--n-line)" }}
+            >
+              <MaskedImage
+                src={piece.image}
+                tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
+                ratio="260 / 170"
+                objectPosition="70% 40%"
+              />
+            </div>
+          </div>
+
+          <aside className="col-span-12 md:col-span-4 mt-12 md:mt-4 flex flex-col gap-8">
+            <div>
+              <div className="n-eyebrow mb-3">Le lieu</div>
+              <p className="n-serif text-[19px] leading-[1.4]">{piece.place}</p>
+            </div>
+            <div>
+              <div className="n-eyebrow mb-3">L&rsquo;heure</div>
+              <p className="n-serif text-[19px] leading-[1.4]">{piece.time}</p>
+            </div>
+            <div>
+              <div className="n-eyebrow mb-3">Silhouette</div>
+              <p className="n-serif text-[19px] leading-[1.4]">{piece.silhouette}</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      {/* Matière & teintes */}
+      <section
+        className="relative py-32"
+        style={{ background: "var(--n-bg-warm)" }}
+      >
+        <div className="n-page grid grid-cols-12 gap-x-6 gap-y-14">
+          <div className="col-span-12 md:col-span-5">
+            <PageEyebrow numeral="§ 01" label="La matière" className="mb-8" />
+            <h2
+              className="n-display leading-[0.96]"
+              style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
+            >
+              {piece.materie.split(" · ")[0]}
+            </h2>
+            <p
+              className="n-serif text-[18px] leading-[1.55] mt-6 max-w-[38ch]"
+              style={{ color: "var(--n-muted)" }}
+            >
+              {piece.materie}
+            </p>
+          </div>
+
+          <div className="col-span-12 md:col-span-6 md:col-start-7">
+            <div className="grid grid-cols-2 gap-6">
+              {piece.teintes.map((t) => (
+                <div key={t.hex} className="flex flex-col">
+                  <div
+                    className="w-full aspect-square"
+                    style={{ background: t.hex, border: "1px solid var(--n-line)" }}
+                  />
+                  <div className="mt-4 flex items-baseline justify-between">
+                    <span className="n-serif text-[19px]">{t.name}</span>
+                    <span className="n-mono opacity-60">{t.hex}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <ul className="mt-10 grid grid-cols-1 gap-3">
+              {piece.details.map((d) => (
+                <li key={d} className="flex items-baseline gap-4">
+                  <span className="n-mono opacity-50">·</span>
+                  <span className="n-serif text-[17px]" style={{ color: "var(--n-ink)" }}>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Notes sensorielles */}
+      <section className="relative py-32">
+        <div className="n-page grid grid-cols-12 gap-x-6 items-end">
+          <div className="col-span-12 md:col-span-6">
+            <PageEyebrow numeral="§ 02" label="Notes sensorielles" className="mb-8" />
+            <h2
+              className="n-display leading-[0.96]"
+              style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
+            >
+              <span className="n-serif-italic opacity-80">Comment cette paire</span> <br />
+              habite un lieu.
+            </h2>
+          </div>
+          <div className="col-span-12 md:col-span-5 md:col-start-8 mt-10 md:mt-0">
+            <p
+              className="n-serif text-[18px] leading-[1.55] max-w-[36ch]"
+              style={{ color: "var(--n-muted)" }}
+            >
+              Quatre notes — ni parfum, ni matière : une manière de tenir la lumière.
+            </p>
+          </div>
+        </div>
+
+        <div className="n-page mt-16 grid grid-cols-12 gap-6">
+          {piece.notes.map((note, i) => (
+            <div
+              key={note}
+              className="col-span-6 md:col-span-3 p-8 border n-rise"
+              style={{ borderColor: "var(--n-line)" }}
+            >
+              <span className="n-mono opacity-60 block mb-4">Note 0{i + 1}</span>
+              <span
+                className="n-serif text-[26px] leading-[1.15]"
+                style={{ color: "var(--n-ink)" }}
+              >
+                {note}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <div className="n-page mt-24">
+          <p
+            className="n-serif-italic max-w-[36ch] mx-auto text-center"
+            style={{ fontSize: "clamp(24px, 3.4vw, 40px)", lineHeight: 1.3 }}
+          >
+            « {piece.scene} »
+          </p>
+        </div>
+      </section>
+
+      {/* Prix / édition / concierge */}
+      <section
+        className="relative py-32"
+        style={{ background: "var(--n-bg-warm)" }}
+      >
+        <div className="n-page grid grid-cols-12 gap-x-6 items-center">
+          <div className="col-span-12 md:col-span-6">
+            <PageEyebrow numeral="§ 03" label="Édition brève" className="mb-8" />
+            <div className="flex items-baseline gap-8 mb-8">
+              <span
+                className="n-display leading-none"
+                style={{ fontSize: "clamp(96px, 14vw, 220px)" }}
+              >
+                80 €
+              </span>
+              <div className="flex flex-col">
+                <span className="n-mono opacity-60">Prix par pièce</span>
+                <span className="n-mono opacity-60">Ni plus, ni moins</span>
+              </div>
+            </div>
+            <p
+              className="n-serif text-[19px] leading-[1.5] max-w-[42ch]"
+              style={{ color: "var(--n-muted)" }}
+            >
+              Numérotée à la main, à l&rsquo;intérieur de la branche gauche. Livrée
+              dans son écrin dédié — remise en main propre à Paris, transport suivi ailleurs en Europe.
+            </p>
+          </div>
+
+          <div className="col-span-12 md:col-span-5 md:col-start-8 mt-14 md:mt-0">
+            <div
+              className="p-10 border"
+              style={{ borderColor: "var(--n-line)", background: "var(--n-bg)" }}
+            >
+              <div className="n-eyebrow mb-4">Deux manières de la recevoir</div>
+              <ol className="flex flex-col gap-6">
+                <li>
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="n-serif text-[32px] leading-none opacity-50">I</span>
+                    <span className="n-serif text-[19px]">Rendez-vous privé</span>
+                  </div>
+                  <p
+                    className="n-serif text-[15px] leading-[1.5] max-w-[38ch]"
+                    style={{ color: "var(--n-muted)" }}
+                  >
+                    Paris, Berlin ou Londres. Essai, ajustement, puis verres correcteurs ou solaires.
+                  </p>
+                </li>
+                <li>
+                  <div className="flex items-baseline gap-3 mb-2">
+                    <span className="n-serif text-[32px] leading-none opacity-50">II</span>
+                    <span className="n-serif text-[19px]">Livraison dans son écrin</span>
+                  </div>
+                  <p
+                    className="n-serif text-[15px] leading-[1.5] max-w-[38ch]"
+                    style={{ color: "var(--n-muted)" }}
+                  >
+                    En main propre à Paris ; par transport suivi ailleurs en Europe.
+                  </p>
+                </li>
+              </ol>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <Link href="/concierge" className="n-cta">Prendre rendez-vous</Link>
+                <a
+                  href="mailto:concierge@latelier-dor.com"
+                  className="n-link"
+                >
+                  Écrire au concierge
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Autres pièces */}
+      <section className="relative py-28">
+        <div className="n-page">
+          <PageEyebrow numeral="§ 04" label="Les trois autres pièces" className="mb-14" />
+          <div className="grid grid-cols-12 gap-x-6 gap-y-14">
+            {others.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/collection/${p.slug}`}
+                className="col-span-12 md:col-span-4 group block"
+              >
+                <div className="relative">
+                  <MaskedImage
+                    src={p.image}
+                    tone={p.mood === "foret" ? "foret" : p.mood === "cristal" ? "cristal" : p.mood === "emeraude" ? "emeraude" : "rouge"}
+                    ratio="4 / 5"
+                  />
+                  <div
+                    className="absolute top-4 left-4 flex items-center gap-3 px-3 py-2"
+                    style={{ background: "var(--n-bg)", border: "1px solid var(--n-line)" }}
+                  >
+                    <span className="n-mono opacity-70" style={{ color: "var(--n-ink)" }}>{p.numeral}</span>
+                    <span className="n-eyebrow">{p.name}</span>
+                  </div>
+                </div>
+                <div className="mt-6 flex items-baseline justify-between">
+                  <div>
+                    <div className="n-serif text-[22px] leading-none">{p.name}</div>
+                    <div className="n-serif-italic text-[15px] mt-2" style={{ color: "var(--n-muted)" }}>
+                      {p.tagline}
+                    </div>
+                  </div>
+                  <span className="n-mono opacity-60">80 €</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

@@ -1,66 +1,49 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect } from "react";
 
-type Props = {
-  children: ReactNode;
-  as?: keyof React.JSX.IntrinsicElements;
-  className?: string;
-  delay?: number;
-  y?: number;
-  once?: boolean;
-};
-
-export default function Reveal({
-  children,
-  as = "div",
-  className = "",
-  delay = 0,
-  y = 14,
-  once = true,
-}: Props) {
-  const ref = useRef<HTMLElement | null>(null);
-  const [shown, setShown] = useState(false);
-
+export default function Reveal() {
   useEffect(() => {
-    const node = ref.current;
-    if (!node) return;
-    if (typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return;
-    }
-    const obs = new IntersectionObserver(
+    if (typeof window === "undefined") return;
+
+    const selector = ".n-rise, .n-veil, .n-mask, .n-line-mask";
+    const els = new Set<Element>();
+    let io: IntersectionObserver | null = null;
+
+    const bind = () => {
+      if (!io) return;
+      document.querySelectorAll(selector).forEach((el) => {
+        if (els.has(el)) return;
+        els.add(el);
+        io!.observe(el);
+      });
+    };
+
+    io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setShown(true);
-            if (once) obs.disconnect();
-          } else if (!once) {
-            setShown(false);
+            entry.target.classList.add("is-in");
+            io!.unobserve(entry.target);
+            els.delete(entry.target);
           }
         }
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 },
+      { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
     );
-    obs.observe(node);
-    return () => obs.disconnect();
-  }, [once]);
 
-  const Tag = as as unknown as React.ElementType;
-  return (
-    <Tag
-      ref={ref as never}
-      className={className}
-      style={{
-        opacity: shown ? 1 : 0,
-        transform: shown ? "translateY(0)" : `translateY(${y}px)`,
-        transition:
-          "opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1)",
-        transitionDelay: `${delay}ms`,
-        willChange: "opacity, transform",
-      }}
-    >
-      {children}
-    </Tag>
-  );
+    bind();
+
+    const mo = new MutationObserver(() => bind());
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      mo.disconnect();
+      io?.disconnect();
+      io = null;
+      els.clear();
+    };
+  }, []);
+
+  return null;
 }

@@ -1,61 +1,51 @@
-import type { Metadata } from "next";
-import PageHead from "@/components/PageHead";
-import LegalBody from "@/components/LegalBody";
+import LegalPage from "@/components/LegalPage";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Mentions légales",
-  description: "Éditeur, hébergeur, propriété intellectuelle.",
+  description: "Éditeur, direction de la publication et hébergement du site de L'Atelier d'Or.",
 };
 
-export default function MentionsLegalesPage() {
+export default function MentionsPage() {
   return (
-    <>
-      <PageHead
-        chapter="Cahier — Discrétion"
-        eyebrow="Mentions légales"
-        title="Mentions"
-        italic="légales."
-      />
-      <LegalBody>
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Éditeur du site
-        </h2>
-        <p>
-          L’Atelier d’Or, société par actions simplifiée à capital variable, dont le siège social
-          est situé 14, rue de l’Éclipse, 75008 Paris — France. RCS Paris — Numéro de TVA
-          intracommunautaire à préciser lors de l’immatriculation.
-        </p>
-        <p>Directeur de la publication : le président en exercice.</p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Hébergement
-        </h2>
-        <p>
-          Le présent site est hébergé par Vercel Inc., 340 S Lemon Ave #4133,
-          Walnut CA 91789, États-Unis.
-        </p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Propriété intellectuelle
-        </h2>
-        <p>
-          L’ensemble des contenus (textes, photographies, dessins, illustrations, marques et
-          logos) reproduits sur ce site est protégé au titre de la propriété intellectuelle.
-          Toute reproduction, représentation ou diffusion, en tout ou partie, est interdite
-          sans autorisation écrite préalable de la maison.
-        </p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Contact
-        </h2>
-        <p>
-          Pour toute question, écrivez à{" "}
-          <a href="mailto:concierge@latelier-dor.com" className="link" data-underline>
-            concierge@latelier-dor.com
-          </a>
-          .
-        </p>
-      </LegalBody>
-    </>
+    <LegalPage
+      numeral="Cahier — Discrétion"
+      rubric="Mentions légales"
+      title="Cahier — Discrétion."
+      chapo="Ce que la maison est, dans les formes. Rien de plus, rien de moins."
+      sections={[
+        {
+          title: "Éditeur",
+          body: [
+            "L'Atelier d'Or — SAS à capital variable, 14, rue de l'Éclipse, 75008 Paris — France.",
+            "Immatriculée au Registre du commerce et des sociétés de Paris (RCS Paris).",
+          ],
+        },
+        {
+          title: "Direction de la publication",
+          body: [
+            "Le président en exercice de la maison assure la direction de la publication.",
+          ],
+        },
+        {
+          title: "Hébergement",
+          body: [
+            "Le site est hébergé par un prestataire dont les coordonnées peuvent être communiquées sur demande écrite à concierge@latelier-dor.com.",
+          ],
+        },
+        {
+          title: "Propriété intellectuelle",
+          body: [
+            "L'ensemble des contenus présents sur le site — textes, photographies, dessins, marques, logos — est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.",
+            "Toute reproduction, représentation ou diffusion, en tout ou partie, est soumise à l'autorisation écrite préalable de la maison.",
+          ],
+        },
+        {
+          title: "Contact",
+          body: [
+            "Toute question relative à l'édition, au contenu ou à l'usage du site peut être adressée à concierge@latelier-dor.com. Réponse sous vingt-quatre heures ouvrées.",
+          ],
+        },
+      ]}
+    />
   );
 }

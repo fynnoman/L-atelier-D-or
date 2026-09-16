@@ -1,17 +1,21 @@
-import Hero from "@/components/Hero";
-import CollectionMosaic from "@/components/CollectionMosaic";
-import Manifesto from "@/components/Manifesto";
-import JournalStrip from "@/components/JournalStrip";
-import ConciergeBand from "@/components/ConciergeBand";
+import HeroHome from "@/components/home/HeroHome";
+import ManifestQuote from "@/components/home/ManifestQuote";
+import CollectionMosaic from "@/components/home/CollectionMosaic";
+import ThreePillars from "@/components/home/ThreePillars";
+import SalonsBand from "@/components/home/SalonsBand";
+import JournalStrip from "@/components/home/JournalStrip";
+import EndCall from "@/components/home/EndCall";
 
-export default function Home() {
+export default function NouveauHome() {
   return (
     <>
-      <Hero />
+      <HeroHome />
+      <ManifestQuote />
       <CollectionMosaic />
-      <Manifesto />
+      <ThreePillars />
+      <SalonsBand />
       <JournalStrip />
-      <ConciergeBand />
+      <EndCall />
     </>
   );
 }

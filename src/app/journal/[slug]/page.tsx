@@ -1,128 +1,141 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Link from "next/link";
-import { articleBySlug, articles } from "@/data/journal";
-import Reveal from "@/components/Reveal";
+import { notFound } from "next/navigation";
+import LineReveal from "@/components/LineReveal";
+import MaskedImage from "@/components/MaskedImage";
+import PageEyebrow from "@/components/PageEyebrow";
+import { CAHIERS, getCahier } from "@/data/journal";
 
-type Params = { slug: string };
+type Params = Promise<{ slug: string }>;
 
-export function generateStaticParams(): Params[] {
-  return articles.map((a) => ({ slug: a.slug }));
+export async function generateStaticParams() {
+  return CAHIERS.map((c) => ({ slug: c.slug }));
 }
 
-export async function generateMetadata(
-  { params }: { params: Promise<Params> },
-): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
-  const a = articleBySlug(slug);
-  if (!a) return {};
-  return { title: a.title, description: a.dek };
+  const c = getCahier(slug);
+  if (!c) return {};
+  return {
+    title: `${c.title}`,
+    description: c.chapo,
+  };
 }
 
-const heroBg: Record<string, string> = {
-  boutique: "linear-gradient(135deg, var(--parchment-3) 0%, var(--parchment-2) 55%, var(--parchment) 100%)",
-  rouge: "linear-gradient(135deg, #1c0a07 0%, #7e1f14 100%)",
-  foret: "linear-gradient(135deg, #0a1710 0%, #1f3d24 100%)",
-  cristal: "linear-gradient(135deg, #f2f5f8 0%, #b6d2e3 100%)",
-  emeraude: "linear-gradient(135deg, #12102a 0%, #1f6b4a 60%, #6a3f8e 100%)",
-};
-
-export default async function ArticlePage(
-  { params }: { params: Promise<Params> },
-) {
+export default async function CahierPage({ params }: { params: Params }) {
   const { slug } = await params;
-  const a = articleBySlug(slug);
-  if (!a) notFound();
-
-  const light = a.hero === "cristal";
+  const cahier = getCahier(slug);
+  if (!cahier) notFound();
+  const others = CAHIERS.filter((c) => c.slug !== cahier.slug);
 
   return (
     <>
-      <section
-        className="relative overflow-hidden"
-        style={{
-          minHeight: "70svh",
-          paddingInline: "var(--page-x)",
-          paddingTop: "clamp(140px, 20vh, 240px)",
-          paddingBottom: "clamp(60px, 10vh, 120px)",
-          background: heroBg[a.hero] ?? heroBg.boutique,
-          color: light ? "var(--noir)" : "var(--parchment)",
-        }}
-      >
-        <div aria-hidden className="absolute inset-0 grain pointer-events-none" style={{ opacity: 0.28 }} />
-        <div className="relative mx-auto max-w-[1000px]">
-          <Reveal>
-            <div
-              style={{
-                fontSize: 11,
-                letterSpacing: "0.32em",
-                textTransform: "uppercase",
-                color: light ? "var(--noir-2)" : "var(--or-glow)",
-                marginBottom: 24,
-              }}
-            >
-              {a.chapter} · {a.kicker} · {a.date}
+      {/* Chapô */}
+      <section className="relative pt-40 md:pt-52 pb-16">
+        <div className="n-page">
+          <PageEyebrow
+            numeral={`Cahier ${cahier.numeral}`}
+            label={`${cahier.rubric} · ${cahier.date} · ${cahier.read}`}
+            className="mb-14"
+          />
+
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className="col-span-12 md:col-span-10 md:col-start-2">
+              <LineReveal
+                as="h1"
+                className="n-display leading-[0.96]"
+                lines={cahier.title.split(",").map((s, i, arr) => (i < arr.length - 1 ? s + "," : s))}
+                delayStep={110}
+                style={{ fontSize: "clamp(44px, 7vw, 108px)" }}
+              />
+
+              <p
+                className="n-serif-italic mt-12 text-[24px] leading-[1.4] max-w-[46ch]"
+                style={{ color: "var(--n-muted)" }}
+              >
+                {cahier.chapo}
+              </p>
             </div>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1
-              className="display"
-              style={{
-                fontSize: "clamp(40px, 6vw, 92px)",
-                lineHeight: 1.02,
-                color: light ? "var(--noir)" : "var(--parchment)",
-              }}
-            >
-              {a.title}
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p
-              className="serif mt-8"
-              style={{
-                fontSize: "clamp(18px, 1.8vw, 22px)",
-                lineHeight: 1.55,
-                maxWidth: 720,
-                color: light ? "var(--ink-2)" : "color-mix(in oklab, var(--parchment) 82%, transparent)",
-              }}
-            >
-              {a.dek}
-            </p>
-          </Reveal>
+          </div>
         </div>
       </section>
 
-      <article
-        className="relative"
-        style={{
-          paddingInline: "var(--page-x)",
-          paddingBlock: "clamp(80px, 12vh, 140px)",
-          background: "var(--bg)",
-        }}
-      >
-        <div className="mx-auto max-w-[720px] space-y-8">
-          {a.body.map((p, i) => (
-            <Reveal key={i} delay={i * 60}>
-              <p
-                className="serif"
-                style={{
-                  fontSize: i === 0 ? "clamp(20px, 1.7vw, 24px)" : "clamp(17px, 1.3vw, 19px)",
-                  lineHeight: 1.75,
-                  color: i === 0 ? "var(--ink)" : "var(--ink-2)",
-                }}
-              >
-                {p}
-              </p>
-            </Reveal>
-          ))}
+      {/* Image d'entrée */}
+      <section className="relative pb-24">
+        <div className="n-page">
+          <MaskedImage tone={cahier.tone} ratio="16 / 9" />
         </div>
+      </section>
 
-        <div className="mx-auto max-w-[720px] mt-16" style={{ borderTop: "1px solid var(--line-soft)", paddingTop: 24 }}>
-          <Link href="/journal" className="link" data-underline style={{ fontSize: 12, letterSpacing: "0.24em", textTransform: "uppercase", color: "var(--ink-2)" }}>
-            ← Retour au journal
-          </Link>
+      {/* Corps du cahier */}
+      <section className="relative pb-32">
+        <div className="n-page">
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className="col-span-12 md:col-span-8 md:col-start-3">
+              {cahier.body.map((para, i) => (
+                <p
+                  key={i}
+                  className="n-serif mb-8 first:first-line:tracking-[0.06em]"
+                  style={{
+                    fontSize: i === 0 ? "clamp(20px, 1.6vw, 26px)" : "clamp(18px, 1.4vw, 22px)",
+                    lineHeight: 1.55,
+                    color: i === 0 ? "var(--n-ink)" : "var(--n-ink)",
+                  }}
+                >
+                  {i === 0 && (
+                    <span
+                      className="n-serif float-left mr-3 mt-1 leading-[0.85]"
+                      style={{
+                        fontSize: "clamp(56px, 7vw, 96px)",
+                        color: "var(--n-gold-deep)",
+                      }}
+                    >
+                      {para.charAt(0)}
+                    </span>
+                  )}
+                  {i === 0 ? para.substring(1) : para}
+                </p>
+              ))}
+
+              <div className="mt-16 pt-8 border-t" style={{ borderColor: "var(--n-line-soft)" }}>
+                <p className="n-mono opacity-60">— L&rsquo;Atelier d&rsquo;Or · {cahier.rubric}</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </article>
+      </section>
+
+      {/* Autres cahiers */}
+      <section className="relative py-24" style={{ background: "var(--n-bg-warm)" }}>
+        <div className="n-page">
+          <PageEyebrow numeral="§ Journal" label="Les autres cahiers" className="mb-14" />
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+            {others.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/journal/${c.slug}`}
+                className="col-span-12 md:col-span-6 group block"
+              >
+                <article className="relative n-mask" style={{ aspectRatio: "5 / 3" }}>
+                  <div className={`n-tile is-${c.tone}`} />
+                  <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,15,10,0) 40%, rgba(20,15,10,0.55) 100%)" }} />
+                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
+                    <span className="n-mono opacity-80" style={{ color: "var(--n-bg)" }}>Cahier {c.numeral} · {c.rubric}</span>
+                    <span className="n-mono opacity-70" style={{ color: "var(--n-bg)" }}>{c.read}</span>
+                  </div>
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <h3
+                      className="n-display leading-[1] mb-2"
+                      style={{ fontSize: "clamp(24px, 2.6vw, 40px)", color: "var(--n-bg)" }}
+                    >
+                      {c.title}
+                    </h3>
+                  </div>
+                </article>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,93 +1,101 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import PageHead from "@/components/PageHead";
-import Reveal from "@/components/Reveal";
-import { articles } from "@/data/journal";
+import LineReveal from "@/components/LineReveal";
+import PageEyebrow from "@/components/PageEyebrow";
+import { CAHIERS } from "@/data/journal";
 
-export const metadata: Metadata = {
-  title: "Journal — les cahiers de la maison",
+export const metadata = {
+  title: "Journal — Les cahiers de la maison",
   description:
-    "Cahiers, lettres et notes de l’atelier. La maison raconte ses gestes, ses matières, ses choix.",
+    "Trois cahiers pour l’instant. Nous en publions un ou deux par saison, quand nous avons quelque chose à dire.",
 };
 
-const heroBg: Record<string, string> = {
-  boutique: "linear-gradient(135deg, var(--parchment-3) 0%, var(--parchment-2) 55%, var(--parchment) 100%)",
-  rouge: "linear-gradient(135deg, #1c0a07 0%, #7e1f14 100%)",
-  foret: "linear-gradient(135deg, #0a1710 0%, #1f3d24 100%)",
-  cristal: "linear-gradient(135deg, #f2f5f8 0%, #b6d2e3 100%)",
-  emeraude: "linear-gradient(135deg, #12102a 0%, #1f6b4a 60%, #6a3f8e 100%)",
-};
-
-export default function JournalPage() {
+export default function JournalIndex() {
   return (
     <>
-      <PageHead
-        chapter="Cahier — Notes de la maison"
-        eyebrow="Journal"
-        title="Cahiers,"
-        italic="lettres, silences."
-        intro="Trois cahiers pour l’instant. Nous en publions un ou deux par saison, quand nous avons quelque chose à dire — et jamais autrement."
-      />
+      <section className="relative pt-40 md:pt-52 pb-24">
+        <div className="n-page">
+          <PageEyebrow numeral="Journal" label="Les cahiers de la maison" className="mb-14" />
 
-      <section
-        className="relative"
-        style={{
-          paddingInline: "var(--page-x)",
-          paddingBlock: "clamp(60px, 10vh, 120px)",
-          background: "var(--bg)",
-        }}
-      >
-        <div className="mx-auto max-w-[1400px] grid gap-10 md:grid-cols-3">
-          {articles.map((a, i) => (
-            <Reveal key={a.slug} delay={i * 80}>
-              <Link href={`/journal/${a.slug}`} className="group block">
+          <div className="grid grid-cols-12 gap-x-6 items-end">
+            <div className="col-span-12 md:col-span-9">
+              <LineReveal
+                as="h1"
+                className="n-display leading-[0.94]"
+                lines={["Un cahier,", "quand nous avons", "quelque chose à dire."]}
+                delayStep={130}
+                style={{ fontSize: "clamp(56px, 11vw, 200px)" }}
+              />
+            </div>
+            <div className="col-span-12 md:col-span-3 mt-10 md:mt-0">
+              <p
+                className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
+                style={{ color: "var(--n-muted)" }}
+              >
+                Trois cahiers pour l&rsquo;instant. Nous en publions un ou deux par saison — et jamais autrement.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pb-32">
+        <div className="n-page grid grid-cols-12 gap-x-6 gap-y-24">
+          {CAHIERS.map((c, i) => {
+            const flip = i % 2 === 1;
+            return (
+              <article
+                key={c.slug}
+                className={`col-span-12 grid grid-cols-12 gap-x-6 items-end pb-16 border-b`}
+                style={{ borderColor: "var(--n-line-soft)" }}
+              >
                 <div
-                  className="relative overflow-hidden"
-                  style={{ aspectRatio: "4 / 5", background: heroBg[a.hero] ?? heroBg.boutique, borderRadius: 2 }}
+                  className={`col-span-12 md:col-span-2 ${flip ? "md:order-3 md:text-right" : ""}`}
                 >
-                  <div aria-hidden className="absolute inset-0 grain pointer-events-none" style={{ opacity: 0.32 }} />
-                  <div className="absolute inset-0 flex flex-col justify-between" style={{ padding: 26 }}>
-                    <span
-                      style={{
-                        fontSize: 10,
-                        letterSpacing: "0.32em",
-                        textTransform: "uppercase",
-                        color: a.hero === "cristal" ? "var(--noir-2)" : "var(--or-glow)",
-                      }}
-                    >
-                      {a.chapter} · {a.kicker}
-                    </span>
-                    <div
-                      className="serif"
-                      style={{
-                        fontSize: 24,
-                        lineHeight: 1.15,
-                        color: a.hero === "cristal" ? "var(--noir)" : "var(--parchment)",
-                      }}
-                    >
-                      {a.title}
-                    </div>
-                  </div>
-                </div>
-                <div className="mt-6">
-                  <p className="serif" style={{ fontSize: 16, lineHeight: 1.55, color: "var(--muted)" }}>
-                    {a.dek}
-                  </p>
                   <div
-                    style={{
-                      marginTop: 12,
-                      fontSize: 11,
-                      letterSpacing: "0.24em",
-                      textTransform: "uppercase",
-                      color: "var(--or-2)",
-                    }}
+                    className="n-serif leading-none opacity-30"
+                    style={{ fontSize: "clamp(56px, 6vw, 96px)" }}
                   >
-                    {a.date} · {a.read} de lecture
+                    {c.numeral}
+                  </div>
+                  <div className="n-mono opacity-60 mt-4">{c.rubric}</div>
+                </div>
+
+                <div
+                  className={`col-span-12 md:col-span-7 ${flip ? "md:order-2 md:col-start-4" : "md:col-start-4"}`}
+                >
+                  <h2
+                    className="n-display leading-[0.98]"
+                    style={{ fontSize: "clamp(36px, 5.5vw, 84px)" }}
+                  >
+                    <Link
+                      href={`/journal/${c.slug}`}
+                      style={{ color: "var(--n-ink)" }}
+                    >
+                      {c.title}
+                    </Link>
+                  </h2>
+                  <p
+                    className="n-serif text-[19px] leading-[1.5] mt-6 max-w-[54ch]"
+                    style={{ color: "var(--n-muted)" }}
+                  >
+                    {c.chapo}
+                  </p>
+                </div>
+
+                <div
+                  className={`col-span-12 md:col-span-3 ${flip ? "md:order-1 md:col-start-11 md:text-right" : "md:col-start-12"} mt-6 md:mt-0`}
+                >
+                  <div className="flex flex-col gap-2">
+                    <span className="n-mono opacity-60">{c.date}</span>
+                    <span className="n-mono opacity-60">{c.read}</span>
+                    <Link href={`/journal/${c.slug}`} className="n-link mt-4 self-start md:self-end">
+                      Lire le cahier
+                    </Link>
                   </div>
                 </div>
-              </Link>
-            </Reveal>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </section>
     </>

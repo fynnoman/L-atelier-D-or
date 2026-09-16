@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -11,25 +12,26 @@ const inter = Inter({
   weight: ["300", "400", "500"],
 });
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const instrument = Instrument_Serif({
+  variable: "--font-instrument",
   subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
-  axes: ["opsz"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "L’Atelier d’Or — Maison de lunetterie française",
-    template: "%s · L’Atelier d’Or",
+    default: "L'Atelier d'Or — Une petite maison française",
+    template: "%s · L'Atelier d'Or",
   },
   description:
-    "Une vision d’exception. Quatre paires, quatre atmosphères. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude — la première collection de L’Atelier d’Or.",
+    "Une petite maison française de lunetterie. Quatre pièces, un an. Fait main à Paris, présenté sur rendez-vous.",
   metadataBase: new URL("https://latelier-dor.com"),
   openGraph: {
-    title: "L’Atelier d’Or",
+    title: "L'Atelier d'Or — Une petite maison française",
     description:
-      "Entrez dans une vision d’exception. Voyez le monde à votre dimension.",
+      "Entrez dans une vision d'exception. Voyez le monde à votre dimension.",
     type: "website",
     locale: "fr_FR",
   },
@@ -37,11 +39,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="fr" className={`${inter.variable} ${instrument.variable}`}>
       <body>
-        <Nav />
-        <main className="relative">{children}</main>
-        <Footer />
+        <div data-nouveau>
+          <Reveal />
+          <Nav />
+          <div className="relative">{children}</div>
+          <Footer />
+        </div>
       </body>
     </html>
   );

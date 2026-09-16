@@ -1,212 +1,129 @@
-import type { Metadata } from "next";
-import PageHead from "@/components/PageHead";
-import Reveal from "@/components/Reveal";
+import LineReveal from "@/components/LineReveal";
+import PageEyebrow from "@/components/PageEyebrow";
+import ConciergeForm from "@/components/ConciergeForm";
+import { SALONS } from "@/data/salons";
 
-export const metadata: Metadata = {
-  title: "Concierge — rendez-vous privés",
+export const metadata = {
+  title: "Concierge — Rendez-vous privés",
   description:
-    "Rendez-vous privés à Paris, Berlin et Londres. Essayage des quatre pièces, ajustage, verres correcteurs si vous le souhaitez.",
+    "La collection n'est pas exposée en vitrine. Nous la présentons sur rendez-vous, entre quatre yeux, à Paris, Berlin et Londres.",
 };
-
-const cities = [
-  {
-    city: "Paris",
-    address: "14, rue de l’Éclipse, VIIIᵉ",
-    hours: "Sur rendez-vous — mardi au samedi",
-    line: "Réception dans le salon privé de l’atelier.",
-  },
-  {
-    city: "Berlin",
-    address: "Kurfürstendamm 218, Charlottenburg",
-    hours: "Sur rendez-vous — mercredi et vendredi",
-    line: "En hôte, chez notre partenaire opticien.",
-  },
-  {
-    city: "Londres",
-    address: "Mount Street, Mayfair, W1K",
-    hours: "Sur rendez-vous — jeudi et samedi",
-    line: "En hôte, dans un salon privé de Mayfair.",
-  },
-];
 
 export default function ConciergePage() {
   return (
     <>
-      <PageHead
-        chapter="Concierge — Rendez-vous privés"
-        eyebrow="Concierge"
-        title="Un instant"
-        italic="pour vous seul."
-        intro="La collection n’est pas exposée en vitrine. Nous la présentons sur rendez-vous, entre quatre yeux, à Paris, Berlin ou Londres."
-      />
+      {/* Hero */}
+      <section className="relative pt-40 md:pt-52 pb-24">
+        <div className="n-page">
+          <PageEyebrow numeral="Concierge" label="Rendez-vous privés · Sans vitrine" className="mb-14" />
 
-      <section
-        className="relative"
-        style={{
-          paddingInline: "var(--page-x)",
-          paddingBlock: "clamp(80px, 12vh, 140px)",
-          background: "var(--bg)",
-        }}
-      >
-        <div className="mx-auto max-w-[1200px] grid gap-6 md:grid-cols-3">
-          {cities.map((c, i) => (
-            <Reveal key={c.city} delay={i * 80}>
-              <div
-                style={{
-                  border: "1px solid var(--line-soft)",
-                  padding: 28,
-                  background: "var(--cream)",
-                }}
+          <div className="grid grid-cols-12 gap-x-6 items-end">
+            <div className="col-span-12 md:col-span-9">
+              <LineReveal
+                as="h1"
+                className="n-display leading-[0.94]"
+                lines={["Entre quatre yeux,", "à l’heure qui vous", "convient."]}
+                delayStep={130}
+                style={{ fontSize: "clamp(56px, 11vw, 200px)" }}
+              />
+            </div>
+            <div className="col-span-12 md:col-span-3 mt-10 md:mt-0">
+              <p
+                className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
+                style={{ color: "var(--n-muted)" }}
               >
-                <div
-                  style={{
-                    fontSize: 11,
-                    letterSpacing: "0.32em",
-                    textTransform: "uppercase",
-                    color: "var(--or-2)",
-                    marginBottom: 12,
-                  }}
-                >
-                  Salon
-                </div>
-                <h2
-                  className="display"
-                  style={{ fontSize: "clamp(28px, 3.4vw, 40px)", color: "var(--ink)", lineHeight: 1 }}
-                >
-                  {c.city}
-                </h2>
-                <p className="serif mt-4" style={{ fontSize: 16, color: "var(--ink-2)", lineHeight: 1.55 }}>
-                  {c.address}
-                </p>
-                <p className="serif mt-2" style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.5 }}>
-                  {c.hours}
-                </p>
-                <p
-                  className="serif mt-6"
-                  style={{ fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, fontStyle: "italic" }}
-                >
-                  {c.line}
-                </p>
-              </div>
-            </Reveal>
-          ))}
+                Trois salons — Paris, Berlin, Londres. Un jour, une heure, quatre pièces à essayer.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section
-        className="relative"
-        style={{
-          paddingInline: "var(--page-x)",
-          paddingBlock: "clamp(80px, 12vh, 140px)",
-          background: "var(--noir)",
-          color: "var(--parchment)",
-        }}
-      >
-        <div className="mx-auto max-w-[880px]">
-          <Reveal>
-            <div className="eyebrow-or">Formulaire</div>
-            <h2
-              className="display mt-4"
-              style={{
-                fontSize: "clamp(32px, 4.6vw, 60px)",
-                lineHeight: 1,
-                color: "var(--parchment)",
-              }}
-            >
-              Demander un rendez-vous.
-            </h2>
-          </Reveal>
-
-          <form
-            action="mailto:concierge@latelier-dor.com"
-            method="post"
-            encType="text/plain"
-            className="mt-12 grid gap-6"
-          >
-            <div className="grid gap-6 md:grid-cols-2">
-              <Field label="Prénom, nom" name="nom" />
-              <Field label="Adresse courriel" name="email" type="email" />
-            </div>
-            <div className="grid gap-6 md:grid-cols-2">
-              <Select label="Salon souhaité" name="ville" options={["Paris", "Berlin", "Londres", "Sans préférence"]} />
-              <Field label="Téléphone (facultatif)" name="tel" />
-            </div>
-            <TextArea label="Un mot, s’il vous plaît" name="message" />
-            <div className="pt-2">
-              <button type="submit" className="btn-or">
-                Envoyer la demande
-              </button>
-              <p
-                style={{
-                  fontSize: 12,
-                  letterSpacing: "0.14em",
-                  color: "color-mix(in oklab, var(--parchment) 68%, transparent)",
-                  marginTop: 16,
-                }}
+      {/* Trois salons */}
+      <section className="pb-24" style={{ background: "var(--n-bg-warm)" }}>
+        <div className="n-page py-24">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+            {SALONS.map((s, i) => (
+              <article
+                key={s.city}
+                className="col-span-12 md:col-span-4 border-t pt-8 n-rise"
+                style={{ borderColor: "var(--n-line)" }}
               >
-                Réponse sous 24 heures ouvrées. Vos coordonnées ne sortent jamais de la maison.
-              </p>
+                <div className="flex items-baseline justify-between mb-8">
+                  <span className="n-mono opacity-60">0{i + 1}</span>
+                  <span className="n-mono opacity-60">{s.gmt}</span>
+                </div>
+                <h2
+                  className="n-display leading-[0.95] mb-8"
+                  style={{ fontSize: "clamp(44px, 6vw, 84px)" }}
+                >
+                  {s.city}
+                </h2>
+                <div className="n-serif text-[19px] leading-[1.4] mb-2">{s.address}</div>
+                <div className="n-serif text-[17px] leading-[1.4] mb-6" style={{ color: "var(--n-muted)" }}>
+                  {s.district}
+                </div>
+                <div className="n-mono opacity-60 mb-2">{s.hosting}</div>
+                <div className="n-mono opacity-60">{s.days}</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Formulaire */}
+      <section className="py-32">
+        <div className="n-page grid grid-cols-12 gap-x-6 items-start">
+          <div className="col-span-12 md:col-span-4">
+            <PageEyebrow numeral="§ Écrire" label="Un mot suffit" className="mb-8" />
+            <h2
+              className="n-display leading-[0.96]"
+              style={{ fontSize: "clamp(40px, 6vw, 88px)" }}
+            >
+              Nous répondons <br />
+              <span className="n-serif-italic opacity-80">à la main.</span>
+            </h2>
+            <p
+              className="n-serif text-[17px] leading-[1.55] mt-8 max-w-[38ch]"
+              style={{ color: "var(--n-muted)" }}
+            >
+              Un courriel court, une date approximative, la ville — c&rsquo;est déjà assez.
+              Le reste se règle en quelques échanges.
+            </p>
+
+            <div className="mt-10 flex flex-col gap-4">
+              <a href="mailto:concierge@latelier-dor.com" className="n-link self-start">
+                concierge@latelier-dor.com
+              </a>
+              <span className="n-mono opacity-60">Réponse sous 24 h ouvrées</span>
             </div>
-          </form>
+          </div>
+
+          <div className="col-span-12 md:col-span-7 md:col-start-6 mt-14 md:mt-0">
+            <ConciergeForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Rappel discrétion */}
+      <section className="py-24" style={{ background: "var(--n-ink)", color: "var(--n-bg)" }}>
+        <div className="n-page grid grid-cols-12 gap-x-6 items-center">
+          <div className="col-span-12 md:col-span-9">
+            <p
+              className="n-serif-italic leading-[1.2]"
+              style={{ fontSize: "clamp(32px, 5vw, 72px)" }}
+            >
+              « Vos coordonnées ne sortent jamais de la maison. »
+            </p>
+          </div>
+          <div className="col-span-12 md:col-span-3 mt-8 md:mt-0">
+            <p className="n-mono opacity-70">
+              Aucune revente, aucun outil de suivi publicitaire.<br />
+              Cookies strictement nécessaires uniquement.
+            </p>
+          </div>
         </div>
       </section>
     </>
-  );
-}
-
-function fieldStyle(): React.CSSProperties {
-  return {
-    background: "transparent",
-    border: 0,
-    borderBottom: "1px solid rgba(215,170,90,0.35)",
-    color: "var(--parchment)",
-    padding: "14px 2px",
-    fontSize: 16,
-    outline: "none",
-    fontFamily: "var(--font-inter)",
-  };
-}
-
-function labelStyle(): React.CSSProperties {
-  return {
-    fontSize: 10,
-    letterSpacing: "0.32em",
-    textTransform: "uppercase",
-    color: "var(--or-glow)",
-    marginBottom: 4,
-    display: "block",
-  };
-}
-
-function Field({ label, name, type = "text" }: { label: string; name: string; type?: string }) {
-  return (
-    <label className="block">
-      <span style={labelStyle()}>{label}</span>
-      <input name={name} type={type} className="w-full" style={fieldStyle()} required={type === "email"} />
-    </label>
-  );
-}
-
-function Select({ label, name, options }: { label: string; name: string; options: string[] }) {
-  return (
-    <label className="block">
-      <span style={labelStyle()}>{label}</span>
-      <select name={name} className="w-full" style={{ ...fieldStyle(), appearance: "none" }}>
-        {options.map((o) => (
-          <option key={o} value={o} style={{ color: "var(--noir)" }}>
-            {o}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function TextArea({ label, name }: { label: string; name: string }) {
-  return (
-    <label className="block">
-      <span style={labelStyle()}>{label}</span>
-      <textarea name={name} rows={4} className="w-full" style={{ ...fieldStyle(), resize: "vertical" }} />
-    </label>
   );
 }

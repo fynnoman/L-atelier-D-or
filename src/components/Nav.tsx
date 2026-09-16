@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { clsx } from "clsx";
 import Wordmark from "./Wordmark";
 
-const links = [
+const LINKS = [
   { href: "/collection", label: "La Collection" },
   { href: "/atelier", label: "L’Atelier" },
   { href: "/journal", label: "Journal" },
@@ -19,7 +19,7 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 32);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,154 +29,113 @@ export default function Nav() {
     setOpen(false);
   }, [pathname]);
 
-  useEffect(() => {
-    document.documentElement.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.documentElement.style.overflow = "";
-    };
-  }, [open]);
-
-  // On product pages we adapt to the mood via CSS vars
-  const isProduct = pathname?.startsWith("/collection/") && pathname !== "/collection";
+  const isDark = pathname.startsWith("/collection/roi-");
 
   return (
     <>
       <header
         className={clsx(
-          "fixed inset-x-0 top-0 z-40",
-          "transition-[background-color,backdrop-filter,border-color] duration-500",
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-500",
+          scrolled ? "py-3" : "py-5"
         )}
         style={{
-          backgroundColor: scrolled
-            ? isProduct
-              ? "color-mix(in oklab, var(--mood-bg) 78%, transparent)"
-              : "color-mix(in oklab, var(--parchment) 88%, transparent)"
-            : "transparent",
-          backdropFilter: scrolled ? "saturate(1.1) blur(14px)" : "none",
-          WebkitBackdropFilter: scrolled ? "saturate(1.1) blur(14px)" : "none",
-          borderBottom: scrolled
-            ? `1px solid ${isProduct ? "var(--mood-line)" : "var(--line-soft)"}`
-            : "1px solid transparent",
-          color: isProduct ? "var(--mood-ink)" : "var(--ink)",
+          backdropFilter: scrolled ? "blur(14px)" : "none",
+          background: scrolled ? "rgba(244, 240, 232, 0.72)" : "transparent",
+          borderBottom: scrolled ? "1px solid var(--n-line-soft)" : "1px solid transparent",
+          color: "inherit",
         }}
       >
-        <div
-          className="mx-auto flex items-center justify-between"
-          style={{
-            paddingInline: "var(--page-x)",
-            paddingBlock: scrolled ? "14px" : "22px",
-            transition: "padding 500ms var(--ease-editorial)",
-          }}
-        >
-          <nav aria-label="Primaire" className="hidden md:flex items-center gap-8">
-            {links.slice(0, 2).map((l) => (
-              <NavLink key={l.href} href={l.href} label={l.label} active={pathname === l.href} />
-            ))}
+        <div className="n-page flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-3 group">
+            <Wordmark size={scrolled ? "sm" : "md"} />
+          </Link>
+
+          <nav aria-label="Primaire" className="hidden md:flex items-center gap-10">
+            {LINKS.map((l) => {
+              const active = pathname === l.href || (l.href !== "/" && pathname.startsWith(l.href));
+              return (
+                <Link
+                  key={l.href}
+                  href={l.href}
+                  className="relative text-[12px] tracking-[0.22em] uppercase"
+                  style={{
+                    color: active ? "var(--n-gold-deep)" : "var(--n-ink)",
+                    opacity: active ? 1 : 0.75,
+                  }}
+                >
+                  {l.label}
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-1 left-0 right-0 h-px"
+                    style={{
+                      background: "currentColor",
+                      transformOrigin: "left",
+                      transform: active ? "scaleX(1)" : "scaleX(0)",
+                      transition: "transform 500ms var(--n-ease)",
+                    }}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          <Wordmark className={clsx(isProduct && "text-[color:var(--mood-ink)]")} muted={isProduct} />
-
-          <nav aria-label="Secondaire" className="hidden md:flex items-center gap-8">
-            {links.slice(2).map((l) => (
-              <NavLink key={l.href} href={l.href} label={l.label} active={pathname === l.href} />
-            ))}
-          </nav>
+          <div className="hidden md:flex items-center gap-6">
+            <span className="n-mono opacity-55">Paris · Berlin · Londres</span>
+            <Link href="/concierge" className="n-cta">Rendez-vous</Link>
+          </div>
 
           <button
-            className="md:hidden inline-flex items-center gap-2"
+            type="button"
+            className="md:hidden inline-flex flex-col gap-[5px] p-2 -mr-2"
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
             onClick={() => setOpen((v) => !v)}
-            style={{ letterSpacing: "0.22em", textTransform: "uppercase", fontSize: 11 }}
           >
             <span
-              aria-hidden
-              style={{
-                display: "inline-block",
-                width: 22,
-                height: 1,
-                background: "currentColor",
-                transform: open ? "translateY(3px) rotate(45deg)" : "none",
-                transition: "transform 260ms var(--ease-out)",
-              }}
+              className="block h-px w-6 bg-current transition-transform duration-300"
+              style={{ transform: open ? "translateY(3px) rotate(45deg)" : "none" }}
             />
             <span
-              aria-hidden
-              style={{
-                display: "inline-block",
-                width: 22,
-                height: 1,
-                background: "currentColor",
-                marginLeft: -22,
-                marginTop: 6,
-                transform: open ? "translateY(-3px) rotate(-45deg)" : "none",
-                transition: "transform 260ms var(--ease-out)",
-              }}
+              className="block h-px w-6 bg-current transition-transform duration-300"
+              style={{ transform: open ? "translateY(-3px) rotate(-45deg)" : "none" }}
             />
-            <span className="ml-8">{open ? "Fermer" : "Menu"}</span>
           </button>
         </div>
       </header>
 
-      {/* Mobile sheet */}
+      {/* Drawer mobile */}
       <div
-        role="dialog"
-        aria-modal="true"
         aria-hidden={!open}
-        className="md:hidden fixed inset-0 z-30"
-        style={{
-          background: "var(--noir)",
-          color: "var(--parchment)",
-          transform: open ? "translateY(0)" : "translateY(-100%)",
-          transition: "transform 500ms var(--ease-drawer)",
-        }}
+        className={clsx(
+          "fixed inset-0 z-30 md:hidden transition-opacity duration-500",
+          open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        )}
+        style={{ background: "var(--n-bg)" }}
       >
-        <div
-          className="h-full flex flex-col justify-between"
-          style={{ paddingInline: "var(--page-x)", paddingTop: 104, paddingBottom: 40 }}
-        >
-          <ul className="flex flex-col gap-6">
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="serif inline-block"
-                  style={{
-                    fontSize: "clamp(32px, 8vw, 56px)",
-                    fontWeight: 300,
-                    letterSpacing: "-0.01em",
-                    color: pathname === l.href ? "var(--or-soft)" : "var(--parchment)",
-                  }}
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div style={{ opacity: 0.7, fontSize: 12, letterSpacing: "0.18em", textTransform: "uppercase" }}>
-            Paris · Berlin · Londres
+        <div className="n-page pt-28 pb-16 flex flex-col gap-8">
+          {LINKS.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className="n-display text-[42px] leading-none"
+              style={{ color: "var(--n-ink)" }}
+            >
+              {l.label}
+            </Link>
+          ))}
+          <div className="mt-8 flex flex-col gap-3 n-mono opacity-60">
+            <span>Paris — 14, rue de l&rsquo;Éclipse, VIIIᵉ</span>
+            <span>Berlin — Kurfürstendamm 218</span>
+            <span>Londres — Mount Street, Mayfair</span>
           </div>
+          <Link href="/concierge" className="n-cta mt-6 self-start">
+            Prendre rendez-vous
+          </Link>
         </div>
       </div>
-    </>
-  );
-}
 
-function NavLink({ href, label, active }: { href: string; label: string; active: boolean }) {
-  return (
-    <Link
-      href={href}
-      className="link relative"
-      data-underline
-      style={{
-        fontSize: 12,
-        letterSpacing: "0.22em",
-        textTransform: "uppercase",
-        color: "currentColor",
-        opacity: active ? 1 : 0.85,
-      }}
-    >
-      {label}
-    </Link>
+      {/* Spacer for hero-less pages */}
+      {!scrolled && isDark && <div className="h-2" />}
+    </>
   );
 }

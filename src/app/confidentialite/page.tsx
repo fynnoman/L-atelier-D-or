@@ -1,59 +1,53 @@
-import type { Metadata } from "next";
-import PageHead from "@/components/PageHead";
-import LegalBody from "@/components/LegalBody";
+import LegalPage from "@/components/LegalPage";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "Confidentialité",
-  description: "Comment nous traitons vos données.",
+  description: "Ce que la maison collecte, ce qu'elle ne collectera jamais, et vos droits.",
 };
 
 export default function ConfidentialitePage() {
   return (
-    <>
-      <PageHead
-        chapter="Cahier — Discrétion"
-        eyebrow="Confidentialité"
-        title="Vos données,"
-        italic="notre retenue."
-      />
-      <LegalBody>
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Ce que nous collectons
-        </h2>
-        <p>
-          Nous collectons uniquement les informations que vous nous transmettez
-          volontairement — nom, adresse courriel, message et ville souhaitée
-          pour un rendez-vous. Aucun autre traceur, aucune revente à un tiers.
-        </p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Pourquoi nous les collectons
-        </h2>
-        <p>
-          Vos coordonnées servent à répondre à votre demande de rendez-vous ou à
-          votre message. Elles sont conservées le temps de notre correspondance
-          et supprimées ensuite, sauf si vous nous demandez expressément d’être
-          tenu au courant de nos futures collections.
-        </p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Vos droits
-        </h2>
-        <p>
-          Conformément au Règlement général sur la protection des données (RGPD),
-          vous disposez d’un droit d’accès, de rectification, d’effacement, de
-          limitation et de portabilité de vos données. Il suffit de nous écrire.
-        </p>
-
-        <h2 className="display" style={{ fontSize: 24, color: "var(--ink)" }}>
-          Cookies
-        </h2>
-        <p>
-          Le site n’utilise pas de traceurs publicitaires. Les seuls cookies
-          déposés sont ceux, strictement nécessaires, à l’affichage du site et
-          à sa mise en cache.
-        </p>
-      </LegalBody>
-    </>
+    <LegalPage
+      numeral="Cahier — Discrétion"
+      rubric="Confidentialité"
+      title="Vos coordonnées ne sortent jamais de la maison."
+      chapo="Ce que nous collectons, ce que nous ne collecterons jamais, ce que vous pouvez nous demander à tout moment."
+      sections={[
+        {
+          title: "Ce que la maison collecte",
+          body: [
+            "Uniquement les informations que vous nous transmettez volontairement : nom, courriel, ville souhaitée pour un rendez-vous, et le message que vous choisissez d'y joindre.",
+            "Nous ne collectons aucune donnée comportementale, aucun profil publicitaire, aucun identifiant de suivi tiers.",
+          ],
+        },
+        {
+          title: "Ce que la maison ne fait pas",
+          body: [
+            "Nous ne vendons pas vos coordonnées. Nous ne les partageons avec aucune régie, aucun réseau publicitaire, aucun partenaire commercial.",
+            "Nous ne posons pas de traceurs à des fins de mesure d'audience tierce, ni d'outils de re-ciblage.",
+          ],
+        },
+        {
+          title: "Cookies",
+          body: [
+            "Le site utilise uniquement des cookies strictement nécessaires — affichage, préférences d'accessibilité, cache.",
+            "Aucun cookie de mesure d'audience tierce, aucun cookie de suivi publicitaire.",
+          ],
+        },
+        {
+          title: "Vos droits",
+          body: [
+            "Conformément au Règlement général sur la protection des données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation et de portabilité concernant vos données personnelles.",
+            "Vous pouvez exercer ces droits par courriel à concierge@latelier-dor.com. Nous répondons sous vingt-quatre heures ouvrées.",
+          ],
+        },
+        {
+          title: "Durée de conservation",
+          body: [
+            "Les échanges relatifs à un rendez-vous sont conservés le temps du dialogue, puis effacés sur simple demande. Aucune conservation prolongée sans raison exprimée.",
+          ],
+        },
+      ]}
+    />
   );
 }

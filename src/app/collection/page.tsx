@@ -1,123 +1,192 @@
-import type { Metadata } from "next";
 import Link from "next/link";
-import { collection } from "@/data/collection";
-import MoodTile from "@/components/MoodTile";
-import Reveal from "@/components/Reveal";
+import LineReveal from "@/components/LineReveal";
+import MaskedImage from "@/components/MaskedImage";
+import Numeral from "@/components/Numeral";
+import PageEyebrow from "@/components/PageEyebrow";
+import { PIECES } from "@/data/collection";
 
-export const metadata: Metadata = {
-  title: "La Première Collection — Roi",
+export const metadata = {
+  title: "La Collection — Roi. Quatre atmosphères.",
   description:
-    "Quatre pièces, quatre atmosphères. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Fait main en France, en séries brèves et numérotées.",
+    "Quatre pièces la première année. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 80 € l'exemplaire, numéroté à la main.",
 };
 
-export default function CollectionPage() {
+export default function CollectionIndex() {
   return (
     <>
-      <section
-        className="relative overflow-hidden"
-        style={{
-          minHeight: "78svh",
-          paddingInline: "var(--page-x)",
-          paddingTop: "clamp(140px, 20vh, 240px)",
-          paddingBottom: "clamp(80px, 12vh, 140px)",
-          background:
-            "radial-gradient(1200px 700px at 22% 18%, rgba(215,170,90,0.24), transparent 62%), radial-gradient(1000px 700px at 82% 88%, rgba(160,120,60,0.16), transparent 62%), linear-gradient(180deg, var(--parchment) 0%, var(--parchment-2) 60%, var(--parchment-3) 100%)",
-        }}
-      >
-        <div aria-hidden className="absolute inset-0 grain pointer-events-none" />
-        <div className="relative mx-auto max-w-[1400px] text-center">
-          <Reveal>
-            <span className="eyebrow-or">La Première Collection</span>
-          </Reveal>
-          <Reveal delay={80}>
-            <h1
-              className="display mt-6"
-              style={{
-                fontSize: "clamp(56px, 10vw, 168px)",
-                lineHeight: 0.92,
-                color: "var(--ink)",
-              }}
-            >
-              Roi.
-              <br />
-              <span style={{ fontStyle: "italic", color: "var(--or-2)" }}>
-                Quatre atmosphères.
-              </span>
-            </h1>
-          </Reveal>
-          <Reveal delay={160}>
-            <p
-              className="serif mt-10 mx-auto"
-              style={{
-                fontSize: "clamp(18px, 1.8vw, 22px)",
-                lineHeight: 1.5,
-                maxWidth: 720,
-                color: "var(--ink-2)",
-              }}
-            >
-              Chaque pièce est un instant. Le Salon, la Chasse, la Chapelle, le
-              Dîner. Choisissez la vôtre — ou portez-les toutes, selon les
-              heures.
-            </p>
-          </Reveal>
+      {/* En-tête éditorial */}
+      <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
+        <div className="n-page">
+          <PageEyebrow numeral="Collection I" label="Première Édition · Numérotée" className="mb-14" />
+
+          <div className="grid grid-cols-12 gap-x-6 items-end">
+            <div className="col-span-12 md:col-span-9">
+              <LineReveal
+                as="h1"
+                className="n-display leading-[0.94]"
+                lines={["Roi.", "Quatre atmosphères,", "un seul regard."]}
+                delayStep={120}
+                style={{ fontSize: "clamp(64px, 12vw, 210px)", color: "var(--n-ink)" }}
+              />
+            </div>
+            <div className="col-span-12 md:col-span-3 mt-10 md:mt-0">
+              <p
+                className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
+                style={{ color: "var(--n-muted)" }}
+              >
+                Quatre pièces, un an. Chaque exemplaire est numéroté à la main.<br />
+                Quatre-vingts euros. Ni plus, ni moins.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="mt-20 flex flex-wrap items-baseline gap-x-10 gap-y-4 pt-8 border-t"
+            style={{ borderColor: "var(--n-line-soft)" }}
+          >
+            <span className="n-mono opacity-60">Le Salon · La Chasse · La Chapelle · Le Dîner</span>
+            <span className="n-mono opacity-60">Fait main à Paris</span>
+            <span className="n-mono opacity-60">Édition brève</span>
+          </div>
         </div>
       </section>
 
-      <section
-        className="relative"
-        style={{
-          paddingInline: "var(--page-x)",
-          paddingBlock: "clamp(60px, 10vh, 120px)",
-          background: "var(--noir)",
-        }}
-      >
-        <div className="mx-auto max-w-[1400px]">
-          <div className="grid gap-4 md:grid-cols-2">
-            {collection.map((p, i) => (
-              <Reveal key={p.slug} delay={i * 80}>
-                <MoodTile
-                  slug={p.slug}
-                  numeral={p.numeral}
-                  name={p.name}
-                  tagline={p.tagline}
-                  mood={p.mood}
-                  chapter={p.chapter.split(" — ")[1] ?? p.chapter}
-                  large
-                />
-              </Reveal>
-            ))}
-          </div>
+      {/* Quatre chapitres */}
+      {PIECES.map((piece, i) => {
+        const flip = i % 2 === 1;
+        return (
+          <section
+            key={piece.slug}
+            className="relative overflow-hidden"
+            style={{
+              paddingBlock: "clamp(80px, 12vh, 160px)",
+              background: i === 0 ? "var(--n-bg)" : i === 1 ? "var(--n-bg-warm)" : i === 2 ? "var(--n-bg-cool)" : "var(--n-bg)",
+            }}
+          >
+            <div className="n-page">
+              <div className="grid grid-cols-12 gap-x-6 items-center">
+                {/* Numéral géant */}
+                <div
+                  className={`col-span-12 md:col-span-6 ${flip ? "md:col-start-7 md:order-2" : "md:col-start-1"} relative`}
+                >
+                  <MaskedImage
+                    src={piece.image}
+                    alt={`${piece.name} — ${piece.tagline}`}
+                    tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
+                    ratio="4 / 5"
+                    className={flip ? "md:-translate-x-4" : "md:translate-x-4"}
+                  />
 
-          <div className="mt-16 text-center">
-            <Reveal>
-              <div
-                style={{
-                  fontSize: 11,
-                  letterSpacing: "0.32em",
-                  textTransform: "uppercase",
-                  color: "var(--or-soft)",
-                }}
-              >
-                Édition brève · Numérotée à la main
+                  {/* Chip flottant */}
+                  <div
+                    className="absolute top-6 left-6 flex items-center gap-3 px-3 py-2"
+                    style={{ background: "var(--n-bg)", border: "1px solid var(--n-line)" }}
+                  >
+                    <span className="n-mono opacity-70">{piece.numeral}</span>
+                    <span className="n-eyebrow">{piece.name}</span>
+                  </div>
+
+                  {/* Bloc scène flottant */}
+                  <div
+                    className={`hidden md:block absolute ${flip ? "-left-6 bottom-10" : "-right-6 bottom-10"} max-w-[280px] p-5`}
+                    style={{
+                      background: "rgba(244,240,232,0.9)",
+                      backdropFilter: "blur(6px)",
+                      border: "1px solid var(--n-line-soft)",
+                    }}
+                  >
+                    <div className="n-mono opacity-60 mb-2">{piece.time}</div>
+                    <p
+                      className="n-serif text-[15px] leading-[1.4]"
+                      style={{ color: "var(--n-ink)" }}
+                    >
+                      {piece.place}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Texte */}
+                <div
+                  className={`col-span-12 md:col-span-5 ${flip ? "md:col-start-1 md:order-1" : "md:col-start-8"} mt-12 md:mt-0 relative`}
+                >
+                  <span
+                    className="n-serif opacity-15 leading-none block mb-4"
+                    style={{ fontSize: "clamp(80px, 12vw, 200px)", color: "var(--n-ink)" }}
+                  >
+                    <Numeral n={piece.index} />
+                  </span>
+
+                  <div className="n-eyebrow mb-6">{piece.chapter}</div>
+                  <h2
+                    className="n-display leading-[0.95] mb-6"
+                    style={{ fontSize: "clamp(48px, 7vw, 108px)" }}
+                  >
+                    {piece.name}
+                  </h2>
+                  <p
+                    className="n-serif-italic text-[22px] leading-[1.35] mb-8 max-w-[38ch]"
+                    style={{ color: "var(--n-ink)" }}
+                  >
+                    « {piece.tagline} »
+                  </p>
+                  <p
+                    className="n-serif text-[17px] leading-[1.6] mb-10 max-w-[46ch]"
+                    style={{ color: "var(--n-muted)" }}
+                  >
+                    {piece.scene}
+                  </p>
+
+                  <div className="flex items-center gap-6 mb-10">
+                    <div className="flex items-center gap-2">
+                      {piece.teintes.map((t) => (
+                        <div key={t.hex} className="flex items-center gap-2">
+                          <span
+                            className="block w-4 h-4 rounded-full border"
+                            style={{ background: t.hex, borderColor: "var(--n-line)" }}
+                          />
+                          <span className="n-mono opacity-70">{t.name}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-6">
+                    <span className="n-serif text-[28px] leading-none">{piece.priceEuro} €</span>
+                    <span className="n-hair opacity-30" aria-hidden />
+                    <Link href={`/collection/${piece.slug}`} className="n-cta">
+                      Voir la pièce
+                    </Link>
+                  </div>
+                </div>
               </div>
+            </div>
+          </section>
+        );
+      })}
+
+      {/* Pied éditorial */}
+      <section className="n-section" style={{ background: "var(--n-bg)" }}>
+        <div className="n-page">
+          <div className="grid grid-cols-12 gap-x-6 items-end">
+            <div className="col-span-12 md:col-span-8">
+              <h2
+                className="n-display leading-[0.96]"
+                style={{ fontSize: "clamp(40px, 6vw, 96px)" }}
+              >
+                Nous voulons que la Roi soit portée. <br />
+                <span className="n-serif-italic opacity-80">Pas rangée.</span>
+              </h2>
+            </div>
+            <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
               <p
-                className="serif mt-4 mx-auto"
-                style={{
-                  fontSize: 18,
-                  lineHeight: 1.6,
-                  maxWidth: 620,
-                  color: "color-mix(in oklab, var(--parchment) 82%, transparent)",
-                }}
+                className="n-serif text-[17px] leading-[1.6] max-w-[36ch] mb-6"
+                style={{ color: "var(--n-muted)" }}
               >
-                Quatre-vingts euros la pièce. Ni plus, ni moins. La retenue est
-                une forme de luxe — nous la revendiquons.
+                La collection n&rsquo;est pas exposée en vitrine. Nous la présentons sur rendez-vous,
+                entre quatre yeux, à Paris, Berlin et Londres.
               </p>
-              <div className="mt-8">
-                <Link href="/concierge" className="btn-or">
-                  Rendez-vous privé
-                </Link>
-              </div>
-            </Reveal>
+              <Link href="/concierge" className="n-cta">Prendre rendez-vous</Link>
+            </div>
           </div>
         </div>
       </section>
