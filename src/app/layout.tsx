@@ -9,7 +9,7 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
-  weight: ["300", "400", "500"],
+  weight: ["100", "200", "300", "400", "500", "600"],
 });
 
 const instrument = Instrument_Serif({
@@ -22,24 +22,24 @@ const instrument = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: {
-    default: "L'Atelier d'Or — Une petite maison française",
+    default: "L'Atelier d'Or — Eine kleine französische Manufaktur",
     template: "%s · L'Atelier d'Or",
   },
   description:
-    "Une petite maison française de lunetterie. Quatre pièces, un an. Fait main à Paris, présenté sur rendez-vous.",
+    "Eine kleine französische Brillenmanufaktur. Vier Stücke pro Jahr. In Paris von Hand gefertigt, ausschließlich nach Termin.",
   metadataBase: new URL("https://latelier-dor.com"),
   openGraph: {
-    title: "L'Atelier d'Or — Une petite maison française",
+    title: "L'Atelier d'Or",
     description:
       "Entrez dans une vision d'exception. Voyez le monde à votre dimension.",
     type: "website",
-    locale: "fr_FR",
+    locale: "de_DE",
   },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="fr" className={`${inter.variable} ${instrument.variable}`}>
+    <html lang="de" className={`${inter.variable} ${instrument.variable}`}>
       <body>
         <div data-nouveau>
           <Reveal />

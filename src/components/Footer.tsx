@@ -3,17 +3,17 @@ import Wordmark from "./Wordmark";
 
 const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
   {
-    title: "La Maison",
+    title: "Haus",
     items: [
-      { href: "/atelier", label: "L’Atelier" },
+      { href: "/atelier", label: "Atelier" },
       { href: "/journal", label: "Journal" },
-      { href: "/concierge", label: "Concierge" },
+      { href: "/concierge", label: "Beratung" },
     ],
   },
   {
-    title: "Collection",
+    title: "Kollektion",
     items: [
-      { href: "/collection", label: "La Première Collection" },
+      { href: "/collection", label: "Erste Kollektion" },
       { href: "/collection/roi-rouge", label: "Roi Rouge" },
       { href: "/collection/roi-noir", label: "Roi Noir" },
       { href: "/collection/roi-cristal", label: "Roi Cristal" },
@@ -21,11 +21,11 @@ const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
     ],
   },
   {
-    title: "Discrétion",
+    title: "Rechtliches",
     items: [
-      { href: "/mentions-legales", label: "Mentions légales" },
-      { href: "/confidentialite", label: "Confidentialité" },
-      { href: "/accessibilite", label: "Accessibilité" },
+      { href: "/mentions-legales", label: "Impressum" },
+      { href: "/confidentialite", label: "Datenschutz" },
+      { href: "/accessibilite", label: "Barrierefreiheit" },
     ],
   },
 ];
@@ -40,30 +40,32 @@ export default function Footer() {
         borderTop: "1px solid var(--n-line-soft)",
       }}
     >
-      <div className="n-page pt-28 pb-14">
-        {/* Grand wordmark */}
-        <div className="pb-16 border-b" style={{ borderColor: "var(--n-line-soft)" }}>
+      <div className="n-page pt-32 pb-14">
+        <div
+          className="pb-20 border-b"
+          style={{ borderColor: "var(--n-line-soft)" }}
+        >
           <span
-            className="n-display block leading-[0.9]"
-            style={{ fontSize: "clamp(56px, 12vw, 180px)" }}
+            className="n-brand block leading-[0.92]"
+            style={{ fontSize: "clamp(64px, 14vw, 220px)" }}
           >
-            L&rsquo;Atelier <span className="n-serif-italic opacity-75">d&rsquo;Or</span>
+            L&rsquo;Atelier d&rsquo;Or
           </span>
-          <div className="mt-6 flex flex-wrap items-baseline gap-x-6 gap-y-2">
+          <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
             <span className="n-eyebrow">Une petite maison française</span>
-            <span className="n-mono opacity-55">Paris · Berlin · Londres</span>
+            <span className="n-meta opacity-55">Paris · Berlin · London</span>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-x-6 gap-y-14 mt-16">
-          <div className="col-span-12 md:col-span-4 flex flex-col gap-6">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-16 mt-20">
+          <div className="col-span-12 md:col-span-4 flex flex-col gap-8">
             <Wordmark size="lg" />
             <p
-              className="n-serif text-[19px] leading-[1.5] max-w-[36ch]"
+              className="n-body text-[16px] leading-[1.6] max-w-[36ch]"
               style={{ color: "var(--n-muted)" }}
             >
               14, rue de l&rsquo;Éclipse<br />
-              75008 Paris — France
+              75008 Paris, Frankreich
             </p>
             <a
               href="mailto:concierge@latelier-dor.com"
@@ -74,14 +76,17 @@ export default function Footer() {
           </div>
 
           {COLUMNS.map((col) => (
-            <div key={col.title} className="col-span-6 md:col-span-2 flex flex-col gap-4">
+            <div
+              key={col.title}
+              className="col-span-6 md:col-span-2 flex flex-col gap-6"
+            >
               <div className="n-eyebrow">{col.title}</div>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-4">
                 {col.items.map((it) => (
                   <li key={it.href}>
                     <Link
                       href={it.href}
-                      className="n-serif text-[17px] leading-[1.4]"
+                      className="n-body text-[15px] leading-[1.4] hover:opacity-70 transition-opacity"
                       style={{ color: "var(--n-ink)" }}
                     >
                       {it.label}
@@ -93,14 +98,12 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="n-hair-full mt-20 mb-6" />
+        <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-          <p className="n-mono opacity-55">
-            © L&rsquo;Atelier d&rsquo;Or — Fait main en France · Première collection — Édition brève et numérotée
+          <p className="n-meta opacity-55">
+            © L&rsquo;Atelier d&rsquo;Or · In Frankreich handgefertigt · Kleine Auflage, von Hand nummeriert
           </p>
-          <p className="n-mono opacity-55">
-            SAS à capital variable · RCS Paris
-          </p>
+          <p className="n-meta opacity-55">SAS à capital variable · RCS Paris</p>
         </div>
       </div>
     </footer>

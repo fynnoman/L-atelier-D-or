@@ -1,95 +1,102 @@
 import Link from "next/link";
-import PageEyebrow from "../PageEyebrow";
 import { CAHIERS } from "@/data/journal";
 
 export default function JournalStrip() {
   return (
-    <section className="n-section-lg relative">
+    <section
+      className="n-section-lg relative"
+      style={{ background: "var(--n-bg-2)" }}
+    >
       <div className="n-page">
-        <div className="grid grid-cols-12 gap-x-6 items-end mb-24">
-          <div className="col-span-12 md:col-span-6">
-            <PageEyebrow numeral="§ 05" label="Journal" className="mb-8" />
+        <span className="n-eyebrow block mb-24">Journal</span>
+
+        <div className="grid grid-cols-12 gap-x-6 mb-24">
+          <div className="col-span-12">
             <h2
-              className="n-display leading-[0.94]"
-              style={{ fontSize: "clamp(48px, 8vw, 132px)" }}
+              className="n-display leading-[0.92]"
+              style={{
+                fontSize: "clamp(56px, 11vw, 200px)",
+                fontWeight: 200,
+              }}
             >
-              Les cahiers <br />
-              <span className="n-serif-italic opacity-80">de la maison.</span>
+              Die Hefte <br />
+              <span className="opacity-80">des Hauses.</span>
             </h2>
           </div>
-          <div className="col-span-12 md:col-span-4 md:col-start-9 mt-6 md:mt-0">
+        </div>
+
+        <div className="grid grid-cols-12 gap-x-6 mb-24">
+          <div className="col-span-12 md:col-span-6 md:col-start-7">
             <p
-              className="n-serif text-[18px] leading-[1.55] max-w-[36ch]"
-              style={{ color: "var(--n-muted)" }}
+              className="n-body leading-[1.5]"
+              style={{
+                fontSize: "clamp(18px, 1.6vw, 22px)",
+                color: "var(--n-muted)",
+              }}
             >
-              Trois cahiers pour l&rsquo;instant. Nous en publions un ou deux par saison,
-              quand nous avons quelque chose à dire — et jamais autrement.
+              Drei Hefte bislang. Wir veröffentlichen ein bis zwei pro Saison,
+              wenn wir etwas zu sagen haben.
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-x-6 gap-y-14">
-          {CAHIERS.map((c, i) => {
-            const align = i === 1 ? "md:translate-y-16" : i === 2 ? "md:translate-y-8" : "";
-            return (
-              <Link
-                key={c.slug}
-                href={`/journal/${c.slug}`}
-                className={`col-span-12 md:col-span-4 group ${align} block`}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-24">
+          {CAHIERS.map((c) => (
+            <Link
+              key={c.slug}
+              href={`/journal/${c.slug}`}
+              className="col-span-12 md:col-span-4 group block"
+            >
+              <article
+                className="relative n-mask n-frame n-frame-45"
               >
-                <article
-                  className="relative n-mask overflow-hidden"
-                  style={{ aspectRatio: "5 / 6" }}
-                >
-                  <div className={`n-tile is-${c.tone}`} />
-                  <div
-                    aria-hidden
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(20,15,10,0) 45%, rgba(20,15,10,0.55) 100%)",
-                    }}
-                  />
-                  <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
-                    <span className="n-mono" style={{ color: "rgba(244,240,232,0.85)" }}>
-                      Cahier {c.numeral} · {c.rubric}
-                    </span>
-                    <span className="n-mono opacity-70" style={{ color: "rgba(244,240,232,0.75)" }}>
-                      {c.read}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-8 left-6 right-6">
-                    <h3
-                      className="n-display leading-[1.02] mb-4"
-                      style={{
-                        fontSize: "clamp(28px, 3.4vw, 44px)",
-                        color: "var(--n-bg)",
-                      }}
-                    >
-                      {c.title}
-                    </h3>
-                    <p
-                      className="n-serif text-[15px] leading-[1.5] opacity-80 max-w-[42ch]"
-                      style={{ color: "var(--n-bg)" }}
-                    >
-                      {c.chapo}
-                    </p>
-                  </div>
-                </article>
-
-                <div className="mt-6 flex items-baseline justify-between">
-                  <span className="n-mono opacity-55">{c.date}</span>
+                <div className={`n-tile is-${c.tone}`} />
+                <div
+                  aria-hidden
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, rgba(10,10,10,0) 55%, rgba(10,10,10,0.5) 100%)",
+                  }}
+                />
+                <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
                   <span
-                    className="n-serif-italic text-[15px]"
-                    style={{ color: "var(--n-muted)" }}
+                    className="n-meta"
+                    style={{ color: "rgba(255,255,255,0.85)" }}
                   >
-                    Lire le cahier →
+                    Heft {c.numeral}
+                  </span>
+                  <span
+                    className="n-meta opacity-70"
+                    style={{ color: "rgba(255,255,255,0.75)" }}
+                  >
+                    {c.read}
                   </span>
                 </div>
-              </Link>
-            );
-          })}
+              </article>
+
+              <div className="mt-8">
+                <div className="n-eyebrow mb-4 opacity-70">
+                  {c.rubric} · {c.date}
+                </div>
+                <h3
+                  className="n-display leading-[1] mb-4"
+                  style={{
+                    fontSize: "clamp(24px, 3vw, 40px)",
+                    fontWeight: 200,
+                  }}
+                >
+                  {c.title}
+                </h3>
+                <span
+                  className="n-meta"
+                  style={{ color: "var(--n-muted)" }}
+                >
+                  Heft lesen →
+                </span>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </section>

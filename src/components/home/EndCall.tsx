@@ -4,41 +4,59 @@ import LineReveal from "../LineReveal";
 export default function EndCall() {
   return (
     <section
-      className="n-section relative overflow-hidden"
-      style={{ background: "var(--n-bg-warm)" }}
+      className="relative overflow-hidden"
+      style={{
+        paddingBlock: "clamp(160px, 24vh, 280px)",
+        background: "var(--n-ink)",
+        color: "var(--n-bg)",
+      }}
     >
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6">
-          <div className="col-span-12 md:col-span-10 md:col-start-2 text-center">
-            <span className="n-eyebrow" style={{ color: "var(--n-gold-deep)" }}>
-              Édition brève — Première année
+          <div className="col-span-12 text-center">
+            <span
+              className="n-eyebrow"
+              style={{ color: "rgba(255,255,255,0.7)" }}
+            >
+              Erste Auflage · Erstes Jahr
             </span>
 
             <LineReveal
               as="p"
-              className="n-display leading-[0.96] mt-10"
-              lines={[
-                "Voyez le monde",
-                "à votre dimension.",
-              ]}
-              delayStep={110}
-              style={{ fontSize: "clamp(48px, 8vw, 140px)", color: "var(--n-ink)" }}
+              className="n-quote leading-[1.02] mt-14 mx-auto max-w-[16ch]"
+              lines={["Voyez le monde", "à votre dimension."]}
+              delayStep={140}
+              style={{
+                fontSize: "clamp(56px, 10vw, 168px)",
+                color: "var(--n-bg)",
+              }}
             />
 
             <p
-              className="n-serif-italic mt-10 text-[19px] leading-[1.5] mx-auto max-w-[46ch]"
-              style={{ color: "var(--n-muted)" }}
+              className="n-body mt-14 mx-auto max-w-[54ch] opacity-75"
+              style={{
+                fontSize: "clamp(16px, 1.4vw, 22px)",
+                lineHeight: 1.55,
+              }}
             >
-              Une paire quitte l&rsquo;atelier lorsqu&rsquo;elle a cessé d&rsquo;accrocher la lumière
-              comme un métal, et qu&rsquo;elle la retient comme une peau.
+              Eine Fassung verlässt das Atelier erst, wenn sie das Licht nicht
+              mehr wie ein Metall bricht, sondern es hält, wie eine Haut es hält.
             </p>
 
-            <div className="mt-14 flex items-center justify-center gap-6 flex-wrap">
-              <Link href="/concierge" className="n-cta">
-                Prendre rendez-vous
+            <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">
+              <Link
+                href="/concierge"
+                className="n-cta n-cta-ghost"
+                style={{ color: "var(--n-bg)" }}
+              >
+                Termin vereinbaren
               </Link>
-              <Link href="/atelier" className="n-link">
-                Visiter l’Atelier
+              <Link
+                href="/atelier"
+                className="n-link"
+                style={{ color: "var(--n-bg)" }}
+              >
+                Atelier besuchen
               </Link>
             </div>
           </div>

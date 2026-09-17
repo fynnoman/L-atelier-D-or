@@ -1,128 +1,113 @@
+@import "tailwindcss";
+
 /* ————————————————————————————————————————————————
    L'Atelier d'Or
-   Éditorial · Layers · Retenue
+   Système monochrome · éditorial · retenue
+   Photographie donne la couleur. L'UI reste neutre.
    ———————————————————————————————————————————————— */
 
 html:has([data-nouveau]) {
-  background: #F4F0E8;
+  background: #FFFFFF;
 }
 
 html:has([data-nouveau]) body {
-  background: #F4F0E8;
-  color: #161616;
+  background: #FFFFFF;
+  color: #0A0A0A;
   font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
 }
 
 [data-nouveau] {
-  /* Palette — quatre teintes, jamais plus dans l'UI */
-  --n-bg: #F4F0E8;
-  --n-bg-warm: #EDE7DA;
-  --n-bg-cool: #E8E6DE;
-  --n-ink: #161616;
-  --n-ink-2: #2A2620;
-  --n-muted: #89857D;
-  --n-muted-2: #B4AFA4;
-  --n-gold: #B8934A;
-  --n-gold-soft: #D9B877;
-  --n-gold-deep: #7E5F26;
+  /* Palette — quatre tons, jamais plus. */
+  --n-bg: #FFFFFF;
+  --n-bg-2: #F5F5F2;
+  --n-bg-3: #EDEBE6;
+  --n-ink: #0A0A0A;
+  --n-ink-2: #1A1A1A;
+  --n-muted: #6E6E6E;
+  --n-muted-2: #9C9C9C;
+
+  /* Une seule teinte d'accent, utilisée avec parcimonie. */
+  --n-accent: #7E5F26;
 
   /* Filets */
-  --n-line: rgba(22, 22, 22, 0.14);
-  --n-line-soft: rgba(22, 22, 22, 0.08);
-  --n-line-gold: rgba(184, 147, 74, 0.35);
+  --n-line: rgba(10, 10, 10, 0.10);
+  --n-line-soft: rgba(10, 10, 10, 0.06);
 
-  /* Rythmes éditoriaux */
+  /* Rythmes */
   --n-ease: cubic-bezier(0.16, 1, 0.3, 1);
   --n-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
-  --n-ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 
   /* Grille */
-  --n-pad-x: clamp(20px, 4vw, 72px);
-  --n-max: 1600px;
-  --n-rule: 1px;
+  --n-pad-x: clamp(16px, 3.6vw, 64px);
+  --n-max: 1760px;
 
   color: var(--n-ink);
   background: var(--n-bg);
   font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
   font-weight: 400;
-  letter-spacing: 0.003em;
+  letter-spacing: 0;
   min-height: 100vh;
 }
 
-/* Ambiances par pièce — appliquées sur les pages produit.
-   Le mood peut être porté par le conteneur [data-nouveau] lui-même
-   ou (plus fréquent) déclaré sur <html data-nouveau-mood="…"> par MoodClient. */
-
-html[data-nouveau-mood="rouge"] { background: #120705; }
-html[data-nouveau-mood="foret"] { background: #060C07; }
-html[data-nouveau-mood="cristal"] { background: #F2F5F8; }
-html[data-nouveau-mood="emeraude"] { background: #0A0810; }
+/* Moods des pages produit — la photographie dicte, on passe à un fond neutre teinté. */
+html[data-nouveau-mood="rouge"]     { background: #100A08; }
+html[data-nouveau-mood="foret"]     { background: #0A0F0B; }
+html[data-nouveau-mood="cristal"]   { background: #F2F3F4; }
+html[data-nouveau-mood="emeraude"]  { background: #0A0A10; }
 
 html[data-nouveau-mood="rouge"] body,
 html[data-nouveau-mood="foret"] body,
 html[data-nouveau-mood="emeraude"] body {
   background: transparent;
-  color: #EFE6D6;
+  color: #EDEAE3;
 }
 html[data-nouveau-mood="cristal"] body {
   background: transparent;
-  color: #0F1A24;
+  color: #0F1216;
 }
 
 html[data-nouveau-mood="rouge"] [data-nouveau] {
-  --n-bg: #120705;
-  --n-bg-warm: #1F0B07;
-  --n-ink: #F5EBDD;
-  --n-muted: #C4A58A;
-  --n-line: rgba(233, 174, 137, 0.20);
-  --n-line-soft: rgba(233, 174, 137, 0.10);
-  --n-gold: #E8B074;
-  --n-gold-deep: #F0C9A2;
-  --mood-accent: #B7361E;
-  background: #120705;
-  color: #F5EBDD;
+  --n-bg: #100A08;
+  --n-bg-2: #180E0B;
+  --n-ink: #EDEAE3;
+  --n-muted: #A69684;
+  --n-line: rgba(237, 234, 227, 0.14);
+  --n-line-soft: rgba(237, 234, 227, 0.07);
+  background: #100A08;
+  color: #EDEAE3;
 }
 html[data-nouveau-mood="foret"] [data-nouveau] {
-  --n-bg: #060C07;
-  --n-bg-warm: #0B1710;
-  --n-ink: #E5ECD9;
-  --n-muted: #9DB494;
-  --n-line: rgba(160, 190, 150, 0.20);
-  --n-line-soft: rgba(160, 190, 150, 0.10);
-  --n-gold: #D0C68A;
-  --n-gold-deep: #E9DFA8;
-  --mood-accent: #3D6B3E;
-  background: #060C07;
-  color: #E5ECD9;
+  --n-bg: #0A0F0B;
+  --n-bg-2: #101812;
+  --n-ink: #E3E8DE;
+  --n-muted: #95A392;
+  --n-line: rgba(227, 232, 222, 0.14);
+  --n-line-soft: rgba(227, 232, 222, 0.07);
+  background: #0A0F0B;
+  color: #E3E8DE;
 }
 html[data-nouveau-mood="cristal"] [data-nouveau] {
-  --n-bg: #F2F5F8;
-  --n-bg-warm: #E6EEF4;
-  --n-ink: #0F1A24;
-  --n-muted: #5A6B7A;
-  --n-line: rgba(60, 90, 120, 0.18);
-  --n-line-soft: rgba(60, 90, 120, 0.08);
-  --n-gold: #6EA8C9;
-  --n-gold-deep: #244560;
-  --mood-accent: #6EA8C9;
-  background: #F2F5F8;
-  color: #0F1A24;
+  --n-bg: #F2F3F4;
+  --n-bg-2: #E8EAEC;
+  --n-ink: #0F1216;
+  --n-muted: #5E656C;
+  --n-line: rgba(15, 18, 22, 0.12);
+  --n-line-soft: rgba(15, 18, 22, 0.06);
+  background: #F2F3F4;
+  color: #0F1216;
 }
 html[data-nouveau-mood="emeraude"] [data-nouveau] {
-  --n-bg: #0A0810;
-  --n-bg-warm: #12102A;
-  --n-ink: #EDE4F0;
-  --n-muted: #A99CB4;
-  --n-line: rgba(200, 168, 216, 0.20);
-  --n-line-soft: rgba(200, 168, 216, 0.10);
-  --n-gold: #CFE6D4;
-  --n-gold-deep: #E5F0E4;
-  --mood-accent: #1F6B4A;
-  background: #0A0810;
-  color: #EDE4F0;
+  --n-bg: #0A0A10;
+  --n-bg-2: #12121C;
+  --n-ink: #E7E5EA;
+  --n-muted: #9A97A2;
+  --n-line: rgba(231, 229, 234, 0.14);
+  --n-line-soft: rgba(231, 229, 234, 0.07);
+  background: #0A0A10;
+  color: #E7E5EA;
 }
 
-/* Adaptation de la nav lorsque le mood est actif */
+/* Header adapte son fond au mood, sans jamais devenir décoratif. */
 html[data-nouveau-mood] [data-nouveau] > header {
   background: transparent !important;
   color: inherit;
@@ -133,109 +118,71 @@ html[data-nouveau-mood] [data-nouveau] > header[style*="blur"] {
   border-bottom: 1px solid var(--n-line-soft) !important;
 }
 html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
-  background: rgba(255, 255, 255, 0.6) !important;
-}
-
-[data-nouveau][data-mood="rouge"] {
-  --mood-ink: #F5EBDD;
-  --mood-bg: #120705;
-  --mood-bg-2: #1F0B07;
-  --mood-muted: #C4A58A;
-  --mood-line: rgba(233, 174, 137, 0.20);
-  --mood-accent: #B7361E;
-  --mood-accent-2: #7E1F14;
-  --mood-halo: radial-gradient(1200px 700px at 22% 18%, rgba(183, 54, 30, 0.28), transparent 62%),
-               radial-gradient(900px 620px at 88% 82%, rgba(140, 90, 50, 0.20), transparent 68%);
-  background: var(--mood-bg);
-  color: var(--mood-ink);
-}
-[data-nouveau][data-mood="foret"] {
-  --mood-ink: #E5ECD9;
-  --mood-bg: #060C07;
-  --mood-bg-2: #0B1710;
-  --mood-muted: #9DB494;
-  --mood-line: rgba(160, 190, 150, 0.20);
-  --mood-accent: #3D6B3E;
-  --mood-accent-2: #1F3D24;
-  --mood-halo: radial-gradient(1000px 700px at 15% 30%, rgba(61, 107, 62, 0.28), transparent 62%),
-               radial-gradient(900px 640px at 85% 75%, rgba(31, 61, 36, 0.36), transparent 68%);
-  background: var(--mood-bg);
-  color: var(--mood-ink);
-}
-[data-nouveau][data-mood="cristal"] {
-  --mood-ink: #0F1A24;
-  --mood-bg: #F2F5F8;
-  --mood-bg-2: #E6EEF4;
-  --mood-muted: #5A6B7A;
-  --mood-line: rgba(60, 90, 120, 0.18);
-  --mood-accent: #6EA8C9;
-  --mood-accent-2: #B6D2E3;
-  --mood-halo: radial-gradient(1200px 700px at 25% 20%, rgba(182, 210, 227, 0.55), transparent 62%),
-               radial-gradient(900px 640px at 80% 85%, rgba(255, 255, 255, 0.75), transparent 68%);
-  background: var(--mood-bg);
-  color: var(--mood-ink);
-}
-[data-nouveau][data-mood="emeraude"] {
-  --mood-ink: #EDE4F0;
-  --mood-bg: #0A0810;
-  --mood-bg-2: #12102A;
-  --mood-muted: #A99CB4;
-  --mood-line: rgba(200, 168, 216, 0.20);
-  --mood-accent: #1F6B4A;
-  --mood-accent-2: #6A3F8E;
-  --mood-halo: radial-gradient(1000px 700px at 20% 25%, rgba(31, 107, 74, 0.32), transparent 62%),
-               radial-gradient(900px 640px at 85% 75%, rgba(106, 63, 142, 0.34), transparent 68%);
-  background: var(--mood-bg);
-  color: var(--mood-ink);
+  background: rgba(255, 255, 255, 0.7) !important;
 }
 
 /* ————————————————————————————————————————————————
-   Typographie éditoriale
+   Typographie — sans grotesque léger, serif italique
+   uniquement pour la marque et le slogan français.
    ———————————————————————————————————————————————— */
 
-[data-nouveau] .n-serif {
-  font-family: var(--font-instrument), "Instrument Serif", "Didot", "Bodoni 72", Georgia, serif;
-  font-weight: 400;
-  font-style: normal;
-}
-[data-nouveau] .n-serif-italic {
-  font-family: var(--font-instrument), "Instrument Serif", "Didot", Georgia, serif;
-  font-style: italic;
-  font-weight: 400;
-}
 [data-nouveau] .n-display {
+  font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
+  font-weight: 200;
+  line-height: 0.94;
+  letter-spacing: -0.028em;
+}
+[data-nouveau] .n-display-thin {
+  font-weight: 100;
+}
+[data-nouveau] .n-heading {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.015em;
+  line-height: 1.05;
+}
+[data-nouveau] .n-body {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Marque et slogan français — les seuls moments serif italique. */
+[data-nouveau] .n-brand {
   font-family: var(--font-instrument), "Instrument Serif", "Didot", Georgia, serif;
   font-weight: 400;
-  line-height: 0.94;
-  letter-spacing: -0.018em;
+  font-style: italic;
+  letter-spacing: -0.005em;
 }
-[data-nouveau] .n-mono {
-  font-family: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+[data-nouveau] .n-quote {
+  font-family: var(--font-instrument), "Instrument Serif", "Didot", Georgia, serif;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
 }
+
 [data-nouveau] .n-eyebrow {
   font-family: var(--font-inter), sans-serif;
   font-weight: 500;
   font-size: 11px;
-  letter-spacing: 0.28em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
   color: var(--n-muted);
 }
-[data-nouveau] .n-eyebrow-gold {
-  color: var(--n-gold-deep);
-}
-[data-nouveau] .n-numeral {
-  font-family: var(--font-instrument), serif;
-  font-feature-settings: "lnum" 1;
-  letter-spacing: 0.03em;
+[data-nouveau] .n-meta {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--n-muted);
 }
 
-/* Filets — hairlines éditoriales */
+/* Filets — hairlines. */
 [data-nouveau] .n-hair {
   display: inline-block;
-  width: 56px;
+  width: 36px;
   height: 1px;
   background: currentColor;
   opacity: 0.35;
@@ -248,8 +195,41 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   background: var(--n-line);
 }
 
+/* Compatibilité — classes anciennes conservées, redirigées vers le système monochrome. */
+[data-nouveau] .n-serif {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.005em;
+  line-height: 1.3;
+}
+[data-nouveau] .n-serif-italic {
+  font-family: var(--font-instrument), "Instrument Serif", "Didot", Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+[data-nouveau] .n-mono {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+}
+[data-nouveau] .n-numeral {
+  font-family: var(--font-inter), sans-serif;
+  font-weight: 300;
+  letter-spacing: 0;
+}
+[data-nouveau] .n-eyebrow-gold { color: var(--n-accent); }
+[data-nouveau] .n-cta-gold {
+  background: var(--n-ink);
+  color: var(--n-bg);
+  border-color: var(--n-ink);
+}
+
 /* ————————————————————————————————————————————————
-   Grille & mise en page
+   Grille & silence
    ———————————————————————————————————————————————— */
 
 [data-nouveau] .n-page {
@@ -258,24 +238,33 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   max-width: var(--n-max);
   margin-inline: auto;
 }
-[data-nouveau] .n-grid12 {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  column-gap: clamp(12px, 1.6vw, 28px);
+[data-nouveau] .n-bleed {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
 }
-
-/* Espaces respirants */
 [data-nouveau] .n-section {
-  padding-block: clamp(96px, 14vh, 200px);
+  padding-block: clamp(88px, 12vh, 168px);
   position: relative;
 }
 [data-nouveau] .n-section-lg {
-  padding-block: clamp(140px, 20vh, 280px);
+  padding-block: clamp(128px, 18vh, 240px);
 }
 
 /* ————————————————————————————————————————————————
-   Masques & couches
+   Bild-Container — Gucci-Rhythmus (16:9 / 3:4 / 2:3)
    ———————————————————————————————————————————————— */
+
+[data-nouveau] .n-frame {
+  position: relative;
+  overflow: hidden;
+  background: var(--n-bg-2);
+}
+[data-nouveau] .n-frame-169 { aspect-ratio: 16 / 9; }
+[data-nouveau] .n-frame-34  { aspect-ratio: 3 / 4; }
+[data-nouveau] .n-frame-45  { aspect-ratio: 4 / 5; }
+[data-nouveau] .n-frame-23  { aspect-ratio: 2 / 3; }
+[data-nouveau] .n-frame-11  { aspect-ratio: 1 / 1; }
 
 [data-nouveau] .n-mask {
   position: relative;
@@ -284,16 +273,12 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 [data-nouveau] .n-mask img,
 [data-nouveau] .n-mask > .n-tile {
   transition: transform 1200ms var(--n-ease);
+  transform: scale(1.06);
 }
 [data-nouveau] .n-mask.is-in img,
 [data-nouveau] .n-mask.is-in > .n-tile {
   transform: scale(1);
 }
-[data-nouveau] .n-mask img,
-[data-nouveau] .n-mask > .n-tile {
-  transform: scale(1.08);
-}
-
 [data-nouveau] .n-mask::after {
   content: "";
   position: absolute;
@@ -308,105 +293,69 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   transform: scaleY(0);
 }
 
-/* Tuiles teintées — placeholders quand l'image manque */
+/* Tuiles teintées — placeholder photographique, jamais coloré. */
 [data-nouveau] .n-tile {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(120% 100% at 30% 20%, rgba(255,255,255,0.35), transparent 55%),
-    linear-gradient(160deg, var(--tile-a, #C8BFA8), var(--tile-b, #6E655A));
-  filter: saturate(0.92);
+    radial-gradient(140% 100% at 30% 20%, rgba(255,255,255,0.14), transparent 55%),
+    linear-gradient(160deg, var(--tile-a, #2A2A2A), var(--tile-b, #0A0A0A));
 }
-[data-nouveau] .n-tile.is-ink {
-  --tile-a: #2A2620;
-  --tile-b: #0C0906;
-}
-[data-nouveau] .n-tile.is-rouge {
-  --tile-a: #7E1F14;
-  --tile-b: #1F0B07;
-}
-[data-nouveau] .n-tile.is-foret {
-  --tile-a: #3D6B3E;
-  --tile-b: #0B1710;
-}
-[data-nouveau] .n-tile.is-cristal {
-  --tile-a: #DCE7F0;
-  --tile-b: #A8BCCB;
-}
-[data-nouveau] .n-tile.is-emeraude {
-  --tile-a: #1F6B4A;
-  --tile-b: #12102A;
-}
-[data-nouveau] .n-tile.is-parchment {
-  --tile-a: #EFE4CF;
-  --tile-b: #C8B58A;
-}
-[data-nouveau] .n-tile.is-warm {
-  --tile-a: #EDE7DA;
-  --tile-b: #B8934A;
-}
-
-/* Grain — chaleur, très discret */
-[data-nouveau] .n-grain::after {
-  content: "";
-  position: absolute; inset: 0;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='11'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.48  0 0 0 0 0.34  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/></svg>");
-  mix-blend-mode: overlay;
-  opacity: 0.22;
-  z-index: 3;
-}
+[data-nouveau] .n-tile.is-ink       { --tile-a: #1A1A1A; --tile-b: #050505; }
+[data-nouveau] .n-tile.is-warm      { --tile-a: #E4DFD5; --tile-b: #B7AE9A; }
+[data-nouveau] .n-tile.is-parchment { --tile-a: #EDE7DA; --tile-b: #C4B99E; }
+[data-nouveau] .n-tile.is-rouge     { --tile-a: #4A1A11; --tile-b: #0F0605; }
+[data-nouveau] .n-tile.is-foret     { --tile-a: #24422A; --tile-b: #070C08; }
+[data-nouveau] .n-tile.is-cristal   { --tile-a: #DFE6EC; --tile-b: #A3B0BC; }
+[data-nouveau] .n-tile.is-emeraude  { --tile-a: #1B4A3A; --tile-b: #0C0C1A; }
 
 /* ————————————————————————————————————————————————
-   Boutons — presque invisibles
+   Boutons — arêtes vives, monochrome.
    ———————————————————————————————————————————————— */
 
 [data-nouveau] .n-link {
   position: relative;
   color: currentColor;
-  font-size: 12px;
-  letter-spacing: 0.22em;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding-bottom: 6px;
   border-bottom: 1px solid currentColor;
-  transition: opacity 200ms var(--n-ease-out);
+  transition: opacity 200ms var(--n-ease-out), letter-spacing 400ms var(--n-ease);
   opacity: 0.9;
 }
-[data-nouveau] .n-link:hover { opacity: 1; }
+[data-nouveau] .n-link:hover { opacity: 1; letter-spacing: 0.28em; }
 
 [data-nouveau] .n-cta {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  padding: 14px 24px;
-  border: 1px solid currentColor;
-  border-radius: 999px;
+  padding: 16px 34px;
+  min-width: 220px;
+  background: var(--n-ink);
+  color: var(--n-bg);
+  border: 1px solid var(--n-ink);
+  border-radius: 0;
   font-size: 11px;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: currentColor;
-  background: transparent;
   transition: background 240ms var(--n-ease-out), color 240ms var(--n-ease-out);
 }
 [data-nouveau] .n-cta:hover {
-  background: var(--n-ink);
+  background: transparent;
+  color: var(--n-ink);
+}
+[data-nouveau] .n-cta-ghost {
+  background: transparent;
+  color: currentColor;
+  border-color: currentColor;
+}
+[data-nouveau] .n-cta-ghost:hover {
+  background: currentColor;
   color: var(--n-bg);
-}
-[data-nouveau][data-mood] .n-cta:hover {
-  background: var(--mood-ink);
-  color: var(--mood-bg);
-}
-
-/* Boutons dorés — usage rarissime */
-[data-nouveau] .n-cta-gold {
-  background: var(--n-gold);
-  border-color: var(--n-gold-deep);
-  color: #100905;
-}
-[data-nouveau] .n-cta-gold:hover {
-  background: var(--n-gold-soft);
-  color: #100905;
 }
 
 /* ————————————————————————————————————————————————
@@ -415,7 +364,7 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 
 [data-nouveau] .n-rise {
   opacity: 0;
-  transform: translateY(18px);
+  transform: translateY(14px);
   transition: opacity 900ms var(--n-ease), transform 900ms var(--n-ease);
 }
 [data-nouveau] .n-rise.is-in {
@@ -424,15 +373,11 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 }
 [data-nouveau] .n-veil {
   opacity: 0;
-  filter: blur(8px);
-  transition: opacity 1100ms var(--n-ease), filter 1100ms var(--n-ease);
+  transition: opacity 1100ms var(--n-ease);
 }
-[data-nouveau] .n-veil.is-in {
-  opacity: 1;
-  filter: blur(0);
-}
+[data-nouveau] .n-veil.is-in { opacity: 1; }
 
-/* Text reveal — chaque ligne monte depuis sous une masque */
+/* Text reveal — chaque ligne monte sous une masque. */
 [data-nouveau] .n-line-mask {
   overflow: hidden;
   display: block;
@@ -448,16 +393,16 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 }
 
 /* ————————————————————————————————————————————————
-   Sélection & focus
+   Sélection & focus — monochrome.
    ———————————————————————————————————————————————— */
 
 [data-nouveau] ::selection {
-  background: var(--n-gold);
-  color: #0C0906;
+  background: var(--n-ink);
+  color: var(--n-bg);
 }
 [data-nouveau] a:focus-visible,
 [data-nouveau] button:focus-visible {
-  outline: 1px solid var(--n-gold);
+  outline: 1px solid var(--n-ink);
   outline-offset: 4px;
 }
 
@@ -473,6 +418,6 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   [data-nouveau] .n-mask > .n-tile { transform: none; }
   [data-nouveau] .n-line-mask > .n-line { transform: none; }
   [data-nouveau] .n-rise, [data-nouveau] .n-veil {
-    opacity: 1; transform: none; filter: none;
+    opacity: 1; transform: none;
   }
 }
