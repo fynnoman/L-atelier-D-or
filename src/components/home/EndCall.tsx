@@ -18,7 +18,7 @@ export default function EndCall() {
               className="n-eyebrow"
               style={{ color: "rgba(255,255,255,0.7)" }}
             >
-              Erste Auflage · Erstes Jahr
+              Termin vereinbaren
             </span>
 
             <LineReveal
@@ -39,8 +39,8 @@ export default function EndCall() {
                 lineHeight: 1.55,
               }}
             >
-              Eine Fassung verlässt das Atelier erst, wenn sie das Licht nicht
-              mehr wie ein Metall bricht, sondern es hält, wie eine Haut es hält.
+              Salons in Paris, Berlin und London. Termine nach Vereinbarung,
+              Dienstag bis Samstag.
             </p>
 
             <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">

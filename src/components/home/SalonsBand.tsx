@@ -27,7 +27,7 @@ export default function SalonsBand() {
     >
       <div className="n-page">
         <span className="n-eyebrow block mb-24" style={{ color: "rgba(255,255,255,0.7)" }}>
-          Nur nach Termin
+          Nach Termin
         </span>
 
         <div className="grid grid-cols-12 gap-x-6 mb-32">
@@ -35,12 +35,12 @@ export default function SalonsBand() {
             <h2
               className="n-display leading-[0.9]"
               style={{
-                fontSize: "clamp(72px, 13vw, 260px)",
+                fontSize: "clamp(72px, 12vw, 232px)",
                 fontWeight: 200,
               }}
             >
-              Nie im <br />
-              <span className="opacity-80">Schaufenster.</span>
+              Drei Salons. <br />
+              <span className="opacity-80">Paris, Berlin, London.</span>
             </h2>
           </div>
         </div>
@@ -51,8 +51,8 @@ export default function SalonsBand() {
               className="n-body leading-[1.5] opacity-80"
               style={{ fontSize: "clamp(18px, 1.6vw, 24px)" }}
             >
-              Die Kollektion wird nicht im Schaufenster gezeigt. Wir zeigen sie
-              nach Termin, unter vier Augen — in Paris, in Berlin, in London.
+              Die Kollektion wird nicht ausgestellt. Wir empfangen Sie nach
+              Vereinbarung in unseren Salons in Paris, Berlin und London.
             </p>
           </div>
         </div>
@@ -97,10 +97,12 @@ export default function SalonsBand() {
           style={{ borderColor: "rgba(255,255,255,0.22)" }}
         >
           <p
-            className="n-serif-italic text-[20px] opacity-85 max-w-[46ch]"
-            style={{ fontStyle: "italic" }}
+            className="n-body opacity-75 max-w-[46ch]"
+            style={{ fontSize: "16px", lineHeight: 1.55 }}
           >
-            « Vos coordonnées ne sortent jamais de la maison. »
+            Ein Termin dauert etwa eine Stunde. Alle vier Fassungen liegen
+            zur Anprobe bereit; Anpassung und Glaseranfertigung erfolgen
+            durch unseren Meisteroptiker.
           </p>
           <Link
             href="/concierge"

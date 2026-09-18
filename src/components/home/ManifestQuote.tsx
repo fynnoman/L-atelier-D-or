@@ -11,14 +11,13 @@ export default function ManifestQuote() {
               as="blockquote"
               className="n-display leading-[0.94]"
               lines={[
-                "Der richtige Preis.",
-                "Die richtige Geste.",
-                "Nichts zu viel,",
-                "nichts zu wenig.",
+                "Vier Fassungen im Jahr.",
+                "In Paris von Hand gefertigt.",
+                "Von Hand nummeriert.",
               ]}
               delayStep={130}
               style={{
-                fontSize: "clamp(56px, 11vw, 200px)",
+                fontSize: "clamp(56px, 10vw, 176px)",
                 color: "var(--n-ink)",
                 fontWeight: 200,
               }}
@@ -26,7 +25,7 @@ export default function ManifestQuote() {
           </div>
         </div>
 
-        <div className="mt-32 grid grid-cols-12 gap-x-6">
+        <div className="mt-32 grid grid-cols-12 gap-x-6 items-baseline">
           <div className="col-span-12 md:col-span-6 md:col-start-7">
             <p
               className="n-body leading-[1.5]"
@@ -35,9 +34,8 @@ export default function ManifestQuote() {
                 color: "var(--n-muted)",
               }}
             >
-              Ein Haus definiert sich durch das, was es der Welt nicht hinzufügt.
-              Wir verzichten auf drei Dinge: auf Kunststoff, auf Zwischenhändler,
-              auf jede überflüssige Zugabe.
+              Italienisches Acetat, Titankern, wo nötig Gold 18 Karat.
+              Direktvertrieb ab dem Atelier. Achtzig Euro pro Exemplar.
             </p>
           </div>
         </div>

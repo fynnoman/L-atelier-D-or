@@ -21,6 +21,8 @@ html:has([data-nouveau]) body {
   --n-bg: #FFFFFF;
   --n-bg-2: #F5F5F2;
   --n-bg-3: #EDEBE6;
+  --n-bg-warm: #EFE9DE;
+  --n-bg-cool: #E9ECEE;
   --n-ink: #0A0A0A;
   --n-ink-2: #1A1A1A;
   --n-muted: #6E6E6E;
@@ -381,10 +383,11 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 [data-nouveau] .n-line-mask {
   overflow: hidden;
   display: block;
+  padding-bottom: 0.18em;
 }
 [data-nouveau] .n-line-mask > .n-line {
   display: block;
-  transform: translateY(105%);
+  transform: translateY(115%);
   transition: transform 900ms var(--n-ease);
   transition-delay: var(--n-delay, 0ms);
 }

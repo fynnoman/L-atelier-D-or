@@ -131,11 +131,12 @@ export default function ScrollVideoHero() {
             Eine kleine französische Manufaktur
           </span>
           <h3
-            className="n-display leading-[0.9] max-w-[16ch]"
+            className="n-display leading-[1] max-w-[16ch]"
             style={{
               fontSize: "clamp(64px, 11vw, 200px)",
               color: "var(--n-bg)",
               fontWeight: 200,
+              paddingBottom: "0.08em",
             }}
           >
             Vier Stücke. <br /> Ein Jahr.
@@ -220,33 +221,6 @@ export default function ScrollVideoHero() {
           </div>
         </div>
 
-        {/* Barre de progression + repères */}
-        <div className="absolute bottom-8 left-0 right-0 z-20">
-          <div className="n-page flex items-baseline justify-between">
-            <span
-              className="n-meta"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              {String(Math.round(progress * 100)).padStart(2, "0")} / 100
-            </span>
-            <div className="flex-1 mx-8 h-px relative overflow-hidden" style={{ background: "rgba(255,255,255,0.18)" }}>
-              <div
-                className="absolute top-0 left-0 h-full"
-                style={{
-                  width: `${progress * 100}%`,
-                  background: "rgba(255,255,255,0.85)",
-                  transition: "width 60ms linear",
-                }}
-              />
-            </div>
-            <span
-              className="n-meta"
-              style={{ color: "rgba(255,255,255,0.65)" }}
-            >
-              Scrollen
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   );
