@@ -79,7 +79,7 @@ export default async function PiecePage({ params }: { params: Params }) {
             <ProductGallery
               ratio="1 / 1"
               slides={[
-                { src: piece.image ?? "", alt: `${piece.name} — Studio`, fit: "contain" },
+                { src: piece.image ?? "", alt: `${piece.name} — Studio`, fit: "contain" as const },
                 ...(piece.imageWorn
                   ? [{ src: piece.imageWorn, alt: `${piece.name} — getragen`, fit: "cover" as const, position: "50% 30%" }]
                   : []),
