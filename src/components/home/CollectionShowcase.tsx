@@ -16,13 +16,25 @@ function PieceCard({ piece, offset }: { piece: Piece; offset?: boolean }) {
     >
       <div className="n-frame n-frame-34 n-mask relative">
         {piece.image ? (
-          <img
-            src={piece.image}
-            alt={`${piece.name} · ${piece.tagline}`}
-            className="absolute inset-0 w-full h-full object-cover"
-            loading="lazy"
-            decoding="async"
-          />
+          <>
+            <img
+              src={piece.image}
+              alt={`${piece.name} · ${piece.tagline}`}
+              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out group-hover:opacity-0"
+              loading="lazy"
+              decoding="async"
+            />
+            {piece.imageWorn && (
+              <img
+                src={piece.imageWorn}
+                alt={`${piece.name} getragen`}
+                className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100"
+                loading="lazy"
+                decoding="async"
+                aria-hidden
+              />
+            )}
+          </>
         ) : (
           <div className={`n-tile is-${TONE[piece.mood]}`} />
         )}

@@ -17,6 +17,7 @@ export type Piece = {
   scene: string;
   mood: Mood;
   image?: string;
+  imageWorn?: string;
   priceEuro: 80;
 };
 
@@ -44,7 +45,8 @@ export const PIECES: Piece[] = [
     notes: ["patiniertes Leder", "heller Tabak", "langer Pfeffer", "schwarzes Wachs"],
     scene: "Der Samt hält das Licht länger als die Haut.",
     mood: "rouge",
-    image: "/models/malbec-02.png",
+    image: "/models/roi-rouge.jpg",
+    imageWorn: "/models/roi-rouge-worn.jpg",
     priceEuro: 80,
   },
   {
@@ -70,7 +72,8 @@ export const PIECES: Piece[] = [
     notes: ["Moos", "libanesische Zeder", "Sattlerleder", "pflanzliche Tinte"],
     scene: "Feuchtes Holz, trockener Tweed. Nichts zu viel.",
     mood: "foret",
-    image: "/models/orphee-03.png",
+    image: "/models/roi-noir.jpg",
+    imageWorn: "/models/roi-noir-worn.jpg",
     priceEuro: 80,
   },
   {
@@ -96,7 +99,8 @@ export const PIECES: Piece[] = [
     notes: ["Iris", "klares Wasser", "frische Mandel", "Seidenpapier"],
     scene: "Ein blasser Tag, ein Licht, das niemanden verrät.",
     mood: "cristal",
-    image: "/models/solene-01.png",
+    image: "/models/roi-cristal.jpg",
+    imageWorn: "/models/roi-cristal-worn.jpg",
     priceEuro: 80,
   },
   {
@@ -122,7 +126,8 @@ export const PIECES: Piece[] = [
     notes: ["Gardenie", "reife Feige", "gepuderte Veilchen", "bernsteinfarbener Wein"],
     scene: "Die Gläser klingen, die Kerzen flackern, jemand lacht leise.",
     mood: "emeraude",
-    image: "/models/valois-04.png",
+    image: "/models/roi-emeraude.jpg",
+    imageWorn: "/models/roi-emeraude-worn.jpg",
     priceEuro: 80,
   },
 ];

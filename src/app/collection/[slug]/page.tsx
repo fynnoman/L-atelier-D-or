@@ -5,6 +5,7 @@ import MaskedImage from "@/components/MaskedImage";
 import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import MoodClient from "@/components/MoodClient";
+import ProductGallery from "@/components/ProductGallery";
 import { PIECES, getPiece } from "@/data/collection";
 
 type Params = Promise<{ slug: string }>;
@@ -72,29 +73,18 @@ export default async function PiecePage({ params }: { params: Params }) {
           </span>
         </div>
 
-        {/* Composition principale — image + carte scène */}
+        {/* Composition principale — galerie + carte scène */}
         <div className="n-page mt-24 grid grid-cols-12 gap-x-6 items-start">
           <div className="col-span-12 md:col-span-8 relative">
-            <MaskedImage
-              src={piece.image}
-              alt={`${piece.name} — ${piece.tagline}`}
-              tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
+            <ProductGallery
               ratio="16 / 10"
-              className="shadow-[0_60px_120px_-60px_rgba(0,0,0,0.6)]"
+              slides={[
+                { src: piece.image ?? "", alt: `${piece.name} — Studio` },
+                ...(piece.imageWorn
+                  ? [{ src: piece.imageWorn, alt: `${piece.name} — getragen` }]
+                  : []),
+              ].filter((s) => s.src)}
             />
-
-            {/* Petit crop détail — flottant */}
-            <div
-              className="hidden md:block absolute -right-8 -bottom-14 w-[260px] h-[170px] z-10 border"
-              style={{ borderColor: "var(--n-line)" }}
-            >
-              <MaskedImage
-                src={piece.image}
-                tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
-                ratio="260 / 170"
-                objectPosition="70% 40%"
-              />
-            </div>
           </div>
 
           <aside className="col-span-12 md:col-span-4 mt-12 md:mt-4 flex flex-col gap-8">
