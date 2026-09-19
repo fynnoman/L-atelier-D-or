@@ -51,7 +51,7 @@ export default function Nav() {
             <Link href="/concierge" className="n-meta opacity-70 hover:opacity-100 transition-opacity">
               Beratung
             </Link>
-            <span className="n-meta opacity-40">Paris · Berlin · London</span>
+            <span className="n-meta opacity-40">Fait main à Paris</span>
           </div>
 
           {/* Wordmark centré */}
@@ -130,12 +130,11 @@ export default function Nav() {
           </nav>
           <aside className="col-span-12 md:col-span-4 md:col-start-9 flex flex-col gap-10">
             <div>
-              <div className="n-eyebrow mb-4">Salons</div>
-              <ul className="flex flex-col gap-2 n-body text-[16px]">
-                <li>Paris — 14, rue de l&rsquo;Éclipse</li>
-                <li>Berlin — Kurfürstendamm 218</li>
-                <li>London — Mount Street, Mayfair</li>
-              </ul>
+              <div className="n-eyebrow mb-4">Atelier</div>
+              <p className="n-body text-[16px] leading-[1.5]">
+                14, rue de l&rsquo;Éclipse<br />
+                75008 Paris
+              </p>
             </div>
             <div>
               <div className="n-eyebrow mb-4">Kontakt</div>

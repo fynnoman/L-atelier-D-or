@@ -39,8 +39,8 @@ export default function EndCall() {
                 lineHeight: 1.55,
               }}
             >
-              Salons in Paris, Berlin und London. Termine nach Vereinbarung,
-              Dienstag bis Samstag.
+              Termine nach Vereinbarung. Wir melden uns innerhalb von
+              24 Stunden.
             </p>
 
             <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">

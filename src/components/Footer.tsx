@@ -53,7 +53,7 @@ export default function Footer() {
           </span>
           <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
             <span className="n-eyebrow">Une petite maison française</span>
-            <span className="n-meta opacity-55">Paris · Berlin · London</span>
+            <span className="n-meta opacity-55">Fait main à Paris</span>
           </div>
         </div>
 

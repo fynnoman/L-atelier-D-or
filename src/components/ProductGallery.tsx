@@ -2,11 +2,16 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type Slide = { src: string; alt: string };
+type Slide = {
+  src: string;
+  alt: string;
+  fit?: "cover" | "contain";
+  position?: string;
+};
 
 export default function ProductGallery({
   slides,
-  ratio = "16 / 10",
+  ratio = "1 / 1",
 }: {
   slides: Slide[];
   ratio?: string;
@@ -61,7 +66,11 @@ export default function ProductGallery({
               src={s.src}
               alt={s.alt}
               draggable={false}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full"
+              style={{
+                objectFit: s.fit ?? "cover",
+                objectPosition: s.position ?? "50% 50%",
+              }}
               loading={i === 0 ? "eager" : "lazy"}
               decoding="async"
             />

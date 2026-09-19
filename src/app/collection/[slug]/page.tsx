@@ -77,11 +77,11 @@ export default async function PiecePage({ params }: { params: Params }) {
         <div className="n-page mt-24 grid grid-cols-12 gap-x-6 items-start">
           <div className="col-span-12 md:col-span-8 relative">
             <ProductGallery
-              ratio="16 / 10"
+              ratio="1 / 1"
               slides={[
-                { src: piece.image ?? "", alt: `${piece.name} — Studio` },
+                { src: piece.image ?? "", alt: `${piece.name} — Studio`, fit: "contain" },
                 ...(piece.imageWorn
-                  ? [{ src: piece.imageWorn, alt: `${piece.name} — getragen` }]
+                  ? [{ src: piece.imageWorn, alt: `${piece.name} — getragen`, fit: "cover" as const, position: "50% 30%" }]
                   : []),
               ].filter((s) => s.src)}
             />

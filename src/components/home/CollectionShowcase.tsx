@@ -14,13 +14,16 @@ function PieceCard({ piece, offset }: { piece: Piece; offset?: boolean }) {
       href={`/collection/${piece.slug}`}
       className={`group block ${offset ? "md:mt-24" : ""}`}
     >
-      <div className="n-frame n-frame-34 n-mask relative">
+      <div
+        className="n-frame n-frame-11 n-mask relative"
+        style={{ background: "var(--n-bg-2)" }}
+      >
         {piece.image ? (
           <>
             <img
               src={piece.image}
               alt={`${piece.name} · ${piece.tagline}`}
-              className="absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out group-hover:opacity-0"
+              className="absolute inset-0 w-full h-full object-contain will-change-[opacity,transform] transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-0 group-hover:scale-[1.015]"
               loading="lazy"
               decoding="async"
             />
@@ -28,7 +31,8 @@ function PieceCard({ piece, offset }: { piece: Piece; offset?: boolean }) {
               <img
                 src={piece.imageWorn}
                 alt={`${piece.name} getragen`}
-                className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100"
+                className="absolute inset-0 w-full h-full object-cover opacity-0 scale-[1.04] will-change-[opacity,transform] transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-100 group-hover:scale-100"
+                style={{ objectPosition: "50% 30%" }}
                 loading="lazy"
                 decoding="async"
                 aria-hidden
