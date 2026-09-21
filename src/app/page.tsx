@@ -2,6 +2,7 @@ import ScrollVideoHero from "@/components/home/ScrollVideoHero";
 import AlternatingPieces from "@/components/home/AlternatingPieces";
 import WornGallery from "@/components/home/WornGallery";
 import CollectionShowcase from "@/components/home/CollectionShowcase";
+import AvisTeaser from "@/components/home/AvisTeaser";
 import EndCall from "@/components/home/EndCall";
 import { PIECES } from "@/data/collection";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <AlternatingPieces pieces={PIECES} />
       <WornGallery pieces={PIECES} />
       <CollectionShowcase pieces={PIECES} />
+      <AvisTeaser />
       <EndCall />
     </>
   );

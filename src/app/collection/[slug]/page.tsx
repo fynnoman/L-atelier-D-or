@@ -6,6 +6,7 @@ import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import MoodClient from "@/components/MoodClient";
 import ProductGallery from "@/components/ProductGallery";
+import PieceSwitcher from "@/components/PieceSwitcher";
 import StructuredData, {
   productJsonLd,
   breadcrumbJsonLd,
@@ -104,7 +105,9 @@ export default async function PiecePage({ params }: { params: Params }) {
             />
           </div>
 
-          <aside className="col-span-12 md:col-span-4 mt-12 md:mt-4 flex flex-col gap-8">
+          <aside className="col-span-12 md:col-span-4 mt-12 md:mt-4 flex flex-col gap-10">
+            <PieceSwitcher current={piece.slug} />
+            <div className="h-px" style={{ background: "var(--n-line-soft)" }} />
             <div>
               <div className="n-eyebrow mb-3">Le lieu</div>
               <p className="n-serif text-[19px] leading-[1.4]">{piece.place}</p>

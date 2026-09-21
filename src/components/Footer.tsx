@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Wordmark from "./Wordmark";
+import NewsletterSignup from "./NewsletterSignup";
 
 const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
   {
@@ -7,6 +8,8 @@ const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
     items: [
       { href: "/atelier", label: "Atelier" },
       { href: "/journal", label: "Journal" },
+      { href: "/avis", label: "Avis" },
+      { href: "/conseil", label: "Conseil" },
     ],
   },
   {
@@ -67,9 +70,7 @@ export default function Footer() {
               Petite maison française de lunetterie.<br />
               Édition brève, vente en ligne.
             </p>
-            <Link href="/conseil" className="n-link self-start">
-              Nous écrire
-            </Link>
+            <NewsletterSignup />
           </div>
 
           {COLUMNS.map((col) => (
@@ -98,9 +99,14 @@ export default function Footer() {
         <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <p className="n-meta opacity-55">
-            © L&rsquo;Atelier d&rsquo;Or · Fait main en France · Édition brève, numérotée à la main
+            © L&rsquo;Atelier d&rsquo;Or · Édition brève, numérotée à la main
           </p>
-          <p className="n-meta opacity-55">SAS à capital variable · RCS Paris</p>
+          <Link
+            href="/mentions-legales"
+            className="n-meta opacity-55 hover:opacity-80 transition-opacity"
+          >
+            Mentions légales
+          </Link>
         </div>
       </div>
     </footer>
