@@ -55,7 +55,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div data-nouveau>
           <Reveal />
-          <IntroOverlay videoSrc="/video/intro.mp4" posterSrc="/video/intro-poster.jpg" />
+          <IntroOverlay
+            videoSrc="/video/hero.mp4"
+            posterSrc="/video/hero-poster.jpg"
+            dismissAt={10}
+          />
           <Nav />
           <div className="relative">{children}</div>
           <Footer />

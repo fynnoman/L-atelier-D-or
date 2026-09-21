@@ -2,19 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const SESSION_KEY = "lad_intro_seen_v1";
+const SESSION_KEY = "lad_intro_seen_v2";
 
 export default function IntroOverlay({
   videoSrc,
   posterSrc,
+  dismissAt = 10,
 }: {
   videoSrc: string;
   posterSrc?: string;
+  /** Sekunde, ab der die Intro sich zurueckzieht. */
+  dismissAt?: number;
 }) {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const dismissedRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -42,7 +46,8 @@ export default function IntroOverlay({
   }, [visible]);
 
   const dismiss = () => {
-    if (fading) return;
+    if (dismissedRef.current) return;
+    dismissedRef.current = true;
     setFading(true);
     try {
       window.sessionStorage.setItem(SESSION_KEY, "1");
@@ -52,6 +57,12 @@ export default function IntroOverlay({
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
     }, 900);
+  };
+
+  const onTimeUpdate = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (v.currentTime >= dismissAt) dismiss();
   };
 
   if (!mounted || !visible) return null;
@@ -75,11 +86,11 @@ export default function IntroOverlay({
         muted
         playsInline
         preload="auto"
+        onTimeUpdate={onTimeUpdate}
         onEnded={dismiss}
         className="w-full h-full object-cover"
       />
 
-      {/* subtle vignette pour homogeneiser les bords */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -89,7 +100,6 @@ export default function IntroOverlay({
         }}
       />
 
-      {/* Wordmark editorial en haut */}
       <div
         aria-hidden
         className="pointer-events-none absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-4"
@@ -114,7 +124,6 @@ export default function IntroOverlay({
         />
       </div>
 
-      {/* Passer l’intro */}
       <button
         type="button"
         onClick={dismiss}

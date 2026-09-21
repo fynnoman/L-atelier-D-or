@@ -1,18 +1,55 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
+
+const LOOP_FROM = 10;
 
 export default function ScrollVideoHero() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+
+    const seekToLoop = () => {
+      try {
+        v.currentTime = LOOP_FROM;
+      } catch {}
+    };
+
+    const onLoaded = () => {
+      seekToLoop();
+      v.play().catch(() => {});
+    };
+
+    const onEnded = () => {
+      seekToLoop();
+      v.play().catch(() => {});
+    };
+
+    if (v.readyState >= 1) onLoaded();
+    else v.addEventListener("loadedmetadata", onLoaded);
+    v.addEventListener("ended", onEnded);
+
+    return () => {
+      v.removeEventListener("loadedmetadata", onLoaded);
+      v.removeEventListener("ended", onEnded);
+    };
+  }, []);
+
   return (
     <section
       className="relative w-full overflow-hidden"
       style={{ height: "100vh", background: "#0A0A0A" }}
       aria-label="Intro"
     >
-      {/* Hintergrund-Video, stumm, endlos, kein Scroll-Bind */}
+      {/* Hintergrund-Video, stumm; laeuft ab Sekunde 10 in Loop */}
       <video
+        ref={videoRef}
         src="/video/hero.mp4"
         poster="/video/hero-poster.jpg"
         autoPlay
-        loop
         muted
         playsInline
         preload="auto"
