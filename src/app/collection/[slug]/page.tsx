@@ -222,6 +222,11 @@ export default async function PiecePage({ params }: { params: Params }) {
           >
             « {piece.scene} »
           </p>
+          <div className="mt-14 flex justify-center">
+            <Link href="/journal/quatre-atmospheres" className="n-link">
+              Lire « Quatre atmosphères »
+            </Link>
+          </div>
         </div>
       </section>
 

@@ -468,6 +468,30 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   outline-offset: 4px;
 }
 
+/* Skip-Link fuer Keyboard/Screenreader */
+[data-nouveau] .n-skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 200;
+  padding: 12px 20px;
+  background: var(--n-ink);
+  color: var(--n-bg);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border: 1px solid var(--n-ink);
+  transform: translateY(-140%);
+  transition: transform 200ms var(--n-ease-out);
+}
+[data-nouveau] .n-skip:focus,
+[data-nouveau] .n-skip:focus-visible {
+  transform: translateY(0);
+  outline: 2px solid var(--n-bg);
+  outline-offset: 2px;
+}
+
 /* Réduction du mouvement */
 @media (prefers-reduced-motion: reduce) {
   [data-nouveau] * {

@@ -73,6 +73,17 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: {
+      ...(process.env.NEXT_PUBLIC_BING_VERIFICATION
+        ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_VERIFICATION }
+        : {}),
+      ...(process.env.NEXT_PUBLIC_AHREFS_VERIFICATION
+        ? { "ahrefs-site-verification": process.env.NEXT_PUBLIC_AHREFS_VERIFICATION }
+        : {}),
+    },
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -94,6 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData data={organizationJsonLd(siteUrl)} />
         <StructuredData data={websiteJsonLd(siteUrl)} />
         <div data-nouveau>
+          <a href="#main" className="n-skip">Aller au contenu</a>
           <Reveal />
           <IntroOverlay
             videoSrc="/video/hero.mp4"
@@ -102,7 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             dismissAt={10}
           />
           <Nav />
-          <div className="relative">{children}</div>
+          <main id="main" className="relative">{children}</main>
           <Footer />
         </div>
       </body>

@@ -4,6 +4,7 @@ import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import PageEyebrow from "@/components/PageEyebrow";
 import { CAHIERS, getCahier } from "@/data/journal";
+import { PIECES, formatEuro } from "@/data/collection";
 
 type Params = Promise<{ slug: string }>;
 
@@ -101,6 +102,41 @@ export default async function CahierPage({ params }: { params: Params }) {
                 <p className="n-mono opacity-60">— L&rsquo;Atelier d&rsquo;Or · {cahier.rubric}</p>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Pieces evoquees */}
+      <section className="relative py-24" style={{ background: "var(--n-bg-2)" }}>
+        <div className="n-page">
+          <PageEyebrow numeral="§ Roi" label="Découvrir les pièces" className="mb-12" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            {PIECES.map((p) => (
+              <Link
+                key={p.slug}
+                href={`/collection/${p.slug}`}
+                className="group flex flex-col gap-3"
+              >
+                <span
+                  className="block w-full aspect-square overflow-hidden"
+                  style={{ background: "var(--n-bg-3)" }}
+                >
+                  {p.image && (
+                    <img
+                      src={p.image}
+                      alt={p.name}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                </span>
+                <div className="flex items-baseline justify-between gap-2">
+                  <span className="n-serif text-[17px] leading-none">{p.name}</span>
+                  <span className="n-meta opacity-55">{formatEuro(p.priceEuro)}</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

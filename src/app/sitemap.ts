@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/atelier`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${siteUrl}/journal`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/avis`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
+    { url: `${siteUrl}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/mentions-legales`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteUrl}/confidentialite`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteUrl}/accessibilite`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },

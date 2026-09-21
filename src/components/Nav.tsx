@@ -18,6 +18,7 @@ const OVERLAY_LINKS = [
   { href: "/atelier", label: "Atelier" },
   { href: "/journal", label: "Journal" },
   { href: "/avis", label: "Avis" },
+  { href: "/faq", label: "Questions" },
   { href: "/conseil", label: "Conseil" },
 ];
 
