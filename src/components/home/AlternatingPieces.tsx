@@ -19,13 +19,15 @@ function PieceSection({
     : "var(--n-bg-2)";
   return (
     <section
-      className={`relative overflow-hidden ${isVelour ? "n-velour" : ""}`}
+      className={`relative overflow-hidden ${
+        isVelour ? "n-velour n-velour-fade-top n-velour-fade-bottom" : ""
+      }`}
       style={{
         paddingBlock: "clamp(96px, 14vh, 180px)",
         ...(bg ? { background: bg } : {}),
       }}
     >
-      <div className="n-page">
+      <div className="n-page relative z-[1]">
         <div className="grid grid-cols-12 gap-x-6 gap-y-14 items-center">
           <div
             className={`col-span-12 md:col-span-6 ${

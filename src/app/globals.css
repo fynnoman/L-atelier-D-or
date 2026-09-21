@@ -184,12 +184,12 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   color: var(--n-muted);
 }
 
-/* Velours — bordeaux profond avec reflet, pour deux moments accents. */
+/* Velours — bordeaux tamisé, aged-wine, qui se pose sur le beige sans crier. */
 [data-nouveau] .n-velour {
   background:
-    radial-gradient(120% 65% at 28% 18%, rgba(255,190,190,0.10), transparent 55%),
-    radial-gradient(90% 90% at 80% 88%, rgba(0,0,0,0.42), transparent 60%),
-    linear-gradient(140deg, #5A1A26 0%, #3E1119 60%, #29080F 100%);
+    radial-gradient(130% 70% at 25% 15%, rgba(240,220,200,0.07), transparent 55%),
+    radial-gradient(100% 100% at 82% 90%, rgba(0,0,0,0.32), transparent 60%),
+    linear-gradient(150deg, #3E1F24 0%, #2C161C 55%, #1D0D12 100%);
   color: #EDE3CE;
 }
 [data-nouveau] .n-velour-ink {
@@ -200,6 +200,36 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 }
 [data-nouveau] .n-velour-line {
   background: rgba(237, 227, 206, 0.28);
+}
+
+/* Weiche Kante zur Beige-Umgebung, damit Velour nicht hart abschneidet. */
+[data-nouveau] .n-velour-fade-top::before,
+[data-nouveau] .n-velour-fade-bottom::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 160px;
+  pointer-events: none;
+  z-index: 0;
+}
+[data-nouveau] .n-velour-fade-top::before {
+  top: 0;
+  background: linear-gradient(
+    180deg,
+    var(--n-bg-2) 0%,
+    rgba(60, 30, 35, 0.35) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+[data-nouveau] .n-velour-fade-bottom::after {
+  bottom: 0;
+  background: linear-gradient(
+    0deg,
+    var(--n-bg-2) 0%,
+    rgba(60, 30, 35, 0.35) 55%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 
 /* Filets — hairlines. */
