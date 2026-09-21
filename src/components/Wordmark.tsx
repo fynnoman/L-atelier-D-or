@@ -7,10 +7,10 @@ type Props = {
 };
 
 const HEIGHT = {
-  sm: 18,
-  md: 26,
-  lg: 44,
-  xl: 60,
+  sm: 40,
+  md: 60,
+  lg: 72,
+  xl: 96,
 } as const;
 
 export default function Wordmark({ className, size = "md", invert = false }: Props) {
