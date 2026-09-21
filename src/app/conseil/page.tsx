@@ -1,10 +1,11 @@
 import LineReveal from "@/components/LineReveal";
 import PageEyebrow from "@/components/PageEyebrow";
+import ConseilEcrin from "@/components/conseil/ConseilEcrin";
 
 export const metadata = {
   title: "Conseil privé",
   description:
-    "Un mot à la maison. Pas de formulaire, pas de rendez-vous — un écrin qui s'ouvre, une réponse écrite à la main.",
+    "Un mot à la maison. Un écrin s’ouvre, une carte vous attend — et notre conseil vous est personnellement destiné.",
 };
 
 export default function ConseilPage() {
@@ -33,30 +34,17 @@ export default function ConseilPage() {
                 className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
                 style={{ color: "var(--n-muted)" }}
               >
-                Une conversation à quatre yeux, sans formulaire. Un
-                écrin s&rsquo;ouvre, vous écrivez dedans.
+                Une conversation à quatre yeux. Ouvrez l&rsquo;écrin,
+                glissez quelques mots à la maison.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Zone reservee pour l'ecrin — sera remplacee par l'animation */}
       <section className="relative pb-32">
         <div className="n-page">
-          <div
-            data-etui-slot
-            className="w-full flex items-center justify-center"
-            style={{
-              minHeight: "60vh",
-              aspectRatio: "16 / 9",
-              border: "1px solid var(--n-line)",
-              background: "var(--n-bg-2)",
-            }}
-            aria-label="Écrin"
-          >
-            <span className="n-meta opacity-40">Écrin</span>
-          </div>
+          <ConseilEcrin />
         </div>
       </section>
     </>
