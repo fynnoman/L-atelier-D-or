@@ -19,9 +19,7 @@ function PieceSection({
     : "var(--n-bg-2)";
   return (
     <section
-      className={`relative overflow-hidden ${
-        isVelour ? "n-velour n-velour-fade-top n-velour-fade-bottom" : ""
-      }`}
+      className={`relative overflow-hidden ${isVelour ? "n-velour" : ""}`}
       style={{
         paddingBlock: "clamp(96px, 14vh, 180px)",
         ...(bg ? { background: bg } : {}),
