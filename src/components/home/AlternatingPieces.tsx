@@ -11,13 +11,18 @@ function PieceSection({
   index: number;
   flip: boolean;
 }) {
-  const bg = index % 2 === 0 ? "var(--n-bg)" : "var(--n-bg-2)";
+  const isVelour = piece.mood === "rouge";
+  const bg = isVelour
+    ? undefined
+    : index % 2 === 0
+    ? "var(--n-bg)"
+    : "var(--n-bg-2)";
   return (
     <section
-      className="relative overflow-hidden"
+      className={`relative overflow-hidden ${isVelour ? "n-velour" : ""}`}
       style={{
         paddingBlock: "clamp(96px, 14vh, 180px)",
-        background: bg,
+        ...(bg ? { background: bg } : {}),
       }}
     >
       <div className="n-page">
@@ -70,19 +75,28 @@ function PieceSection({
               >
                 {piece.numeral}
               </span>
-              <span className="n-eyebrow">{piece.chapter}</span>
+              <span
+                className="n-eyebrow"
+                style={isVelour ? { color: "rgba(237,227,206,0.72)" } : undefined}
+              >
+                {piece.chapter}
+              </span>
             </div>
 
             <h2
               className="n-display leading-[0.94] mb-8"
-              style={{ fontSize: "clamp(48px, 7vw, 108px)", fontWeight: 300 }}
+              style={{
+                fontSize: "clamp(48px, 7vw, 108px)",
+                fontWeight: 300,
+                color: isVelour ? "#EDE3CE" : undefined,
+              }}
             >
               {piece.name}
             </h2>
 
             <p
               className="n-quote text-[22px] md:text-[26px] leading-[1.35] mb-8 max-w-[36ch]"
-              style={{ color: "var(--n-ink)" }}
+              style={{ color: isVelour ? "#EDE3CE" : "var(--n-ink)" }}
             >
               « {piece.tagline} »
             </p>
@@ -91,7 +105,7 @@ function PieceSection({
               className="n-body leading-[1.6] mb-10 max-w-[42ch]"
               style={{
                 fontSize: "clamp(15px, 1.1vw, 17px)",
-                color: "var(--n-muted)",
+                color: isVelour ? "rgba(237,227,206,0.72)" : "var(--n-muted)",
               }}
             >
               {piece.materie}
@@ -99,15 +113,26 @@ function PieceSection({
 
             <div
               className="flex items-baseline gap-6 pt-6 border-t"
-              style={{ borderColor: "var(--n-line-soft)" }}
+              style={{
+                borderColor: isVelour
+                  ? "rgba(237,227,206,0.28)"
+                  : "var(--n-line-soft)",
+              }}
             >
               <span
                 className="n-serif leading-none"
-                style={{ fontSize: "clamp(22px, 2vw, 28px)" }}
+                style={{
+                  fontSize: "clamp(22px, 2vw, 28px)",
+                  color: isVelour ? "#EDE3CE" : undefined,
+                }}
               >
                 {formatEuro(piece.priceEuro)}
               </span>
-              <Link href={`/collection/${piece.slug}`} className="n-link">
+              <Link
+                href={`/collection/${piece.slug}`}
+                className="n-link"
+                style={isVelour ? { color: "#EDE3CE" } : undefined}
+              >
                 Voir la pièce
               </Link>
             </div>

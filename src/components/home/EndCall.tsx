@@ -4,11 +4,9 @@ import LineReveal from "../LineReveal";
 export default function EndCall() {
   return (
     <section
-      className="relative overflow-hidden"
+      className="relative overflow-hidden n-velour"
       style={{
         paddingBlock: "clamp(160px, 24vh, 280px)",
-        background: "var(--n-ink)",
-        color: "var(--n-bg)",
       }}
     >
       <div className="n-page">
@@ -16,7 +14,7 @@ export default function EndCall() {
           <div className="col-span-12 text-center">
             <span
               className="n-eyebrow"
-              style={{ color: "rgba(237,227,206,0.7)" }}
+              style={{ color: "rgba(237,227,206,0.72)" }}
             >
               Roi · Première Édition
             </span>

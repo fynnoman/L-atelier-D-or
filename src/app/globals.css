@@ -184,6 +184,24 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   color: var(--n-muted);
 }
 
+/* Velours — bordeaux profond avec reflet, pour deux moments accents. */
+[data-nouveau] .n-velour {
+  background:
+    radial-gradient(120% 65% at 28% 18%, rgba(255,190,190,0.10), transparent 55%),
+    radial-gradient(90% 90% at 80% 88%, rgba(0,0,0,0.42), transparent 60%),
+    linear-gradient(140deg, #5A1A26 0%, #3E1119 60%, #29080F 100%);
+  color: #EDE3CE;
+}
+[data-nouveau] .n-velour-ink {
+  color: #EDE3CE;
+}
+[data-nouveau] .n-velour-muted {
+  color: rgba(237, 227, 206, 0.72);
+}
+[data-nouveau] .n-velour-line {
+  background: rgba(237, 227, 206, 0.28);
+}
+
 /* Filets — hairlines. */
 [data-nouveau] .n-hair {
   display: inline-block;
