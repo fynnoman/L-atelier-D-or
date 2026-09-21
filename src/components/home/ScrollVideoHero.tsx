@@ -114,13 +114,20 @@ export default function ScrollVideoHero() {
                 Quatre pièces par an. Faites main à Paris,
                 numérotées à la main.
               </p>
-              <div className="mt-10 flex flex-wrap items-center gap-6">
+              <div className="mt-10 flex flex-wrap items-center gap-5">
                 <Link
                   href="/collection"
                   className="n-cta n-cta-ghost"
                   style={{ color: "#FFFFFF", borderColor: "#FFFFFF" }}
                 >
                   Voir la collection
+                </Link>
+                <Link
+                  href="/conseil"
+                  className="n-cta n-cta-ghost"
+                  style={{ color: "#FFFFFF", borderColor: "#FFFFFF" }}
+                >
+                  Conseillez-moi
                 </Link>
                 <Link
                   href="/atelier"
