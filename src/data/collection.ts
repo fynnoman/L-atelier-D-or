@@ -34,8 +34,8 @@ export const PIECES: Piece[] = [
     silhouette: "Rectangle aux angles adoucis, arête franche.",
     materie: "Acétate coloré dans la masse, finition dorée sur les charnières.",
     teintes: [
-      { name: "Rouge Ember", hex: "#7E1F14" },
-      { name: "Noir Encre", hex: "#0B0704" },
+      { name: "Rouge Ember", hex: "#B91C1C" },
+      { name: "Rouge Profond", hex: "#5A0E0E" },
     ],
     details: [
       "Silhouette rectangle",
@@ -61,8 +61,8 @@ export const PIECES: Piece[] = [
     silhouette: "Panto haute, ligne fermée, arête douce.",
     materie: "Acétate vert profond, rivets bronze en finition mate.",
     teintes: [
-      { name: "Vert Sous-Bois", hex: "#1F3D24" },
-      { name: "Mousse Cendrée", hex: "#3D6B3E" },
+      { name: "Noir Encre", hex: "#0A0A0A" },
+      { name: "Noir Fumé", hex: "#2A2624" },
     ],
     details: [
       "Silhouette panto haute",
@@ -88,8 +88,8 @@ export const PIECES: Piece[] = [
     silhouette: "Ovale allongé, arête cristalline très fine.",
     materie: "Acétate cristal translucide, finition argentée.",
     teintes: [
-      { name: "Cristal Bleu Ciel", hex: "#B6D2E3" },
-      { name: "Blanc de Neige", hex: "#F4F8FB" },
+      { name: "Blanc de Neige", hex: "#F8F8F6" },
+      { name: "Blanc Nacré", hex: "#E6E6E2" },
     ],
     details: [
       "Silhouette ovale allongée",
@@ -115,8 +115,8 @@ export const PIECES: Piece[] = [
     silhouette: "Panto masculine, arête sculptée, branches longues.",
     materie: "Acétate émeraude, finition dorée sur la bordure.",
     teintes: [
-      { name: "Vert Émeraude", hex: "#1F6B4A" },
-      { name: "Violet Prune", hex: "#6A3F8E" },
+      { name: "Vert Émeraude", hex: "#0F7050" },
+      { name: "Vert Forêt", hex: "#1F3A2A" },
     ],
     details: [
       "Silhouette panto masculine",
