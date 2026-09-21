@@ -13,16 +13,16 @@ function PieceSection({
 }) {
   const isVelour = piece.mood === "rouge";
   const bg = isVelour
-    ? undefined
+    ? "#7E1F14"
     : index % 2 === 0
     ? "var(--n-bg)"
     : "var(--n-bg-2)";
   return (
     <section
-      className={`relative overflow-hidden ${isVelour ? "n-velour" : ""}`}
+      className="relative overflow-hidden"
       style={{
         paddingBlock: "clamp(96px, 14vh, 180px)",
-        ...(bg ? { background: bg } : {}),
+        background: bg,
       }}
     >
       <div className="n-page relative z-[1]">
