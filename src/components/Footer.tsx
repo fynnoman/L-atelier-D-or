@@ -44,12 +44,13 @@ export default function Footer() {
           className="pb-20 border-b"
           style={{ borderColor: "var(--n-line-soft)" }}
         >
-          <span
-            className="n-brand block leading-[0.92]"
-            style={{ fontSize: "clamp(64px, 14vw, 220px)" }}
-          >
-            L&rsquo;Atelier d&rsquo;Or
-          </span>
+          <img
+            src="/logo.png"
+            alt="L'Atelier d'Or"
+            className="block max-w-full"
+            style={{ height: "clamp(56px, 10vw, 160px)", width: "auto" }}
+            draggable={false}
+          />
           <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
             <span className="n-eyebrow">Une petite maison française</span>
             <span className="n-meta opacity-55">Fait main à Paris</span>

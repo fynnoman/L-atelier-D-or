@@ -39,17 +39,17 @@ export default function ScrollVideoHero() {
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
-        <span
+        <img
+          src="/logo.png"
+          alt=""
           style={{
-            color: "rgba(255,255,255,0.72)",
-            fontSize: "11px",
-            letterSpacing: "0.24em",
-            textTransform: "uppercase",
-            fontWeight: 500,
+            height: "22px",
+            width: "auto",
+            filter: "invert(1)",
+            opacity: 0.82,
           }}
-        >
-          L&rsquo;Atelier d&rsquo;Or
-        </span>
+          draggable={false}
+        />
       </div>
 
       {/* Ecken-Marker oben rechts */}

@@ -98,17 +98,16 @@ export default function IntroOverlay({
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
-        <span
+        <img
+          src="/logo.png"
+          alt="L'Atelier d'Or"
           style={{
-            fontFamily: "var(--font-instrument), Georgia, serif",
-            fontStyle: "italic",
-            color: "#F0E7D5",
-            fontSize: "clamp(18px, 1.6vw, 22px)",
-            letterSpacing: "0.02em",
+            height: "clamp(28px, 3.2vw, 44px)",
+            width: "auto",
+            filter: "invert(1)",
           }}
-        >
-          L&rsquo;Atelier d&rsquo;Or
-        </span>
+          draggable={false}
+        />
         <span
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
