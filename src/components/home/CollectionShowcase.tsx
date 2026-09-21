@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Piece } from "@/data/collection";
+import { formatEuro } from "@/data/collection";
 
 const TONE: Record<Piece["mood"], "rouge" | "foret" | "cristal" | "emeraude"> = {
   rouge: "rouge",
@@ -47,7 +48,7 @@ function PieceCard({ piece, offset }: { piece: Piece; offset?: boolean }) {
       <div className="mt-8 flex items-baseline justify-between gap-6">
         <div>
           <div className="n-meta opacity-55 mb-3">
-            Fassung {piece.numeral}
+            Pièce {piece.numeral}
           </div>
           <div
             className="n-display leading-none"
@@ -56,7 +57,7 @@ function PieceCard({ piece, offset }: { piece: Piece; offset?: boolean }) {
             {piece.name}
           </div>
         </div>
-        <span className="n-meta opacity-60">{piece.priceEuro} €</span>
+        <span className="n-meta opacity-60">{formatEuro(piece.priceEuro)}</span>
       </div>
 
       <p
@@ -78,16 +79,16 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6 items-end mb-24">
           <div className="col-span-12 md:col-span-8">
-            <span className="n-eyebrow block mb-10">Erste Kollektion</span>
+            <span className="n-eyebrow block mb-10">Première Collection</span>
             <h2
-              className="n-display leading-[0.9]"
+              className="n-display leading-[0.94]"
               style={{
                 fontSize: "clamp(64px, 12vw, 220px)",
-                fontWeight: 200,
+                fontWeight: 300,
               }}
             >
               Roi. <br />
-              <span className="opacity-80">Vier Fassungen.</span>
+              <span className="opacity-80">Quatre pièces.</span>
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
@@ -98,8 +99,8 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
                 color: "var(--n-muted)",
               }}
             >
-              Achtzig Euro pro Exemplar. Jede Fassung in Paris von Hand
-              gefertigt und von Hand nummeriert.
+              78,90 € l&rsquo;exemplaire. Chaque pièce est faite
+              main à Paris et numérotée à la main.
             </p>
           </div>
         </div>
@@ -127,7 +128,7 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
             Fait main à Paris · Édition numérotée
           </span>
           <Link href="/collection" className="n-link">
-            Ganze Kollektion
+            Toute la collection
           </Link>
         </div>
       </div>

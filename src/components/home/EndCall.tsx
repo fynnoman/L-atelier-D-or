@@ -16,9 +16,9 @@ export default function EndCall() {
           <div className="col-span-12 text-center">
             <span
               className="n-eyebrow"
-              style={{ color: "rgba(255,255,255,0.7)" }}
+              style={{ color: "rgba(237,227,206,0.7)" }}
             >
-              Termin vereinbaren
+              Roi · Première Édition
             </span>
 
             <LineReveal
@@ -39,24 +39,24 @@ export default function EndCall() {
                 lineHeight: 1.55,
               }}
             >
-              Termine nach Vereinbarung. Wir melden uns innerhalb von
-              24 Stunden.
+              Quatre pièces par an. Faites main à Paris,
+              numérotées à la main.
             </p>
 
             <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">
               <Link
-                href="/concierge"
+                href="/collection"
                 className="n-cta n-cta-ghost"
-                style={{ color: "var(--n-bg)" }}
+                style={{ color: "var(--n-bg)", borderColor: "var(--n-bg)" }}
               >
-                Termin vereinbaren
+                Voir la collection
               </Link>
               <Link
                 href="/atelier"
                 className="n-link"
                 style={{ color: "var(--n-bg)" }}
               >
-                Atelier besuchen
+                Découvrir l&rsquo;atelier
               </Link>
             </div>
           </div>

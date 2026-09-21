@@ -3,17 +3,16 @@ import Wordmark from "./Wordmark";
 
 const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
   {
-    title: "Haus",
+    title: "Maison",
     items: [
       { href: "/atelier", label: "Atelier" },
       { href: "/journal", label: "Journal" },
-      { href: "/concierge", label: "Beratung" },
     ],
   },
   {
-    title: "Kollektion",
+    title: "Collection",
     items: [
-      { href: "/collection", label: "Erste Kollektion" },
+      { href: "/collection", label: "Première Collection" },
       { href: "/collection/roi-rouge", label: "Roi Rouge" },
       { href: "/collection/roi-noir", label: "Roi Noir" },
       { href: "/collection/roi-cristal", label: "Roi Cristal" },
@@ -21,11 +20,11 @@ const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
     ],
   },
   {
-    title: "Rechtliches",
+    title: "Mentions",
     items: [
-      { href: "/mentions-legales", label: "Impressum" },
-      { href: "/confidentialite", label: "Datenschutz" },
-      { href: "/accessibilite", label: "Barrierefreiheit" },
+      { href: "/mentions-legales", label: "Mentions légales" },
+      { href: "/confidentialite", label: "Confidentialité" },
+      { href: "/accessibilite", label: "Accessibilité" },
     ],
   },
 ];
@@ -65,7 +64,7 @@ export default function Footer() {
               style={{ color: "var(--n-muted)" }}
             >
               14, rue de l&rsquo;Éclipse<br />
-              75008 Paris, Frankreich
+              75008 Paris, France
             </p>
             <a
               href="mailto:concierge@latelier-dor.com"
@@ -101,7 +100,7 @@ export default function Footer() {
         <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <p className="n-meta opacity-55">
-            © L&rsquo;Atelier d&rsquo;Or · In Frankreich handgefertigt · Kleine Auflage, von Hand nummeriert
+            © L&rsquo;Atelier d&rsquo;Or · Fait main en France · Édition brève, numérotée à la main
           </p>
           <p className="n-meta opacity-55">SAS à capital variable · RCS Paris</p>
         </div>

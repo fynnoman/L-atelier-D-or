@@ -18,7 +18,7 @@ export type Piece = {
   mood: Mood;
   image?: string;
   imageWorn?: string;
-  priceEuro: 80;
+  priceEuro: 78.9;
 };
 
 export const PIECES: Piece[] = [
@@ -27,7 +27,7 @@ export const PIECES: Piece[] = [
     index: 1,
     numeral: "I",
     name: "Roi Rouge",
-    tagline: "Rechteck, rotes Acetat mit Goldscharnieren.",
+    tagline: "Rectangle, acétate rouge à charnières or.",
     chapter: "Kapitel I · Der Salon",
     place: "Ein Privatsalon unter den Dächern des VIII. Arrondissements.",
     time: "22:10 Uhr",
@@ -47,14 +47,14 @@ export const PIECES: Piece[] = [
     mood: "rouge",
     image: "/models/roi-rouge.jpg",
     imageWorn: "/models/roi-rouge-worn.jpg",
-    priceEuro: 80,
+    priceEuro: 78.9,
   },
   {
     slug: "roi-noir",
     index: 2,
     numeral: "II",
     name: "Roi Noir",
-    tagline: "Panto, waldgrünes Acetat mit Bronzenieten.",
+    tagline: "Panto, acétate vert sous-bois à rivets bronze.",
     chapter: "Kapitel II · Die Jagd",
     place: "Ein restauriertes Jagdpavillon in der Sologne.",
     time: "Fünf Stunden vor dem Dîner",
@@ -74,14 +74,14 @@ export const PIECES: Piece[] = [
     mood: "foret",
     image: "/models/roi-noir.jpg",
     imageWorn: "/models/roi-noir-worn.jpg",
-    priceEuro: 80,
+    priceEuro: 78.9,
   },
   {
     slug: "roi-cristal",
     index: 3,
     numeral: "III",
     name: "Roi Cristal",
-    tagline: "Oval, Kristallacetat mit Silberscharnieren.",
+    tagline: "Ovale, acétate cristal à charnières argent.",
     chapter: "Kapitel III · Die Kapelle",
     place: "Eine Landkapelle, am frühen Morgen.",
     time: "9:45 Uhr",
@@ -101,14 +101,14 @@ export const PIECES: Piece[] = [
     mood: "cristal",
     image: "/models/roi-cristal.jpg",
     imageWorn: "/models/roi-cristal-worn.jpg",
-    priceEuro: 80,
+    priceEuro: 78.9,
   },
   {
     slug: "roi-emeraude",
     index: 4,
     numeral: "IV",
     name: "Roi Émeraude",
-    tagline: "Panto, Smaragdacetat mit Goldfaden 18 Karat.",
+    tagline: "Panto, acétate émeraude à fil d'or 18 carats.",
     chapter: "Kapitel IV · Das Dîner",
     place: "Ein Dîner in einer Orangerie, unter den Bäumen.",
     time: "21:30 Uhr",
@@ -128,9 +128,15 @@ export const PIECES: Piece[] = [
     mood: "emeraude",
     image: "/models/roi-emeraude.jpg",
     imageWorn: "/models/roi-emeraude-worn.jpg",
-    priceEuro: 80,
+    priceEuro: 78.9,
   },
 ];
 
 export const getPiece = (slug: string) =>
   PIECES.find((p) => p.slug === slug);
+
+export const formatEuro = (n: number) =>
+  n.toLocaleString("fr-FR", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }) + " €";

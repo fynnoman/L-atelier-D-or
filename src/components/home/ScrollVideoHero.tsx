@@ -111,8 +111,8 @@ export default function ScrollVideoHero() {
                   lineHeight: 1.55,
                 }}
               >
-                Vier Fassungen im Jahr. In Paris von Hand gefertigt,
-                von Hand nummeriert.
+                Quatre pièces par an. Faites main à Paris,
+                numérotées à la main.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-6">
                 <Link
@@ -120,14 +120,14 @@ export default function ScrollVideoHero() {
                   className="n-cta n-cta-ghost"
                   style={{ color: "#FFFFFF", borderColor: "#FFFFFF" }}
                 >
-                  Kollektion
+                  Voir la collection
                 </Link>
                 <Link
-                  href="/concierge"
+                  href="/atelier"
                   className="n-link"
                   style={{ color: "#FFFFFF" }}
                 >
-                  Termin vereinbaren
+                  L&rsquo;Atelier
                 </Link>
               </div>
             </div>
@@ -143,7 +143,7 @@ export default function ScrollVideoHero() {
                   fontWeight: 500,
                 }}
               >
-                Scrollen
+                Défiler
               </span>
               <span
                 className="block h-14 w-px"

@@ -54,7 +54,7 @@ export default function HeroHome() {
 
           <div className="mt-16 flex items-center gap-8 flex-wrap">
             <Link href="/collection" className="n-cta">Découvrir Roi</Link>
-            <Link href="/concierge" className="n-link self-center">Rendez-vous privés</Link>
+            <Link href="/atelier" className="n-link self-center">L&rsquo;atelier</Link>
           </div>
         </div>
       </div>

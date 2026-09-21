@@ -7,10 +7,9 @@ import { clsx } from "clsx";
 import Wordmark from "./Wordmark";
 
 const LINKS = [
-  { href: "/collection", label: "Kollektion" },
+  { href: "/collection", label: "Collection" },
   { href: "/atelier", label: "Atelier" },
   { href: "/journal", label: "Journal" },
-  { href: "/concierge", label: "Beratung" },
 ];
 
 export default function Nav() {
@@ -48,9 +47,6 @@ export default function Nav() {
         <div className="n-page grid grid-cols-3 items-center gap-6">
           {/* Utility gauche */}
           <div className="hidden md:flex items-center gap-6">
-            <Link href="/concierge" className="n-meta opacity-70 hover:opacity-100 transition-opacity">
-              Beratung
-            </Link>
             <span className="n-meta opacity-40">Fait main à Paris</span>
           </div>
 
@@ -83,11 +79,11 @@ export default function Nav() {
             <button
               type="button"
               className="inline-flex items-center gap-3 n-meta"
-              aria-label={open ? "Menü schließen" : "Menü öffnen"}
+              aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              <span className="hidden md:inline">Menü</span>
+              <span className="hidden md:inline">Menu</span>
               <span className="inline-flex flex-col gap-[5px]">
                 <span
                   className="block h-px w-5 bg-current transition-transform duration-300"
@@ -137,13 +133,13 @@ export default function Nav() {
               </p>
             </div>
             <div>
-              <div className="n-eyebrow mb-4">Kontakt</div>
+              <div className="n-eyebrow mb-4">Contact</div>
               <a href="mailto:concierge@latelier-dor.com" className="n-link">
                 concierge@latelier-dor.com
               </a>
             </div>
-            <Link href="/concierge" className="n-cta self-start">
-              Termin vereinbaren
+            <Link href="/collection" className="n-cta self-start">
+              Voir la collection
             </Link>
           </aside>
         </div>

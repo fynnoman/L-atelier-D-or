@@ -6,7 +6,7 @@ import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import MoodClient from "@/components/MoodClient";
 import ProductGallery from "@/components/ProductGallery";
-import { PIECES, getPiece } from "@/data/collection";
+import { PIECES, getPiece, formatEuro } from "@/data/collection";
 
 type Params = Promise<{ slug: string }>;
 
@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!piece) return {};
   return {
     title: `${piece.name} — ${piece.tagline}`,
-    description: `${piece.chapter}. ${piece.materie}. Fait main à Paris, 80 €.`,
+    description: `${piece.chapter}. ${piece.materie}. Fait main à Paris, ${formatEuro(piece.priceEuro)}.`,
   };
 }
 
@@ -216,9 +216,9 @@ export default async function PiecePage({ params }: { params: Params }) {
             <div className="flex items-baseline gap-8 mb-8">
               <span
                 className="n-display leading-none"
-                style={{ fontSize: "clamp(96px, 14vw, 220px)" }}
+                style={{ fontSize: "clamp(76px, 11vw, 180px)" }}
               >
-                80 €
+                {formatEuro(piece.priceEuro)}
               </span>
               <div className="flex flex-col">
                 <span className="n-mono opacity-60">Prix par pièce</span>
@@ -268,12 +268,12 @@ export default async function PiecePage({ params }: { params: Params }) {
               </ol>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link href="/concierge" className="n-cta">Prendre rendez-vous</Link>
+                <Link href="/collection" className="n-cta">Voir la collection</Link>
                 <a
                   href="mailto:concierge@latelier-dor.com"
                   className="n-link"
                 >
-                  Écrire au concierge
+                  Écrire à la maison
                 </a>
               </div>
             </div>
@@ -313,7 +313,7 @@ export default async function PiecePage({ params }: { params: Params }) {
                       {p.tagline}
                     </div>
                   </div>
-                  <span className="n-mono opacity-60">80 €</span>
+                  <span className="n-mono opacity-60">{formatEuro(p.priceEuro)}</span>
                 </div>
               </Link>
             ))}

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import MaskedImage from "../MaskedImage";
 import type { Piece } from "@/data/collection";
+import { formatEuro } from "@/data/collection";
 
 const TONE: Record<Piece["mood"], "rouge" | "foret" | "cristal" | "emeraude"> = {
   rouge: "rouge",
@@ -35,7 +36,7 @@ function Card({ piece }: { piece: Piece }) {
             {piece.name}
           </div>
         </div>
-        <span className="n-meta opacity-60">{piece.priceEuro} €</span>
+        <span className="n-meta opacity-60">{formatEuro(piece.priceEuro)}</span>
       </div>
       <p
         className="mt-4 n-body max-w-[42ch]"

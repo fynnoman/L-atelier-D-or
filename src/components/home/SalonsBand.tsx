@@ -105,11 +105,11 @@ export default function SalonsBand() {
             durch unseren Meisteroptiker.
           </p>
           <Link
-            href="/concierge"
+            href="/collection"
             className="n-cta n-cta-ghost"
             style={{ color: "var(--n-bg)" }}
           >
-            Termin vereinbaren
+            Voir la collection
           </Link>
         </div>
       </div>

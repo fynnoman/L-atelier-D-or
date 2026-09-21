@@ -3,12 +3,12 @@ import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
-import { PIECES } from "@/data/collection";
+import { PIECES, formatEuro } from "@/data/collection";
 
 export const metadata = {
   title: "La Collection — Roi. Quatre atmosphères.",
   description:
-    "Quatre pièces la première année. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 80 € l'exemplaire, numéroté à la main.",
+    "Quatre pièces la première année. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € l'exemplaire, numéroté à la main.",
 };
 
 export default function CollectionIndex() {
@@ -151,7 +151,7 @@ export default function CollectionIndex() {
                   </div>
 
                   <div className="flex items-center gap-6">
-                    <span className="n-serif text-[28px] leading-none">{piece.priceEuro} €</span>
+                    <span className="n-serif text-[28px] leading-none">{formatEuro(piece.priceEuro)}</span>
                     <span className="n-hair opacity-30" aria-hidden />
                     <Link href={`/collection/${piece.slug}`} className="n-cta">
                       Voir la pièce
@@ -185,7 +185,7 @@ export default function CollectionIndex() {
                 La collection n&rsquo;est pas exposée en vitrine. Nous la présentons sur rendez-vous,
                 entre quatre yeux, à Paris, Berlin et Londres.
               </p>
-              <Link href="/concierge" className="n-cta">Prendre rendez-vous</Link>
+              <Link href="/atelier" className="n-cta">Découvrir l&rsquo;atelier</Link>
             </div>
           </div>
         </div>

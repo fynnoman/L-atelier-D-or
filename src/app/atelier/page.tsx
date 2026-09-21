@@ -212,7 +212,7 @@ export default function AtelierPage() {
             <p className="n-serif text-[18px] leading-[1.55] opacity-80 max-w-[36ch] mb-8">
               L&rsquo;Atelier se visite sur rendez-vous, entre quatre yeux. Il est chez vous davantage qu&rsquo;en boutique.
             </p>
-            <Link href="/concierge" className="n-cta">Prendre rendez-vous</Link>
+            <Link href="/collection" className="n-cta">Voir la collection</Link>
           </div>
         </div>
       </section>

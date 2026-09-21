@@ -7,33 +7,33 @@
    ———————————————————————————————————————————————— */
 
 html:has([data-nouveau]) {
-  background: #FFFFFF;
+  background: #EDE3CE;
 }
 
 html:has([data-nouveau]) body {
-  background: #FFFFFF;
+  background: #EDE3CE;
   color: #0A0A0A;
   font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
 }
 
 [data-nouveau] {
-  /* Palette — quatre tons, jamais plus. */
-  --n-bg: #FFFFFF;
-  --n-bg-2: #F5F5F2;
-  --n-bg-3: #EDEBE6;
-  --n-bg-warm: #EFE9DE;
-  --n-bg-cool: #E9ECEE;
+  /* Palette — beige & noir. */
+  --n-bg: #EDE3CE;
+  --n-bg-2: #E4D8BD;
+  --n-bg-3: #D8C9A6;
+  --n-bg-warm: #E9DCBE;
+  --n-bg-cool: #E1D6BF;
   --n-ink: #0A0A0A;
   --n-ink-2: #1A1A1A;
-  --n-muted: #6E6E6E;
-  --n-muted-2: #9C9C9C;
+  --n-muted: #6B5F48;
+  --n-muted-2: #948667;
 
   /* Une seule teinte d'accent, utilisée avec parcimonie. */
   --n-accent: #7E5F26;
 
   /* Filets */
-  --n-line: rgba(10, 10, 10, 0.10);
-  --n-line-soft: rgba(10, 10, 10, 0.06);
+  --n-line: rgba(10, 10, 10, 0.14);
+  --n-line-soft: rgba(10, 10, 10, 0.08);
 
   /* Rythmes */
   --n-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -129,19 +129,22 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
    ———————————————————————————————————————————————— */
 
 [data-nouveau] .n-display {
-  font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
-  font-weight: 200;
-  line-height: 0.94;
-  letter-spacing: -0.028em;
+  font-family: var(--font-fraunces), "Instrument Serif", "Didot", Georgia, serif;
+  font-weight: 300;
+  line-height: 0.98;
+  letter-spacing: -0.018em;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
 }
 [data-nouveau] .n-display-thin {
-  font-weight: 100;
+  font-weight: 300;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
 }
 [data-nouveau] .n-heading {
-  font-family: var(--font-inter), sans-serif;
-  font-weight: 300;
-  letter-spacing: -0.015em;
-  line-height: 1.05;
+  font-family: var(--font-fraunces), "Instrument Serif", Georgia, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+  font-variation-settings: "opsz" 72;
 }
 [data-nouveau] .n-body {
   font-family: var(--font-inter), sans-serif;
@@ -199,10 +202,11 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 
 /* Compatibilité — classes anciennes conservées, redirigées vers le système monochrome. */
 [data-nouveau] .n-serif {
-  font-family: var(--font-inter), sans-serif;
-  font-weight: 300;
+  font-family: var(--font-fraunces), "Instrument Serif", Georgia, serif;
+  font-weight: 400;
   letter-spacing: -0.005em;
-  line-height: 1.3;
+  line-height: 1.35;
+  font-variation-settings: "opsz" 32;
 }
 [data-nouveau] .n-serif-italic {
   font-family: var(--font-instrument), "Instrument Serif", "Didot", Georgia, serif;
