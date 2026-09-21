@@ -13,7 +13,7 @@ function PieceSection({
 }) {
   const isVelour = piece.mood === "rouge";
   const bg = isVelour
-    ? "#7E1F14"
+    ? "linear-gradient(160deg, #3E1F24 0%, #2C161C 55%, #1D0D12 100%)"
     : index % 2 === 0
     ? "var(--n-bg)"
     : "var(--n-bg-2)";

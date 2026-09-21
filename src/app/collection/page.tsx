@@ -92,7 +92,14 @@ export default function CollectionIndex() {
                   {/* Chip flottant */}
                   <div
                     className="absolute top-6 left-6 flex items-center gap-3 px-3 py-2"
-                    style={{ background: "var(--n-bg)", border: "1px solid var(--n-line)" }}
+                    style={{
+                      background: "rgba(237, 227, 206, 0.72)",
+                      border: "1px solid var(--n-line)",
+                      borderRadius: "9999px",
+                      backdropFilter: "saturate(1.4) blur(14px)",
+                      WebkitBackdropFilter: "saturate(1.4) blur(14px)",
+                      boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
+                    }}
                   >
                     <span className="n-mono opacity-70">{piece.numeral}</span>
                     <span className="n-eyebrow">{piece.name}</span>
@@ -102,9 +109,12 @@ export default function CollectionIndex() {
                   <div
                     className={`hidden md:block absolute ${flip ? "-left-6 bottom-10" : "-right-6 bottom-10"} max-w-[280px] p-5`}
                     style={{
-                      background: "rgba(244,240,232,0.9)",
-                      backdropFilter: "blur(6px)",
+                      background: "rgba(244,240,232,0.72)",
+                      backdropFilter: "saturate(1.4) blur(14px)",
+                      WebkitBackdropFilter: "saturate(1.4) blur(14px)",
                       border: "1px solid var(--n-line-soft)",
+                      borderRadius: "clamp(16px, 1.4vw, 22px)",
+                      boxShadow: "0 8px 26px rgba(10,10,10,0.10)",
                     }}
                   >
                     <div className="n-mono opacity-60 mb-2">{piece.time}</div>

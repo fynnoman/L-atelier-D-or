@@ -313,6 +313,8 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   position: relative;
   overflow: hidden;
   background: var(--n-bg-2);
+  border-radius: clamp(16px, 1.6vw, 28px);
+  isolation: isolate;
 }
 [data-nouveau] .n-frame-169 { aspect-ratio: 16 / 9; }
 [data-nouveau] .n-frame-34  { aspect-ratio: 3 / 4; }
@@ -323,6 +325,7 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 [data-nouveau] .n-mask {
   position: relative;
   overflow: hidden;
+  border-radius: clamp(16px, 1.6vw, 28px);
 }
 [data-nouveau] .n-mask img,
 [data-nouveau] .n-mask > .n-tile {
@@ -358,7 +361,7 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
 [data-nouveau] .n-tile.is-ink       { --tile-a: #1A1A1A; --tile-b: #050505; }
 [data-nouveau] .n-tile.is-warm      { --tile-a: #E4DFD5; --tile-b: #B7AE9A; }
 [data-nouveau] .n-tile.is-parchment { --tile-a: #EDE7DA; --tile-b: #C4B99E; }
-[data-nouveau] .n-tile.is-rouge     { --tile-a: #4A1A11; --tile-b: #0F0605; }
+[data-nouveau] .n-tile.is-rouge     { --tile-a: #3E1F24; --tile-b: #150809; }
 [data-nouveau] .n-tile.is-foret     { --tile-a: #24422A; --tile-b: #070C08; }
 [data-nouveau] .n-tile.is-cristal   { --tile-a: #DFE6EC; --tile-b: #A3B0BC; }
 [data-nouveau] .n-tile.is-emeraude  { --tile-a: #1B4A3A; --tile-b: #0C0C1A; }

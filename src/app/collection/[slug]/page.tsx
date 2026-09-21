@@ -152,7 +152,12 @@ export default async function PiecePage({ params }: { params: Params }) {
                 <div key={t.hex} className="flex flex-col">
                   <div
                     className="w-full aspect-square"
-                    style={{ background: t.hex, border: "1px solid var(--n-line)" }}
+                    style={{
+                      background: t.hex,
+                      border: "1px solid var(--n-line)",
+                      borderRadius: "clamp(14px, 1.2vw, 22px)",
+                      boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 8px 22px rgba(10,10,10,0.08)",
+                    }}
                   />
                   <div className="mt-4 flex items-baseline justify-between">
                     <span className="n-serif text-[19px]">{t.name}</span>
@@ -202,7 +207,12 @@ export default async function PiecePage({ params }: { params: Params }) {
             <div
               key={note}
               className="col-span-6 md:col-span-3 p-8 border n-rise"
-              style={{ borderColor: "var(--n-line)" }}
+              style={{
+                borderColor: "var(--n-line)",
+                borderRadius: "clamp(18px, 1.6vw, 26px)",
+                background: "var(--n-bg)",
+                boxShadow: "0 1px 2px rgba(10,10,10,0.04), 0 12px 32px rgba(10,10,10,0.06)",
+              }}
             >
               <span className="n-mono opacity-60 block mb-4">Note 0{i + 1}</span>
               <span
@@ -262,7 +272,12 @@ export default async function PiecePage({ params }: { params: Params }) {
           <div className="col-span-12 md:col-span-5 md:col-start-8 mt-14 md:mt-0">
             <div
               className="p-10 border"
-              style={{ borderColor: "var(--n-line)", background: "var(--n-bg)" }}
+              style={{
+                borderColor: "var(--n-line)",
+                background: "var(--n-bg)",
+                borderRadius: "clamp(20px, 1.8vw, 32px)",
+                boxShadow: "0 1px 2px rgba(10,10,10,0.04), 0 24px 48px rgba(10,10,10,0.08)",
+              }}
             >
               <div className="n-eyebrow mb-4">Deux manières de la recevoir</div>
               <ol className="flex flex-col gap-6">
@@ -322,7 +337,14 @@ export default async function PiecePage({ params }: { params: Params }) {
                   />
                   <div
                     className="absolute top-4 left-4 flex items-center gap-3 px-3 py-2"
-                    style={{ background: "var(--n-bg)", border: "1px solid var(--n-line)" }}
+                    style={{
+                      background: "rgba(237, 227, 206, 0.72)",
+                      border: "1px solid var(--n-line)",
+                      borderRadius: "9999px",
+                      backdropFilter: "saturate(1.4) blur(14px)",
+                      WebkitBackdropFilter: "saturate(1.4) blur(14px)",
+                      boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
+                    }}
                   >
                     <span className="n-mono opacity-70" style={{ color: "var(--n-ink)" }}>{p.numeral}</span>
                     <span className="n-eyebrow">{p.name}</span>

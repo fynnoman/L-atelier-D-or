@@ -20,6 +20,7 @@ export default function WornGallery({ pieces }: { pieces: Piece[] }) {
               style={{
                 aspectRatio: "4 / 5",
                 background: "var(--n-bg-2)",
+                borderRadius: "clamp(14px, 1.4vw, 24px)",
               }}
             >
               <img
