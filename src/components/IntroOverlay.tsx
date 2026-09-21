@@ -6,10 +6,12 @@ const SESSION_KEY = "lad_intro_seen_v2";
 
 export default function IntroOverlay({
   videoSrc,
+  videoSrcMobile,
   posterSrc,
   dismissAt = 10,
 }: {
   videoSrc: string;
+  videoSrcMobile?: string;
   posterSrc?: string;
   /** Sekunde, ab der die Intro sich zurueckzieht. */
   dismissAt?: number;
@@ -80,7 +82,6 @@ export default function IntroOverlay({
     >
       <video
         ref={videoRef}
-        src={videoSrc}
         poster={posterSrc}
         autoPlay
         muted
@@ -89,7 +90,16 @@ export default function IntroOverlay({
         onTimeUpdate={onTimeUpdate}
         onEnded={dismiss}
         className="w-full h-full object-cover"
-      />
+      >
+        {videoSrcMobile && (
+          <source
+            src={videoSrcMobile}
+            type="video/mp4"
+            media="(max-width: 768px)"
+          />
+        )}
+        <source src={videoSrc} type="video/mp4" />
+      </video>
 
       <div
         aria-hidden

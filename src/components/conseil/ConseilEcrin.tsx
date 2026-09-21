@@ -6,6 +6,7 @@ import styles from "./ConseilEcrin.module.css";
 
 type Phase = "closed" | "opening" | "drawing" | "writing" | "sending" | "thanks" | "email" | "stowing" | "closing";
 const endpoint = process.env.NEXT_PUBLIC_CONSEIL_ENDPOINT;
+const accessKey = process.env.NEXT_PUBLIC_CONSEIL_ACCESS_KEY;
 const recipient = process.env.NEXT_PUBLIC_CONSEIL_EMAIL || "";
 
 export default function ConseilEcrin() {
@@ -60,10 +61,14 @@ export default function ConseilEcrin() {
     }
     setError("");
     if (!endpoint) {
-      // A mail client cannot confirm delivery. Never show the sent state here.
-      const body = `${message}\n\n${name}\n${email}`;
-      window.location.href = `mailto:${recipient}?subject=${encodeURIComponent("Votre conseil personnel — " + name)}&body=${encodeURIComponent(body)}`;
-      setPhase("email");
+      if (recipient) {
+        // A mail client cannot confirm delivery. Never show the sent state here.
+        const body = `${message}\n\n${name}\n${email}`;
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent("Votre conseil personnel — " + name)}&body=${encodeURIComponent(body)}`;
+        setPhase("email");
+      } else {
+        setError("Le service de correspondance est en cours d’installation. Réessayez plus tard.");
+      }
       return;
     }
     busyRef.current = true;
@@ -71,11 +76,13 @@ export default function ConseilEcrin() {
     const controller = new AbortController();
     requestRef.current = controller;
     const timeout = window.setTimeout(() => controller.abort(), 15000);
+    const payload: Record<string, string> = { name, email, message };
+    if (accessKey) payload.access_key = accessKey;
     try {
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify(payload),
         signal: controller.signal,
       });
       if (!response.ok) throw new Error("Delivery rejected");
@@ -142,7 +149,7 @@ export default function ConseilEcrin() {
                   </form>
                   <div className={styles.receipt} role="status" aria-live="polite">
                     {phase === "thanks" && <><span>Merci.</span><p>Nous vous répondrons personnellement.</p></>}
-                    {phase === "email" && <><span>À vous de signer.</span><p>Envoyez votre message depuis votre messagerie. Si elle ne s’est pas ouverte, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p><div className={styles.receiptActions}><button onClick={() => setPhase("writing")}>Revenir à ma carte</button><button onClick={() => setPhase("stowing")}>Ranger ma carte ↘</button></div></>}
+                    {phase === "email" && recipient && <><span>À vous de signer.</span><p>Envoyez votre message depuis votre messagerie. Si elle ne s’est pas ouverte, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p><div className={styles.receiptActions}><button onClick={() => setPhase("writing")}>Revenir à ma carte</button><button onClick={() => setPhase("stowing")}>Ranger ma carte ↘</button></div></>}
                   </div>
                   <span className={styles.paperMark} aria-hidden="true">L’A — D’OR</span>
                 </div>
@@ -154,7 +161,11 @@ export default function ConseilEcrin() {
         <button ref={openerRef} className={styles.openButton} onClick={() => { setError(""); setPhase("opening"); }} disabled={phase !== "closed"} aria-expanded={isOpen} aria-controls="conseil-card"><span>Ouvrir l’écrin</span><span aria-hidden="true">↗</span></button>
       </div>
       <div className={styles.footnote}><span>UN ÉCRIN. QUELQUES MOTS. VOTRE REGARD.</span><span>L’Atelier d’Or — Paris</span></div>
-      <noscript><p>Pour un conseil personnel, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p></noscript>
+      {recipient && (
+        <noscript>
+          <p>Pour un conseil personnel, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p>
+        </noscript>
+      )}
     </div>
   );
 }

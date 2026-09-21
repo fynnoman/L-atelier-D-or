@@ -97,6 +97,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Reveal />
           <IntroOverlay
             videoSrc="/video/hero.mp4"
+            videoSrcMobile="/video/hero-mobile.mp4"
             posterSrc="/video/hero-poster.jpg"
             dismissAt={10}
           />

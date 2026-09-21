@@ -398,6 +398,13 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   text-transform: uppercase;
   transition: background 240ms var(--n-ease-out), color 240ms var(--n-ease-out);
 }
+@media (max-width: 640px) {
+  [data-nouveau] .n-cta {
+    min-width: 0;
+    padding: 14px 26px;
+    letter-spacing: 0.2em;
+  }
+}
 [data-nouveau] .n-cta:hover {
   background: transparent;
   color: var(--n-ink);

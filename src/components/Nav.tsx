@@ -108,7 +108,13 @@ export default function Nav() {
         )}
         style={{ background: "var(--n-bg)" }}
       >
-        <div className="n-page pt-40 pb-20 grid grid-cols-12 gap-x-6 gap-y-16">
+        <div
+          className="n-page pt-28 md:pt-40 pb-14 md:pb-20 grid grid-cols-12 gap-x-6 gap-y-12 md:gap-y-16 overflow-y-auto max-h-screen"
+          style={{
+            paddingTop: "max(112px, env(safe-area-inset-top, 0px) + 96px)",
+            paddingBottom: "max(56px, env(safe-area-inset-bottom, 0px) + 40px)",
+          }}
+        >
           <nav className="col-span-12 md:col-span-7 flex flex-col gap-6">
             {LINKS.map((l) => (
               <Link

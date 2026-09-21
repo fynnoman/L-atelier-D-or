@@ -47,7 +47,6 @@ export default function ScrollVideoHero() {
       {/* Hintergrund-Video, stumm; laeuft ab Sekunde 10 in Loop */}
       <video
         ref={videoRef}
-        src="/video/hero.mp4"
         poster="/video/hero-poster.jpg"
         autoPlay
         muted
@@ -55,7 +54,14 @@ export default function ScrollVideoHero() {
         preload="auto"
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden
-      />
+      >
+        <source
+          src="/video/hero-mobile.mp4"
+          type="video/mp4"
+          media="(max-width: 768px)"
+        />
+        <source src="/video/hero.mp4" type="video/mp4" />
+      </video>
 
       {/* Verlauf fuer Lesbarkeit */}
       <div
@@ -113,7 +119,12 @@ export default function ScrollVideoHero() {
 
       {/* Content unten links */}
       <div className="absolute inset-0 flex items-end z-10 pointer-events-none">
-        <div className="n-page w-full pb-16 md:pb-20 pointer-events-auto">
+        <div
+          className="n-page w-full pointer-events-auto"
+          style={{
+            paddingBottom: "max(64px, env(safe-area-inset-bottom, 0px) + 48px)",
+          }}
+        >
           <div className="grid grid-cols-12 gap-x-6 items-end">
             <div className="col-span-12 md:col-span-9 lg:col-span-8">
               <span
