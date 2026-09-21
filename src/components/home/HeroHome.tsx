@@ -49,7 +49,7 @@ export default function HeroHome() {
             className="n-serif text-[19px] md:text-[22px] leading-[1.55] mt-8 max-w-[44ch]"
             style={{ color: "var(--n-muted)" }}
           >
-            Quatre pièces la première année. Fait main à Paris.
+            Quatre pièces la première année. Édition brève.
           </p>
 
           <div className="mt-16 flex items-center gap-8 flex-wrap">

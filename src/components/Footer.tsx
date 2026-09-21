@@ -53,7 +53,7 @@ export default function Footer() {
           />
           <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
             <span className="n-eyebrow">Une petite maison française</span>
-            <span className="n-meta opacity-55">Fait main à Paris</span>
+            <span className="n-meta opacity-55">Édition brève</span>
           </div>
         </div>
 
@@ -64,15 +64,12 @@ export default function Footer() {
               className="n-body text-[16px] leading-[1.6] max-w-[36ch]"
               style={{ color: "var(--n-muted)" }}
             >
-              14, rue de l&rsquo;Éclipse<br />
-              75008 Paris, France
+              Petite maison française de lunetterie.<br />
+              Édition brève, vente en ligne.
             </p>
-            <a
-              href="mailto:concierge@latelier-dor.com"
-              className="n-link self-start"
-            >
-              concierge@latelier-dor.com
-            </a>
+            <Link href="/conseil" className="n-link self-start">
+              Nous écrire
+            </Link>
           </div>
 
           {COLUMNS.map((col) => (

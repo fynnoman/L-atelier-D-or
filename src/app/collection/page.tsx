@@ -3,17 +3,29 @@ import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
+import StructuredData, { breadcrumbJsonLd } from "@/components/StructuredData";
 import { PIECES, formatEuro } from "@/data/collection";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://laterlierdor-fynn-schulzs-projects.vercel.app";
+
 export const metadata = {
-  title: "La Collection — Roi. Quatre atmosphères.",
+  title: "La Collection — Roi. Quatre pièces.",
   description:
-    "Quatre pièces la première année. Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € l'exemplaire, numéroté à la main.",
+    "Roi. Quatre pièces la première année : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € l'exemplaire, numérotée à la main.",
+  alternates: { canonical: "/collection" },
 };
 
 export default function CollectionIndex() {
   return (
     <>
+      <StructuredData
+        data={breadcrumbJsonLd([
+          { name: "Accueil", url: `${siteUrl}/` },
+          { name: "Collection", url: `${siteUrl}/collection` },
+        ])}
+      />
       {/* En-tête éditorial */}
       <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
         <div className="n-page">
@@ -45,7 +57,7 @@ export default function CollectionIndex() {
             style={{ borderColor: "var(--n-line-soft)" }}
           >
             <span className="n-mono opacity-60">Le Salon · La Chasse · La Chapelle · Le Dîner</span>
-            <span className="n-mono opacity-60">Fait main à Paris</span>
+            <span className="n-mono opacity-60">Édition brève</span>
             <span className="n-mono opacity-60">Édition brève</span>
           </div>
         </div>

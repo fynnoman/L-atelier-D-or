@@ -165,7 +165,7 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
           style={{ borderColor: "var(--n-line-soft)" }}
         >
           <span className="n-meta opacity-60">
-            Fait main à Paris · Édition numérotée
+            Édition brève · Numérotée à la main
           </span>
           <Link href="/collection" className="n-link">
             Toute la collection

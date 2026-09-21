@@ -6,7 +6,7 @@ import styles from "./ConseilEcrin.module.css";
 
 type Phase = "closed" | "opening" | "drawing" | "writing" | "sending" | "thanks" | "email" | "stowing" | "closing";
 const endpoint = process.env.NEXT_PUBLIC_CONSEIL_ENDPOINT;
-const recipient = process.env.NEXT_PUBLIC_CONSEIL_EMAIL || "concierge@latelier-dor.com";
+const recipient = process.env.NEXT_PUBLIC_CONSEIL_EMAIL || "";
 
 export default function ConseilEcrin() {
   const [phase, setPhase] = useState<Phase>("closed");

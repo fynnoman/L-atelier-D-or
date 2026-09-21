@@ -37,8 +37,8 @@ export default function EndCall() {
                 lineHeight: 1.55,
               }}
             >
-              Quatre pièces par an. Faites main à Paris,
-              numérotées à la main.
+              Quatre pièces par an. Édition brève,
+              numérotée à la main.
             </p>
 
             <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">

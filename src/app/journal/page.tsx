@@ -4,9 +4,10 @@ import PageEyebrow from "@/components/PageEyebrow";
 import { CAHIERS } from "@/data/journal";
 
 export const metadata = {
-  title: "Journal — Les cahiers de la maison",
+  title: "Journal",
   description:
-    "Trois cahiers pour l’instant. Nous en publions un ou deux par saison, quand nous avons quelque chose à dire.",
+    "Les cahiers de la maison. Trois cahiers pour l'instant. Un ou deux par saison, quand nous avons quelque chose à dire.",
+  alternates: { canonical: "/journal" },
 };
 
 export default function JournalIndex() {

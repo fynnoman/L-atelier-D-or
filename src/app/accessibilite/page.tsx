@@ -2,7 +2,9 @@ import LegalPage from "@/components/LegalPage";
 
 export const metadata = {
   title: "Accessibilité",
-  description: "Nos engagements en matière d'accessibilité : WCAG 2.2 AA, respect des préférences de mouvement, contact.",
+  description:
+    "Nos engagements en matière d'accessibilité : WCAG 2.2 AA, respect des préférences de mouvement, contact.",
+  alternates: { canonical: "/accessibilite" },
 };
 
 export default function AccessibilitePage() {
@@ -37,7 +39,7 @@ export default function AccessibilitePage() {
         {
           title: "Signalement",
           body: [
-            "Si vous rencontrez une difficulté d'accès à un contenu, écrivez-nous à concierge@latelier-dor.com. Nous répondons sous vingt-quatre heures ouvrées et corrigeons dans la mesure du possible sans délai.",
+            "Si vous rencontrez une difficulté d'accès à un contenu, écrivez-nous via la page « Conseil ». Nous répondons sous vingt-quatre heures ouvrées et corrigeons dans la mesure du possible sans délai.",
           ],
         },
       ]}

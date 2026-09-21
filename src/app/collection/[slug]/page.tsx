@@ -6,7 +6,15 @@ import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import MoodClient from "@/components/MoodClient";
 import ProductGallery from "@/components/ProductGallery";
+import StructuredData, {
+  productJsonLd,
+  breadcrumbJsonLd,
+} from "@/components/StructuredData";
 import { PIECES, getPiece, formatEuro } from "@/data/collection";
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://laterlierdor-fynn-schulzs-projects.vercel.app";
 
 type Params = Promise<{ slug: string }>;
 
@@ -20,7 +28,8 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!piece) return {};
   return {
     title: `${piece.name} — ${piece.tagline}`,
-    description: `${piece.chapter}. ${piece.materie}. Fait main à Paris, ${formatEuro(piece.priceEuro)}.`,
+    description: `${piece.name} — édition brève, numérotée à la main. ${formatEuro(piece.priceEuro)}.`,
+    alternates: { canonical: `/collection/${piece.slug}` },
   };
 }
 
@@ -33,6 +42,14 @@ export default async function PiecePage({ params }: { params: Params }) {
   return (
     <>
       <MoodClient mood={piece.mood} />
+      <StructuredData data={productJsonLd(piece, siteUrl)} />
+      <StructuredData
+        data={breadcrumbJsonLd([
+          { name: "Accueil", url: `${siteUrl}/` },
+          { name: "Collection", url: `${siteUrl}/collection` },
+          { name: piece.name, url: `${siteUrl}/collection/${piece.slug}` },
+        ])}
+      />
 
       {/* Chapitre — hero */}
       <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
@@ -269,12 +286,9 @@ export default async function PiecePage({ params }: { params: Params }) {
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link href="/collection" className="n-cta">Voir la collection</Link>
-                <a
-                  href="mailto:concierge@latelier-dor.com"
-                  className="n-link"
-                >
+                <Link href="/conseil" className="n-link">
                   Écrire à la maison
-                </a>
+                </Link>
               </div>
             </div>
           </div>

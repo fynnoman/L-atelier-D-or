@@ -16,8 +16,9 @@ export async function generateMetadata({ params }: { params: Params }) {
   const c = getCahier(slug);
   if (!c) return {};
   return {
-    title: `${c.title}`,
+    title: c.title,
     description: c.chapo,
+    alternates: { canonical: `/journal/${c.slug}` },
   };
 }
 

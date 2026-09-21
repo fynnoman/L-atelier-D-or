@@ -12,7 +12,7 @@ export default function ManifestQuote() {
               className="n-display leading-[0.98]"
               lines={[
                 "Quatre pièces par an.",
-                "Faites main à Paris.",
+                "Une édition brève.",
                 "Numérotées à la main.",
               ]}
               delayStep={130}
@@ -34,9 +34,8 @@ export default function ManifestQuote() {
                 color: "var(--n-muted)",
               }}
             >
-              Acétate d&rsquo;Italie, âme titane, or 18 carats
-              là où la pièce l&rsquo;exige. Vente directe depuis
-              l&rsquo;atelier. 78,90 € l&rsquo;exemplaire.
+              Matières nobles, montage à la main, retenue dans le geste.
+              Vente en direct. 78,90 € l&rsquo;exemplaire.
             </p>
           </div>
         </div>

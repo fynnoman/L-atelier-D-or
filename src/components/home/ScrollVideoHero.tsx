@@ -103,7 +103,7 @@ export default function ScrollVideoHero() {
             fontWeight: 500,
           }}
         >
-          Fait main à Paris
+          Édition brève
         </span>
         <span
           className="block h-px w-8"
@@ -148,8 +148,8 @@ export default function ScrollVideoHero() {
                   lineHeight: 1.55,
                 }}
               >
-                Quatre pièces par an. Faites main à Paris,
-                numérotées à la main.
+                Quatre pièces par an. Édition brève,
+                numérotée à la main.
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5">
                 <Link

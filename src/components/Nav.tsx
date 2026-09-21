@@ -47,7 +47,7 @@ export default function Nav() {
         <div className="n-page grid grid-cols-3 items-center gap-6">
           {/* Utility gauche */}
           <div className="hidden md:flex items-center gap-6">
-            <span className="n-meta opacity-40">Fait main à Paris</span>
+            <span className="n-meta opacity-40">Édition brève</span>
           </div>
 
           {/* Wordmark centré */}
@@ -126,17 +126,17 @@ export default function Nav() {
           </nav>
           <aside className="col-span-12 md:col-span-4 md:col-start-9 flex flex-col gap-10">
             <div>
-              <div className="n-eyebrow mb-4">Atelier</div>
+              <div className="n-eyebrow mb-4">Maison</div>
               <p className="n-body text-[16px] leading-[1.5]">
-                14, rue de l&rsquo;Éclipse<br />
-                75008 Paris
+                Édition brève.<br />
+                Vente en ligne uniquement.
               </p>
             </div>
             <div>
               <div className="n-eyebrow mb-4">Contact</div>
-              <a href="mailto:concierge@latelier-dor.com" className="n-link">
-                concierge@latelier-dor.com
-              </a>
+              <Link href="/conseil" className="n-link">
+                Nous écrire
+              </Link>
             </div>
             <Link href="/collection" className="n-cta self-start">
               Voir la collection
