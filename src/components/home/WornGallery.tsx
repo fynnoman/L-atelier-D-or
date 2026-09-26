@@ -1,7 +1,13 @@
+"use client";
+
 import type { Piece } from "@/data/collection";
+import { useLocale } from "@/lib/i18n/LanguageContext";
 
 export default function WornGallery({ pieces }: { pieces: Piece[] }) {
+  const locale = useLocale();
   const shots = pieces.filter((p) => p.imageWorn);
+  const wornAlt = (name: string) =>
+    locale === "de" ? `${name} getragen` : `${name} portée`;
 
   return (
     <section
@@ -25,7 +31,7 @@ export default function WornGallery({ pieces }: { pieces: Piece[] }) {
             >
               <img
                 src={p.imageWorn!}
-                alt={`${p.name} portée`}
+                alt={wornAlt(p.name)}
                 className="absolute inset-0 w-full h-full object-cover"
                 style={{ objectPosition: "50% 30%" }}
                 loading="lazy"

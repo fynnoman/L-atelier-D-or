@@ -1,11 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import type { Piece } from "@/data/collection";
 import { PIECES } from "@/data/collection";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function PieceSwitcher({ current }: { current: Piece["slug"] }) {
+  const t = useT();
   return (
     <div className="flex flex-col gap-4">
-      <div className="n-eyebrow">Autres pièces</div>
+      <div className="n-eyebrow">{t.pieceSwitcher.label}</div>
       <div className="flex items-stretch gap-3">
         {PIECES.map((p) => {
           const active = p.slug === current;
@@ -15,7 +19,7 @@ export default function PieceSwitcher({ current }: { current: Piece["slug"] }) {
             <Link
               key={p.slug}
               href={`/collection/${p.slug}`}
-              aria-label={`${p.name} — voir la pièce`}
+              aria-label={t.pieceSwitcher.aria(p.name)}
               aria-current={active ? "page" : undefined}
               className="group flex-1 flex flex-col items-center gap-2"
             >

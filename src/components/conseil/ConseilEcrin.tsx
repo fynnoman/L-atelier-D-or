@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useReducedMotion } from "framer-motion";
 import styles from "./ConseilEcrin.module.css";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 type Phase = "closed" | "opening" | "drawing" | "writing" | "sending" | "thanks" | "email" | "stowing" | "closing";
 const endpoint = process.env.NEXT_PUBLIC_CONSEIL_ENDPOINT;
@@ -10,6 +11,7 @@ const accessKey = process.env.NEXT_PUBLIC_CONSEIL_ACCESS_KEY;
 const recipient = process.env.NEXT_PUBLIC_CONSEIL_EMAIL || "";
 
 export default function ConseilEcrin() {
+  const t = useT();
   const [phase, setPhase] = useState<Phase>("closed");
   const [error, setError] = useState("");
   const reducedMotion = useReducedMotion();
@@ -56,7 +58,7 @@ export default function ConseilEcrin() {
     const email = String(data.get("email") || "").trim();
     const message = String(data.get("message") || "").trim();
     if (!name || !message) {
-      setError("Quelques mots et votre nom, pour que nous puissions vous répondre.");
+      setError(t.conseil.errorEmpty);
       return;
     }
     setError("");
@@ -64,10 +66,10 @@ export default function ConseilEcrin() {
       if (recipient) {
         // A mail client cannot confirm delivery. Never show the sent state here.
         const body = `${message}\n\n${name}\n${email}`;
-        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent("Votre conseil personnel — " + name)}&body=${encodeURIComponent(body)}`;
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(t.conseil.cardHeader + " — " + name)}&body=${encodeURIComponent(body)}`;
         setPhase("email");
       } else {
-        setError("Le service de correspondance est en cours d’installation. Réessayez plus tard.");
+        setError(t.conseil.errorSetup);
       }
       return;
     }
@@ -89,7 +91,7 @@ export default function ConseilEcrin() {
       formRef.current?.reset();
       setPhase("thanks");
     } catch {
-      setError("Votre message n’a pas été envoyé. Vos mots sont conservés ; veuillez réessayer.");
+      setError(t.conseil.errorSend);
       setPhase("writing");
     } finally {
       window.clearTimeout(timeout);
@@ -100,7 +102,7 @@ export default function ConseilEcrin() {
 
   return (
     <div className={styles.experience} data-phase={phase} data-open={isOpen} data-card-out={cardOut}>
-      <div className={styles.caption} aria-hidden="true"><span>LA CORRESPONDANCE</span><span>01 — UN MOT À LA MAISON</span></div>
+      <div className={styles.caption} aria-hidden="true"><span>{t.conseil.captionA}</span><span>{t.conseil.captionB}</span></div>
       <div className={styles.stage}>
         <div className={styles.case}>
           <div className={styles.base} aria-hidden="true">
@@ -117,53 +119,53 @@ export default function ConseilEcrin() {
                 <path d="M80 76H95M505 76H520" stroke="#c6ab71" strokeWidth="5"/>
                 <text x="390" y="98" fill="#bdac7c" fontSize="8" fontFamily="Georgia" fontStyle="italic">L’Atelier d’Or</text>
               </svg>
-              <span className={styles.baseSignature}>FAIT POUR VOTRE REGARD</span>
+              <span className={styles.baseSignature}>{t.conseil.baseSignature}</span>
             </div>
           </div>
           <div className={styles.hinge} aria-hidden="true" />
           <div className={styles.lid}>
-            <button type="button" className={styles.outer} disabled={phase !== "closed"} aria-label="Ouvrir l’écrin de conseil" onClick={() => { setError(""); setPhase("opening"); }}>
-              <span className={styles.embossed}>L’Atelier d’Or<small>PARIS</small></span>
+            <button type="button" className={styles.outer} disabled={phase !== "closed"} aria-label={t.conseil.openAria} onClick={() => { setError(""); setPhase("opening"); }}>
+              <span className={styles.embossed}>{t.conseil.lidLine1}<small>{t.conseil.lidLine2}</small></span>
             </button>
             <div className={styles.inner}>
               <div className={styles.cardTrack}>
                 <div className={styles.card} id="conseil-card" inert={!cardOut}>
                   <header className={styles.cardHeader}>
-                    <span className={styles.cardBrand}>L’Atelier d’Or</span>
-                    <span className={styles.cardNumber}>CORRESPONDANCE PRIVÉE</span>
-                    <h2>Votre conseil personnel</h2>
+                    <span className={styles.cardBrand}>{t.conseil.cardBrand}</span>
+                    <span className={styles.cardNumber}>{t.conseil.cardNumber}</span>
+                    <h2>{t.conseil.cardHeader}</h2>
                   </header>
-                  <form ref={formRef} onSubmit={submit} hidden={phase === "thanks" || phase === "email"} aria-label="Votre conseil personnel" aria-busy={phase === "sending"}>
+                  <form ref={formRef} onSubmit={submit} hidden={phase === "thanks" || phase === "email"} aria-label={t.conseil.cardHeader} aria-busy={phase === "sending"}>
                     <fieldset disabled={!editable} className={styles.fields}>
                       <div className={styles.identity}>
-                        <label htmlFor="conseil-name">Votre nom<input ref={nameRef} id="conseil-name" name="name" autoComplete="name" required maxLength={100} /></label>
-                        <label htmlFor="conseil-email">Votre e-mail<input id="conseil-email" name="email" type="email" autoComplete="email" required maxLength={254} /></label>
+                        <label htmlFor="conseil-name">{t.conseil.nameLabel}<input ref={nameRef} id="conseil-name" name="name" autoComplete="name" required maxLength={100} /></label>
+                        <label htmlFor="conseil-email">{t.conseil.emailLabel}<input id="conseil-email" name="email" type="email" autoComplete="email" required maxLength={254} /></label>
                       </div>
-                      <label htmlFor="conseil-message">Comment pouvons-nous vous conseiller ?<textarea id="conseil-message" name="message" required maxLength={3000} rows={3} /></label>
+                      <label htmlFor="conseil-message">{t.conseil.messageLabel}<textarea id="conseil-message" name="message" required maxLength={3000} rows={3} /></label>
                       <div className={styles.cardFooter}>
-                        <a href="/confidentialite/">Vos mots restent entre nous.</a>
-                        <button type="submit">{phase === "sending" ? "Envoi en cours…" : "Envoyer ma demande"}<span aria-hidden="true">↗</span></button>
+                        <a href="/confidentialite/">{t.conseil.privacyLink}</a>
+                        <button type="submit">{phase === "sending" ? t.conseil.submitting : t.conseil.submit}<span aria-hidden="true">↗</span></button>
                       </div>
                     </fieldset>
                     <p className={styles.error} role="alert">{error}</p>
                   </form>
                   <div className={styles.receipt} role="status" aria-live="polite">
-                    {phase === "thanks" && <><span>Merci.</span><p>Nous vous répondrons personnellement.</p></>}
-                    {phase === "email" && recipient && <><span>À vous de signer.</span><p>Envoyez votre message depuis votre messagerie. Si elle ne s’est pas ouverte, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p><div className={styles.receiptActions}><button onClick={() => setPhase("writing")}>Revenir à ma carte</button><button onClick={() => setPhase("stowing")}>Ranger ma carte ↘</button></div></>}
+                    {phase === "thanks" && <><span>{t.conseil.thanksTitle}</span><p>{t.conseil.thanksBody}</p></>}
+                    {phase === "email" && recipient && <><span>{t.conseil.emailTitle}</span><p>{t.conseil.emailBody1} <a href={`mailto:${recipient}`}>{recipient}</a>{t.conseil.emailBody2}</p><div className={styles.receiptActions}><button onClick={() => setPhase("writing")}>{t.conseil.emailBackToCard}</button><button onClick={() => setPhase("stowing")}>{t.conseil.emailStowCard}</button></div></>}
                   </div>
                   <span className={styles.paperMark} aria-hidden="true">L’A — D’OR</span>
                 </div>
               </div>
-              <div className={styles.pocket} aria-hidden="true"><span>À VOTRE ATTENTION</span></div>
+              <div className={styles.pocket} aria-hidden="true"><span>{t.conseil.pocket}</span></div>
             </div>
           </div>
         </div>
-        <button ref={openerRef} className={styles.openButton} onClick={() => { setError(""); setPhase("opening"); }} disabled={phase !== "closed"} aria-expanded={isOpen} aria-controls="conseil-card"><span>Ouvrir l’écrin</span><span aria-hidden="true">↗</span></button>
+        <button ref={openerRef} className={styles.openButton} onClick={() => { setError(""); setPhase("opening"); }} disabled={phase !== "closed"} aria-expanded={isOpen} aria-controls="conseil-card"><span>{t.conseil.openLabel}</span><span aria-hidden="true">↗</span></button>
       </div>
-      <div className={styles.footnote}><span>UN ÉCRIN. QUELQUES MOTS. VOTRE REGARD.</span><span>L’Atelier d’Or — Paris</span></div>
+      <div className={styles.footnote}><span>{t.conseil.footnoteA}</span><span>{t.conseil.footnoteB}</span></div>
       {recipient && (
         <noscript>
-          <p>Pour un conseil personnel, écrivez à <a href={`mailto:${recipient}`}>{recipient}</a>.</p>
+          <p>{t.conseil.noscriptWrite} <a href={`mailto:${recipient}`}>{recipient}</a>.</p>
         </noscript>
       )}
     </div>

@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function AvisTeaser() {
+  const t = useT();
   return (
     <section
       className="relative"
@@ -12,7 +16,7 @@ export default function AvisTeaser() {
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6 items-end">
           <div className="col-span-12 md:col-span-8">
-            <span className="n-eyebrow block mb-8">Avis</span>
+            <span className="n-eyebrow block mb-8">{t.home.avisTeaser.eyebrow}</span>
             <h2
               className="n-display leading-[0.98]"
               style={{
@@ -20,8 +24,8 @@ export default function AvisTeaser() {
                 fontWeight: 300,
               }}
             >
-              Vous portez Roi ? <br />
-              <span className="opacity-80">Dites-nous quelques mots.</span>
+              {t.home.avisTeaser.title1} <br />
+              <span className="opacity-80">{t.home.avisTeaser.title2}</span>
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
@@ -32,15 +36,14 @@ export default function AvisTeaser() {
                 color: "var(--n-muted)",
               }}
             >
-              Nous ne fabriquons pas les avis. Nous publions
-              ceux qui viennent, honnêtement, sans retouche.
+              {t.home.avisTeaser.body}
             </p>
             <div className="flex flex-wrap items-center gap-5">
               <Link href="/conseil" className="n-cta">
-                Partager un mot
+                {t.home.avisTeaser.ctaShare}
               </Link>
               <Link href="/avis" className="n-link">
-                Voir les avis
+                {t.home.avisTeaser.ctaSee}
               </Link>
             </div>
           </div>

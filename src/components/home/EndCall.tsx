@@ -1,7 +1,11 @@
+"use client";
+
 import Link from "next/link";
 import LineReveal from "../LineReveal";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function EndCall() {
+  const t = useT();
   return (
     <section
       className="relative overflow-hidden n-velour"
@@ -16,13 +20,13 @@ export default function EndCall() {
               className="n-eyebrow"
               style={{ color: "rgba(237,227,206,0.72)" }}
             >
-              Roi · Première Édition
+              {t.home.endCall.eyebrow}
             </span>
 
             <LineReveal
               as="p"
               className="n-quote leading-[1.02] mt-14 mx-auto max-w-[16ch]"
-              lines={["Voyez le monde", "à votre dimension."]}
+              lines={[t.home.endCall.line1, t.home.endCall.line2]}
               delayStep={140}
               style={{
                 fontSize: "clamp(56px, 10vw, 168px)",
@@ -37,8 +41,7 @@ export default function EndCall() {
                 lineHeight: 1.55,
               }}
             >
-              Quatre pièces par an. Édition brève,
-              numérotée à la main.
+              {t.home.endCall.body}
             </p>
 
             <div className="mt-16 flex items-center justify-center gap-8 flex-wrap">
@@ -47,14 +50,14 @@ export default function EndCall() {
                 className="n-cta n-cta-ghost"
                 style={{ color: "var(--n-bg)", borderColor: "var(--n-bg)" }}
               >
-                Voir la collection
+                {t.home.endCall.ctaCollection}
               </Link>
               <Link
                 href="/atelier"
                 className="n-link"
                 style={{ color: "var(--n-bg)" }}
               >
-                Découvrir l&rsquo;atelier
+                {t.home.endCall.ctaAtelier}
               </Link>
             </div>
           </div>

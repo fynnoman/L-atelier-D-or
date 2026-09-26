@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 const SESSION_KEY = "lad_intro_seen_v2";
 
@@ -21,6 +22,7 @@ export default function IntroOverlay({
   const [fading, setFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
+  const t = useT();
 
   useEffect(() => {
     setMounted(true);
@@ -146,7 +148,7 @@ export default function IntroOverlay({
           fontWeight: 500,
         }}
       >
-        Passer l&rsquo;intro
+        {t.common.passerIntro}
         <span
           className="block h-px w-6"
           style={{ background: "rgba(255,255,255,0.6)" }}

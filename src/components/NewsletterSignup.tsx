@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState, type FormEvent } from "react";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 const endpoint = process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT;
 const accessKey = process.env.NEXT_PUBLIC_NEWSLETTER_ACCESS_KEY;
@@ -12,6 +13,7 @@ export default function NewsletterSignup() {
   const [message, setMessage] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const busyRef = useRef(false);
+  const t = useT();
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -20,12 +22,12 @@ export default function NewsletterSignup() {
     const email = String(data.get("email") || "").trim();
     if (!email) {
       setStatus("error");
-      setMessage("Une adresse valide, s’il vous plaît.");
+      setMessage(t.newsletter.errorEmpty);
       return;
     }
     if (!endpoint) {
       setStatus("error");
-      setMessage("L’inscription est en cours d’installation.");
+      setMessage(t.newsletter.errorSetup);
       return;
     }
     busyRef.current = true;
@@ -42,10 +44,10 @@ export default function NewsletterSignup() {
       if (!response.ok) throw new Error("Rejected");
       formRef.current?.reset();
       setStatus("ok");
-      setMessage("Merci. Vous êtes inscrit·e.");
+      setMessage(t.newsletter.thanks);
     } catch {
       setStatus("error");
-      setMessage("Inscription non enregistrée. Réessayez plus tard.");
+      setMessage(t.newsletter.errorNet);
     } finally {
       busyRef.current = false;
     }
@@ -56,17 +58,16 @@ export default function NewsletterSignup() {
       ref={formRef}
       onSubmit={submit}
       className="flex flex-col gap-4"
-      aria-label="Inscription à la lettre de la maison"
+      aria-label={t.newsletter.formAria}
     >
       <label htmlFor="newsletter-email" className="n-eyebrow">
-        La lettre de la maison
+        {t.newsletter.label}
       </label>
       <p
         className="n-body text-[14px] leading-[1.5] max-w-[36ch]"
         style={{ color: "var(--n-muted)" }}
       >
-        Une à deux fois par saison. Nouvelle pièce, cahier, silence.
-        Rien de plus.
+        {t.newsletter.description}
       </p>
       <div
         className="flex items-stretch"
@@ -81,7 +82,7 @@ export default function NewsletterSignup() {
           type="email"
           required
           maxLength={254}
-          placeholder="votre@email.com"
+          placeholder={t.newsletter.placeholder}
           className="flex-1 px-4 py-3 bg-transparent outline-none"
           style={{
             fontSize: "15px",
@@ -105,10 +106,10 @@ export default function NewsletterSignup() {
           }}
         >
           {status === "sending"
-            ? "…"
+            ? t.newsletter.submitting
             : status === "ok"
-            ? "✓"
-            : "S’inscrire"}
+            ? t.newsletter.ok
+            : t.newsletter.submit}
         </button>
       </div>
       {message && (

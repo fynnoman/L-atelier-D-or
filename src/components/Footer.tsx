@@ -1,39 +1,44 @@
+"use client";
+
 import Link from "next/link";
 import Wordmark from "./Wordmark";
 import NewsletterSignup from "./NewsletterSignup";
-
-const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
-  {
-    title: "Maison",
-    items: [
-      { href: "/atelier", label: "Atelier" },
-      { href: "/journal", label: "Journal" },
-      { href: "/avis", label: "Avis" },
-      { href: "/faq", label: "Questions" },
-      { href: "/conseil", label: "Conseil" },
-    ],
-  },
-  {
-    title: "Collection",
-    items: [
-      { href: "/collection", label: "Première Collection" },
-      { href: "/collection/roi-rouge", label: "Roi Rouge" },
-      { href: "/collection/roi-noir", label: "Roi Noir" },
-      { href: "/collection/roi-cristal", label: "Roi Cristal" },
-      { href: "/collection/roi-emeraude", label: "Roi Émeraude" },
-    ],
-  },
-  {
-    title: "Mentions",
-    items: [
-      { href: "/mentions-legales", label: "Mentions légales" },
-      { href: "/confidentialite", label: "Confidentialité" },
-      { href: "/accessibilite", label: "Accessibilité" },
-    ],
-  },
-];
+import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function Footer() {
+  const t = useT();
+
+  const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
+    {
+      title: t.footer.columnMaison,
+      items: [
+        { href: "/atelier", label: t.nav.atelier },
+        { href: "/journal", label: t.nav.journal },
+        { href: "/avis", label: t.nav.avis },
+        { href: "/faq", label: t.nav.questions },
+        { href: "/conseil", label: t.nav.conseil },
+      ],
+    },
+    {
+      title: t.footer.columnCollection,
+      items: [
+        { href: "/collection", label: t.footer.labelPremiereCollection },
+        { href: "/collection/roi-rouge", label: "Roi Rouge" },
+        { href: "/collection/roi-noir", label: "Roi Noir" },
+        { href: "/collection/roi-cristal", label: "Roi Cristal" },
+        { href: "/collection/roi-emeraude", label: "Roi Émeraude" },
+      ],
+    },
+    {
+      title: t.footer.columnMentions,
+      items: [
+        { href: "/mentions-legales", label: t.footer.labelMentionsLegales },
+        { href: "/confidentialite", label: t.footer.labelConfidentialite },
+        { href: "/accessibilite", label: t.footer.labelAccessibilite },
+      ],
+    },
+  ];
+
   return (
     <footer
       className="relative"
@@ -56,8 +61,8 @@ export default function Footer() {
             draggable={false}
           />
           <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
-            <span className="n-eyebrow">Une petite maison française</span>
-            <span className="n-meta opacity-55">Édition brève</span>
+            <span className="n-eyebrow">{t.footer.editorialTag}</span>
+            <span className="n-meta opacity-55">{t.footer.editorialTag2}</span>
           </div>
         </div>
 
@@ -68,8 +73,8 @@ export default function Footer() {
               className="n-body text-[16px] leading-[1.6] max-w-[36ch]"
               style={{ color: "var(--n-muted)" }}
             >
-              Petite maison française de lunetterie.<br />
-              Édition brève, vente en ligne.
+              {t.footer.ligne1}<br />
+              {t.footer.ligne2}
             </p>
             <NewsletterSignup />
           </div>
@@ -99,14 +104,12 @@ export default function Footer() {
 
         <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-          <p className="n-meta opacity-55">
-            © L&rsquo;Atelier d&rsquo;Or · Édition brève, numérotée à la main
-          </p>
+          <p className="n-meta opacity-55">{t.footer.copyright}</p>
           <Link
             href="/mentions-legales"
             className="n-meta opacity-55 hover:opacity-80 transition-opacity"
           >
-            Mentions légales
+            {t.footer.labelMentionsLegales}
           </Link>
         </div>
       </div>

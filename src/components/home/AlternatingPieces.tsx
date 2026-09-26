@@ -1,6 +1,10 @@
+"use client";
+
 import Link from "next/link";
 import type { Piece } from "@/data/collection";
-import { formatEuro } from "@/data/collection";
+import { useLocale, useT } from "@/lib/i18n/LanguageContext";
+import { formatPrice } from "@/lib/i18n/format";
+import { localizePiece } from "@/lib/i18n/content";
 
 function PieceSection({
   piece,
@@ -11,6 +15,9 @@ function PieceSection({
   index: number;
   flip: boolean;
 }) {
+  const locale = useLocale();
+  const t = useT();
+  const loc = localizePiece(piece, locale);
   const isVelour = piece.mood === "rouge";
   const bg = isVelour
     ? "linear-gradient(160deg, #3E1F24 0%, #2C161C 55%, #1D0D12 100%)"
@@ -41,7 +48,7 @@ function PieceSection({
                   <>
                     <img
                       src={piece.image}
-                      alt={`${piece.name} — ${piece.tagline}`}
+                      alt={`${piece.name} — ${loc.tagline}`}
                       className="absolute inset-0 w-full h-full object-contain transition-[opacity,transform] duration-[1100ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:opacity-0 group-hover:scale-[1.015]"
                       loading="lazy"
                       decoding="async"
@@ -79,7 +86,7 @@ function PieceSection({
                 className="n-eyebrow"
                 style={isVelour ? { color: "rgba(237,227,206,0.72)" } : undefined}
               >
-                {piece.chapter}
+                {loc.chapter}
               </span>
             </div>
 
@@ -98,7 +105,7 @@ function PieceSection({
               className="n-quote text-[22px] md:text-[26px] leading-[1.35] mb-8 max-w-[36ch]"
               style={{ color: isVelour ? "#EDE3CE" : "var(--n-ink)" }}
             >
-              « {piece.tagline} »
+              « {loc.tagline} »
             </p>
 
             <p
@@ -108,7 +115,7 @@ function PieceSection({
                 color: isVelour ? "rgba(237,227,206,0.72)" : "var(--n-muted)",
               }}
             >
-              {piece.materie}
+              {loc.materie}
             </p>
 
             <div
@@ -126,14 +133,14 @@ function PieceSection({
                   color: isVelour ? "#EDE3CE" : undefined,
                 }}
               >
-                {formatEuro(piece.priceEuro)}
+                {formatPrice(piece.priceEuro, locale)}
               </span>
               <Link
                 href={`/collection/${piece.slug}`}
                 className="n-link"
                 style={isVelour ? { color: "#EDE3CE" } : undefined}
               >
-                Voir la pièce
+                {t.home.alternating.voirLaPiece}
               </Link>
             </div>
           </div>

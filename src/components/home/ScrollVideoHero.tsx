@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { useT } from "@/lib/i18n/LanguageContext";
 
 const LOOP_FROM = 10;
 
 export default function ScrollVideoHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const t = useT();
 
   useEffect(() => {
     const v = videoRef.current;
@@ -109,7 +111,7 @@ export default function ScrollVideoHero() {
             fontWeight: 500,
           }}
         >
-          Édition brève
+          {t.home.hero.edition}
         </span>
         <span
           className="block h-px w-8"
@@ -137,7 +139,7 @@ export default function ScrollVideoHero() {
                   fontWeight: 500,
                 }}
               >
-                Roi · Première Édition
+                {t.home.hero.eyebrow}
               </span>
               <h1
                 className="n-quote max-w-[18ch]"
@@ -148,8 +150,8 @@ export default function ScrollVideoHero() {
                   paddingBottom: "0.08em",
                 }}
               >
-                Voyez le monde <br />
-                à votre dimension.
+                {t.home.hero.title1} <br />
+                {t.home.hero.title2}
               </h1>
               <p
                 className="n-body mt-8 max-w-[46ch]"
@@ -159,8 +161,7 @@ export default function ScrollVideoHero() {
                   lineHeight: 1.55,
                 }}
               >
-                Quatre pièces par an. Édition brève,
-                numérotée à la main.
+                {t.home.hero.lede}
               </p>
               <div className="mt-10 flex flex-wrap items-center gap-5">
                 <Link
@@ -168,21 +169,21 @@ export default function ScrollVideoHero() {
                   className="n-cta n-cta-ghost"
                   style={{ color: "#FFFFFF", borderColor: "#FFFFFF" }}
                 >
-                  Voir la collection
+                  {t.home.hero.ctaCollection}
                 </Link>
                 <Link
                   href="/conseil"
                   className="n-cta n-cta-ghost"
                   style={{ color: "#FFFFFF", borderColor: "#FFFFFF" }}
                 >
-                  Conseillez-moi
+                  {t.home.hero.ctaConseil}
                 </Link>
                 <Link
                   href="/atelier"
                   className="n-link"
                   style={{ color: "#FFFFFF" }}
                 >
-                  L&rsquo;Atelier
+                  {t.home.hero.ctaAtelier}
                 </Link>
               </div>
             </div>
@@ -198,7 +199,7 @@ export default function ScrollVideoHero() {
                   fontWeight: 500,
                 }}
               >
-                Défiler
+                {t.home.hero.scroll}
               </span>
               <span
                 className="block h-14 w-px"

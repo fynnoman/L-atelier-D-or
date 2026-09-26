@@ -9,6 +9,8 @@ import StructuredData, {
   organizationJsonLd,
   websiteJsonLd,
 } from "@/components/StructuredData";
+import { LanguageProvider } from "@/lib/i18n/LanguageContext";
+import SkipLink from "@/components/SkipLink";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -104,19 +106,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <StructuredData data={organizationJsonLd(siteUrl)} />
         <StructuredData data={websiteJsonLd(siteUrl)} />
-        <div data-nouveau>
-          <a href="#main" className="n-skip">Aller au contenu</a>
-          <Reveal />
-          <IntroOverlay
-            videoSrc="/video/hero.mp4"
-            videoSrcMobile="/video/hero-mobile.mp4"
-            posterSrc="/video/hero-poster.jpg"
-            dismissAt={10}
-          />
-          <Nav />
-          <main id="main" className="relative">{children}</main>
-          <Footer />
-        </div>
+        <LanguageProvider>
+          <div data-nouveau>
+            <SkipLink />
+            <Reveal />
+            <IntroOverlay
+              videoSrc="/video/hero.mp4"
+              videoSrcMobile="/video/hero-mobile.mp4"
+              posterSrc="/video/hero-poster.jpg"
+              dismissAt={10}
+            />
+            <Nav />
+            <main id="main" className="relative">{children}</main>
+            <Footer />
+          </div>
+        </LanguageProvider>
       </body>
     </html>
   );

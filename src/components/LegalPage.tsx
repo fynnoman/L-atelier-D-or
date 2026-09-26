@@ -1,24 +1,16 @@
+"use client";
+
 import LineReveal from "./LineReveal";
 import PageEyebrow from "./PageEyebrow";
+import { useT } from "@/lib/i18n/LanguageContext";
 
-type Section = {
-  title: string;
-  body: string[];
-};
+type LegalKey = "mentions" | "privacy" | "a11y";
 
-export default function LegalPage({
-  numeral,
-  rubric,
-  title,
-  chapo,
-  sections,
-}: {
-  numeral: string;
-  rubric: string;
-  title: string;
-  chapo?: string;
-  sections: Section[];
-}) {
+export default function LegalPage({ kind }: { kind: LegalKey }) {
+  const t = useT();
+  const data = t.legal[kind];
+  const { numeral, rubric, title, chapo, sections } = data;
+
   return (
     <>
       <section className="relative pt-40 md:pt-52 pb-16">
@@ -60,7 +52,7 @@ export default function LegalPage({
                       <span className="n-serif text-[40px] leading-none opacity-30">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="n-eyebrow">Article</span>
+                      <span className="n-eyebrow">{t.legal.articleWord}</span>
                     </div>
                     <h2 className="n-serif text-[22px] leading-[1.15] mt-6">{s.title}</h2>
                   </div>

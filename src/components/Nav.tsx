@@ -5,22 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { clsx } from "clsx";
 import Wordmark from "./Wordmark";
+import LanguageSwitcher from "./LanguageSwitcher";
 import { PIECES } from "@/data/collection";
-
-const LINKS = [
-  { href: "/collection", label: "Collection", hasSub: true as const },
-  { href: "/atelier", label: "Atelier", hasSub: false as const },
-  { href: "/journal", label: "Journal", hasSub: false as const },
-];
-
-const OVERLAY_LINKS = [
-  { href: "/collection", label: "Collection" },
-  { href: "/atelier", label: "Atelier" },
-  { href: "/journal", label: "Journal" },
-  { href: "/avis", label: "Avis" },
-  { href: "/faq", label: "Questions" },
-  { href: "/conseil", label: "Conseil" },
-];
+import { useT, useLocale } from "@/lib/i18n/LanguageContext";
+import { formatPrice } from "@/lib/i18n/format";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -28,6 +16,23 @@ export default function Nav() {
   const [open, setOpen] = useState(false);
   const [subOpen, setSubOpen] = useState(false);
   const subTimer = useRef<number | null>(null);
+  const t = useT();
+  const locale = useLocale();
+
+  const LINKS = [
+    { href: "/collection", label: t.nav.collection, hasSub: true as const },
+    { href: "/atelier", label: t.nav.atelier, hasSub: false as const },
+    { href: "/journal", label: t.nav.journal, hasSub: false as const },
+  ];
+
+  const OVERLAY_LINKS = [
+    { href: "/collection", label: t.nav.collection },
+    { href: "/atelier", label: t.nav.atelier },
+    { href: "/journal", label: t.nav.journal },
+    { href: "/avis", label: t.nav.avis },
+    { href: "/faq", label: t.nav.questions },
+    { href: "/conseil", label: t.nav.conseil },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -69,7 +74,7 @@ export default function Nav() {
         <div className="n-page grid grid-cols-3 items-center gap-6">
           {/* Utility gauche */}
           <div className="hidden md:flex items-center gap-6">
-            <span className="n-meta opacity-40">Édition brève</span>
+            <span className="n-meta opacity-40">{t.nav.edition}</span>
           </div>
 
           {/* Wordmark centré */}
@@ -120,14 +125,15 @@ export default function Nav() {
                 );
               })}
             </nav>
+            <LanguageSwitcher />
             <button
               type="button"
               className="inline-flex items-center gap-3 n-meta"
-              aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-label={open ? t.common.fermerMenu : t.common.ouvrirMenu}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
-              <span className="hidden md:inline">Menu</span>
+              <span className="hidden md:inline">{t.common.menu}</span>
               <span className="inline-flex flex-col gap-[5px]">
                 <span
                   className="block h-px w-5 bg-current transition-transform duration-300"
@@ -184,9 +190,7 @@ export default function Nav() {
                     {p.name}
                   </span>
                   <span className="n-meta opacity-55">
-                    {p.priceEuro
-                      .toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}{" "}
-                    €
+                    {formatPrice(p.priceEuro, locale)}
                   </span>
                 </div>
               </Link>
@@ -228,20 +232,19 @@ export default function Nav() {
           </nav>
           <aside className="col-span-12 md:col-span-4 md:col-start-9 flex flex-col gap-10">
             <div>
-              <div className="n-eyebrow mb-4">Maison</div>
-              <p className="n-body text-[16px] leading-[1.5]">
-                Édition brève.<br />
-                Vente en ligne uniquement.
+              <div className="n-eyebrow mb-4">{t.nav.maisonEyebrow}</div>
+              <p className="n-body text-[16px] leading-[1.5]" style={{ whiteSpace: "pre-line" }}>
+                {t.nav.houseIntro}
               </p>
             </div>
             <div>
-              <div className="n-eyebrow mb-4">Contact</div>
+              <div className="n-eyebrow mb-4">{t.nav.contactEyebrow}</div>
               <Link href="/conseil" className="n-link">
-                Nous écrire
+                {t.nav.contactWriteUs}
               </Link>
             </div>
             <Link href="/collection" className="n-cta self-start">
-              Voir la collection
+              {t.nav.ctaCollection}
             </Link>
           </aside>
         </div>

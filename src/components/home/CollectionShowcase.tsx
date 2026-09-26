@@ -3,7 +3,9 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { Piece } from "@/data/collection";
-import { formatEuro } from "@/data/collection";
+import { useLocale, useT } from "@/lib/i18n/LanguageContext";
+import { formatPrice } from "@/lib/i18n/format";
+import { localizePiece } from "@/lib/i18n/content";
 
 const TONE: Record<Piece["mood"], "rouge" | "foret" | "cristal" | "emeraude"> = {
   rouge: "rouge",
@@ -15,25 +17,29 @@ const TONE: Record<Piece["mood"], "rouge" | "foret" | "cristal" | "emeraude"> = 
 function PieceCard({ piece }: { piece: Piece }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
+  const locale = useLocale();
+  const t = useT();
+  const loc = localizePiece(piece, locale);
+  const wornAlt = locale === "de" ? `${piece.name} getragen` : `${piece.name} portée`;
   const slides: { src: string; alt: string; fit: "contain" | "cover"; pos: string }[] = [];
-  if (piece.image) slides.push({ src: piece.image, alt: `${piece.name} · ${piece.tagline}`, fit: "contain", pos: "50% 50%" });
-  if (piece.imageWorn) slides.push({ src: piece.imageWorn, alt: `${piece.name} portée`, fit: "cover", pos: "50% 30%" });
+  if (piece.image) slides.push({ src: piece.image, alt: `${piece.name} · ${loc.tagline}`, fit: "contain", pos: "50% 50%" });
+  if (piece.imageWorn) slides.push({ src: piece.imageWorn, alt: wornAlt, fit: "cover", pos: "50% 30%" });
 
   useEffect(() => {
-    const t = trackRef.current;
-    if (!t) return;
+    const tt = trackRef.current;
+    if (!tt) return;
     let raf: number | null = null;
     const onScroll = () => {
       if (raf != null) return;
       raf = requestAnimationFrame(() => {
         raf = null;
-        if (t.clientWidth > 0) setIndex(Math.round(t.scrollLeft / t.clientWidth));
+        if (tt.clientWidth > 0) setIndex(Math.round(tt.scrollLeft / tt.clientWidth));
       });
     };
-    t.addEventListener("scroll", onScroll, { passive: true });
+    tt.addEventListener("scroll", onScroll, { passive: true });
     return () => {
       if (raf != null) cancelAnimationFrame(raf);
-      t.removeEventListener("scroll", onScroll);
+      tt.removeEventListener("scroll", onScroll);
     };
   }, []);
 
@@ -96,7 +102,7 @@ function PieceCard({ piece }: { piece: Piece }) {
       <Link href={`/collection/${piece.slug}`} className="block">
         <div className="mt-6 flex items-baseline justify-between gap-6">
           <div>
-            <div className="n-meta opacity-55 mb-3">Pièce {piece.numeral}</div>
+            <div className="n-meta opacity-55 mb-3">{t.home.showcase.piece} {piece.numeral}</div>
             <div
               className="n-display leading-none"
               style={{ fontSize: "clamp(24px, 2.6vw, 36px)", fontWeight: 300 }}
@@ -104,7 +110,7 @@ function PieceCard({ piece }: { piece: Piece }) {
               {piece.name}
             </div>
           </div>
-          <span className="n-meta opacity-60">{formatEuro(piece.priceEuro)}</span>
+          <span className="n-meta opacity-60">{formatPrice(piece.priceEuro, locale)}</span>
         </div>
         <p
           className="mt-3 n-body max-w-[38ch]"
@@ -113,7 +119,7 @@ function PieceCard({ piece }: { piece: Piece }) {
             color: "var(--n-muted)",
           }}
         >
-          {piece.tagline}
+          {loc.tagline}
         </p>
       </Link>
     </div>
@@ -121,6 +127,7 @@ function PieceCard({ piece }: { piece: Piece }) {
 }
 
 export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
+  const t = useT();
   return (
     <section
       className="n-section-lg relative"
@@ -129,13 +136,13 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6 items-end mb-24">
           <div className="col-span-12 md:col-span-8">
-            <span className="n-eyebrow block mb-10">Première Collection</span>
+            <span className="n-eyebrow block mb-10">{t.home.showcase.eyebrow}</span>
             <h2
               className="n-display leading-[0.94]"
               style={{ fontSize: "clamp(56px, 10vw, 176px)", fontWeight: 300 }}
             >
-              Roi. <br />
-              <span className="opacity-80">Quatre pièces, un seul regard.</span>
+              {t.home.showcase.title1} <br />
+              <span className="opacity-80">{t.home.showcase.title2}</span>
             </h2>
           </div>
           <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
@@ -146,8 +153,7 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
                 color: "var(--n-muted)",
               }}
             >
-              Quatre atmosphères, quatre heures, quatre manières d&rsquo;entrer
-              dans une pièce. 78,90 € l&rsquo;exemplaire, numérotée à la main.
+              {t.home.showcase.lede}
             </p>
           </div>
         </div>
@@ -165,10 +171,10 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
           style={{ borderColor: "var(--n-line-soft)" }}
         >
           <span className="n-meta opacity-60">
-            Édition brève · Numérotée à la main
+            {t.home.showcase.footerLine}
           </span>
           <Link href="/collection" className="n-link">
-            Toute la collection
+            {t.home.showcase.link}
           </Link>
         </div>
       </div>
