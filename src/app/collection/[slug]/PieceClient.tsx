@@ -118,31 +118,126 @@ export default function PieceClient({ piece }: { piece: Piece }) {
           </div>
 
           <div className="col-span-12 md:col-span-6 md:col-start-7">
-            <div className="grid grid-cols-2 gap-6">
-              {loc.teintes.map((tt) => (
-                <div key={tt.hex} className="flex flex-col">
-                  <div
-                    className="w-full aspect-square"
-                    style={{
-                      background: tt.hex,
-                      border: "1px solid var(--n-line)",
-                      borderRadius: "clamp(14px, 1.2vw, 22px)",
-                      boxShadow: "0 1px 2px rgba(10,10,10,0.06), 0 8px 22px rgba(10,10,10,0.08)",
-                    }}
-                  />
-                  <div className="mt-4 flex items-baseline justify-between">
-                    <span className="n-serif text-[19px]">{tt.name}</span>
-                    <span className="n-mono opacity-60">{tt.hex}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <figure
+              className="relative overflow-hidden"
+              style={{
+                background: `linear-gradient(155deg, ${loc.teintes[0]?.hex ?? "#0A0A0A"} 0%, ${loc.teintes[1]?.hex ?? "#0A0A0A"} 100%)`,
+                borderRadius: "clamp(20px, 1.8vw, 30px)",
+                border: "1px solid var(--n-line)",
+                boxShadow:
+                  "0 1px 2px rgba(10,10,10,0.06), 0 30px 80px -20px rgba(10,10,10,0.28)",
+                aspectRatio: "4 / 5",
+              }}
+            >
+              <span
+                aria-hidden
+                className="absolute -top-4 -left-2 n-display leading-none pointer-events-none select-none"
+                style={{
+                  fontSize: "clamp(180px, 28vw, 340px)",
+                  color: "rgba(255,255,255,0.10)",
+                  fontWeight: 200,
+                }}
+              >
+                <Numeral n={piece.index} />
+              </span>
 
-            <ul className="mt-10 grid grid-cols-1 gap-3">
-              {loc.details.map((d) => (
-                <li key={d} className="flex items-baseline gap-4">
-                  <span className="n-mono opacity-50">·</span>
-                  <span className="n-serif text-[17px]" style={{ color: "var(--n-ink)" }}>{d}</span>
+              {piece.image && (
+                <img
+                  src={piece.image}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-contain p-8 md:p-12 transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.02]"
+                  style={{
+                    filter: "drop-shadow(0 28px 42px rgba(0,0,0,0.35))",
+                  }}
+                  loading="lazy"
+                />
+              )}
+
+              <div
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 pointer-events-none"
+                style={{
+                  height: "42%",
+                  background:
+                    "linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.42) 100%)",
+                }}
+              />
+
+              <figcaption
+                className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex items-end justify-between gap-4"
+                style={{ color: "rgba(255,255,255,0.94)" }}
+              >
+                <div className="flex flex-col gap-2">
+                  <span
+                    className="n-mono"
+                    style={{
+                      fontSize: "10px",
+                      letterSpacing: "0.22em",
+                      textTransform: "uppercase",
+                      opacity: 0.72,
+                    }}
+                  >
+                    {t.piece.section1Label}
+                  </span>
+                  <span
+                    className="n-serif-italic"
+                    style={{
+                      fontSize: "clamp(19px, 1.6vw, 24px)",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    {piece.name}
+                  </span>
+                </div>
+                <div className="flex flex-col items-end gap-2">
+                  {loc.teintes.map((tt) => (
+                    <div key={tt.hex} className="flex items-center gap-2">
+                      <span
+                        className="n-mono"
+                        style={{
+                          fontSize: "10px",
+                          letterSpacing: "0.14em",
+                          opacity: 0.82,
+                        }}
+                      >
+                        {tt.name}
+                      </span>
+                      <span
+                        aria-hidden
+                        className="block rounded-full"
+                        style={{
+                          width: 14,
+                          height: 14,
+                          background: tt.hex,
+                          border: "1px solid rgba(255,255,255,0.55)",
+                          boxShadow: "0 0 0 1px rgba(0,0,0,0.15)",
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </figcaption>
+            </figure>
+
+            <ul className="mt-10 flex flex-col">
+              {loc.details.map((d, i) => (
+                <li
+                  key={d}
+                  className="flex items-baseline gap-6 pt-4 pb-4 border-t"
+                  style={{ borderColor: "var(--n-line-soft)" }}
+                >
+                  <span
+                    className="n-mono opacity-45"
+                    style={{ fontSize: "11px", letterSpacing: "0.20em" }}
+                  >
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span
+                    className="n-serif text-[17px] leading-[1.35]"
+                    style={{ color: "var(--n-ink)" }}
+                  >
+                    {d}
+                  </span>
                 </li>
               ))}
             </ul>

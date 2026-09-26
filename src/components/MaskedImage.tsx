@@ -20,6 +20,7 @@ type Props = {
   objectPosition?: string;
   overlay?: React.ReactNode;
   rounded?: boolean;
+  fit?: "cover" | "contain";
 };
 
 export default function MaskedImage({
@@ -32,6 +33,7 @@ export default function MaskedImage({
   objectPosition = "50% 50%",
   overlay,
   rounded = false,
+  fit = "cover",
 }: Props) {
   return (
     <div
@@ -39,14 +41,22 @@ export default function MaskedImage({
       style={{ aspectRatio: ratio, ...style }}
     >
       {src ? (
-        <img
-          src={src}
-          alt={alt}
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ objectPosition }}
-          loading="lazy"
-          decoding="async"
-        />
+        <>
+          {fit === "contain" && (
+            <div aria-hidden className={clsx("absolute inset-0", "n-tile", `is-${tone}`)} />
+          )}
+          <img
+            src={src}
+            alt={alt}
+            className={clsx(
+              "absolute inset-0 w-full h-full",
+              fit === "contain" ? "object-contain p-6 md:p-10" : "object-cover"
+            )}
+            style={{ objectPosition }}
+            loading="lazy"
+            decoding="async"
+          />
+        </>
       ) : (
         <div className={clsx("n-tile", `is-${tone}`)} />
       )}

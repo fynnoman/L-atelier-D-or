@@ -76,7 +76,8 @@ export default function CollectionIndexClient() {
                     src={piece.image}
                     alt={`${piece.name} — ${loc.tagline}`}
                     tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
-                    ratio="4 / 5"
+                    ratio="1 / 1"
+                    fit="contain"
                     className={flip ? "md:-translate-x-4" : "md:translate-x-4"}
                   />
 

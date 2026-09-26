@@ -151,50 +151,112 @@ export default function Nav() {
         {/* Collection Dropdown auf Desktop */}
         <div
           className={clsx(
-            "hidden md:block absolute left-0 right-0 top-full overflow-hidden transition-[max-height,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-            subOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+            "hidden md:block absolute left-0 right-0 top-full transition-[opacity,transform] duration-[380ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+            subOpen
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 -translate-y-2 pointer-events-none"
           )}
           style={{
-            maxHeight: subOpen ? "320px" : "0",
-            background: "rgba(255,255,255,0.92)",
-            backdropFilter: "blur(14px)",
-            borderBottom: subOpen ? "1px solid var(--n-line-soft)" : "none",
+            background: "rgba(255,255,255,0.94)",
+            backdropFilter: "blur(18px)",
+            WebkitBackdropFilter: "blur(18px)",
+            borderBottom: "1px solid var(--n-line-soft)",
+            boxShadow: subOpen ? "0 22px 44px -24px rgba(10,10,10,0.12)" : "none",
           }}
           onMouseEnter={openSub}
           onMouseLeave={scheduleCloseSub}
         >
-          <div className="n-page py-8 grid grid-cols-4 gap-6">
-            {PIECES.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/collection/${p.slug}`}
-                className="group flex flex-col gap-3"
-              >
-                <span
-                  className="block w-full aspect-[4/5] overflow-hidden"
-                  style={{
-                    background: `linear-gradient(135deg, ${p.teintes[0]?.hex ?? "#000"} 0%, ${p.teintes[1]?.hex ?? "#000"} 100%)`,
-                  }}
+          <div className="n-page py-10">
+            <div className="grid grid-cols-12 gap-6 items-start">
+              {/* Editorial spine */}
+              <div className="col-span-3 pt-1">
+                <div className="n-eyebrow opacity-55 mb-3">
+                  {t.collectionIndex.eyebrowNumeral}
+                </div>
+                <div
+                  className="n-serif leading-[1.15]"
+                  style={{ fontSize: "22px", color: "var(--n-ink)" }}
                 >
-                  {p.image && (
-                    <img
-                      src={p.image}
-                      alt=""
-                      className="w-full h-full object-cover mix-blend-multiply opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  )}
-                </span>
-                <div className="flex items-baseline justify-between">
-                  <span className="n-meta" style={{ color: "var(--n-ink)" }}>
-                    {p.name}
-                  </span>
-                  <span className="n-meta opacity-55">
-                    {formatPrice(p.priceEuro, locale)}
+                  {t.collectionIndex.title[0]}
+                  <br />
+                  <span className="n-serif-italic opacity-70">
+                    {(t.collectionIndex.title[1] ?? "").replace(/,\s*$/, ".")}
                   </span>
                 </div>
-              </Link>
-            ))}
+                <Link
+                  href="/collection"
+                  className="n-link mt-6 inline-flex items-center gap-2"
+                >
+                  {t.common.toutLaCollection}
+                  <span aria-hidden>→</span>
+                </Link>
+              </div>
+
+              {/* Pieces */}
+              <div className="col-span-9 grid grid-cols-4 gap-4">
+                {PIECES.map((p, i) => (
+                  <Link
+                    key={p.slug}
+                    href={`/collection/${p.slug}`}
+                    className="group flex flex-col gap-3"
+                    style={{
+                      opacity: subOpen ? 1 : 0,
+                      transform: subOpen ? "translateY(0)" : "translateY(-6px)",
+                      transition:
+                        "opacity 380ms cubic-bezier(0.22,1,0.36,1), transform 380ms cubic-bezier(0.22,1,0.36,1)",
+                      transitionDelay: subOpen ? `${80 + i * 55}ms` : "0ms",
+                    }}
+                  >
+                    <span
+                      className="relative block w-full overflow-hidden"
+                      style={{
+                        aspectRatio: "5 / 4",
+                        background: `linear-gradient(135deg, ${p.teintes[0]?.hex ?? "#000"} 0%, ${p.teintes[1]?.hex ?? "#000"} 100%)`,
+                        borderRadius: "clamp(6px, 0.6vw, 12px)",
+                        border: "1px solid var(--n-line-soft)",
+                      }}
+                    >
+                      {p.image && (
+                        <img
+                          src={p.image}
+                          alt=""
+                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.045]"
+                          loading="lazy"
+                        />
+                      )}
+                      <span
+                        aria-hidden
+                        className="absolute top-2 left-2 n-mono"
+                        style={{
+                          color: "var(--n-ink)",
+                          fontSize: "10px",
+                          letterSpacing: "0.16em",
+                          background: "rgba(255,255,255,0.78)",
+                          padding: "2px 7px",
+                          borderRadius: "999px",
+                          border: "1px solid var(--n-line-soft)",
+                          backdropFilter: "blur(6px)",
+                          WebkitBackdropFilter: "blur(6px)",
+                        }}
+                      >
+                        {p.numeral}
+                      </span>
+                    </span>
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span
+                        className="n-serif leading-none"
+                        style={{ fontSize: "15px", color: "var(--n-ink)" }}
+                      >
+                        {p.name}
+                      </span>
+                      <span className="n-mono opacity-55" style={{ fontSize: "11px" }}>
+                        {formatPrice(p.priceEuro, locale)}
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </header>
