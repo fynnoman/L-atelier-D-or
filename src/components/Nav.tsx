@@ -30,6 +30,7 @@ export default function Nav() {
     { href: "/atelier", label: t.nav.atelier },
     { href: "/journal", label: t.nav.journal },
     { href: "/avis", label: t.nav.avis },
+    { href: "/feedback", label: t.nav.feedback },
     { href: "/faq", label: t.nav.questions },
     { href: "/conseil", label: t.nav.conseil },
   ];
@@ -72,10 +73,8 @@ export default function Nav() {
         }}
       >
         <div className="n-page grid grid-cols-3 items-center gap-6">
-          {/* Utility gauche */}
-          <div className="hidden md:flex items-center gap-6">
-            <span className="n-meta opacity-40">{t.nav.edition}</span>
-          </div>
+          {/* Utility gauche — reserviert, aktuell leer */}
+          <div aria-hidden className="hidden md:block" />
 
           {/* Wordmark centré */}
           <div className="flex justify-start md:justify-center col-start-1 md:col-start-2">

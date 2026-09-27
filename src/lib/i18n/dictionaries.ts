@@ -37,6 +37,7 @@ export type Dictionary = {
     avis: string;
     questions: string;
     conseil: string;
+    feedback: string;
     maisonEyebrow: string;
     contactEyebrow: string;
     houseIntro: string;
@@ -54,6 +55,7 @@ export type Dictionary = {
     labelMentionsLegales: string;
     labelConfidentialite: string;
     labelAccessibilite: string;
+    labelRetractation: string;
     copyright: string;
     editorialTag: string;
     editorialTag2: string;
@@ -167,31 +169,57 @@ export type Dictionary = {
     heroTitle1: string;
     heroTitle2: string;
     heroLede: string;
-    houseEyebrow: string;
-    houseBody: string;
-    editionEyebrow: string;
-    editionBody: string;
-    ruleEyebrow: string;
-    ruleQuote: string;
-    section1Eyebrow: string;
-    section1Label: string;
-    section1Title1: string;
-    section1Title2: string;
-    section1Body: string;
-    gestes: { n: string; label: string }[];
-    gesteWord: string;
-    piece4Body: string;
-    section2Eyebrow: string;
-    section2Label: string;
-    section2Title1: string;
-    section2Title2: string;
-    section2Body: string;
+    originEyebrow: string;
+    originLabel: string;
+    originTitle: string;
+    originParas: string[];
+    approachEyebrow: string;
+    approachLabel: string;
+    approachTitle: string;
+    approachParas: string[];
     principles: { t: string; b: string }[];
     principleWord: string;
+    collectionEyebrow: string;
+    collectionLabel: string;
+    collectionTitle: string;
+    collectionBody: string;
+    materialsEyebrow: string;
+    materialsLabel: string;
+    materialsTitle: string;
+    materialsIntro: string;
+    materialsItems: { t: string; b: string }[];
+    ctaEyebrow: string;
     ctaTitle1: string;
     ctaTitle2: string;
     ctaBody: string;
     cta: string;
+  };
+  feedback: {
+    metaTitle: string;
+    metaDescription: string;
+    eyebrowNum: string;
+    eyebrowLabel: string;
+    title1: string;
+    title2: string;
+    lede: string;
+    formAria: string;
+    nameLabel: string;
+    emailLabel: string;
+    modelLabel: string;
+    modelPlaceholder: string;
+    ratingLabel: string;
+    ratingOptions: string[];
+    messageLabel: string;
+    consent: string;
+    submit: string;
+    submitting: string;
+    thanksTitle: string;
+    thanksBody: string;
+    errorEmpty: string;
+    errorSetup: string;
+    errorSend: string;
+    conseilFooterBody: string;
+    conseilFooterCta: string;
   };
   avis: {
     metaTitle: string;
@@ -313,6 +341,15 @@ export type Dictionary = {
       chapo: string;
       sections: { title: string; body: string[] }[];
     };
+    retractation: {
+      metaTitle: string;
+      metaDescription: string;
+      numeral: string;
+      rubric: string;
+      title: string;
+      chapo: string;
+      sections: { title: string; body: string[] }[];
+    };
   };
   pieceSwitcher: {
     label: string;
@@ -351,15 +388,15 @@ export type Dictionary = {
 
 const fr: Dictionary = {
   common: {
-    editionBreve: "Édition brève",
-    numeroteeALaMain: "Numérotée à la main",
-    petiteMaison: "Petite maison française",
-    ventEnLigne: "Vente en ligne uniquement.",
+    editionBreve: "",
+    numeroteeALaMain: "",
+    petiteMaison: "Maison française",
+    ventEnLigne: "Vente en ligne.",
     voir: "Voir",
     voirLaPiece: "Voir la pièce",
     voirLaCollection: "Voir la collection",
     toutLaCollection: "Toute la collection",
-    conseillez: "Conseillez-moi",
+    conseillez: "Demander conseil",
     ecrireLaMaison: "Écrire à la maison",
     lAtelier: "L’Atelier",
     decouvrirLAtelier: "Découvrir l’atelier",
@@ -369,48 +406,50 @@ const fr: Dictionary = {
     ouvrirMenu: "Ouvrir le menu",
     fermerMenu: "Fermer le menu",
     skipToContent: "Aller au contenu",
-    voyezLeMonde1: "Voyez le monde",
-    voyezLeMonde2: "à votre dimension.",
-    quatrePiecesParAn: "Quatre pièces par an. Édition brève,",
-    editionBreveDescription: "numérotée à la main.",
-    edition: "Édition brève",
+    voyezLeMonde1: "Voyez le monde selon",
+    voyezLeMonde2: "votre propre perspective.",
+    quatrePiecesParAn: "Roi. La collection.",
+    editionBreveDescription: "",
+    edition: "",
     numeral: "Numéral",
     pageOf: (n) => `Page ${n}`,
-    remisNumeroteALaMain: "Édition brève · Numérotée à la main",
+    remisNumeroteALaMain: "Roi · Collection I",
   },
   nav: {
-    edition: "Édition brève",
+    edition: "",
     collection: "Collection",
     atelier: "Atelier",
     journal: "Journal",
     avis: "Avis",
     questions: "Questions",
     conseil: "Conseil",
+    feedback: "Feedback",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contact",
-    houseIntro: "Édition brève.\nVente en ligne uniquement.",
+    houseIntro: "Maison française de lunetterie.\nParis · Berlin · Londres.",
     contactWriteUs: "Nous écrire",
     ctaCollection: "Voir la collection",
   },
   footer: {
-    petiteMaisonFr: "Une petite maison française",
-    ligne1: "Petite maison française de lunetterie.",
-    ligne2: "Édition brève, vente en ligne.",
+    petiteMaisonFr: "Maison française de lunetterie",
+    ligne1: "Maison française de lunetterie.",
+    ligne2: "Vente en ligne, sur rendez-vous à Paris, Berlin et Londres.",
     columnMaison: "Maison",
     columnCollection: "Collection",
     columnMentions: "Mentions",
-    labelPremiereCollection: "Première Collection",
+    labelPremiereCollection: "",
     labelMentionsLegales: "Mentions légales",
     labelConfidentialite: "Confidentialité",
     labelAccessibilite: "Accessibilité",
-    copyright: "© L’Atelier d’Or · Édition brève, numérotée à la main",
-    editorialTag: "Une petite maison française",
-    editorialTag2: "Édition brève",
+    labelRetractation: "Rétractation",
+    copyright: "© L’Atelier d’Or",
+    editorialTag: "Maison française de lunetterie",
+    editorialTag2: "Paris · Berlin · Londres",
   },
   newsletter: {
     label: "La lettre de la maison",
     description:
-      "Une à deux fois par saison. Nouvelle pièce, cahier, silence. Rien de plus.",
+      "Nouvelles pièces, journal, rendez-vous. Envoyée avec parcimonie.",
     placeholder: "votre@email.com",
     submit: "S’inscrire",
     formAria: "Inscription à la lettre de la maison",
@@ -423,67 +462,67 @@ const fr: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · Première Édition",
-      title1: "Voyez le monde",
-      title2: "à votre dimension.",
-      lede: "Quatre pièces par an. Édition brève, numérotée à la main.",
+      eyebrow: "Roi · Collection I",
+      title1: "Voyez le monde selon",
+      title2: "votre propre perspective.",
+      lede: "Roi. La collection en quatre pièces.",
       ctaCollection: "Voir la collection",
-      ctaConseil: "Conseillez-moi",
+      ctaConseil: "Demander conseil",
       ctaAtelier: "L’Atelier",
       scroll: "Défiler",
-      edition: "Édition brève",
+      edition: "",
     },
     showcase: {
-      eyebrow: "Première Collection",
+      eyebrow: "Collection",
       title1: "Roi.",
       title2: "Quatre pièces, un seul regard.",
-      lede: "Quatre atmosphères, quatre heures, quatre manières d’entrer dans une pièce. 78,90 € l’exemplaire, numérotée à la main.",
+      lede: "Quatre atmosphères, quatre heures, quatre manières d’entrer dans une pièce.",
       piece: "Pièce",
-      footerLine: "Édition brève · Numérotée à la main",
+      footerLine: "Roi · Collection I",
       link: "Toute la collection",
     },
     alternating: {
       voirLaPiece: "Voir la pièce",
     },
     avisTeaser: {
-      eyebrow: "Avis",
+      eyebrow: "Feedback",
       title1: "Vous portez Roi ?",
       title2: "Dites-nous quelques mots.",
-      body: "Nous ne fabriquons pas les avis. Nous publions ceux qui viennent, honnêtement, sans retouche.",
-      ctaShare: "Partager un mot",
-      ctaSee: "Voir les avis",
+      body: "Un retour honnête vaut mieux qu’un slogan. Écrivez-nous ce que vous portez, comment vous le portez, ce qui pourrait être meilleur.",
+      ctaShare: "Partager un retour",
+      ctaSee: "Demander conseil",
     },
     endCall: {
-      eyebrow: "Roi · Première Édition",
-      line1: "Voyez le monde",
-      line2: "à votre dimension.",
-      body: "Quatre pièces par an. Édition brève, numérotée à la main.",
+      eyebrow: "Roi · Collection I",
+      line1: "Voyez le monde selon",
+      line2: "votre propre perspective.",
+      body: "Roi. Quatre pièces, un seul regard.",
       ctaCollection: "Voir la collection",
       ctaAtelier: "Découvrir l’atelier",
     },
   },
   collectionIndex: {
-    metaTitle: "La Collection — Roi. Quatre pièces.",
+    metaTitle: "La Collection — Roi.",
     metaDescription:
-      "Roi. Quatre pièces la première année : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € l’exemplaire, numérotée à la main.",
+      "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate italien, montage à la main, 78,90 € l’exemplaire.",
     breadcrumbHome: "Accueil",
     breadcrumbCollection: "Collection",
     eyebrowNumeral: "Collection I",
-    eyebrowLabel: "Première Édition · Numérotée",
+    eyebrowLabel: "Roi",
     title: ["Roi.", "Quatre atmosphères,", "un seul regard."],
     lede:
-      "Quatre pièces, un an. Chaque exemplaire est numéroté à la main.\nQuatre-vingts euros. Ni plus, ni moins.",
+      "Quatre pièces, quatre atmosphères.\nUne écriture éditoriale, une seule signature.",
     subtitles: "Le Salon · La Chasse · La Chapelle · Le Dîner",
-    subtitles2: "Édition brève",
-    editorialTitle1: "Nous voulons que la Roi soit portée.",
-    editorialTitle2: "Pas rangée.",
+    subtitles2: "Paris · Berlin · Londres",
+    editorialTitle1: "Roi se porte.",
+    editorialTitle2: "Elle ne s’expose pas.",
     editorialBody:
-      "La collection n’est pas exposée en vitrine. Nous la présentons sur rendez-vous, entre quatre yeux, à Paris, Berlin et Londres.",
+      "La collection n’est pas présentée en vitrine. Nous la montrons sur rendez-vous, entre quatre yeux, à Paris, Berlin et Londres.",
     editorialCta: "Découvrir l’atelier",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
-      `${name} — édition brève, numérotée à la main. ${price}.`,
+      `${name} — acétate italien, montage à la main. ${price}.`,
     chapterPrefix: "Chapitre",
     theLieu: "Le lieu",
     theHeure: "L’heure",
@@ -499,11 +538,11 @@ const fr: Dictionary = {
     noteLabel: (n) => `Note 0${n}`,
     lireQuatreAtmospheres: "Lire « Quatre atmosphères »",
     section3Eyebrow: "§ 03",
-    section3Label: "Édition brève",
+    section3Label: "L’acquérir",
     prixParPiece: "Prix par pièce",
-    niPlusNiMoins: "Ni plus, ni moins",
+    niPlusNiMoins: "Verres correcteurs ou solaires inclus.",
     editionBreveBody:
-      "Numérotée à la main, à l’intérieur de la branche gauche. Livrée dans son écrin dédié — remise en main propre à Paris, transport suivi ailleurs en Europe.",
+      "Livrée dans son écrin dédié. Remise en main propre à Paris, transport suivi ailleurs en Europe.",
     twoWays: "Deux manières de la recevoir",
     way1Title: "Rendez-vous privé",
     way1Body:
@@ -517,53 +556,75 @@ const fr: Dictionary = {
     othersPieces: "Les trois autres pièces",
   },
   atelier: {
-    metaTitle: "L’Atelier",
+    metaTitle: "La Maison",
     metaDescription:
-      "Une petite maison française de lunetterie. Édition brève, faite avec soin, numérotée à la main.",
+      "L’Atelier d’Or, maison française de lunetterie. Origine, démarche, matériaux et détails de la collection Roi.",
     heroEyebrowNum: "La Maison",
-    heroEyebrowLabel: "L’Atelier",
-    heroTitle1: "Quatorze mains,",
-    heroTitle2: "un seul regard.",
+    heroEyebrowLabel: "L’Atelier d’Or",
+    heroTitle1: "Une maison",
+    heroTitle2: "française de lunetterie.",
     heroLede:
-      "Un atelier discret. Une édition brève. Chaque pièce pensée, montée et vérifiée à la main.",
-    houseEyebrow: "La maison",
-    houseBody: "Petite maison française de lunetterie.",
-    editionEyebrow: "L’édition",
-    editionBody: "Quatre pièces la première année. Numérotées à la main, une par une.",
-    ruleEyebrow: "La règle",
-    ruleQuote: "« Ce que l’on peut faire à la main, on le fait à la main. »",
-    section1Eyebrow: "§ 01",
-    section1Label: "Le geste",
-    section1Title1: "Les gestes ne se",
-    section1Title2: "délèguent pas.",
-    section1Body:
-      "Chaque paire passe par une suite de gestes précis. Une machine peut aller plus vite ; elle ne peut pas décider quand s’arrêter.",
-    gestes: [
-      { n: "I", label: "Tracé" },
-      { n: "II", label: "Découpe" },
-      { n: "III", label: "Assemblage" },
-      { n: "IV", label: "Limage" },
-      { n: "V", label: "Polissage" },
-      { n: "VI", label: "Contrôle" },
-      { n: "VII", label: "Finissage" },
+      "L’Atelier d’Or dessine et fabrique des lunettes en France. Une seule collection à la fois, pensée comme un objet éditorial plus que comme un produit.",
+    originEyebrow: "§ 01",
+    originLabel: "L’origine",
+    originTitle: "Une maison, une signature.",
+    originParas: [
+      "L’Atelier d’Or est né du besoin d’une lunetterie plus claire : un dessin, une matière, un geste. La maison choisit d’écrire une collection à la fois, sans catalogue, sans surenchère.",
+      "L’écriture éditoriale précède la pièce. Chaque monture s’inscrit dans un chapitre — un lieu, une heure, une atmosphère — et non dans une saison commerciale.",
+      "Le studio de design est en France ; l’acétate vient d’Italie, choisi plaque par plaque ; le montage est effectué à la main, à Paris.",
     ],
-    gesteWord: "Geste",
-    piece4Body:
-      "Une pièce ne quitte l’atelier tant qu’elle accroche encore la lumière comme un métal. On veut qu’elle la retienne comme une peau.",
-    section2Eyebrow: "§ 02",
-    section2Label: "La retenue",
-    section2Title1: "Ce que nous ajoutons",
-    section2Title2: "volontairement peu.",
-    section2Body:
-      "Quatre pièces la première année. Pas plus. Une maison se construit par ce qu’elle refuse d’ajouter au monde.",
+    approachEyebrow: "§ 02",
+    approachLabel: "La démarche",
+    approachTitle: "Trois principes qui tiennent la ligne.",
+    approachParas: [
+      "Nous ne cherchons pas la nouveauté à tout prix. Nous cherchons la justesse d’un dessin, la densité d’une matière, l’équité d’un prix. Ce sont les trois seuls arbitres du travail.",
+    ],
     principles: [
-      { t: "Pas d’intermédiaire", b: "Nous vendons en direct, en ligne. La marge sert la pièce, pas la vitrine." },
-      { t: "Pas d’excès", b: "Une édition brève. Ni plus, ni moins que ce qui a du sens." },
-      { t: "Pas de supplément inutile", b: "Un écrin, une paire, un numéro. Rien d’autre à emporter chez soi." },
+      {
+        t: "Un dessin éditorial",
+        b: "Chaque pièce s’écrit avant d’être dessinée. Le trait vient d’un lieu, d’un rythme, d’une lumière — pas d’une tendance de saison.",
+      },
+      {
+        t: "Une matière choisie",
+        b: "Acétate italien coloré dans la masse, charnières et rivets métalliques finis à la main. Nous choisissons la plaque comme un tissu.",
+      },
+      {
+        t: "Un circuit direct",
+        b: "Vente en ligne et sur rendez-vous à Paris, Berlin, Londres. Le prix reflète la pièce, jamais l’intermédiaire.",
+      },
     ],
     principleWord: "Principe",
-    ctaTitle1: "Voyez le monde",
-    ctaTitle2: "à votre dimension.",
+    collectionEyebrow: "§ 03",
+    collectionLabel: "La collection",
+    collectionTitle: "Roi — quatre pièces, un seul regard.",
+    collectionBody:
+      "La première collection, Roi, décline quatre atmosphères : le salon, la chasse, la chapelle, le dîner. Quatre pièces qui partagent un dessin, quatre teintes qui ouvrent quatre façons d’entrer dans une pièce.",
+    materialsEyebrow: "§ 04",
+    materialsLabel: "Matières & détails",
+    materialsTitle: "Ce qui compose une pièce.",
+    materialsIntro:
+      "Les matières sont choisies pour leur densité, leur tenue de couleur et leur comportement à la main. Les détails s’ajoutent avec parcimonie.",
+    materialsItems: [
+      {
+        t: "Acétate italien",
+        b: "Coloré dans la masse, plaque sélectionnée pour sa profondeur et sa tenue à la lumière. Poli à la main jusqu’au silence.",
+      },
+      {
+        t: "Charnières métalliques",
+        b: "Charnières en laiton finies dorées, argentées ou bronze selon la pièce. Vis apparentes, réglage possible chez tout opticien.",
+      },
+      {
+        t: "Silhouettes calibrées",
+        b: "Rectangle, panto haute, ovale allongé, panto masculine. Quatre silhouettes retenues sur plusieurs dizaines de dessins d’étude.",
+      },
+      {
+        t: "Verres à la demande",
+        b: "Correcteurs ou solaires, montés par notre maître opticien. Inclus au prix de la pièce.",
+      },
+    ],
+    ctaEyebrow: "Collection",
+    ctaTitle1: "Voyez le monde selon",
+    ctaTitle2: "votre propre perspective.",
     ctaBody: "La collection Roi se découvre en ligne. Quatre pièces, un seul regard.",
     cta: "Voir la collection",
   },
@@ -842,6 +903,83 @@ const fr: Dictionary = {
         },
       ],
     },
+    retractation: {
+      metaTitle: "Droit de rétractation",
+      metaDescription:
+        "Vos droits d’acquéreur : délai de rétractation, procédure, remboursement.",
+      numeral: "Cahier — Discrétion",
+      rubric: "Rétractation",
+      title: "Un délai, un geste, un remboursement.",
+      chapo:
+        "Vous disposez d’un droit de rétractation de quatorze jours à compter de la livraison de votre pièce.",
+      sections: [
+        {
+          title: "Délai",
+          body: [
+            "Vous disposez d’un délai de quatorze jours calendaires à compter du jour de la réception de la pièce pour exercer votre droit de rétractation, sans avoir à justifier de motif.",
+            "Ce droit s’applique aux acheteurs consommateurs au sein de l’Union européenne, conformément au Code de la consommation et à la directive européenne 2011/83/UE.",
+          ],
+        },
+        {
+          title: "Comment nous prévenir",
+          body: [
+            "Pour exercer votre droit de rétractation, écrivez-nous via la page « Conseil » ou par courriel, en indiquant le nom sur la commande et le numéro de la pièce, avant l’expiration du délai de quatorze jours.",
+            "Une déclaration écrite dénuée d’ambiguïté suffit. Nous accusons réception sans délai et vous transmettons la procédure de retour.",
+          ],
+        },
+        {
+          title: "Retour de la pièce",
+          body: [
+            "La pièce doit nous être retournée dans son écrin, complète et non altérée, dans les quatorze jours suivant votre déclaration.",
+            "Les frais de retour restent à votre charge, sauf indication contraire de notre part.",
+          ],
+        },
+        {
+          title: "Remboursement",
+          body: [
+            "Le remboursement de la pièce est effectué au plus tard quatorze jours après réception du retour, par le moyen de paiement utilisé lors de l’achat, sauf accord contraire.",
+            "Les frais de livraison initiaux sont remboursés dans les mêmes délais, à l’exception du surcoût lié à un mode de livraison plus onéreux que la livraison standard.",
+          ],
+        },
+        {
+          title: "Exceptions",
+          body: [
+            "Les pièces personnalisées — montage de verres correcteurs à votre correction visuelle — ne sont pas soumises au droit de rétractation, conformément à l’article L.221-28 du Code de la consommation.",
+            "Pour toute question relative à ce cas particulier, écrivez-nous : nous étudions chaque situation.",
+          ],
+        },
+      ],
+    },
+  },
+  feedback: {
+    metaTitle: "Feedback",
+    metaDescription:
+      "Un retour honnête sur la collection Roi. Ce que vous portez, ce qui pourrait être meilleur.",
+    eyebrowNum: "Feedback",
+    eyebrowLabel: "Un retour à la maison",
+    title1: "Ce que vous",
+    title2: "avez à nous dire.",
+    lede:
+      "Un retour bref et honnête vaut mieux qu’un long compliment. Nous lisons chaque message et publions les retours qui décrivent la pièce sans retouche.",
+    formAria: "Formulaire de retour d’expérience",
+    nameLabel: "Votre nom",
+    emailLabel: "Votre e-mail",
+    modelLabel: "Pièce concernée",
+    modelPlaceholder: "Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude…",
+    ratingLabel: "Votre appréciation",
+    ratingOptions: ["Excellente", "Bonne", "Passable", "À revoir"],
+    messageLabel: "Votre retour",
+    consent: "J’accepte que ce retour puisse être cité, sans mon nom, sur la page Avis.",
+    submit: "Envoyer mon retour",
+    submitting: "Envoi en cours…",
+    thanksTitle: "Merci.",
+    thanksBody: "Nous avons bien reçu votre retour. Nous vous répondons personnellement.",
+    errorEmpty: "Quelques mots et votre nom, pour que nous puissions vous répondre.",
+    errorSetup: "Le service est en cours d’installation. Réessayez plus tard.",
+    errorSend: "Votre message n’a pas été envoyé. Vos mots sont conservés ; veuillez réessayer.",
+    conseilFooterBody:
+      "Une question plus personnelle, un conseil sur une pièce, un ajustement ?",
+    conseilFooterCta: "Demander conseil",
   },
   pieceSwitcher: {
     label: "Autres pièces",
@@ -965,15 +1103,15 @@ const fr: Dictionary = {
 
 const de: Dictionary = {
   common: {
-    editionBreve: "Kleine Auflage",
-    numeroteeALaMain: "Von Hand nummeriert",
-    petiteMaison: "Kleines französisches Haus",
-    ventEnLigne: "Ausschließlich Online-Verkauf.",
+    editionBreve: "",
+    numeroteeALaMain: "",
+    petiteMaison: "Französisches Haus",
+    ventEnLigne: "Online-Verkauf.",
     voir: "Ansehen",
     voirLaPiece: "Zum Stück",
     voirLaCollection: "Zur Kollektion",
     toutLaCollection: "Ganze Kollektion",
-    conseillez: "Beraten Sie mich",
+    conseillez: "Beratung anfragen",
     ecrireLaMaison: "Dem Haus schreiben",
     lAtelier: "Atelier",
     decouvrirLAtelier: "Atelier entdecken",
@@ -983,48 +1121,50 @@ const de: Dictionary = {
     ouvrirMenu: "Menü öffnen",
     fermerMenu: "Menü schließen",
     skipToContent: "Zum Inhalt springen",
-    voyezLeMonde1: "Sehen Sie die Welt",
-    voyezLeMonde2: "in Ihrer eigenen Dimension.",
-    quatrePiecesParAn: "Vier Stücke im Jahr. Kleine Auflage,",
-    editionBreveDescription: "von Hand nummeriert.",
-    edition: "Kleine Auflage",
+    voyezLeMonde1: "Sehen Sie die Welt aus",
+    voyezLeMonde2: "Ihrer eigenen Perspektive.",
+    quatrePiecesParAn: "Roi. Die Kollektion.",
+    editionBreveDescription: "",
+    edition: "",
     numeral: "Nummer",
     pageOf: (n) => `Seite ${n}`,
-    remisNumeroteALaMain: "Kleine Auflage · Von Hand nummeriert",
+    remisNumeroteALaMain: "Roi · Kollektion I",
   },
   nav: {
-    edition: "Kleine Auflage",
+    edition: "",
     collection: "Kollektion",
     atelier: "Atelier",
     journal: "Journal",
     avis: "Stimmen",
     questions: "Fragen",
     conseil: "Beratung",
+    feedback: "Feedback",
     maisonEyebrow: "Haus",
     contactEyebrow: "Kontakt",
-    houseIntro: "Kleine Auflage.\nAusschließlich Online-Verkauf.",
+    houseIntro: "Französisches Brillenhaus.\nParis · Berlin · London.",
     contactWriteUs: "Schreiben Sie uns",
     ctaCollection: "Zur Kollektion",
   },
   footer: {
-    petiteMaisonFr: "Ein kleines französisches Haus",
-    ligne1: "Kleines französisches Brillenhaus.",
-    ligne2: "Kleine Auflage, Online-Verkauf.",
+    petiteMaisonFr: "Französisches Brillenhaus",
+    ligne1: "Französisches Brillenhaus.",
+    ligne2: "Online-Verkauf, nach Termin in Paris, Berlin und London.",
     columnMaison: "Haus",
     columnCollection: "Kollektion",
     columnMentions: "Rechtliches",
-    labelPremiereCollection: "Erste Kollektion",
+    labelPremiereCollection: "",
     labelMentionsLegales: "Impressum",
     labelConfidentialite: "Datenschutz",
     labelAccessibilite: "Barrierefreiheit",
-    copyright: "© L’Atelier d’Or · Kleine Auflage, von Hand nummeriert",
-    editorialTag: "Ein kleines französisches Haus",
-    editorialTag2: "Kleine Auflage",
+    labelRetractation: "Widerrufsrecht",
+    copyright: "© L’Atelier d’Or",
+    editorialTag: "Französisches Brillenhaus",
+    editorialTag2: "Paris · Berlin · London",
   },
   newsletter: {
     label: "Der Brief des Hauses",
     description:
-      "Ein bis zweimal pro Saison. Ein neues Stück, ein Heft, Stille. Nicht mehr.",
+      "Neue Stücke, Journal, Termine. Mit Zurückhaltung verschickt.",
     placeholder: "ihre@email.de",
     submit: "Anmelden",
     formAria: "Anmeldung zum Brief des Hauses",
@@ -1037,67 +1177,67 @@ const de: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · Erste Auflage",
-      title1: "Sehen Sie die Welt",
-      title2: "in Ihrer eigenen Dimension.",
-      lede: "Vier Stücke im Jahr. Kleine Auflage, von Hand nummeriert.",
+      eyebrow: "Roi · Kollektion I",
+      title1: "Sehen Sie die Welt aus",
+      title2: "Ihrer eigenen Perspektive.",
+      lede: "Roi. Die Kollektion in vier Stücken.",
       ctaCollection: "Zur Kollektion",
-      ctaConseil: "Beraten Sie mich",
+      ctaConseil: "Beratung anfragen",
       ctaAtelier: "Atelier",
       scroll: "Scrollen",
-      edition: "Kleine Auflage",
+      edition: "",
     },
     showcase: {
-      eyebrow: "Erste Kollektion",
+      eyebrow: "Kollektion",
       title1: "Roi.",
       title2: "Vier Stücke, ein einziger Blick.",
-      lede: "Vier Atmosphären, vier Stunden, vier Arten, einen Raum zu betreten. 78,90 € pro Stück, von Hand nummeriert.",
+      lede: "Vier Atmosphären, vier Stunden, vier Arten, einen Raum zu betreten.",
       piece: "Stück",
-      footerLine: "Kleine Auflage · Von Hand nummeriert",
+      footerLine: "Roi · Kollektion I",
       link: "Ganze Kollektion",
     },
     alternating: {
       voirLaPiece: "Zum Stück",
     },
     avisTeaser: {
-      eyebrow: "Stimmen",
+      eyebrow: "Feedback",
       title1: "Tragen Sie Roi?",
       title2: "Sagen Sie uns ein paar Worte.",
-      body: "Wir erfinden keine Stimmen. Wir veröffentlichen jene, die zu uns finden – ehrlich, ohne Retusche.",
-      ctaShare: "Ein Wort teilen",
-      ctaSee: "Stimmen ansehen",
+      body: "Ein ehrliches Feedback ist mehr wert als ein Slogan. Schreiben Sie uns, was Sie tragen, wie Sie es tragen, was besser sein könnte.",
+      ctaShare: "Feedback teilen",
+      ctaSee: "Beratung anfragen",
     },
     endCall: {
-      eyebrow: "Roi · Erste Auflage",
-      line1: "Sehen Sie die Welt",
-      line2: "in Ihrer eigenen Dimension.",
-      body: "Vier Stücke im Jahr. Kleine Auflage, von Hand nummeriert.",
+      eyebrow: "Roi · Kollektion I",
+      line1: "Sehen Sie die Welt aus",
+      line2: "Ihrer eigenen Perspektive.",
+      body: "Roi. Vier Stücke, ein einziger Blick.",
       ctaCollection: "Zur Kollektion",
       ctaAtelier: "Atelier entdecken",
     },
   },
   collectionIndex: {
-    metaTitle: "Die Kollektion – Roi. Vier Stücke.",
+    metaTitle: "Die Kollektion – Roi.",
     metaDescription:
-      "Roi. Vier Stücke im ersten Jahr: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € pro Stück, von Hand nummeriert.",
+      "Roi. Vier Stücke: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Italienisches Acetat, Handmontage, 78,90 € pro Stück.",
     breadcrumbHome: "Startseite",
     breadcrumbCollection: "Kollektion",
     eyebrowNumeral: "Kollektion I",
-    eyebrowLabel: "Erste Auflage · Nummeriert",
+    eyebrowLabel: "Roi",
     title: ["Roi.", "Vier Atmosphären,", "ein einziger Blick."],
     lede:
-      "Vier Stücke, ein Jahr. Jedes Exemplar von Hand nummeriert.\nAchtzig Euro. Nicht mehr, nicht weniger.",
+      "Vier Stücke, vier Atmosphären.\nEine editoriale Handschrift, eine einzige Signatur.",
     subtitles: "Der Salon · Die Jagd · Die Kapelle · Das Dîner",
-    subtitles2: "Kleine Auflage",
-    editorialTitle1: "Roi soll getragen werden.",
-    editorialTitle2: "Nicht verwahrt.",
+    subtitles2: "Paris · Berlin · London",
+    editorialTitle1: "Roi wird getragen.",
+    editorialTitle2: "Nicht ausgestellt.",
     editorialBody:
       "Die Kollektion steht in keinem Schaufenster. Wir zeigen sie nach Terminvereinbarung, unter vier Augen, in Paris, Berlin und London.",
     editorialCta: "Atelier entdecken",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
-      `${name} – kleine Auflage, von Hand nummeriert. ${price}.`,
+      `${name} – italienisches Acetat, Handmontage. ${price}.`,
     chapterPrefix: "Kapitel",
     theLieu: "Der Ort",
     theHeure: "Die Stunde",
@@ -1113,11 +1253,11 @@ const de: Dictionary = {
     noteLabel: (n) => `Note 0${n}`,
     lireQuatreAtmospheres: "„Vier Atmosphären“ lesen",
     section3Eyebrow: "§ 03",
-    section3Label: "Kleine Auflage",
+    section3Label: "Erwerben",
     prixParPiece: "Preis pro Stück",
-    niPlusNiMoins: "Nicht mehr, nicht weniger",
+    niPlusNiMoins: "Korrektur- oder Sonnengläser inklusive.",
     editionBreveBody:
-      "Von Hand nummeriert, im Inneren des linken Bügels. Geliefert im eigenen Etui – persönlich in Paris übergeben, überall sonst in Europa per verfolgtem Versand.",
+      "Geliefert im eigenen Etui. Persönliche Übergabe in Paris, in Europa per verfolgtem Versand.",
     twoWays: "Zwei Wege, es zu empfangen",
     way1Title: "Privater Termin",
     way1Body:
@@ -1131,53 +1271,75 @@ const de: Dictionary = {
     othersPieces: "Die drei weiteren Stücke",
   },
   atelier: {
-    metaTitle: "Das Atelier",
+    metaTitle: "Das Haus",
     metaDescription:
-      "Ein kleines französisches Brillenhaus. Kleine Auflage, mit Sorgfalt gefertigt, von Hand nummeriert.",
+      "L’Atelier d’Or, französisches Brillenhaus. Herkunft, Haltung, Materialien und Details der Kollektion Roi.",
     heroEyebrowNum: "Das Haus",
-    heroEyebrowLabel: "Atelier",
-    heroTitle1: "Vierzehn Hände,",
-    heroTitle2: "ein einziger Blick.",
+    heroEyebrowLabel: "L’Atelier d’Or",
+    heroTitle1: "Ein französisches",
+    heroTitle2: "Brillenhaus.",
     heroLede:
-      "Ein diskretes Atelier. Eine kleine Auflage. Jedes Stück von Hand entworfen, montiert und geprüft.",
-    houseEyebrow: "Das Haus",
-    houseBody: "Kleines französisches Brillenhaus.",
-    editionEyebrow: "Die Auflage",
-    editionBody: "Vier Stücke im ersten Jahr. Von Hand nummeriert, eines nach dem anderen.",
-    ruleEyebrow: "Die Regel",
-    ruleQuote: "„Was von Hand gemacht werden kann, wird von Hand gemacht.“",
-    section1Eyebrow: "§ 01",
-    section1Label: "Die Geste",
-    section1Title1: "Handgriffe lassen sich",
-    section1Title2: "nicht delegieren.",
-    section1Body:
-      "Jedes Paar durchläuft eine Reihe präziser Handgriffe. Eine Maschine kann schneller sein; sie kann nicht entscheiden, wann sie aufhört.",
-    gestes: [
-      { n: "I", label: "Anriss" },
-      { n: "II", label: "Zuschnitt" },
-      { n: "III", label: "Montage" },
-      { n: "IV", label: "Feilen" },
-      { n: "V", label: "Polieren" },
-      { n: "VI", label: "Prüfung" },
-      { n: "VII", label: "Finish" },
+      "L’Atelier d’Or entwirft und fertigt Brillen in Frankreich. Jeweils eine Kollektion, gedacht als editoriales Objekt, nicht als Produkt einer Saison.",
+    originEyebrow: "§ 01",
+    originLabel: "Die Herkunft",
+    originTitle: "Ein Haus, eine Handschrift.",
+    originParas: [
+      "L’Atelier d’Or entstand aus dem Wunsch nach einer klareren Brillenwelt: ein Entwurf, ein Material, eine Geste. Das Haus schreibt jeweils eine Kollektion, ohne Katalog, ohne Überangebot.",
+      "Die editoriale Handschrift geht dem Objekt voraus. Jede Fassung steht in einem Kapitel – ein Ort, eine Stunde, eine Atmosphäre – und nicht in einer kommerziellen Saison.",
+      "Das Designstudio arbeitet in Frankreich. Das Acetat kommt aus Italien, Platte für Platte ausgewählt. Die Montage erfolgt in Paris, von Hand.",
     ],
-    gesteWord: "Handgriff",
-    piece4Body:
-      "Ein Stück verlässt das Atelier nicht, solange es das Licht noch wie ein Metall auffängt. Wir wollen, dass es das Licht wie eine Haut hält.",
-    section2Eyebrow: "§ 02",
-    section2Label: "Die Zurückhaltung",
-    section2Title1: "Was wir bewusst",
-    section2Title2: "wenig hinzufügen.",
-    section2Body:
-      "Vier Stücke im ersten Jahr. Nicht mehr. Ein Haus baut sich durch das, was es der Welt nicht hinzufügt.",
+    approachEyebrow: "§ 02",
+    approachLabel: "Die Haltung",
+    approachTitle: "Drei Prinzipien, die die Linie halten.",
+    approachParas: [
+      "Wir suchen nicht das Neue um jeden Preis. Wir suchen die Richtigkeit eines Entwurfs, die Dichte eines Materials, die Fairness eines Preises. Das sind die drei einzigen Maßstäbe der Arbeit.",
+    ],
     principles: [
-      { t: "Kein Zwischenhandel", b: "Wir verkaufen direkt, online. Die Marge dient dem Stück, nicht dem Schaufenster." },
-      { t: "Kein Übermaß", b: "Eine kleine Auflage. Nicht mehr, nicht weniger, als es Sinn ergibt." },
-      { t: "Keine unnötige Beilage", b: "Ein Etui, ein Paar, eine Nummer. Nichts anderes verlässt das Haus." },
+      {
+        t: "Editorialer Entwurf",
+        b: "Jede Fassung wird geschrieben, bevor sie gezeichnet wird. Der Strich kommt von einem Ort, einem Rhythmus, einem Licht – nicht aus dem Saison-Trend.",
+      },
+      {
+        t: "Gewähltes Material",
+        b: "Italienisches Acetat, in der Masse gefärbt. Scharniere und Nieten aus Metall, von Hand finisiert. Wir wählen die Platte wie einen Stoff.",
+      },
+      {
+        t: "Direkter Weg",
+        b: "Online-Verkauf und private Termine in Paris, Berlin, London. Der Preis steht für das Stück, nie für die Zwischenhändler.",
+      },
     ],
     principleWord: "Prinzip",
-    ctaTitle1: "Sehen Sie die Welt",
-    ctaTitle2: "in Ihrer eigenen Dimension.",
+    collectionEyebrow: "§ 03",
+    collectionLabel: "Die Kollektion",
+    collectionTitle: "Roi – vier Stücke, ein einziger Blick.",
+    collectionBody:
+      "Die erste Kollektion, Roi, entfaltet vier Atmosphären: den Salon, die Jagd, die Kapelle, das Dîner. Vier Fassungen mit einer gemeinsamen Handschrift, vier Farben, die vier Arten öffnen, einen Raum zu betreten.",
+    materialsEyebrow: "§ 04",
+    materialsLabel: "Materialien & Details",
+    materialsTitle: "Was ein Stück zusammensetzt.",
+    materialsIntro:
+      "Die Materialien werden nach Dichte, Farbtreue und Verhalten in der Hand gewählt. Details werden mit Zurückhaltung hinzugefügt.",
+    materialsItems: [
+      {
+        t: "Italienisches Acetat",
+        b: "In der Masse gefärbt, die Platte für ihre Tiefe und ihr Lichtverhalten ausgesucht. Von Hand poliert, bis das Material ruhig wird.",
+      },
+      {
+        t: "Metallscharniere",
+        b: "Messing, je nach Stück golden, silbern oder bronze. Sichtbare Schrauben, bei jedem Optiker justierbar.",
+      },
+      {
+        t: "Kalibrierte Silhouetten",
+        b: "Rechteck, hohe Panto-Form, gestrecktes Oval, maskuline Panto-Form. Vier Silhouetten aus dutzenden Studienzeichnungen.",
+      },
+      {
+        t: "Gläser nach Wunsch",
+        b: "Korrektur- oder Sonnengläser, montiert durch unseren Meisteroptiker. Im Preis inbegriffen.",
+      },
+    ],
+    ctaEyebrow: "Kollektion",
+    ctaTitle1: "Sehen Sie die Welt aus",
+    ctaTitle2: "Ihrer eigenen Perspektive.",
     ctaBody: "Die Roi-Kollektion entdecken Sie online. Vier Stücke, ein einziger Blick.",
     cta: "Zur Kollektion",
   },
@@ -1456,6 +1618,83 @@ const de: Dictionary = {
         },
       ],
     },
+    retractation: {
+      metaTitle: "Widerrufsrecht",
+      metaDescription:
+        "Ihre Rechte als Käufer: Widerrufsfrist, Verfahren, Erstattung.",
+      numeral: "Heft — Diskretion",
+      rubric: "Widerrufsrecht",
+      title: "Eine Frist, eine Geste, eine Erstattung.",
+      chapo:
+        "Sie haben ab Lieferung ein vierzehntägiges Widerrufsrecht.",
+      sections: [
+        {
+          title: "Frist",
+          body: [
+            "Sie haben ab dem Tag des Erhalts des Stücks vierzehn Kalendertage Zeit, Ihr Widerrufsrecht ohne Angabe von Gründen auszuüben.",
+            "Dieses Recht gilt für Verbraucher in der Europäischen Union gemäß den nationalen Regelungen und der EU-Richtlinie 2011/83/EU.",
+          ],
+        },
+        {
+          title: "Wie Sie uns informieren",
+          body: [
+            "Um Ihr Widerrufsrecht auszuüben, schreiben Sie uns über die Seite „Beratung“ oder per E-Mail. Nennen Sie den Namen auf der Bestellung und die Stücknummer, bevor die vierzehn Tage abgelaufen sind.",
+            "Eine schriftliche eindeutige Erklärung genügt. Wir bestätigen den Erhalt unverzüglich und übermitteln Ihnen das Rücksendeverfahren.",
+          ],
+        },
+        {
+          title: "Rücksendung des Stücks",
+          body: [
+            "Das Stück muss uns im eigenen Etui, vollständig und unverändert, innerhalb von vierzehn Tagen nach Ihrer Erklärung zugesandt werden.",
+            "Die Rücksendekosten trägt der Käufer, sofern nicht ausdrücklich anders vereinbart.",
+          ],
+        },
+        {
+          title: "Erstattung",
+          body: [
+            "Die Erstattung des Stücks erfolgt spätestens vierzehn Tage nach Eingang der Rücksendung, über das ursprünglich verwendete Zahlungsmittel, sofern nicht anders vereinbart.",
+            "Die ursprünglichen Lieferkosten werden im selben Zeitraum erstattet, mit Ausnahme etwaiger Mehrkosten, die durch die Wahl einer teureren Versandart entstanden sind.",
+          ],
+        },
+        {
+          title: "Ausnahmen",
+          body: [
+            "Individualisierte Stücke – Montage von Korrekturgläsern nach Ihrer persönlichen Sehstärke – sind vom Widerrufsrecht ausgenommen, gemäß den geltenden Verbraucherschutzregelungen.",
+            "Für Fragen zu diesem Sonderfall schreiben Sie uns: wir prüfen jede Situation.",
+          ],
+        },
+      ],
+    },
+  },
+  feedback: {
+    metaTitle: "Feedback",
+    metaDescription:
+      "Ein ehrliches Feedback zur Kollektion Roi. Was Sie tragen, was besser sein könnte.",
+    eyebrowNum: "Feedback",
+    eyebrowLabel: "Eine Rückmeldung an das Haus",
+    title1: "Was Sie",
+    title2: "uns sagen möchten.",
+    lede:
+      "Ein kurzes, ehrliches Feedback ist mehr wert als ein langes Kompliment. Wir lesen jede Nachricht und veröffentlichen nur solche, die das Stück ohne Retusche beschreiben.",
+    formAria: "Formular für Ihre Rückmeldung",
+    nameLabel: "Ihr Name",
+    emailLabel: "Ihre E-Mail",
+    modelLabel: "Betreffendes Stück",
+    modelPlaceholder: "Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude…",
+    ratingLabel: "Ihre Einschätzung",
+    ratingOptions: ["Ausgezeichnet", "Gut", "Ausreichend", "Zu überarbeiten"],
+    messageLabel: "Ihre Rückmeldung",
+    consent: "Ich bin einverstanden, dass diese Rückmeldung – ohne meinen Namen – auf der Stimmen-Seite zitiert werden darf.",
+    submit: "Feedback senden",
+    submitting: "Wird gesendet…",
+    thanksTitle: "Danke.",
+    thanksBody: "Ihre Rückmeldung ist eingegangen. Wir antworten persönlich.",
+    errorEmpty: "Ein paar Worte und Ihr Name, damit wir antworten können.",
+    errorSetup: "Der Dienst wird derzeit eingerichtet. Bitte später erneut versuchen.",
+    errorSend: "Ihre Nachricht wurde nicht gesendet. Ihre Worte bleiben erhalten; bitte erneut versuchen.",
+    conseilFooterBody:
+      "Sie haben eine persönlichere Frage, brauchen Beratung zu einem Stück oder eine Anpassung?",
+    conseilFooterCta: "Beratung anfragen",
   },
   pieceSwitcher: {
     label: "Weitere Stücke",

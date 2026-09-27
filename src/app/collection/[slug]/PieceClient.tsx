@@ -23,28 +23,28 @@ export default function PieceClient({ piece }: { piece: Piece }) {
 
   return (
     <>
-      <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
+      <section className="relative pt-28 md:pt-32 pb-10 md:pb-14 overflow-hidden">
         <div className="n-page relative">
           <PageEyebrow
             numeral={`${t.piece.chapterPrefix} ${piece.numeral}`}
             label={chapterHeader}
-            className="mb-14"
+            className="mb-6"
           />
 
-          <div className="grid grid-cols-12 gap-x-6 items-end relative">
+          <div className="grid grid-cols-12 gap-x-6 items-baseline relative">
             <div className="col-span-12 md:col-span-8">
               <LineReveal
                 as="h1"
-                className="n-display leading-[0.94]"
-                lines={[piece.name.split(" ")[0], piece.name.split(" ").slice(1).join(" ")]}
-                delayStep={130}
-                style={{ fontSize: "clamp(72px, 14vw, 240px)" }}
+                className="n-display leading-[1]"
+                lines={[piece.name]}
+                delayStep={0}
+                style={{ fontSize: "clamp(40px, 6.4vw, 96px)" }}
               />
             </div>
-            <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
+            <div className="col-span-12 md:col-span-4 mt-4 md:mt-0">
               <p
-                className="n-serif-italic text-[22px] leading-[1.35]"
-                style={{ color: "var(--n-muted)" }}
+                className="n-serif-italic leading-[1.35] max-w-[38ch]"
+                style={{ fontSize: "17px", color: "var(--n-muted)" }}
               >
                 « {loc.tagline} »
               </p>
@@ -53,44 +53,95 @@ export default function PieceClient({ piece }: { piece: Piece }) {
 
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-8 right-[3vw] opacity-[0.08] select-none"
+            className="pointer-events-none absolute -top-6 right-[3vw] opacity-[0.05] select-none"
           >
             <span
               className="n-display leading-none"
-              style={{ fontSize: "clamp(220px, 42vw, 640px)" }}
+              style={{ fontSize: "clamp(140px, 24vw, 380px)" }}
             >
               <Numeral n={piece.index} />
             </span>
           </span>
         </div>
 
-        <div className="n-page mt-24 grid grid-cols-12 gap-x-6 items-start">
+        <div className="n-page mt-8 md:mt-10 grid grid-cols-12 gap-x-6 items-start">
           <div className="col-span-12 md:col-span-8 relative">
             <ProductGallery
               ratio="1 / 1"
               slides={[
-                { src: piece.image ?? "", alt: studioAlt, fit: "contain" as const },
-                ...(piece.imageWorn
-                  ? [{ src: piece.imageWorn, alt: wornAlt, fit: "cover" as const, position: "50% 30%" }]
+                ...(piece.video
+                  ? [
+                      {
+                        kind: "video" as const,
+                        src: piece.video,
+                        poster: piece.videoPoster,
+                        alt: studioAlt,
+                        fit: "cover" as const,
+                      },
+                    ]
                   : []),
-              ].filter((s) => s.src)}
+                ...(piece.image
+                  ? [
+                      {
+                        kind: "image" as const,
+                        src: piece.image,
+                        alt: studioAlt,
+                        fit: "contain" as const,
+                      },
+                    ]
+                  : []),
+                ...(piece.imageWorn
+                  ? [
+                      {
+                        kind: "image" as const,
+                        src: piece.imageWorn,
+                        alt: wornAlt,
+                        fit: "cover" as const,
+                        position: "50% 30%",
+                      },
+                    ]
+                  : []),
+                ...(piece.extraImages ?? []).map((src, i) => ({
+                  kind: "image" as const,
+                  src,
+                  alt: `${piece.name} · ${i + 1}`,
+                  fit: "cover" as const,
+                  position: "50% 50%",
+                })),
+              ]}
             />
           </div>
 
-          <aside className="col-span-12 md:col-span-4 mt-12 md:mt-4 flex flex-col gap-10">
+          <aside className="col-span-12 md:col-span-4 mt-10 md:mt-2 flex flex-col gap-8">
             <PieceSwitcher current={piece.slug} />
             <div className="h-px" style={{ background: "var(--n-line-soft)" }} />
-            <div>
-              <div className="n-eyebrow mb-3">{t.piece.theLieu}</div>
-              <p className="n-serif text-[19px] leading-[1.4]">{loc.place}</p>
+            <div className="grid grid-cols-2 md:grid-cols-1 gap-6">
+              <div>
+                <div className="n-eyebrow mb-2">{t.piece.theLieu}</div>
+                <p className="n-serif leading-[1.35]" style={{ fontSize: "16px" }}>
+                  {loc.place}
+                </p>
+              </div>
+              <div>
+                <div className="n-eyebrow mb-2">{t.piece.theHeure}</div>
+                <p className="n-serif leading-[1.35]" style={{ fontSize: "16px" }}>
+                  {loc.time}
+                </p>
+              </div>
+              <div className="col-span-2 md:col-span-1">
+                <div className="n-eyebrow mb-2">{t.piece.silhouette}</div>
+                <p className="n-serif leading-[1.35]" style={{ fontSize: "16px" }}>
+                  {loc.silhouette}
+                </p>
+              </div>
             </div>
-            <div>
-              <div className="n-eyebrow mb-3">{t.piece.theHeure}</div>
-              <p className="n-serif text-[19px] leading-[1.4]">{loc.time}</p>
-            </div>
-            <div>
-              <div className="n-eyebrow mb-3">{t.piece.silhouette}</div>
-              <p className="n-serif text-[19px] leading-[1.4]">{loc.silhouette}</p>
+            <div className="flex items-baseline gap-6 pt-4 border-t" style={{ borderColor: "var(--n-line-soft)" }}>
+              <span className="n-serif leading-none" style={{ fontSize: "24px" }}>
+                {formatPrice(piece.priceEuro, locale)}
+              </span>
+              <Link href="/conseil" className="n-link">
+                {t.piece.ctaEcrire}
+              </Link>
             </div>
           </aside>
         </div>
@@ -302,6 +353,56 @@ export default function PieceClient({ piece }: { piece: Piece }) {
               {t.piece.lireQuatreAtmospheres}
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* Éditorial gallery — grand format, horizontal swipe */}
+      <section className="relative pb-16 md:pb-24">
+        <div className="n-page">
+          <ProductGallery
+            ratio="16 / 10"
+            slides={[
+              ...(piece.video
+                ? [
+                    {
+                      kind: "video" as const,
+                      src: piece.video,
+                      poster: piece.videoPoster,
+                      alt: studioAlt,
+                      fit: "cover" as const,
+                    },
+                  ]
+                : []),
+              ...(piece.image
+                ? [
+                    {
+                      kind: "image" as const,
+                      src: piece.image,
+                      alt: studioAlt,
+                      fit: "contain" as const,
+                    },
+                  ]
+                : []),
+              ...(piece.imageWorn
+                ? [
+                    {
+                      kind: "image" as const,
+                      src: piece.imageWorn,
+                      alt: wornAlt,
+                      fit: "cover" as const,
+                      position: "50% 30%",
+                    },
+                  ]
+                : []),
+              ...(piece.extraImages ?? []).map((src, i) => ({
+                kind: "image" as const,
+                src,
+                alt: `${piece.name} · ${i + 1}`,
+                fit: "cover" as const,
+                position: "50% 50%",
+              })),
+            ]}
+          />
         </div>
       </section>
 

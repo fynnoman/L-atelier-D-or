@@ -15,6 +15,7 @@ export default function Footer() {
         { href: "/atelier", label: t.nav.atelier },
         { href: "/journal", label: t.nav.journal },
         { href: "/avis", label: t.nav.avis },
+        { href: "/feedback", label: t.nav.feedback },
         { href: "/faq", label: t.nav.questions },
         { href: "/conseil", label: t.nav.conseil },
       ],
@@ -22,7 +23,6 @@ export default function Footer() {
     {
       title: t.footer.columnCollection,
       items: [
-        { href: "/collection", label: t.footer.labelPremiereCollection },
         { href: "/collection/roi-rouge", label: "Roi Rouge" },
         { href: "/collection/roi-noir", label: "Roi Noir" },
         { href: "/collection/roi-cristal", label: "Roi Cristal" },
@@ -34,6 +34,7 @@ export default function Footer() {
       items: [
         { href: "/mentions-legales", label: t.footer.labelMentionsLegales },
         { href: "/confidentialite", label: t.footer.labelConfidentialite },
+        { href: "/retractation", label: t.footer.labelRetractation },
         { href: "/accessibilite", label: t.footer.labelAccessibilite },
       ],
     },

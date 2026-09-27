@@ -18,6 +18,15 @@ export type Piece = {
   mood: Mood;
   image?: string;
   imageWorn?: string;
+  extraImages?: string[];
+  /**
+   * Optionaler Produktvideo-Pfad (public/). Wenn gesetzt, wird das Video
+   * als erster Slide in Produktkarten und Galerien angezeigt. Aktuell
+   * keine per-piece Videos hinterlegt — der Slider fällt automatisch auf
+   * Bilder zurück, sobald das Feld undefined ist.
+   */
+  video?: string;
+  videoPoster?: string;
   priceEuro: 78.9;
 };
 

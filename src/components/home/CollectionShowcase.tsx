@@ -14,6 +14,10 @@ const TONE: Record<Piece["mood"], "rouge" | "foret" | "cristal" | "emeraude"> = 
   emeraude: "emeraude",
 };
 
+type Slide =
+  | { kind: "video"; src: string; poster?: string; alt: string }
+  | { kind: "image"; src: string; alt: string; fit: "contain" | "cover"; pos: string };
+
 function PieceCard({ piece }: { piece: Piece }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
@@ -21,9 +25,43 @@ function PieceCard({ piece }: { piece: Piece }) {
   const t = useT();
   const loc = localizePiece(piece, locale);
   const wornAlt = locale === "de" ? `${piece.name} getragen` : `${piece.name} portée`;
-  const slides: { src: string; alt: string; fit: "contain" | "cover"; pos: string }[] = [];
-  if (piece.image) slides.push({ src: piece.image, alt: `${piece.name} · ${loc.tagline}`, fit: "contain", pos: "50% 50%" });
-  if (piece.imageWorn) slides.push({ src: piece.imageWorn, alt: wornAlt, fit: "cover", pos: "50% 30%" });
+
+  const slides: Slide[] = [];
+  if (piece.video) {
+    slides.push({
+      kind: "video",
+      src: piece.video,
+      poster: piece.videoPoster,
+      alt: `${piece.name} · ${loc.tagline}`,
+    });
+  }
+  if (piece.image) {
+    slides.push({
+      kind: "image",
+      src: piece.image,
+      alt: `${piece.name} · ${loc.tagline}`,
+      fit: "contain",
+      pos: "50% 50%",
+    });
+  }
+  if (piece.imageWorn) {
+    slides.push({
+      kind: "image",
+      src: piece.imageWorn,
+      alt: wornAlt,
+      fit: "cover",
+      pos: "50% 30%",
+    });
+  }
+  (piece.extraImages ?? []).forEach((src, i) => {
+    slides.push({
+      kind: "image",
+      src,
+      alt: `${piece.name} · ${i + 1}`,
+      fit: "cover",
+      pos: "50% 50%",
+    });
+  });
 
   useEffect(() => {
     const tt = trackRef.current;
@@ -56,25 +94,44 @@ function PieceCard({ piece }: { piece: Piece }) {
               className="absolute inset-0 flex overflow-x-auto snap-x snap-mandatory scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               style={{ WebkitOverflowScrolling: "touch" }}
             >
-              {slides.map((s, i) => (
-                <div
-                  key={i}
-                  className="flex-none w-full h-full snap-start relative"
-                >
-                  <img
-                    src={s.src}
-                    alt={s.alt}
-                    draggable={false}
-                    className="absolute inset-0 w-full h-full"
-                    style={{
-                      objectFit: s.fit,
-                      objectPosition: s.pos,
-                    }}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              ))}
+              {slides.map((s, i) =>
+                s.kind === "video" ? (
+                  <div
+                    key={i}
+                    className="flex-none w-full h-full snap-start relative"
+                  >
+                    <video
+                      src={s.src}
+                      poster={s.poster}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label={s.alt}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    key={i}
+                    className="flex-none w-full h-full snap-start relative"
+                  >
+                    <img
+                      src={s.src}
+                      alt={s.alt}
+                      draggable={false}
+                      className="absolute inset-0 w-full h-full"
+                      style={{
+                        objectFit: s.fit,
+                        objectPosition: s.pos,
+                      }}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                )
+              )}
             </div>
           ) : (
             <div className={`n-tile is-${TONE[piece.mood]}`} />

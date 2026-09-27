@@ -81,7 +81,7 @@ export default function AvisClient() {
             >
               {t.avis.ctaBody}
             </p>
-            <Link href="/conseil" className="n-cta">
+            <Link href="/feedback" className="n-cta">
               {t.avis.cta}
             </Link>
           </div>

@@ -2,12 +2,21 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-type Slide = {
+type ImageSlide = {
+  kind?: "image";
   src: string;
   alt: string;
   fit?: "cover" | "contain";
   position?: string;
 };
+type VideoSlide = {
+  kind: "video";
+  src: string;
+  alt: string;
+  poster?: string;
+  fit?: "cover" | "contain";
+};
+export type Slide = ImageSlide | VideoSlide;
 
 export default function ProductGallery({
   slides,
@@ -66,18 +75,35 @@ export default function ProductGallery({
               borderRadius: "clamp(18px, 1.8vw, 32px)",
             }}
           >
-            <img
-              src={s.src}
-              alt={s.alt}
-              draggable={false}
-              className="absolute inset-0 w-full h-full"
-              style={{
-                objectFit: s.fit ?? "cover",
-                objectPosition: s.position ?? "50% 50%",
-              }}
-              loading={i === 0 ? "eager" : "lazy"}
-              decoding="async"
-            />
+            {s.kind === "video" ? (
+              <video
+                src={s.src}
+                poster={s.poster}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload={i === 0 ? "auto" : "metadata"}
+                aria-label={s.alt}
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  objectFit: s.fit ?? "cover",
+                }}
+              />
+            ) : (
+              <img
+                src={s.src}
+                alt={s.alt}
+                draggable={false}
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  objectFit: s.fit ?? "cover",
+                  objectPosition: s.position ?? "50% 50%",
+                }}
+                loading={i === 0 ? "eager" : "lazy"}
+                decoding="async"
+              />
+            )}
           </div>
         ))}
       </div>

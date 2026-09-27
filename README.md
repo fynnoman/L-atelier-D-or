@@ -56,3 +56,33 @@ Without an endpoint, submission prepares an email in the visitor's mail client.
 The card explicitly asks the visitor to send it there; it never claims delivery.
 The visitor can return to their entered text or stow the card. Failed network
 requests retain the text and show an error on the card itself.
+
+## Feedback (`/feedback`)
+
+A dedicated page for post-purchase feedback on the Roi collection. The form
+POSTs to the same third-party endpoint pattern as the concierge; if neither an
+endpoint nor a recipient is configured, a clear "in preparation" error is shown.
+
+Server-only variables (never expose in `NEXT_PUBLIC_*`):
+
+- `NEXT_PUBLIC_FEEDBACK_ENDPOINT` — HTTPS form service accepting the JSON payload.
+- `NEXT_PUBLIC_FEEDBACK_ACCESS_KEY` — key required by that service (public-safe when the service is a public-form gateway).
+- `NEXT_PUBLIC_FEEDBACK_EMAIL` — mail-client fallback if no endpoint is set.
+
+## Newsletter (Resend)
+
+The newsletter form posts to the server route `POST /api/newsletter/subscribe`,
+which sends a welcome mail via [Resend](https://resend.com/).
+
+Required server-only variables (do **not** prefix with `NEXT_PUBLIC_`):
+
+- `RESEND_API_KEY` — API key from the Resend dashboard.
+- `NEWSLETTER_FROM_EMAIL` — sender in the form `L'Atelier d'Or <lettre@yourdomain.com>`. Domain must be verified in Resend.
+
+Optional:
+
+- `NEWSLETTER_AUDIENCE_ID` — if set, the address is added to the given Resend audience.
+- `NEWSLETTER_INTERNAL_TO` — internal address that receives a short heads-up for every new subscriber.
+
+Without `RESEND_API_KEY` + `NEWSLETTER_FROM_EMAIL`, the route replies with HTTP 503
+and the form shows the "in preparation" state — nothing is exposed to the client.

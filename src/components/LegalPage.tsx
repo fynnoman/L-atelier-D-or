@@ -4,7 +4,7 @@ import LineReveal from "./LineReveal";
 import PageEyebrow from "./PageEyebrow";
 import { useT } from "@/lib/i18n/LanguageContext";
 
-type LegalKey = "mentions" | "privacy" | "a11y";
+type LegalKey = "mentions" | "privacy" | "a11y" | "retractation";
 
 export default function LegalPage({ kind }: { kind: LegalKey }) {
   const t = useT();

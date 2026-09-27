@@ -3,9 +3,6 @@
 import { useRef, useState, type FormEvent } from "react";
 import { useT } from "@/lib/i18n/LanguageContext";
 
-const endpoint = process.env.NEXT_PUBLIC_NEWSLETTER_ENDPOINT;
-const accessKey = process.env.NEXT_PUBLIC_NEWSLETTER_ACCESS_KEY;
-
 type Status = "idle" | "sending" | "ok" | "error";
 
 export default function NewsletterSignup() {
@@ -25,22 +22,23 @@ export default function NewsletterSignup() {
       setMessage(t.newsletter.errorEmpty);
       return;
     }
-    if (!endpoint) {
-      setStatus("error");
-      setMessage(t.newsletter.errorSetup);
-      return;
-    }
     busyRef.current = true;
     setStatus("sending");
     setMessage("");
-    const payload: Record<string, string> = { email };
-    if (accessKey) payload.access_key = accessKey;
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("/api/newsletter/subscribe", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({ email }),
       });
+      if (response.status === 503) {
+        setStatus("error");
+        setMessage(t.newsletter.errorSetup);
+        return;
+      }
       if (!response.ok) throw new Error("Rejected");
       formRef.current?.reset();
       setStatus("ok");
