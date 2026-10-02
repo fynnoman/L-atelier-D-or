@@ -86,25 +86,3 @@ Optional:
 
 Without `RESEND_API_KEY` + `NEWSLETTER_FROM_EMAIL`, the route replies with HTTP 503
 and the form shows the "in preparation" state — nothing is exposed to the client.
-
-## Panther signature
-
-Three restrained appearances share an original, locally hosted 3D sculpture: the home-page
-editorial interlude, the closing signature, and the collection introduction. The model has
-independent head, eye, and tail groups for breathing, occasional glances, blinking, and tail
-movement. French/German copy follows the existing language selector.
-
-- `src/components/panther/` contains the lazy-loaded scene and responsive presentation.
-- `public/panther/panther.glb` is an original procedural mesh, with no external model,
-  texture, CDN, or asset-license dependency. Rebuild it with `node scripts/build-panther.mjs`.
-- `public/panther/panther-poster.webp` is a transparent render of that sculpture, used
-  before loading, without JavaScript, and after a WebGL failure. If changing the model or
-  lighting, regenerate the poster from the same camera on a transparent background.
-- Off-screen canvases unmount; hidden tabs, reduced-motion preferences, and the pause
-  control stop animation. Pixel density is capped at 1.5. Model geometry and materials
-  are shared through the loader cache; each appearance gets its own animation transforms.
-
-Validation: production build, targeted ESLint, desktop/mobile rendering (1440px/390px),
-pause/resume, scroll-out/scroll-in, reduced motion, context-loss fallback, and no-JavaScript
-poster rendering. `LineReveal` accepts HTML text tags explicitly so React Three Fiber's
-additional JSX elements cannot widen its tag type into incompatible 3D props.
