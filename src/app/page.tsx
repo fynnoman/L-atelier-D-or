@@ -4,6 +4,7 @@ import WornGallery from "@/components/home/WornGallery";
 import CollectionShowcase from "@/components/home/CollectionShowcase";
 import AvisTeaser from "@/components/home/AvisTeaser";
 import EndCall from "@/components/home/EndCall";
+import PantherMoment from "@/components/panther/PantherMoment";
 import { PIECES } from "@/data/collection";
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <ScrollVideoHero />
       <AlternatingPieces pieces={PIECES} />
+      <PantherMoment />
       <WornGallery pieces={PIECES} />
       <CollectionShowcase pieces={PIECES} />
       <AvisTeaser />

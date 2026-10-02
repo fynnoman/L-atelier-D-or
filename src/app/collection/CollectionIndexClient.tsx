@@ -5,6 +5,7 @@ import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
+import Panther from "@/components/panther/Panther";
 import { PIECES } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
@@ -35,6 +36,7 @@ export default function CollectionIndexClient() {
               />
             </div>
             <div className="col-span-12 md:col-span-3 mt-10 md:mt-0">
+              <Panther variant="collection" />
               <p
                 className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
                 style={{ color: "var(--n-muted)", whiteSpace: "pre-line" }}

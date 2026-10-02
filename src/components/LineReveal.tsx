@@ -1,9 +1,9 @@
 import { clsx } from "clsx";
-import type { CSSProperties, ElementType } from "react";
+import type { CSSProperties } from "react";
 
 type Props = {
   lines: string[];
-  as?: ElementType;
+  as?: "div" | "span" | "p" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
   className?: string;
   lineClassName?: string;
   delayStep?: number;

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import LineReveal from "../LineReveal";
+import Panther from "../panther/Panther";
 import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function EndCall() {
@@ -16,6 +17,7 @@ export default function EndCall() {
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6">
           <div className="col-span-12 text-center">
+            <Panther variant="signature" />
             <span
               className="n-eyebrow"
               style={{ color: "rgba(237,227,206,0.72)" }}
