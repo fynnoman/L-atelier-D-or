@@ -6,8 +6,6 @@ import { useT, useLocale } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
 import { PIECES } from "@/data/collection";
 
-const LOOP_FROM = 10;
-
 export default function ScrollVideoHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -20,31 +18,7 @@ export default function ScrollVideoHero() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-
-    const seekToLoop = () => {
-      try {
-        v.currentTime = LOOP_FROM;
-      } catch {}
-    };
-
-    const onLoaded = () => {
-      seekToLoop();
-      v.play().catch(() => {});
-    };
-
-    const onEnded = () => {
-      seekToLoop();
-      v.play().catch(() => {});
-    };
-
-    if (v.readyState >= 1) onLoaded();
-    else v.addEventListener("loadedmetadata", onLoaded);
-    v.addEventListener("ended", onEnded);
-
-    return () => {
-      v.removeEventListener("loadedmetadata", onLoaded);
-      v.removeEventListener("ended", onEnded);
-    };
+    v.play().catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -95,20 +69,21 @@ export default function ScrollVideoHero() {
         <div className="relative flex-none w-full h-full snap-start">
           <video
             ref={videoRef}
-            poster="/video/hero-poster.jpg"
+            poster="/video/hero-loop-poster.jpg"
             autoPlay
             muted
+            loop
             playsInline
-            preload="auto"
+            preload="metadata"
             className="absolute inset-0 w-full h-full object-cover"
             aria-hidden
           >
             <source
-              src="/video/hero-mobile.mp4"
+              src="/video/hero-loop-mobile.mp4"
               type="video/mp4"
               media="(max-width: 768px)"
             />
-            <source src="/video/hero.mp4" type="video/mp4" />
+            <source src="/video/hero-loop.mp4" type="video/mp4" />
           </video>
 
           <div
