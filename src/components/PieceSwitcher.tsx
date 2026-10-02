@@ -24,17 +24,27 @@ export default function PieceSwitcher({ current }: { current: Piece["slug"] }) {
               className="group flex-1 flex flex-col items-center gap-2"
             >
               <span
-                className="block w-full aspect-square transition-transform duration-500 ease-out group-hover:scale-[0.96]"
+                className="relative block w-full aspect-square overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[0.98]"
                 style={{
                   background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)`,
                   border: active
                     ? "2px solid var(--n-ink)"
                     : "1px solid var(--n-line)",
-                  boxShadow: active
-                    ? "inset 0 0 0 3px var(--n-bg)"
-                    : "none",
+                  borderRadius: "clamp(6px, 0.6vw, 10px)",
                 }}
-              />
+              >
+                {p.image && (
+                  <img
+                    src={p.image}
+                    alt=""
+                    aria-hidden
+                    draggable={false}
+                    className="absolute inset-0 w-full h-full object-contain p-[14%] transition-transform duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.04]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </span>
               <span
                 className="n-meta text-center leading-tight"
                 style={{

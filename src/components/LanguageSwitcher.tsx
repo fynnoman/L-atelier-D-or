@@ -6,6 +6,8 @@ import { useLanguage, type Locale } from "@/lib/i18n/LanguageContext";
 const LOCALES: { code: Locale; label: string; short: string }[] = [
   { code: "fr", label: "Français", short: "FR" },
   { code: "de", label: "Deutsch", short: "DE" },
+  { code: "en", label: "English", short: "EN" },
+  { code: "it", label: "Italiano", short: "IT" },
 ];
 
 export default function LanguageSwitcher({

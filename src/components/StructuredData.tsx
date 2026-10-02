@@ -23,7 +23,7 @@ export function organizationJsonLd(siteUrl: string) {
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     description:
-      "Petite maison française de lunetterie. Édition brève, numérotée à la main.",
+      "Maison française de lunetterie. Acétate italien, montage à la main, à Paris.",
   };
 }
 

@@ -46,7 +46,17 @@ export default function IntroOverlay({
     if (!visible) return;
     const v = videoRef.current;
     if (!v) return;
+    v.playbackRate = 1.5;
+    const applyRate = () => {
+      v.playbackRate = 1.5;
+    };
+    v.addEventListener("play", applyRate);
+    v.addEventListener("loadedmetadata", applyRate);
     v.play().catch(() => {});
+    return () => {
+      v.removeEventListener("play", applyRate);
+      v.removeEventListener("loadedmetadata", applyRate);
+    };
   }, [visible]);
 
   const dismiss = () => {

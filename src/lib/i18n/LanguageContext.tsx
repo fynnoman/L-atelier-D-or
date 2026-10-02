@@ -11,7 +11,7 @@ import {
 } from "react";
 import { dictionaries, type Dictionary } from "./dictionaries";
 
-export type Locale = "fr" | "de";
+export type Locale = "fr" | "de" | "en" | "it";
 const STORAGE_KEY = "lad_lang_v1";
 const DEFAULT_LOCALE: Locale = "fr";
 
@@ -24,7 +24,7 @@ type Ctx = {
 const LanguageContext = createContext<Ctx | null>(null);
 
 function isLocale(v: unknown): v is Locale {
-  return v === "fr" || v === "de";
+  return v === "fr" || v === "de" || v === "en" || v === "it";
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
@@ -40,9 +40,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
       }
     } catch {}
     const nav = typeof navigator !== "undefined" ? navigator.language?.slice(0, 2) : "";
-    if (nav === "de") {
-      setLocaleState("de");
-      document.documentElement.lang = "de";
+    if (nav === "de" || nav === "en" || nav === "it") {
+      setLocaleState(nav as Locale);
+      document.documentElement.lang = nav;
     }
   }, []);
 

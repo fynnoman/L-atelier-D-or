@@ -19,32 +19,26 @@ export default function PieceClient({ piece }: { piece: Piece }) {
   const others = PIECES.filter((p) => p.slug !== piece.slug);
   const wornAlt = locale === "de" ? `${piece.name} — getragen` : `${piece.name} — portée`;
   const studioAlt = locale === "de" ? `${piece.name} — Studio` : `${piece.name} — Studio`;
-  const chapterHeader = loc.chapter.replace(/^Chapitre [IVX]+\s*[·—-]\s*/, "").replace(/^Kapitel [IVX]+\s*[·—-]\s*/, "");
-
   return (
     <>
-      <section className="relative pt-28 md:pt-32 pb-10 md:pb-14 overflow-hidden">
+      <section className="relative pt-24 md:pt-28 pb-6 md:pb-10 overflow-hidden">
         <div className="n-page relative">
-          <PageEyebrow
-            numeral={`${t.piece.chapterPrefix} ${piece.numeral}`}
-            label={chapterHeader}
-            className="mb-6"
-          />
+          <PageEyebrow label={loc.chapter} className="mb-4" />
 
           <div className="grid grid-cols-12 gap-x-6 items-baseline relative">
-            <div className="col-span-12 md:col-span-8">
+            <div className="col-span-12 md:col-span-7">
               <LineReveal
                 as="h1"
                 className="n-display leading-[1]"
                 lines={[piece.name]}
                 delayStep={0}
-                style={{ fontSize: "clamp(40px, 6.4vw, 96px)" }}
+                style={{ fontSize: "clamp(32px, 4.2vw, 64px)", fontWeight: 300 }}
               />
             </div>
-            <div className="col-span-12 md:col-span-4 mt-4 md:mt-0">
+            <div className="col-span-12 md:col-span-5 mt-3 md:mt-0">
               <p
-                className="n-serif-italic leading-[1.35] max-w-[38ch]"
-                style={{ fontSize: "17px", color: "var(--n-muted)" }}
+                className="n-serif-italic leading-[1.35] max-w-[42ch]"
+                style={{ fontSize: "15px", color: "var(--n-muted)" }}
               >
                 « {loc.tagline} »
               </p>
@@ -53,11 +47,11 @@ export default function PieceClient({ piece }: { piece: Piece }) {
 
           <span
             aria-hidden
-            className="pointer-events-none absolute -top-6 right-[3vw] opacity-[0.05] select-none"
+            className="pointer-events-none absolute -top-2 right-[3vw] opacity-[0.035] select-none"
           >
             <span
               className="n-display leading-none"
-              style={{ fontSize: "clamp(140px, 24vw, 380px)" }}
+              style={{ fontSize: "clamp(96px, 16vw, 220px)" }}
             >
               <Numeral n={piece.index} />
             </span>
@@ -156,7 +150,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             <PageEyebrow numeral={t.piece.section1Eyebrow} label={t.piece.section1Label} className="mb-8" />
             <h2
               className="n-display leading-[0.96]"
-              style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
+              style={{ fontSize: "clamp(32px, 4.2vw, 56px)", fontWeight: 300 }}
             >
               {loc.materie.split(" · ")[0]}
             </h2>
@@ -184,8 +178,8 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                 aria-hidden
                 className="absolute -top-4 -left-2 n-display leading-none pointer-events-none select-none"
                 style={{
-                  fontSize: "clamp(180px, 28vw, 340px)",
-                  color: "rgba(255,255,255,0.10)",
+                  fontSize: "clamp(120px, 18vw, 220px)",
+                  color: "rgba(255,255,255,0.08)",
                   fontWeight: 200,
                 }}
               >
@@ -302,7 +296,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             <PageEyebrow numeral={t.piece.section2Eyebrow} label={t.piece.section2Label} className="mb-8" />
             <h2
               className="n-display leading-[0.96]"
-              style={{ fontSize: "clamp(40px, 6vw, 84px)" }}
+              style={{ fontSize: "clamp(32px, 4.2vw, 56px)", fontWeight: 300 }}
             >
               <span className="n-serif-italic opacity-80">{t.piece.section2Title1}</span> <br />
               {t.piece.section2Title2}
@@ -416,7 +410,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             <div className="flex items-baseline gap-8 mb-8">
               <span
                 className="n-display leading-none"
-                style={{ fontSize: "clamp(76px, 11vw, 180px)" }}
+                style={{ fontSize: "clamp(44px, 6vw, 96px)", fontWeight: 300 }}
               >
                 {formatPrice(piece.priceEuro, locale)}
               </span>

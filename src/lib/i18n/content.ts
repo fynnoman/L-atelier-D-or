@@ -51,7 +51,7 @@ export function localizeCahier(cahier: Cahier, locale: Locale): LocalizedCahier 
   if (!dict) return cahier as LocalizedCahier;
   return {
     ...cahier,
-    rubric: dict.rubric as Cahier["rubric"],
+    rubric: dict.rubric,
     title: dict.title,
     chapo: dict.chapo,
     read: dict.read,

@@ -41,17 +41,17 @@ const siteUrl =
 
 export const metadata: Metadata = {
   title: {
-    default: "L'Atelier d'Or — Petite maison française de lunetterie",
+    default: "L'Atelier d'Or — Maison française de lunetterie",
     template: "%s · L'Atelier d'Or",
   },
   description:
-    "Petite maison française de lunetterie. Édition brève, numérotée à la main.",
+    "Maison française de lunetterie. Acétate italien, montage à la main, à Paris.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   openGraph: {
     title: "L'Atelier d'Or",
     description:
-      "Entrez dans une vision d'exception. Voyez le monde à votre dimension.",
+      "Voyez le monde depuis votre propre perspective. La collection Roi en quatre pièces.",
     type: "website",
     locale: "fr_FR",
     url: siteUrl,
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "L'Atelier d'Or",
-    description: "Petite maison française de lunetterie. Édition brève.",
+    description: "Maison française de lunetterie. Acétate italien, montage à la main.",
     images: ["/og-image.jpg"],
   },
   robots: {

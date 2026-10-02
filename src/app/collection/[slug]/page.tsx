@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!piece) return {};
   return {
     title: `${piece.name} — ${piece.tagline}`,
-    description: `${piece.name} — édition brève, numérotée à la main. ${formatEuro(piece.priceEuro)}.`,
+    description: `${piece.name} — acétate italien, montage à la main. ${formatEuro(piece.priceEuro)}.`,
     alternates: { canonical: `/collection/${piece.slug}` },
   };
 }

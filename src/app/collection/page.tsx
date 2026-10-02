@@ -6,9 +6,9 @@ const siteUrl =
   "https://laterlierdor-fynn-schulzs-projects.vercel.app";
 
 export const metadata = {
-  title: "La Collection — Roi. Quatre pièces.",
+  title: "La Collection — Roi.",
   description:
-    "Roi. Quatre pièces la première année : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. 78,90 € l'exemplaire, numérotée à la main.",
+    "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate italien, montage à la main, 78,90 € l'exemplaire.",
   alternates: { canonical: "/collection" },
 };
 

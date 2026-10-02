@@ -1,9 +1,9 @@
 import AtelierClient from "./AtelierClient";
 
 export const metadata = {
-  title: "L’Atelier",
+  title: "La Maison",
   description:
-    "Une petite maison française de lunetterie. Édition brève, faite avec soin, numérotée à la main.",
+    "L’Atelier d’Or, maison française de lunetterie. Histoire, savoir-faire, matériaux et détails de la collection Roi.",
   alternates: { canonical: "/atelier" },
 };
 

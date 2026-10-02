@@ -83,11 +83,7 @@ export default function FeedbackClient() {
     <>
       <section className="relative pt-36 md:pt-44 pb-14">
         <div className="n-page">
-          <PageEyebrow
-            numeral={t.feedback.eyebrowNum}
-            label={t.feedback.eyebrowLabel}
-            className="mb-10"
-          />
+          <PageEyebrow label={t.feedback.eyebrowLabel} className="mb-10" />
           <div className="grid grid-cols-12 gap-x-6 items-end">
             <div className="col-span-12 md:col-span-8">
               <LineReveal
@@ -110,7 +106,51 @@ export default function FeedbackClient() {
         </div>
       </section>
 
-      <section className="relative pb-24 md:pb-32">
+      <section
+        className="relative py-20 md:py-28"
+        style={{ background: "var(--n-bg-2)" }}
+      >
+        <div className="n-page">
+          <div className="grid grid-cols-12 gap-x-6 items-end mb-14">
+            <div className="col-span-12 md:col-span-8">
+              <PageEyebrow label={t.feedback.promiseEyebrow} className="mb-6" />
+              <h2
+                className="n-display leading-[1.02]"
+                style={{ fontSize: "clamp(28px, 4vw, 56px)", fontWeight: 300 }}
+              >
+                {t.feedback.promiseTitle}
+              </h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-10">
+            {t.feedback.promisePoints.map((p, i) => (
+              <article
+                key={p.t}
+                className="col-span-12 md:col-span-4 border-t pt-8"
+                style={{ borderColor: "var(--n-line)" }}
+              >
+                <span
+                  className="n-mono opacity-45"
+                  style={{ fontSize: "11px", letterSpacing: "0.2em" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <h3 className="n-serif text-[20px] leading-[1.2] mt-3 mb-3">
+                  {p.t}
+                </h3>
+                <p
+                  className="n-serif leading-[1.55] max-w-[40ch]"
+                  style={{ fontSize: "15px", color: "var(--n-muted)" }}
+                >
+                  {p.b}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative pt-20 md:pt-28 pb-24 md:pb-32">
         <div className="n-page">
           <div className="grid grid-cols-12 gap-x-6">
             <div
@@ -126,7 +166,7 @@ export default function FeedbackClient() {
               {status === "ok" ? (
                 <div className="flex flex-col items-start gap-4">
                   <span className="n-eyebrow opacity-70">
-                    {t.feedback.eyebrowNum}
+                    {t.feedback.eyebrowLabel}
                   </span>
                   <h2
                     className="n-serif"
