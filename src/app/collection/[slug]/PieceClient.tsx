@@ -335,18 +335,10 @@ export default function PieceClient({ piece }: { piece: Piece }) {
           ))}
         </div>
 
-        <div className="n-page mt-24">
-          <p
-            className="n-serif-italic max-w-[36ch] mx-auto text-center"
-            style={{ fontSize: "clamp(24px, 3.4vw, 40px)", lineHeight: 1.3 }}
-          >
-            « {loc.scene} »
-          </p>
-          <div className="mt-14 flex justify-center">
-            <Link href="/journal/quatre-atmospheres" className="n-link">
-              {t.piece.lireQuatreAtmospheres}
-            </Link>
-          </div>
+        <div className="n-page mt-20 flex justify-center">
+          <Link href="/journal/quatre-atmospheres" className="n-link">
+            {t.piece.lireQuatreAtmospheres}
+          </Link>
         </div>
       </section>
 
