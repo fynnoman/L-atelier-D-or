@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useReducedMotion } from "framer-motion";
 import styles from "./ConseilEcrin.module.css";
+import ConseilGlasses from "./ConseilGlasses";
 import { useT } from "@/lib/i18n/LanguageContext";
 
 type Phase = "closed" | "opening" | "drawing" | "writing" | "sending" | "thanks" | "email" | "stowing" | "closing";
@@ -107,18 +108,7 @@ export default function ConseilEcrin() {
         <div className={styles.case}>
           <div className={styles.base} aria-hidden="true">
             <div className={styles.velvet}>
-              <svg className={styles.glasses} viewBox="0 0 600 210" fill="none">
-                <defs>
-                  <linearGradient id="conseil-frame" x1="60" y1="30" x2="490" y2="180" gradientUnits="userSpaceOnUse"><stop stopColor="#463f31"/><stop offset=".3" stopColor="#090908"/><stop offset=".7" stopColor="#29271e"/><stop offset="1" stopColor="#080808"/></linearGradient>
-                  <linearGradient id="conseil-lens" x1="100" y1="40" x2="200" y2="190" gradientUnits="userSpaceOnUse"><stop stopColor="#555b49"/><stop offset=".45" stopColor="#1a211b"/><stop offset="1" stopColor="#080e0b"/></linearGradient>
-                </defs>
-                <path d="M88 67L195 19Q207 15 218 23L349 95M512 67L404 19Q393 15 382 23L251 95" stroke="#1a1711" strokeWidth="13" strokeLinecap="round"/>
-                <path d="M64 64Q141 38 253 59L266 91Q300 75 334 91L347 59Q459 38 536 64L524 89Q516 178 452 179L384 172Q345 166 333 106Q300 91 267 106Q255 166 216 172L148 179Q84 178 76 89Z" fill="url(#conseil-frame)" stroke="#5b5038" strokeWidth="2"/>
-                <path d="M100 78Q160 62 241 76L246 99Q237 147 210 154L151 161Q107 158 100 78ZM359 76Q440 62 500 78Q493 158 449 161L390 154Q363 147 354 99Z" fill="url(#conseil-lens)" stroke="#797158" strokeWidth="1.5"/>
-                <path d="M111 82Q158 72 226 82M373 82Q432 71 480 82" stroke="#eee4c6" strokeOpacity=".17" strokeWidth="3"/>
-                <path d="M80 76H95M505 76H520" stroke="#c6ab71" strokeWidth="5"/>
-                <text x="390" y="98" fill="#bdac7c" fontSize="8" fontFamily="Georgia" fontStyle="italic">L’Atelier d’Or</text>
-              </svg>
+              <ConseilGlasses className={styles.glasses} />
               <span className={styles.baseSignature}>{t.conseil.baseSignature}</span>
             </div>
           </div>
