@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Wordmark from "./Wordmark";
 import NewsletterSignup from "./NewsletterSignup";
 import { useT } from "@/lib/i18n/LanguageContext";
 
@@ -69,7 +68,6 @@ export default function Footer() {
 
         <div className="grid grid-cols-12 gap-x-6 gap-y-16 mt-20">
           <div className="col-span-12 md:col-span-4 flex flex-col gap-8">
-            <Wordmark size="lg" />
             <p
               className="n-body text-[16px] leading-[1.6] max-w-[36ch]"
               style={{ color: "var(--n-muted)" }}
