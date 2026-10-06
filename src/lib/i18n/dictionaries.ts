@@ -605,7 +605,7 @@ const fr: Dictionary = {
     principleWord: "Principe",
     collectionEyebrow: "",
     collectionLabel: "La collection",
-    collectionTitle: "Roi.",
+    collectionTitle: "Roi",
     collectionBody:
       "Rouge, Noir, Cristal et Émeraude. Quatre noms, quatre univers de couleur, quatre caractères. Découvrez le modèle qui correspond à votre style.",
     materialsEyebrow: "",
@@ -1375,7 +1375,7 @@ const de: Dictionary = {
     principleWord: "Prinzip",
     collectionEyebrow: "",
     collectionLabel: "Die Kollektion",
-    collectionTitle: "Roi.",
+    collectionTitle: "Roi",
     collectionBody:
       "Rouge, Noir, Cristal und Émeraude. Vier Namen, vier Farbwelten, vier eigene Charaktere. Entdecken Sie das Modell, das zu Ihrem Stil passt.",
     materialsEyebrow: "",
@@ -2143,7 +2143,7 @@ const en: Dictionary = {
     principleWord: "Principle",
     collectionEyebrow: "",
     collectionLabel: "The collection",
-    collectionTitle: "Roi.",
+    collectionTitle: "Roi",
     collectionBody:
       "Rouge, Noir, Cristal and Émeraude. Four names, four colour worlds, four characters of their own. Discover the model that suits your style.",
     materialsEyebrow: "",
@@ -2774,7 +2774,7 @@ const it: Dictionary = {
     principleWord: "Principio",
     collectionEyebrow: "",
     collectionLabel: "La collezione",
-    collectionTitle: "Roi.",
+    collectionTitle: "Roi",
     collectionBody:
       "Rouge, Noir, Cristal e Émeraude. Quattro nomi, quattro mondi di colore, quattro caratteri. Scoprite il modello che corrisponde al vostro stile.",
     materialsEyebrow: "",

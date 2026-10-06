@@ -130,7 +130,13 @@ export default function AtelierClient() {
             </Link>
           </div>
           <div className="col-span-12 md:col-span-6 md:col-start-7 mt-12 md:mt-0">
-            <MaskedImage tone="ink" ratio="4 / 5" />
+            <MaskedImage
+              tone="ink"
+              ratio="4 / 5"
+              src="/atelier/collection-tray.png"
+              alt="Vier Modelle der Roi-Kollektion in einem Samtfach präsentiert."
+              objectPosition="50% 50%"
+            />
           </div>
         </div>
       </section>
