@@ -77,12 +77,6 @@ function PieceSection({
           >
             <div className="flex items-baseline gap-6 mb-10">
               <span
-                className="n-display leading-none opacity-25"
-                style={{ fontSize: "clamp(64px, 6vw, 108px)", fontWeight: 300 }}
-              >
-                {piece.numeral}
-              </span>
-              <span
                 className="n-eyebrow"
                 style={isVelour ? { color: "rgba(237,227,206,0.72)" } : undefined}
               >

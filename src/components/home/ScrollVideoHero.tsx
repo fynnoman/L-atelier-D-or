@@ -305,7 +305,7 @@ export default function ScrollVideoHero() {
                         fontWeight: 500,
                       }}
                     >
-                      {t.home.showcase.piece} · {p.numeral}
+                      {t.home.showcase.piece}
                     </span>
                     <h2
                       className="n-display"

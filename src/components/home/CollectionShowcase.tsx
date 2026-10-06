@@ -159,7 +159,7 @@ function PieceCard({ piece }: { piece: Piece }) {
       <Link href={`/collection/${piece.slug}`} className="block">
         <div className="mt-6 flex items-baseline justify-between gap-6">
           <div>
-            <div className="n-meta opacity-55 mb-3">{t.home.showcase.piece} {piece.numeral}</div>
+            <div className="n-meta opacity-55 mb-3">{t.home.showcase.piece}</div>
             <div
               className="n-display leading-none"
               style={{ fontSize: "clamp(24px, 2.6vw, 36px)", fontWeight: 300 }}

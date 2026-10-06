@@ -3,7 +3,6 @@
 import Link from "next/link";
 import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
-import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import ProductGallery from "@/components/ProductGallery";
 import PieceSwitcher from "@/components/PieceSwitcher";
@@ -45,17 +44,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             </div>
           </div>
 
-          <span
-            aria-hidden
-            className="pointer-events-none absolute -top-2 right-[3vw] opacity-[0.035] select-none"
-          >
-            <span
-              className="n-display leading-none"
-              style={{ fontSize: "clamp(96px, 16vw, 220px)" }}
-            >
-              <Numeral n={piece.index} />
-            </span>
-          </span>
         </div>
 
         <div className="n-page mt-8 md:mt-10 grid grid-cols-12 gap-x-6 items-start">
@@ -174,18 +162,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                 aspectRatio: "4 / 5",
               }}
             >
-              <span
-                aria-hidden
-                className="absolute -top-4 -left-2 n-display leading-none pointer-events-none select-none"
-                style={{
-                  fontSize: "clamp(120px, 18vw, 220px)",
-                  color: "rgba(255,255,255,0.08)",
-                  fontWeight: 200,
-                }}
-              >
-                <Numeral n={piece.index} />
-              </span>
-
               {piece.image && (
                 <img
                   src={piece.image}
@@ -497,7 +473,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                         boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
                       }}
                     >
-                      <span className="n-mono opacity-70" style={{ color: "var(--n-ink)" }}>{p.numeral}</span>
                       <span className="n-eyebrow">{p.name}</span>
                     </div>
                   </div>

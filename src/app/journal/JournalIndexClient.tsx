@@ -52,13 +52,7 @@ export default function JournalIndexClient() {
                 <div
                   className={`col-span-12 md:col-span-2 ${flip ? "md:order-3 md:text-right" : ""}`}
                 >
-                  <div
-                    className="n-serif leading-none opacity-30"
-                    style={{ fontSize: "clamp(56px, 6vw, 96px)" }}
-                  >
-                    {c.numeral}
-                  </div>
-                  <div className="n-mono opacity-60 mt-4">{loc.rubric}</div>
+                  <div className="n-mono opacity-60">{loc.rubric}</div>
                 </div>
 
                 <div

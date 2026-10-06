@@ -21,7 +21,6 @@ export default function CahierClient({ cahier }: { cahier: Cahier }) {
       <section className="relative pt-40 md:pt-52 pb-16">
         <div className="n-page">
           <PageEyebrow
-            numeral={t.cahier.labelChapter(cahier.numeral)}
             label={`${loc.rubric} · ${loc.date} · ${loc.read}`}
             className="mb-14"
           />
@@ -140,7 +139,7 @@ export default function CahierClient({ cahier }: { cahier: Cahier }) {
                     <div className={`n-tile is-${c.tone}`} />
                     <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(20,15,10,0) 40%, rgba(20,15,10,0.55) 100%)" }} />
                     <div className="absolute top-6 left-6 right-6 flex items-center justify-between">
-                      <span className="n-mono opacity-80" style={{ color: "var(--n-bg)" }}>{t.cahier.cahierN(c.numeral)} · {ol.rubric}</span>
+                      <span className="n-mono opacity-80" style={{ color: "var(--n-bg)" }}>{ol.rubric}</span>
                       <span className="n-mono opacity-70" style={{ color: "var(--n-bg)" }}>{ol.read}</span>
                     </div>
                     <div className="absolute bottom-6 left-6 right-6">

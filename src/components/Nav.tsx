@@ -223,23 +223,6 @@ export default function Nav() {
                           loading="lazy"
                         />
                       )}
-                      <span
-                        aria-hidden
-                        className="absolute top-2 left-2 n-mono"
-                        style={{
-                          color: "var(--n-ink)",
-                          fontSize: "10px",
-                          letterSpacing: "0.16em",
-                          background: "rgba(255,255,255,0.78)",
-                          padding: "2px 7px",
-                          borderRadius: "999px",
-                          border: "1px solid var(--n-line-soft)",
-                          backdropFilter: "blur(6px)",
-                          WebkitBackdropFilter: "blur(6px)",
-                        }}
-                      >
-                        {p.numeral}
-                      </span>
                     </span>
                     <div className="flex items-baseline justify-between gap-2">
                       <span

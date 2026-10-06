@@ -3,7 +3,6 @@
 import Link from "next/link";
 import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
-import Numeral from "@/components/Numeral";
 import PageEyebrow from "@/components/PageEyebrow";
 import { PIECES } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
@@ -92,7 +91,6 @@ export default function CollectionIndexClient() {
                       boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
                     }}
                   >
-                    <span className="n-mono opacity-70">{piece.numeral}</span>
                     <span className="n-eyebrow">{piece.name}</span>
                   </div>
 
@@ -120,13 +118,6 @@ export default function CollectionIndexClient() {
                 <div
                   className={`col-span-12 md:col-span-5 ${flip ? "md:col-start-1 md:order-1" : "md:col-start-8"} mt-12 md:mt-0 relative`}
                 >
-                  <span
-                    className="n-serif opacity-15 leading-none block mb-4"
-                    style={{ fontSize: "clamp(80px, 12vw, 200px)", color: "var(--n-ink)" }}
-                  >
-                    <Numeral n={piece.index} />
-                  </span>
-
                   <div className="n-eyebrow mb-6">{loc.chapter}</div>
                   <h2
                     className="n-display leading-[0.95] mb-6"
