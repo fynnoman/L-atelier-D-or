@@ -36,8 +36,8 @@ export default function CollectionIndexClient() {
                     alt={`${piece.name} — ${loc.tagline}`}
                     tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
                     ratio="1 / 1"
-                    fit="contain"
-                    className={flip ? "md:-translate-x-4" : "md:translate-x-4"}
+                    fit="cover"
+                    style={{ borderRadius: 0 }}
                   />
 
                   <div

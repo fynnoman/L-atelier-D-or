@@ -109,6 +109,13 @@ html[data-nouveau-mood="emeraude"] [data-nouveau] {
   color: #E7E5EA;
 }
 
+/* Footer logo invertieren bei dunklen Mood-Themes, damit es sichtbar bleibt. */
+html[data-nouveau-mood="rouge"] .n-footer-logo,
+html[data-nouveau-mood="foret"] .n-footer-logo,
+html[data-nouveau-mood="emeraude"] .n-footer-logo {
+  filter: invert(1);
+}
+
 /* Header adapte son fond au mood, sans jamais devenir décoratif. */
 html[data-nouveau-mood] [data-nouveau] > header {
   background: transparent !important;

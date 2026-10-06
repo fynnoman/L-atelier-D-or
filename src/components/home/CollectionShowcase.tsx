@@ -198,7 +198,7 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
             )}
             <h2
               className="n-display leading-[0.94]"
-              style={{ fontSize: "clamp(56px, 10vw, 176px)", fontWeight: 300 }}
+              style={{ fontSize: "clamp(40px, 7vw, 112px)", fontWeight: 300, whiteSpace: "nowrap" }}
             >
               {t.home.showcase.title1 && (
                 <>

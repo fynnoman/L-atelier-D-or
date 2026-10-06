@@ -55,7 +55,7 @@ export default function Footer() {
           <img
             src="/logo.png"
             alt="L'Atelier d'Or"
-            className="block max-w-full"
+            className="n-footer-logo block max-w-full"
             style={{ height: "clamp(56px, 10vw, 160px)", width: "auto" }}
             draggable={false}
           />
