@@ -214,7 +214,7 @@ export default function AtelierClient() {
               <h3 className="n-serif text-[19px] leading-[1.2] mt-3 mb-3">{m.t}</h3>
               <p
                 className="n-serif leading-[1.55]"
-                style={{ fontSize: "14px", color: "var(--n-muted)" }}
+                style={{ fontSize: "14px", color: "var(--n-muted)", whiteSpace: "pre-line" }}
               >
                 {m.b}
               </p>
