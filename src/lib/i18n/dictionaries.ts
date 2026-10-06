@@ -175,7 +175,7 @@ export type Dictionary = {
     approachLabel: string;
     approachTitle: string;
     approachParas: string[];
-    principles: { t: string; b: string }[];
+    principles: { w: string; t: string; b: string }[];
     principleWord: string;
     collectionEyebrow: string;
     collectionLabel: string;
@@ -434,13 +434,13 @@ const fr: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contact",
-    houseIntro: "Maison indépendante de lunetterie.\nÉdition confidentielle.",
+    houseIntro: "Lunettes faites main.\nÉdition confidentielle.",
     contactWriteUs: "Nous écrire",
     ctaCollection: "Voir la collection",
   },
   footer: {
     petiteMaisonFr: "Maison française de lunetterie",
-    ligne1: "Maison indépendante de lunetterie.",
+    ligne1: "Lunettes faites main.",
     ligne2: "Collection exclusivement en ligne, livrée dans le monde entier.",
     columnMaison: "Maison",
     columnCollection: "Collection",
@@ -451,13 +451,13 @@ const fr: Dictionary = {
     labelAccessibilite: "Accessibilité",
     labelRetractation: "Droit de rétractation",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Maison indépendante de lunetterie",
+    editorialTag: "Lunettes faites main",
     editorialTag2: "Édition confidentielle",
   },
   newsletter: {
     label: "La lettre de la maison",
     description:
-      "Nouvelles pièces, journal, actualités de la maison. Envoyée avec parcimonie.",
+      "Nouvelles pièces, actualités de la maison. Envoyée avec parcimonie.",
     placeholder: "votre@email.com",
     submit: "S’inscrire",
     formAria: "Inscription à la lettre de la maison",
@@ -483,8 +483,8 @@ const fr: Dictionary = {
     showcase: {
       eyebrow: "La collection",
       title1: "Roi.",
-      title2: "Quatre modèles.",
-      lede: "Acétate premium, charnières métalliques. Façonné selon mes propres idées.",
+      title2: "La nouvelle collection.",
+      lede: "L’acétate premium rencontre des contours clairs et des détails choisis avec soin. Dessinée avec une écriture propre.",
       piece: "Modèle",
       footerLine: "Roi · La collection",
       link: "Toute la collection",
@@ -494,7 +494,7 @@ const fr: Dictionary = {
     },
     avisTeaser: {
       eyebrow: "Feedback",
-      title1: "Vous portez Roi ?",
+      title1: "Vous portez notre maison ?",
       title2: "Partagez votre avis.",
       body: "Vos retours nous aident à faire évoluer la collection.",
       ctaShare: "Donner un avis",
@@ -564,7 +564,7 @@ const fr: Dictionary = {
   atelier: {
     metaTitle: "La maison",
     metaDescription:
-      "L’Atelier d’Or, maison indépendante de lunetterie. Dessins propres, approche design, matériaux et détails de la collection Roi.",
+      "L’Atelier d’Or, lunettes faites main avec un dessin propre. Approche design, matériaux et détails de la collection Roi.",
     heroEyebrowNum: "",
     heroEyebrowLabel: "La maison",
     heroTitle1: "Une maison indépendante",
@@ -573,12 +573,11 @@ const fr: Dictionary = {
       "L’Atelier d’Or dessine des lunettes pour celles et ceux qui veulent rendre leur style personnel visible. La collection réunit des formes claires, des couleurs expressives et des détails choisis avec soin.",
     originEyebrow: "",
     originLabel: "Histoire",
-    originTitle: "Quatre modèles. Une même idée.",
+    originTitle: "Quatre modèles. Une même histoire.",
     originParas: [
-      "L’idée de L’Atelier d’Or a commencé par une question. Pourquoi une paire de lunettes ne serait-elle qu’un accessoire, si elle peut aussi rendre une personnalité visible ?",
-      "Les lunettes font partie des rares objets que l’on porte au milieu du visage. Elles accompagnent le regard, dessinent l’expression et peuvent raconter quelque chose de la personne qui les porte.",
-      "L’Atelier d’Or est née du souhait de dessiner des montures avec une écriture propre. Des lunettes dans lesquelles chacun puisse se reconnaître et affirmer son style à sa manière. Car tout le monde ne souhaite pas se ressembler. Et le style personnel commence là où l’on reste fidèle à soi-même.",
-      "De cette idée est née la collection Roi : quatre modèles autonomes, aux formes et aux couleurs différentes. Chacun possède son propre caractère. Ensemble, ils portent une position claire. Une paire de lunettes ne doit pas changer qui vous êtes. Elle doit rendre visible ce qui vous définit.",
+      "L’Atelier d’Or est née du souhait de dessiner des lunettes avec une écriture formelle propre. Au cœur du projet : l’alliance de formes claires, de couleurs expressives et de détails choisis avec soin.",
+      "Une paire de lunettes accompagne son porteur au quotidien et participe à son expression. C’est pourquoi nous la considérons comme un objet personnel dont la conception doit s’accorder à celui ou celle qui la porte.",
+      "De cette exigence est née la collection Roi. Elle réunit quatre modèles autonomes, aux formes et aux couleurs différentes, qui partagent une même ligne formelle. Chaque modèle offre un accès propre à cette idée et laisse place au style personnel de son porteur.",
     ],
     approachEyebrow: "",
     approachLabel: "Design",
@@ -588,14 +587,17 @@ const fr: Dictionary = {
     ],
     principles: [
       {
+        w: "Dessin",
         t: "Un dessin propre",
         b: "Les quatre modèles ont été développés à partir d’une idée formelle claire. Chacun a sa propre forme et un caractère reconnaissable.",
       },
       {
+        w: "Composition",
         t: "Forme et couleur",
         b: "La silhouette et la teinte façonnent ensemble l’effet d’une monture. La collection Roi offre différentes manières de s’exprimer, de la retenue à l’affirmation.",
       },
       {
+        w: "Expression",
         t: "Style personnel",
         b: "Une paire de lunettes devrait s’accorder à celui ou celle qui la porte. Les modèles Roi laissent la place d’exprimer son propre style, de manière consciente et personnelle.",
       },
@@ -1194,13 +1196,13 @@ const de: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Haus",
     contactEyebrow: "Kontakt",
-    houseIntro: "Unabhängiges Brillenlabel.\nEdition in kleiner Auflage.",
+    houseIntro: "Handgefertigte Brillen.\nEdition in kleiner Auflage.",
     contactWriteUs: "Schreiben Sie uns",
     ctaCollection: "Zur Kollektion",
   },
   footer: {
     petiteMaisonFr: "Französisches Brillenhaus",
-    ligne1: "Unabhängiges Brillenlabel.",
+    ligne1: "Handgefertigte Brillen.",
     ligne2: "Kollektion ausschließlich online, Lieferung weltweit.",
     columnMaison: "Haus",
     columnCollection: "Kollektion",
@@ -1211,13 +1213,13 @@ const de: Dictionary = {
     labelAccessibilite: "Barrierefreiheit",
     labelRetractation: "Widerrufsbelehrung",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Unabhängiges Brillenlabel",
+    editorialTag: "Handgefertigte Brillen",
     editorialTag2: "Edition in kleiner Auflage",
   },
   newsletter: {
     label: "Der Brief des Hauses",
     description:
-      "Neue Stücke, Journal, Neuigkeiten aus dem Label. Mit Zurückhaltung verschickt.",
+      "Neue Stücke, Neuigkeiten aus der Maison. Mit Zurückhaltung verschickt.",
     placeholder: "ihre@email.de",
     submit: "Anmelden",
     formAria: "Anmeldung zum Brief des Hauses",
@@ -1243,8 +1245,8 @@ const de: Dictionary = {
     showcase: {
       eyebrow: "Die Kollektion",
       title1: "Roi.",
-      title2: "Vier Modelle.",
-      lede: "Premium-Acetat, Metallscharniere. Nach meinen eigenen Vorstellungen gefertigt.",
+      title2: "Die neue Kollektion.",
+      lede: "Premium-Acetat trifft auf klare Konturen und sorgfältig abgestimmte Details. Entworfen mit einer eigenen Handschrift.",
       piece: "Modell",
       footerLine: "Roi · Die Kollektion",
       link: "Ganze Kollektion",
@@ -1254,7 +1256,7 @@ const de: Dictionary = {
     },
     avisTeaser: {
       eyebrow: "Feedback",
-      title1: "Tragen Sie Roi?",
+      title1: "Tragen Sie unsere Marke?",
       title2: "Teilen Sie Ihre Erfahrung.",
       body: "Ihre Rückmeldung hilft uns, die Kollektion weiterzuentwickeln.",
       ctaShare: "Feedback geben",
@@ -1324,7 +1326,7 @@ const de: Dictionary = {
   atelier: {
     metaTitle: "Das Label",
     metaDescription:
-      "L’Atelier d’Or, unabhängiges Brillenlabel mit eigenen Entwürfen. Geschichte, Designansatz, Materialien und Details der Roi-Kollektion.",
+      "L’Atelier d’Or, handgefertigte Brillen mit eigenen Entwürfen. Geschichte, Designansatz, Materialien und Details der Roi-Kollektion.",
     heroEyebrowNum: "",
     heroEyebrowLabel: "Das Label",
     heroTitle1: "Ein unabhängiges Brillenlabel.",
@@ -1333,12 +1335,11 @@ const de: Dictionary = {
       "L’Atelier d’Or entwirft Brillen für Menschen, die ihren persönlichen Stil sichtbar machen möchten. Die Kollektion verbindet klare Formen, ausdrucksstarke Farben und Details, die bewusst gewählt sind.",
     originEyebrow: "",
     originLabel: "Geschichte",
-    originTitle: "Vier Modelle. Eine gemeinsame Idee.",
+    originTitle: "Vier Modelle. Eine Geschichte.",
     originParas: [
-      "Die Idee zu L’Atelier d’Or begann mit einer Frage: Warum sollte eine Brille nur ein Accessoire sein, wenn sie auch Persönlichkeit sichtbar machen kann?",
-      "Eine Brille gehört zu den wenigen Dingen, die man mitten im eigenen Gesicht trägt. Sie begleitet den Blick, prägt den Ausdruck und kann etwas über den Menschen erzählen, der sie trägt.",
-      "L’Atelier d’Or entstand aus dem Wunsch, Fassungen mit einer eigenen Handschrift zu entwerfen. Brillen, in denen Menschen sich wiederfinden und ihren Stil auf ihre Weise zeigen können. Denn nicht jeder möchte gleich aussehen. Und persönlicher Stil beginnt dort, wo man sich selbst treu bleibt.",
-      "Aus dieser Idee entstand die Roi-Kollektion: vier eigenständige Modelle mit unterschiedlichen Formen und Farben. Jedes Modell hat seinen eigenen Charakter. Gemeinsam stehen sie für eine klare Haltung. Eine Brille soll nicht verändern, wer Sie sind. Sie soll sichtbar machen, was Sie ausmacht.",
+      "L’Atelier d’Or entstand aus dem Wunsch, Brillen mit einer eigenen gestalterischen Handschrift zu entwerfen. Im Mittelpunkt steht die Verbindung von klaren Formen, ausdrucksstarken Farben und bewusst gewählten Details.",
+      "Eine Brille begleitet ihren Träger im Alltag und prägt seinen Ausdruck. Deshalb verstehen wir sie als persönlichen Gegenstand, dessen Gestaltung zum Menschen passen soll.",
+      "Aus diesem Anspruch entwickelte sich die Roi-Kollektion. Sie umfasst vier eigenständige Modelle, die sich in Form und Farbe unterscheiden und zugleich eine gemeinsame gestalterische Linie verfolgen. Jedes Modell bietet einen eigenen Zugang zu dieser Idee und lässt Raum für den individuellen Stil seines Trägers.",
     ],
     approachEyebrow: "",
     approachLabel: "Design",
@@ -1348,14 +1349,17 @@ const de: Dictionary = {
     ],
     principles: [
       {
+        w: "Entwurf",
         t: "Eigenständige Entwürfe",
         b: "Die vier Modelle wurden mit einer klaren gestalterischen Idee entwickelt. Jedes besitzt eine eigene Form und einen unverwechselbaren Charakter.",
       },
       {
+        w: "Gestaltung",
         t: "Form und Farbe",
         b: "Silhouette und Farbton prägen gemeinsam die Wirkung einer Fassung. Die Roi-Kollektion bietet unterschiedliche Ausdrucksformen, von zurückhaltend bis markant.",
       },
       {
+        w: "Individualität",
         t: "Persönlicher Stil",
         b: "Eine Brille sollte zu ihrem Träger passen. Die Modelle von Roi geben Raum, den eigenen Stil bewusst und auf persönliche Weise auszudrücken.",
       },
@@ -1954,13 +1958,13 @@ const en: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "House",
     contactEyebrow: "Contact",
-    houseIntro: "Independent eyewear house.\nShort edition.",
+    houseIntro: "Handcrafted eyewear.\nShort edition.",
     contactWriteUs: "Write to us",
     ctaCollection: "View collection",
   },
   footer: {
     petiteMaisonFr: "French eyewear house",
-    ligne1: "Independent eyewear house.",
+    ligne1: "Handcrafted eyewear.",
     ligne2: "Collection available exclusively online, shipped worldwide.",
     columnMaison: "House",
     columnCollection: "Collection",
@@ -1971,12 +1975,12 @@ const en: Dictionary = {
     labelAccessibilite: "Accessibility",
     labelRetractation: "Right of withdrawal",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Independent eyewear house",
+    editorialTag: "Handcrafted eyewear",
     editorialTag2: "Short edition",
   },
   newsletter: {
     label: "The house letter",
-    description: "New pieces, journal, news from the house. Sent sparingly.",
+    description: "New pieces, news from the house. Sent sparingly.",
     placeholder: "your@email.com",
     submit: "Subscribe",
     formAria: "Subscribe to the house letter",
@@ -2002,8 +2006,8 @@ const en: Dictionary = {
     showcase: {
       eyebrow: "The collection",
       title1: "Roi.",
-      title2: "Four models.",
-      lede: "Premium acetate, metal hinges. Made to my own vision.",
+      title2: "The new collection.",
+      lede: "Premium acetate meets clean contours and carefully considered details. Designed with a handwriting of its own.",
       piece: "Model",
       footerLine: "Roi · The collection",
       link: "Full collection",
@@ -2011,7 +2015,7 @@ const en: Dictionary = {
     alternating: { voirLaPiece: "View model" },
     avisTeaser: {
       eyebrow: "Feedback",
-      title1: "Wearing Roi?",
+      title1: "Wearing our house?",
       title2: "Share your experience.",
       body: "Your feedback helps us evolve the collection.",
       ctaShare: "Leave feedback",
@@ -2081,7 +2085,7 @@ const en: Dictionary = {
   atelier: {
     metaTitle: "The house",
     metaDescription:
-      "L’Atelier d’Or, independent eyewear house with its own designs. Design approach, materials and details of the Roi collection.",
+      "L’Atelier d’Or, handcrafted eyewear with its own designs. Design approach, materials and details of the Roi collection.",
     heroEyebrowNum: "",
     heroEyebrowLabel: "The house",
     heroTitle1: "An independent",
@@ -2090,12 +2094,11 @@ const en: Dictionary = {
       "L’Atelier d’Or designs eyewear for people who want to make their personal style visible. The collection brings together clean shapes, expressive colours and details chosen with care.",
     originEyebrow: "",
     originLabel: "History",
-    originTitle: "Four models. One shared idea.",
+    originTitle: "Four models. One story.",
     originParas: [
-      "The idea for L’Atelier d’Or began with a question. Why should a pair of glasses only be an accessory, when it can also make personality visible?",
-      "Glasses are among the few objects worn in the middle of your face. They accompany the gaze, shape the expression and can tell something about the person wearing them.",
-      "L’Atelier d’Or grew out of a wish to design frames with a handwriting of their own. Eyewear in which people recognise themselves and can show their style in their own way. Because not everyone wants to look the same. And personal style begins where you stay true to yourself.",
-      "Out of this idea the Roi collection was born: four distinct models with different shapes and colours. Each model has its own character. Together they stand for a clear position. Eyewear should not change who you are. It should make visible what defines you.",
+      "L’Atelier d’Or grew out of a wish to design eyewear with a formal handwriting of its own. At the heart of the project: the pairing of clean shapes, expressive colours and deliberately chosen details.",
+      "A pair of glasses accompanies its wearer every day and shapes their expression. For that reason we see it as a personal object whose design should suit the person wearing it.",
+      "The Roi collection grew out of this intention. It brings together four distinct models that differ in shape and colour while sharing the same formal line. Each model offers its own way into this idea and leaves room for the personal style of its wearer.",
     ],
     approachEyebrow: "",
     approachLabel: "Design",
@@ -2105,14 +2108,17 @@ const en: Dictionary = {
     ],
     principles: [
       {
+        w: "Design",
         t: "A design of its own",
         b: "The four models were developed from a clear formal idea. Each has its own shape and an unmistakable character.",
       },
       {
+        w: "Composition",
         t: "Shape and colour",
         b: "Silhouette and tone shape the effect of a frame together. The Roi collection offers different ways of expression, from restrained to pronounced.",
       },
       {
+        w: "Expression",
         t: "Personal style",
         b: "A pair of glasses should suit the person wearing them. The Roi models leave room to express your own style, consciously and personally.",
       },
@@ -2562,13 +2568,13 @@ const it: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contatto",
-    houseIntro: "Maison indipendente di occhialeria.\nEdizione in piccola tiratura.",
+    houseIntro: "Occhiali fatti a mano.\nEdizione in piccola tiratura.",
     contactWriteUs: "Scriveteci",
     ctaCollection: "Vedi la collezione",
   },
   footer: {
     petiteMaisonFr: "Maison francese di occhialeria",
-    ligne1: "Maison indipendente di occhialeria.",
+    ligne1: "Occhiali fatti a mano.",
     ligne2: "Collezione esclusivamente online, spedita in tutto il mondo.",
     columnMaison: "Maison",
     columnCollection: "Collezione",
@@ -2579,12 +2585,12 @@ const it: Dictionary = {
     labelAccessibilite: "Accessibilità",
     labelRetractation: "Diritto di recesso",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Maison indipendente di occhialeria",
+    editorialTag: "Occhiali fatti a mano",
     editorialTag2: "Edizione in piccola tiratura",
   },
   newsletter: {
     label: "La lettera della maison",
-    description: "Nuovi pezzi, journal, notizie dalla maison. Inviata con parsimonia.",
+    description: "Nuovi pezzi, notizie dalla maison. Inviata con parsimonia.",
     placeholder: "voi@email.com",
     submit: "Iscriversi",
     formAria: "Iscrizione alla lettera della maison",
@@ -2610,8 +2616,8 @@ const it: Dictionary = {
     showcase: {
       eyebrow: "La collezione",
       title1: "Roi.",
-      title2: "Quattro modelli.",
-      lede: "Acetato premium, cerniere metalliche. Realizzato secondo le mie idee.",
+      title2: "La nuova collezione.",
+      lede: "L’acetato premium incontra contorni chiari e dettagli scelti con cura. Disegnata con una scrittura propria.",
       piece: "Modello",
       footerLine: "Roi · La collezione",
       link: "Tutta la collezione",
@@ -2619,7 +2625,7 @@ const it: Dictionary = {
     alternating: { voirLaPiece: "Vedi il modello" },
     avisTeaser: {
       eyebrow: "Feedback",
-      title1: "Portate Roi?",
+      title1: "Portate la nostra maison?",
       title2: "Condividete la vostra esperienza.",
       body: "I vostri feedback ci aiutano a far evolvere la collezione.",
       ctaShare: "Lascia feedback",
@@ -2689,7 +2695,7 @@ const it: Dictionary = {
   atelier: {
     metaTitle: "La maison",
     metaDescription:
-      "L’Atelier d’Or, maison indipendente di occhialeria con disegni propri. Approccio al design, materiali e dettagli della collezione Roi.",
+      "L’Atelier d’Or, occhiali fatti a mano con disegni propri. Approccio al design, materiali e dettagli della collezione Roi.",
     heroEyebrowNum: "",
     heroEyebrowLabel: "La maison",
     heroTitle1: "Una maison indipendente",
@@ -2698,12 +2704,11 @@ const it: Dictionary = {
       "L’Atelier d’Or disegna occhiali per chi vuole rendere visibile il proprio stile personale. La collezione unisce forme chiare, colori espressivi e dettagli scelti con cura.",
     originEyebrow: "",
     originLabel: "Storia",
-    originTitle: "Quattro modelli. Un’unica idea.",
+    originTitle: "Quattro modelli. Una storia.",
     originParas: [
-      "L’idea di L’Atelier d’Or è nata da una domanda. Perché un paio di occhiali dovrebbe essere soltanto un accessorio, se può anche rendere visibile una personalità?",
-      "Gli occhiali sono tra i pochi oggetti che si portano al centro del viso. Accompagnano lo sguardo, modellano l’espressione e possono raccontare qualcosa della persona che li indossa.",
-      "L’Atelier d’Or è nata dal desiderio di disegnare montature con una scrittura propria. Occhiali in cui ciascuno possa riconoscersi e mostrare il proprio stile a modo suo. Perché non tutti vogliono assomigliarsi. E lo stile personale comincia dove si resta fedeli a sé stessi.",
-      "Da questa idea è nata la collezione Roi : quattro modelli autonomi, con forme e colori diversi. Ogni modello ha il proprio carattere. Insieme esprimono una posizione chiara. Un paio di occhiali non deve cambiare chi siete. Deve rendere visibile ciò che vi definisce.",
+      "L’Atelier d’Or è nata dal desiderio di disegnare occhiali con una scrittura formale propria. Al centro del progetto : l’unione di forme chiare, colori espressivi e dettagli scelti con cura.",
+      "Un paio di occhiali accompagna chi li indossa nella quotidianità e ne modella l’espressione. Per questo motivo li consideriamo un oggetto personale la cui concezione deve accordarsi a chi li porta.",
+      "Da questa esigenza è nata la collezione Roi. Riunisce quattro modelli autonomi che si distinguono per forma e colore e condividono al tempo stesso una stessa linea formale. Ogni modello offre un proprio accesso a questa idea e lascia spazio allo stile personale di chi li indossa.",
     ],
     approachEyebrow: "",
     approachLabel: "Design",
@@ -2713,14 +2718,17 @@ const it: Dictionary = {
     ],
     principles: [
       {
+        w: "Disegno",
         t: "Un disegno proprio",
         b: "I quattro modelli sono stati sviluppati a partire da un’idea formale chiara. Ciascuno ha la propria forma e un carattere inconfondibile.",
       },
       {
+        w: "Composizione",
         t: "Forma e colore",
         b: "Silhouette e tonalità modellano insieme l’effetto di una montatura. La collezione Roi offre diversi modi di esprimersi, dal pacato al deciso.",
       },
       {
+        w: "Espressione",
         t: "Stile personale",
         b: "Un paio di occhiali dovrebbe accordarsi a chi li porta. I modelli Roi lasciano lo spazio per esprimere il proprio stile, in modo consapevole e personale.",
       },

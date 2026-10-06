@@ -36,7 +36,7 @@ function welcomeHtml(_email: string) {
           </h1>
           <p style="font:400 16px/1.6 'Instrument Serif',Georgia,serif;color:#3A342D;margin:0 0 20px;">
             La lettre de la maison arrive une à deux fois par saison :
-            nouvelles pièces, journal, rendez-vous. Rien de plus.
+            nouvelles pièces, actualités de la maison. Rien de plus.
           </p>
           <p style="font:400 16px/1.6 'Instrument Serif',Georgia,serif;color:#3A342D;margin:0 0 32px;">
             En attendant, la collection Roi se découvre en ligne.
@@ -49,7 +49,7 @@ function welcomeHtml(_email: string) {
         <tr><td style="padding-top:56px;">
           <div style="border-top:1px solid rgba(10,10,10,.12);padding-top:20px;">
             <div style="font:500 10px/1 'Inter',Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:#0A0A0A;opacity:.55;">
-              L'Atelier d'Or — Paris · Berlin · Londres
+              L'Atelier d'Or — Édition confidentielle
             </div>
           </div>
         </td></tr>
@@ -64,13 +64,13 @@ function welcomeText() {
     "Merci. Vous êtes inscrit·e.",
     "",
     "La lettre de la maison arrive une à deux fois par saison :",
-    "nouvelles pièces, journal, rendez-vous. Rien de plus.",
+    "nouvelles pièces, actualités de la maison. Rien de plus.",
     "",
     "En attendant, la collection Roi se découvre en ligne :",
     "https://laterlierdor.vercel.app/collection",
     "",
     "— L'Atelier d'Or",
-    "Paris · Berlin · Londres",
+    "Édition confidentielle",
   ].join("\n");
 }
 

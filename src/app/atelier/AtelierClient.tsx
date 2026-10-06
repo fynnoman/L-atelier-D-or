@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import PageEyebrow from "@/components/PageEyebrow";
 import { useT } from "@/lib/i18n/LanguageContext";
@@ -10,54 +9,18 @@ export default function AtelierClient() {
   const t = useT();
   return (
     <>
-      {/* Hero – kompakter, ohne dominante Riesen-Typo */}
-      <section className="relative pt-36 md:pt-44 pb-16 md:pb-20 overflow-hidden">
-        <div className="n-page relative">
-          <PageEyebrow
-            numeral={t.atelier.heroEyebrowNum}
-            label={t.atelier.heroEyebrowLabel}
-            className="mb-10"
-          />
-
-          <div className="grid grid-cols-12 gap-x-6 items-end">
-            <div className="col-span-12 md:col-span-8">
-              <LineReveal
-                as="h1"
-                className="n-display leading-[0.98]"
-                lines={[t.atelier.heroTitle1, t.atelier.heroTitle2]}
-                delayStep={110}
-                style={{ fontSize: "clamp(44px, 7vw, 108px)" }}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-4 mt-8 md:mt-0">
-              <p
-                className="n-serif leading-[1.55] max-w-[38ch]"
-                style={{ fontSize: "17px", color: "var(--n-muted)" }}
-              >
-                {t.atelier.heroLede}
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* § 01 — Origine */}
-      <section className="relative pb-24 md:pb-32">
+      {/* Geschichte */}
+      <section className="relative pt-36 md:pt-44 pb-24 md:pb-32">
         <div className="n-page grid grid-cols-12 gap-x-6 items-start">
-          <div className="col-span-12 md:col-span-4">
-            <PageEyebrow
-              numeral={t.atelier.originEyebrow}
-              label={t.atelier.originLabel}
-              className="mb-6"
-            />
-            <h2
+          <div className="col-span-12 md:col-span-5">
+            <h1
               className="n-display leading-[1.02]"
-              style={{ fontSize: "clamp(32px, 3.6vw, 52px)" }}
+              style={{ fontSize: "clamp(40px, 5vw, 72px)" }}
             >
               {t.atelier.originTitle}
-            </h2>
+            </h1>
           </div>
-          <div className="col-span-12 md:col-span-7 md:col-start-6 mt-8 md:mt-0 flex flex-col gap-5">
+          <div className="col-span-12 md:col-span-6 md:col-start-7 mt-8 md:mt-0 flex flex-col gap-5">
             {t.atelier.originParas.map((para, i) => (
               <p
                 key={i}
@@ -127,7 +90,7 @@ export default function AtelierClient() {
                 <span className="n-serif text-[32px] leading-none opacity-35">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="n-eyebrow">{t.atelier.principleWord}</span>
+                <span className="n-eyebrow">{p.w}</span>
               </div>
               <h3 className="n-serif text-[22px] leading-[1.2] mb-3">{p.t}</h3>
               <p

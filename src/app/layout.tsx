@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     template: "%s · L'Atelier d'Or",
   },
   description:
-    "Maison indépendante de lunetterie. Acétate premium, charnières métalliques.",
+    "Lunettes faites main. Acétate premium, charnières métalliques.",
   metadataBase: new URL(siteUrl),
   alternates: { canonical: "/" },
   openGraph: {
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "L'Atelier d'Or",
-    description: "Maison indépendante de lunetterie. Acétate premium, charnières métalliques.",
+    description: "Lunettes faites main. Acétate premium, charnières métalliques.",
     images: ["/og-image.jpg"],
   },
   robots: {
