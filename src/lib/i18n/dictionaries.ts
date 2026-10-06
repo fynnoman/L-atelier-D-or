@@ -644,7 +644,7 @@ const fr: Dictionary = {
       "Avis clients sur la collection Roi.",
     eyebrowNum: "",
     eyebrowLabel: "Avis clients",
-    title1: "Avis clients.",
+    title1: "Avis clients",
     title2: "",
     lede:
       "Avis authentiques de clientes et clients qui portent Roi. Publication dès réception des premiers retours.",
@@ -1414,7 +1414,7 @@ const de: Dictionary = {
       "Kundenbewertungen zur Kollektion Roi.",
     eyebrowNum: "",
     eyebrowLabel: "Kundenbewertungen",
-    title1: "Kundenbewertungen.",
+    title1: "Kundenbewertungen",
     title2: "",
     lede:
       "Echte Bewertungen von Roi-Trägerinnen und -Trägern. Veröffentlichung sobald die ersten eintreffen.",
@@ -2182,7 +2182,7 @@ const en: Dictionary = {
       "Customer reviews of the Roi collection.",
     eyebrowNum: "",
     eyebrowLabel: "Customer reviews",
-    title1: "Customer reviews.",
+    title1: "Customer reviews",
     title2: "",
     lede:
       "Authentic reviews from Roi wearers. Published as soon as the first ones come in.",
@@ -2813,7 +2813,7 @@ const it: Dictionary = {
       "Recensioni clienti sulla collezione Roi.",
     eyebrowNum: "",
     eyebrowLabel: "Recensioni clienti",
-    title1: "Recensioni clienti.",
+    title1: "Recensioni clienti",
     title2: "",
     lede:
       "Recensioni autentiche di chi porta Roi. Pubblicazione non appena arriveranno le prime.",
