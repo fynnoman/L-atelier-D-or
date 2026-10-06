@@ -23,7 +23,6 @@ export default function Nav() {
     { href: "/collection", label: t.nav.collection },
     { href: "/atelier", label: t.nav.atelier },
     { href: "/avis", label: t.nav.avis },
-    { href: "/feedback", label: t.nav.feedback },
     { href: "/faq", label: t.nav.questions },
     { href: "/conseil", label: t.nav.conseil },
   ];

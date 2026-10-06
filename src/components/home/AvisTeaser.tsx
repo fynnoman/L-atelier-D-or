@@ -39,7 +39,7 @@ export default function AvisTeaser() {
               {t.home.avisTeaser.body}
             </p>
             <div className="flex flex-wrap items-center gap-5">
-              <Link href="/feedback" className="n-cta">
+              <Link href="/avis" className="n-cta">
                 {t.home.avisTeaser.ctaShare}
               </Link>
               <Link href="/conseil" className="n-link">

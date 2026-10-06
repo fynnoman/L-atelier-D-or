@@ -37,7 +37,6 @@ export default function CollectionIndexClient() {
                     tone={piece.mood === "foret" ? "foret" : piece.mood === "cristal" ? "cristal" : piece.mood === "emeraude" ? "emeraude" : "rouge"}
                     ratio="1 / 1"
                     fit="cover"
-                    style={{ borderRadius: 0 }}
                   />
 
                   <div
@@ -52,26 +51,6 @@ export default function CollectionIndexClient() {
                     }}
                   >
                     <span className="n-eyebrow">{piece.name}</span>
-                  </div>
-
-                  <div
-                    className={`hidden md:block absolute ${flip ? "-left-6 bottom-10" : "-right-6 bottom-10"} max-w-[280px] p-5`}
-                    style={{
-                      background: "rgba(244,240,232,0.72)",
-                      backdropFilter: "saturate(1.4) blur(14px)",
-                      WebkitBackdropFilter: "saturate(1.4) blur(14px)",
-                      border: "1px solid var(--n-line-soft)",
-                      borderRadius: "clamp(16px, 1.4vw, 22px)",
-                      boxShadow: "0 8px 26px rgba(10,10,10,0.10)",
-                    }}
-                  >
-                    <div className="n-mono opacity-60 mb-2">{loc.time}</div>
-                    <p
-                      className="n-serif text-[15px] leading-[1.4]"
-                      style={{ color: "var(--n-ink)" }}
-                    >
-                      {loc.place}
-                    </p>
                   </div>
                 </div>
 

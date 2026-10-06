@@ -653,7 +653,7 @@ const fr: Dictionary = {
     aParaitre: "Prochainement",
     ariaLabel: "Emplacements pour les futurs avis",
     ctaBody:
-      "Vous portez Roi ? Partagez votre avis — nous le publions avec votre accord.",
+      "Vous portez notre maison ? Partagez votre avis, nous le publions avec votre accord.",
     cta: "Donner un avis",
   },
   faq: {
@@ -1198,7 +1198,7 @@ const de: Dictionary = {
     collection: "Kollektion",
     atelier: "Atelier",
     journal: "Journal",
-    avis: "Stimmen",
+    avis: "Bewertungen",
     questions: "Fragen",
     conseil: "Beratung",
     feedback: "Feedback",
@@ -1423,7 +1423,7 @@ const de: Dictionary = {
     aParaitre: "In Kürze",
     ariaLabel: "Platzhalter für kommende Bewertungen",
     ctaBody:
-      "Tragen Sie Roi? Teilen Sie Ihre Bewertung – wir veröffentlichen sie mit Ihrer Zustimmung.",
+      "Tragen Sie unsere Marke? Teilen Sie Ihre Bewertung, wir veröffentlichen sie mit Ihrer Zustimmung.",
     cta: "Bewertung abgeben",
   },
   faq: {
@@ -2191,7 +2191,7 @@ const en: Dictionary = {
     aParaitre: "Coming soon",
     ariaLabel: "Placeholders for upcoming reviews",
     ctaBody:
-      "Wearing Roi? Share your review — we publish it with your consent.",
+      "Wearing our house? Share your review, we publish it with your consent.",
     cta: "Leave a review",
   },
   faq: {
@@ -2599,7 +2599,7 @@ const it: Dictionary = {
     collection: "Collezione",
     atelier: "Maison",
     journal: "Journal",
-    avis: "Opinioni",
+    avis: "Recensioni",
     questions: "Domande",
     conseil: "Consiglio",
     feedback: "Feedback",
@@ -2822,7 +2822,7 @@ const it: Dictionary = {
     aParaitre: "In arrivo",
     ariaLabel: "Spazi per le future recensioni",
     ctaBody:
-      "Portate Roi? Condividete la vostra recensione — la pubblichiamo con il vostro consenso.",
+      "Portate la nostra maison? Condividete la vostra recensione, la pubblichiamo con il vostro consenso.",
     cta: "Lascia una recensione",
   },
   faq: {
