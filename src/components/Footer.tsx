@@ -60,10 +60,6 @@ export default function Footer() {
             style={{ height: "clamp(56px, 10vw, 160px)", width: "auto" }}
             draggable={false}
           />
-          <div className="mt-8 flex flex-wrap items-baseline gap-x-8 gap-y-2">
-            <span className="n-eyebrow">{t.footer.editorialTag}</span>
-            <span className="n-meta opacity-55">{t.footer.editorialTag2}</span>
-          </div>
         </div>
 
         <div className="grid grid-cols-12 gap-x-6 gap-y-16 mt-20">
