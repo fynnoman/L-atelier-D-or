@@ -193,26 +193,34 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
       <div className="n-page">
         <div className="grid grid-cols-12 gap-x-6 items-end mb-24">
           <div className="col-span-12 md:col-span-8">
-            <span className="n-eyebrow block mb-10">{t.home.showcase.eyebrow}</span>
+            {t.home.showcase.eyebrow && (
+              <span className="n-eyebrow block mb-10">{t.home.showcase.eyebrow}</span>
+            )}
             <h2
               className="n-display leading-[0.94]"
               style={{ fontSize: "clamp(56px, 10vw, 176px)", fontWeight: 300 }}
             >
-              {t.home.showcase.title1} <br />
-              <span className="opacity-80">{t.home.showcase.title2}</span>
+              {t.home.showcase.title1 && (
+                <>
+                  {t.home.showcase.title1} <br />
+                </>
+              )}
+              {t.home.showcase.title2}
             </h2>
           </div>
-          <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
-            <p
-              className="n-body leading-[1.55]"
-              style={{
-                fontSize: "clamp(16px, 1.2vw, 19px)",
-                color: "var(--n-muted)",
-              }}
-            >
-              {t.home.showcase.lede}
-            </p>
-          </div>
+          {t.home.showcase.lede && (
+            <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
+              <p
+                className="n-body leading-[1.55]"
+                style={{
+                  fontSize: "clamp(16px, 1.2vw, 19px)",
+                  color: "var(--n-muted)",
+                }}
+              >
+                {t.home.showcase.lede}
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="grid grid-cols-12 gap-x-4 md:gap-x-6 gap-y-14">
