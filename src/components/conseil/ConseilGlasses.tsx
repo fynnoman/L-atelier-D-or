@@ -45,6 +45,9 @@ export default function ConseilGlasses({ className }: { className?: string }) {
         <filter id={`${id}-contact`} x="-20%" y="-60%" width="140%" height="220%">
           <feGaussianBlur stdDeviation="6" />
         </filter>
+        <filter id={`${id}-engraving`} x="0" y="0" width="1" height="1">
+          <feColorMatrix type="matrix" values="0 0 0 0 0.847 0 0 0 0 0.796 0 0 0 0 0.702 0 0 0 1 0" />
+        </filter>
       </defs>
 
       <ellipse cx="300" cy="211" rx="230" ry="12" fill="#080408" opacity=".55" filter={ref("contact")} />
@@ -56,7 +59,18 @@ export default function ConseilGlasses({ className }: { className?: string }) {
         <path d="M78 111 L412 157" stroke="#070507" strokeOpacity=".7" strokeWidth="20" strokeLinecap="round" />
         <path d="M65 95 C90 96 105 104 124 108 L410 140 C432 143 447 135 462 122 C468 117 474 120 470 129 C460 153 442 162 418 158 L118 127 C98 124 79 112 65 109Z" fill={ref("temple")} stroke="#6a3e44" strokeWidth=".8" />
         <path d="M78 100 C95 102 109 108 126 111 L412 144 C433 147 450 138 461 128" stroke="#ddbbb0" strokeOpacity=".48" strokeWidth="1.3" />
-        <text x="159" y="123" transform="rotate(6 159 123)" fill="#d8cbb3" fontSize="10" fontFamily="'Snell Roundhand', 'Brush Script MT', cursive" fontStyle="italic">L’Atelier d’Or</text>
+        <image
+          href="/logo.png"
+          x="150"
+          y="109"
+          width="105"
+          height="34"
+          transform="rotate(6 159 123)"
+          preserveAspectRatio="xMidYMid meet"
+          opacity="0.92"
+          filter={ref("engraving")}
+          aria-hidden="true"
+        />
 
         {/* Barrel hinges, visible just inside the frame ends. */}
         {[69, 519].map((x) => (

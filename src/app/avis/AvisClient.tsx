@@ -83,25 +83,13 @@ export default function AvisClient() {
       {/* Hero */}
       <section className="relative pt-40 md:pt-52 pb-20 md:pb-28">
         <div className="n-page">
-          <div className="grid grid-cols-12 gap-x-6 items-end">
-            <div className="col-span-12 md:col-span-8">
-              <LineReveal
-                as="h1"
-                className="n-display leading-[0.98]"
-                lines={[t.avis.title1]}
-                delayStep={140}
-                style={{ fontSize: "clamp(56px, 10vw, 160px)" }}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-4 mt-10 md:mt-0">
-              <p
-                className="n-serif leading-[1.55] max-w-[32ch]"
-                style={{ fontSize: "18px", color: "var(--n-muted)" }}
-              >
-                {t.avis.lede}
-              </p>
-            </div>
-          </div>
+          <LineReveal
+            as="h1"
+            className="n-display leading-[0.98]"
+            lines={[t.avis.title1]}
+            delayStep={140}
+            style={{ fontSize: "clamp(56px, 10vw, 160px)" }}
+          />
         </div>
       </section>
 
