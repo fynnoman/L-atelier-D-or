@@ -228,7 +228,12 @@ export default function PieceClient({ piece }: { piece: Piece }) {
 
       <section
         className="relative py-32"
-        style={{ background: "var(--n-bg-warm)" }}
+        style={{
+          background: "var(--n-bg-warm)",
+          ["--n-ink" as string]: "#0A0A0A",
+          ["--n-muted" as string]: "#3A342D",
+          color: "#0A0A0A",
+        }}
       >
         <div className="n-page grid grid-cols-12 gap-x-6 items-center">
           <div className="col-span-12 md:col-span-6">
@@ -236,22 +241,22 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             <div className="flex items-baseline gap-8 mb-8">
               <span
                 className="n-display leading-none"
-                style={{ fontSize: "clamp(44px, 6vw, 96px)", fontWeight: 300, color: "var(--n-ink)" }}
+                style={{ fontSize: "clamp(44px, 6vw, 96px)", fontWeight: 300, color: "#0A0A0A" }}
               >
                 {formatPrice(piece.priceEuro, locale)}
               </span>
               <div className="flex flex-col">
-                <span className="n-mono" style={{ color: "var(--n-ink)" }}>
+                <span className="n-mono" style={{ color: "#0A0A0A" }}>
                   {t.piece.prixParPiece}
                 </span>
-                <span className="n-mono" style={{ color: "var(--n-ink)" }}>
+                <span className="n-mono" style={{ color: "#0A0A0A" }}>
                   {t.piece.niPlusNiMoins}
                 </span>
               </div>
             </div>
             <p
               className="n-serif text-[19px] leading-[1.5] max-w-[42ch]"
-              style={{ color: "var(--n-muted)" }}
+              style={{ color: "#3A342D" }}
             >
               {t.piece.editionBreveBody}
             </p>
