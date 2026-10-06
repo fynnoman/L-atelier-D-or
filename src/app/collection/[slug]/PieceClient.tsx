@@ -311,11 +311,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
           ))}
         </div>
 
-        <div className="n-page mt-20 flex justify-center">
-          <Link href="/journal/quatre-atmospheres" className="n-link">
-            {t.piece.lireQuatreAtmospheres}
-          </Link>
-        </div>
       </section>
 
       {/* Éditorial gallery — grand format, horizontal swipe */}

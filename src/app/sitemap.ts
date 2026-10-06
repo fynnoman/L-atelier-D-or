@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import { PIECES } from "@/data/collection";
-import { CAHIERS } from "@/data/journal";
 
 export const dynamic = "force-static";
 
@@ -15,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
     { url: `${siteUrl}/collection`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${siteUrl}/atelier`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${siteUrl}/journal`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/avis`, lastModified: now, changeFrequency: "monthly", priority: 0.5 },
     { url: `${siteUrl}/faq`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
     { url: `${siteUrl}/mentions-legales`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
@@ -30,12 +28,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const cahiers: MetadataRoute.Sitemap = CAHIERS.map((c) => ({
-    url: `${siteUrl}/journal/${c.slug}`,
-    lastModified: now,
-    changeFrequency: "monthly",
-    priority: 0.5,
-  }));
-
-  return [...staticRoutes, ...pieces, ...cahiers];
+  return [...staticRoutes, ...pieces];
 }

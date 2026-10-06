@@ -12,7 +12,6 @@ export default function Footer() {
       title: t.footer.columnMaison,
       items: [
         { href: "/atelier", label: t.nav.atelier },
-        { href: "/journal", label: t.nav.journal },
         { href: "/avis", label: t.nav.avis },
         { href: "/feedback", label: t.nav.feedback },
         { href: "/faq", label: t.nav.questions },

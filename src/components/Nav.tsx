@@ -22,13 +22,11 @@ export default function Nav() {
   const LINKS = [
     { href: "/collection", label: t.nav.collection, hasSub: true as const },
     { href: "/atelier", label: t.nav.atelier, hasSub: false as const },
-    { href: "/journal", label: t.nav.journal, hasSub: false as const },
   ];
 
   const OVERLAY_LINKS = [
     { href: "/collection", label: t.nav.collection },
     { href: "/atelier", label: t.nav.atelier },
-    { href: "/journal", label: t.nav.journal },
     { href: "/avis", label: t.nav.avis },
     { href: "/feedback", label: t.nav.feedback },
     { href: "/faq", label: t.nav.questions },

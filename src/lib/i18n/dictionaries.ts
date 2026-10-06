@@ -441,7 +441,7 @@ const fr: Dictionary = {
   footer: {
     petiteMaisonFr: "Maison française de lunetterie",
     ligne1: "Maison indépendante de lunetterie.",
-    ligne2: "Collection exclusivement en ligne, livrée partout en Europe.",
+    ligne2: "Collection exclusivement en ligne, livrée dans le monde entier.",
     columnMaison: "Maison",
     columnCollection: "Collection",
     columnMentions: "Mentions",
@@ -523,9 +523,9 @@ const fr: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Édition confidentielle",
     editorialTitle1: "Exclusivement en ligne.",
-    editorialTitle2: "Livrée partout en Europe.",
+    editorialTitle2: "Livrée dans le monde entier.",
     editorialBody:
-      "La collection est disponible exclusivement en ligne, livrée dans son écrin partout en Europe.",
+      "La collection est disponible exclusivement en ligne, livrée dans son écrin dans le monde entier.",
     editorialCta: "Voir la collection",
   },
   piece: {
@@ -550,11 +550,11 @@ const fr: Dictionary = {
     prixParPiece: "Prix par modèle",
     niPlusNiMoins: "Verres correcteurs ou solaires inclus.",
     editionBreveBody:
-      "Livré dans son écrin dédié. Transport suivi partout en Europe.",
+      "Livré dans son écrin dédié. Transport suivi dans le monde entier.",
     deliveryEyebrow: "Livraison",
-    deliveryTitle: "Dans son écrin, partout en Europe.",
+    deliveryTitle: "Dans son écrin, dans le monde entier.",
     deliveryBody:
-      "Chaque pièce est expédiée dans son écrin dédié, par transport suivi partout en Europe.",
+      "Chaque pièce est expédiée dans son écrin dédié, par transport suivi dans le monde entier.",
     ctaCollection: "Voir la collection",
     ctaEcrire: "Nous contacter",
     section4Eyebrow: "",
@@ -1201,7 +1201,7 @@ const de: Dictionary = {
   footer: {
     petiteMaisonFr: "Französisches Brillenhaus",
     ligne1: "Unabhängiges Brillenlabel.",
-    ligne2: "Kollektion ausschließlich online, Lieferung in ganz Europa.",
+    ligne2: "Kollektion ausschließlich online, Lieferung weltweit.",
     columnMaison: "Haus",
     columnCollection: "Kollektion",
     columnMentions: "Rechtliches",
@@ -1283,9 +1283,9 @@ const de: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edition in kleiner Auflage",
     editorialTitle1: "Exklusiv online.",
-    editorialTitle2: "Lieferung in ganz Europa.",
+    editorialTitle2: "Lieferung weltweit.",
     editorialBody:
-      "Die Kollektion ist ausschließlich online erhältlich und wird im Etui europaweit versendet.",
+      "Die Kollektion ist ausschließlich online erhältlich und wird im Etui weltweit versendet.",
     editorialCta: "Zur Kollektion",
   },
   piece: {
@@ -1310,11 +1310,11 @@ const de: Dictionary = {
     prixParPiece: "Preis pro Modell",
     niPlusNiMoins: "Korrektur- oder Sonnengläser inklusive.",
     editionBreveBody:
-      "Geliefert im eigenen Etui. Verfolgter Versand in ganz Europa.",
+      "Geliefert im eigenen Etui. Verfolgter Versand weltweit.",
     deliveryEyebrow: "Lieferung",
-    deliveryTitle: "Im Etui, europaweit.",
+    deliveryTitle: "Im Etui, weltweit.",
     deliveryBody:
-      "Jedes Stück wird im eigenen Etui per verfolgtem Versand in ganz Europa ausgeliefert.",
+      "Jedes Stück wird im eigenen Etui per verfolgtem Versand weltweit ausgeliefert.",
     ctaCollection: "Zur Kollektion",
     ctaEcrire: "Kontaktieren Sie uns",
     section4Eyebrow: "",
@@ -1961,7 +1961,7 @@ const en: Dictionary = {
   footer: {
     petiteMaisonFr: "French eyewear house",
     ligne1: "Independent eyewear house.",
-    ligne2: "Collection available exclusively online, shipped across Europe.",
+    ligne2: "Collection available exclusively online, shipped worldwide.",
     columnMaison: "House",
     columnCollection: "Collection",
     columnMentions: "Legal",
@@ -2040,9 +2040,9 @@ const en: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Short edition",
     editorialTitle1: "Exclusively online.",
-    editorialTitle2: "Shipped across Europe.",
+    editorialTitle2: "Shipped worldwide.",
     editorialBody:
-      "The collection is available exclusively online and ships in its dedicated case across Europe.",
+      "The collection is available exclusively online and ships in its dedicated case worldwide.",
     editorialCta: "View collection",
   },
   piece: {
@@ -2067,11 +2067,11 @@ const en: Dictionary = {
     prixParPiece: "Price per model",
     niPlusNiMoins: "Prescription or sun lenses included.",
     editionBreveBody:
-      "Delivered in its dedicated case. Tracked shipping across Europe.",
+      "Delivered in its dedicated case. Tracked shipping worldwide.",
     deliveryEyebrow: "Delivery",
-    deliveryTitle: "In its case, across Europe.",
+    deliveryTitle: "In its case, worldwide.",
     deliveryBody:
-      "Every piece ships in its dedicated case by tracked delivery across Europe.",
+      "Every piece ships in its dedicated case by tracked delivery worldwide.",
     ctaCollection: "View collection",
     ctaEcrire: "Contact us",
     section4Eyebrow: "",
@@ -2569,7 +2569,7 @@ const it: Dictionary = {
   footer: {
     petiteMaisonFr: "Maison francese di occhialeria",
     ligne1: "Maison indipendente di occhialeria.",
-    ligne2: "Collezione esclusivamente online, spedita in tutta Europa.",
+    ligne2: "Collezione esclusivamente online, spedita in tutto il mondo.",
     columnMaison: "Maison",
     columnCollection: "Collezione",
     columnMentions: "Legale",
@@ -2648,9 +2648,9 @@ const it: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edizione in piccola tiratura",
     editorialTitle1: "Esclusivamente online.",
-    editorialTitle2: "Spedita in tutta Europa.",
+    editorialTitle2: "Spedita in tutto il mondo.",
     editorialBody:
-      "La collezione è disponibile esclusivamente online e viene spedita nel suo astuccio in tutta Europa.",
+      "La collezione è disponibile esclusivamente online e viene spedita nel suo astuccio in tutto il mondo.",
     editorialCta: "Vedi la collezione",
   },
   piece: {
@@ -2675,11 +2675,11 @@ const it: Dictionary = {
     prixParPiece: "Prezzo a modello",
     niPlusNiMoins: "Lenti correttive o da sole incluse.",
     editionBreveBody:
-      "Consegnato nel suo astuccio dedicato. Trasporto tracciato in tutta Europa.",
+      "Consegnato nel suo astuccio dedicato. Trasporto tracciato in tutto il mondo.",
     deliveryEyebrow: "Consegna",
-    deliveryTitle: "Nel suo astuccio, in tutta Europa.",
+    deliveryTitle: "Nel suo astuccio, in tutto il mondo.",
     deliveryBody:
-      "Ogni pezzo viene spedito nel suo astuccio dedicato con corriere tracciato in tutta Europa.",
+      "Ogni pezzo viene spedito nel suo astuccio dedicato con corriere tracciato in tutto il mondo.",
     ctaCollection: "Vedi la collezione",
     ctaEcrire: "Contattaci",
     section4Eyebrow: "",

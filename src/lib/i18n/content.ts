@@ -1,7 +1,6 @@
 import type { Locale } from "./LanguageContext";
 import { dictionaries } from "./dictionaries";
 import type { Piece } from "@/data/collection";
-import type { Cahier } from "@/data/journal";
 
 export type LocalizedPiece = Piece & {
   tagline: string;
@@ -37,25 +36,3 @@ export function localizePiece(piece: Piece, locale: Locale): LocalizedPiece {
   };
 }
 
-export type LocalizedCahier = Cahier & {
-  rubric: string;
-  title: string;
-  chapo: string;
-  read: string;
-  date: string;
-  body: string[];
-};
-
-export function localizeCahier(cahier: Cahier, locale: Locale): LocalizedCahier {
-  const dict = dictionaries[locale].cahiers[cahier.slug];
-  if (!dict) return cahier as LocalizedCahier;
-  return {
-    ...cahier,
-    rubric: dict.rubric,
-    title: dict.title,
-    chapo: dict.chapo,
-    read: dict.read,
-    date: dict.date,
-    body: dict.body,
-  };
-}
