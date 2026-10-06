@@ -405,33 +405,16 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                 boxShadow: "0 1px 2px rgba(10,10,10,0.04), 0 24px 48px rgba(10,10,10,0.08)",
               }}
             >
-              <div className="n-eyebrow mb-4">{t.piece.twoWays}</div>
-              <ol className="flex flex-col gap-6">
-                <li>
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="n-serif text-[32px] leading-none opacity-50">I</span>
-                    <span className="n-serif text-[19px]">{t.piece.way1Title}</span>
-                  </div>
-                  <p
-                    className="n-serif text-[15px] leading-[1.5] max-w-[38ch]"
-                    style={{ color: "var(--n-muted)" }}
-                  >
-                    {t.piece.way1Body}
-                  </p>
-                </li>
-                <li>
-                  <div className="flex items-baseline gap-3 mb-2">
-                    <span className="n-serif text-[32px] leading-none opacity-50">II</span>
-                    <span className="n-serif text-[19px]">{t.piece.way2Title}</span>
-                  </div>
-                  <p
-                    className="n-serif text-[15px] leading-[1.5] max-w-[38ch]"
-                    style={{ color: "var(--n-muted)" }}
-                  >
-                    {t.piece.way2Body}
-                  </p>
-                </li>
-              </ol>
+              <div className="n-eyebrow mb-4">{t.piece.deliveryEyebrow}</div>
+              <h3 className="n-serif text-[22px] leading-[1.25] mb-3">
+                {t.piece.deliveryTitle}
+              </h3>
+              <p
+                className="n-serif text-[15px] leading-[1.55] max-w-[38ch]"
+                style={{ color: "var(--n-muted)" }}
+              >
+                {t.piece.deliveryBody}
+              </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <Link href="/collection" className="n-cta">{t.piece.ctaCollection}</Link>

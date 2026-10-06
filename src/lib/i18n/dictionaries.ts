@@ -150,11 +150,9 @@ export type Dictionary = {
     prixParPiece: string;
     niPlusNiMoins: string;
     editionBreveBody: string;
-    twoWays: string;
-    way1Title: string;
-    way1Body: string;
-    way2Title: string;
-    way2Body: string;
+    deliveryEyebrow: string;
+    deliveryTitle: string;
+    deliveryBody: string;
     ctaCollection: string;
     ctaEcrire: string;
     section4Eyebrow: string;
@@ -298,10 +296,6 @@ export type Dictionary = {
     processTitle: string;
     processLede: string;
     steps: { t: string; b: string }[];
-    rendezvousEyebrow: string;
-    rendezvousTitle: string;
-    rendezvousBody: string;
-    rendezvousCities: string[];
     expectEyebrow: string;
     expectTitle: string;
     expectItems: string[];
@@ -440,14 +434,14 @@ const fr: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contact",
-    houseIntro: "Maison française de lunetterie.\nParis · Berlin · Londres.",
+    houseIntro: "Maison indépendante de lunetterie.\nÉdition confidentielle.",
     contactWriteUs: "Nous écrire",
     ctaCollection: "Voir la collection",
   },
   footer: {
     petiteMaisonFr: "Maison française de lunetterie",
-    ligne1: "Maison française de lunetterie.",
-    ligne2: "Vente en ligne, sur rendez-vous à Paris, Berlin et Londres.",
+    ligne1: "Maison indépendante de lunetterie.",
+    ligne2: "Collection exclusivement en ligne, livrée partout en Europe.",
     columnMaison: "Maison",
     columnCollection: "Collection",
     columnMentions: "Mentions",
@@ -457,13 +451,13 @@ const fr: Dictionary = {
     labelAccessibilite: "Accessibilité",
     labelRetractation: "Droit de rétractation",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Maison française de lunetterie",
-    editorialTag2: "Paris · Berlin · Londres",
+    editorialTag: "Maison indépendante de lunetterie",
+    editorialTag2: "Édition confidentielle",
   },
   newsletter: {
     label: "La lettre de la maison",
     description:
-      "Nouvelles pièces, journal, rendez-vous. Envoyée avec parcimonie.",
+      "Nouvelles pièces, journal, actualités de la maison. Envoyée avec parcimonie.",
     placeholder: "votre@email.com",
     submit: "S’inscrire",
     formAria: "Inscription à la lettre de la maison",
@@ -476,10 +470,10 @@ const fr: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · La collection",
+      eyebrow: "La collection · Roi",
       title1: "Voyez le monde depuis",
       title2: "votre propre perspective.",
-      lede: "Roi. La collection.",
+      lede: "",
       ctaCollection: "Voir la collection",
       ctaConseil: "Demander conseil",
       ctaAtelier: "La maison",
@@ -527,12 +521,12 @@ const fr: Dictionary = {
     lede:
       "Acétate italien, charnières métalliques, montage à la main à Paris.\n78,90 € par modèle, verres correcteurs ou solaires inclus.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
-    subtitles2: "Paris · Berlin · Londres",
+    subtitles2: "Édition confidentielle",
     editorialTitle1: "Exclusivement en ligne.",
-    editorialTitle2: "Essais privés sur rendez-vous.",
+    editorialTitle2: "Livrée partout en Europe.",
     editorialBody:
-      "La collection est disponible exclusivement en ligne. Essais privés sur rendez-vous à Paris, Berlin et Londres.",
-    editorialCta: "Prendre rendez-vous",
+      "La collection est disponible exclusivement en ligne, livrée dans son écrin partout en Europe.",
+    editorialCta: "Voir la collection",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
@@ -556,13 +550,11 @@ const fr: Dictionary = {
     prixParPiece: "Prix par modèle",
     niPlusNiMoins: "Verres correcteurs ou solaires inclus.",
     editionBreveBody:
-      "Livré dans son écrin dédié. Remise en main propre à Paris, transport suivi ailleurs en Europe.",
-    twoWays: "Deux options de livraison",
-    way1Title: "Rendez-vous privé",
-    way1Body:
-      "Paris, Berlin ou Londres. Essai, ajustement, puis verres correcteurs ou solaires.",
-    way2Title: "Livraison dans son écrin",
-    way2Body: "En main propre à Paris ; par transport suivi ailleurs en Europe.",
+      "Livré dans son écrin dédié. Transport suivi partout en Europe.",
+    deliveryEyebrow: "Livraison",
+    deliveryTitle: "Dans son écrin, partout en Europe.",
+    deliveryBody:
+      "Chaque pièce est expédiée dans son écrin dédié, par transport suivi partout en Europe.",
     ctaCollection: "Voir la collection",
     ctaEcrire: "Nous contacter",
     section4Eyebrow: "",
@@ -787,18 +779,13 @@ const fr: Dictionary = {
         b: "Vous recevez sous 24 heures ouvrées une recommandation écrite et les prochaines étapes.",
       },
     ],
-    rendezvousEyebrow: "Rendez-vous privé",
-    rendezvousTitle: "Essai sur place.",
-    rendezvousBody:
-      "Rendez-vous privés à Paris, Berlin ou Londres. Précisez votre ville de préférence dans la demande.",
-    rendezvousCities: ["Paris", "Berlin", "Londres"],
     expectEyebrow: "Ce que vous recevez",
     expectTitle: "Contenu du conseil.",
     expectItems: [
       "Recommandation de silhouette et de modèle, adaptée à la morphologie et à l’usage.",
       "Suggestion de teinte, en regard de la carnation et du dressing.",
       "Notes de port et conseils d’usage quotidien.",
-      "Prochaine étape : commande en ligne ou rendez-vous privé.",
+      "Prochaine étape : commande en ligne, livrée dans son écrin.",
     ],
   },
   journal: {
@@ -1050,8 +1037,9 @@ const fr: Dictionary = {
   },
   pieces: {
     "roi-rouge": {
-      tagline: "Rectangle, acétate rouge à finition dorée.",
-      chapter: "Rectangle · Rouge",
+      tagline:
+        "Acétate rouge profond. Détails argentés. Une silhouette marquée, à la présence immanquable.",
+      chapter: "Caractère · Rouge",
       place: "Modèle statement pour le soir",
       time: "Soir",
       silhouette: "Rectangle aux angles adoucis, arête franche.",
@@ -1066,8 +1054,9 @@ const fr: Dictionary = {
       teintes: [{ name: "Rouge Ember" }, { name: "Rouge Profond" }],
     },
     "roi-noir": {
-      tagline: "Panto, acétate vert sous-bois à rivets bronze.",
-      chapter: "Panto · Vert sous-bois",
+      tagline:
+        "Acétate noir profond. Détails argentés discrets. Une forme classique, interprétée avec aisance.",
+      chapter: "Élégance · Noir",
       place: "Modèle du quotidien avec caractère",
       time: "Jour",
       silhouette: "Panto haute, ligne fermée, arête douce.",
@@ -1078,8 +1067,9 @@ const fr: Dictionary = {
       teintes: [{ name: "Noir Encre" }, { name: "Noir Fumé" }],
     },
     "roi-cristal": {
-      tagline: "Ovale, acétate cristal à charnières argentées.",
-      chapter: "Ovale · Cristal",
+      tagline:
+        "Acétate cristallin. Détails argentés. La légèreté dans sa forme la plus élégante.",
+      chapter: "Lumière · Cristal",
       place: "Modèle discret du quotidien",
       time: "Jour",
       silhouette: "Ovale allongé, arête cristalline très fine.",
@@ -1094,8 +1084,9 @@ const fr: Dictionary = {
       teintes: [{ name: "Blanc de Neige" }, { name: "Blanc Nacré" }],
     },
     "roi-emeraude": {
-      tagline: "Panto, acétate émeraude à finition dorée.",
-      chapter: "Panto masculine · Émeraude",
+      tagline:
+        "Acétate vert émeraude. Détails argentés. Expressif, sans élever la voix.",
+      chapter: "Distinction · Émeraude",
       place: "Ligne masculine pour le soir et le business",
       time: "Soir",
       silhouette: "Panto masculine, arête sculptée, branches longues.",
@@ -1203,14 +1194,14 @@ const de: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Haus",
     contactEyebrow: "Kontakt",
-    houseIntro: "Französisches Brillenhaus.\nParis · Berlin · London.",
+    houseIntro: "Unabhängiges Brillenlabel.\nEdition in kleiner Auflage.",
     contactWriteUs: "Schreiben Sie uns",
     ctaCollection: "Zur Kollektion",
   },
   footer: {
     petiteMaisonFr: "Französisches Brillenhaus",
-    ligne1: "Französisches Brillenhaus.",
-    ligne2: "Online-Verkauf, nach Termin in Paris, Berlin und London.",
+    ligne1: "Unabhängiges Brillenlabel.",
+    ligne2: "Kollektion ausschließlich online, Lieferung in ganz Europa.",
     columnMaison: "Haus",
     columnCollection: "Kollektion",
     columnMentions: "Rechtliches",
@@ -1220,13 +1211,13 @@ const de: Dictionary = {
     labelAccessibilite: "Barrierefreiheit",
     labelRetractation: "Widerrufsbelehrung",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Französisches Brillenhaus",
-    editorialTag2: "Paris · Berlin · London",
+    editorialTag: "Unabhängiges Brillenlabel",
+    editorialTag2: "Edition in kleiner Auflage",
   },
   newsletter: {
     label: "Der Brief des Hauses",
     description:
-      "Neue Stücke, Journal, Termine. Mit Zurückhaltung verschickt.",
+      "Neue Stücke, Journal, Neuigkeiten aus dem Label. Mit Zurückhaltung verschickt.",
     placeholder: "ihre@email.de",
     submit: "Anmelden",
     formAria: "Anmeldung zum Brief des Hauses",
@@ -1239,10 +1230,10 @@ const de: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · Die Kollektion",
+      eyebrow: "Die Kollektion · Roi",
       title1: "Sehen Sie die Welt aus",
       title2: "Ihrer eigenen Perspektive.",
-      lede: "Roi. Die Kollektion.",
+      lede: "",
       ctaCollection: "Zur Kollektion",
       ctaConseil: "Beratung anfragen",
       ctaAtelier: "Die Maison",
@@ -1290,12 +1281,12 @@ const de: Dictionary = {
     lede:
       "Italienisches Acetat, Metallscharniere, Handmontage in Paris.\n78,90 € pro Modell, inkl. Korrektur- oder Sonnengläser.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
-    subtitles2: "Paris · Berlin · London",
+    subtitles2: "Edition in kleiner Auflage",
     editorialTitle1: "Exklusiv online.",
-    editorialTitle2: "Private Beratung auf Termin.",
+    editorialTitle2: "Lieferung in ganz Europa.",
     editorialBody:
-      "Die Kollektion ist ausschließlich online erhältlich. Private Beratungstermine in Paris, Berlin und London.",
-    editorialCta: "Einen Termin vereinbaren",
+      "Die Kollektion ist ausschließlich online erhältlich und wird im Etui europaweit versendet.",
+    editorialCta: "Zur Kollektion",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
@@ -1319,13 +1310,11 @@ const de: Dictionary = {
     prixParPiece: "Preis pro Modell",
     niPlusNiMoins: "Korrektur- oder Sonnengläser inklusive.",
     editionBreveBody:
-      "Geliefert im eigenen Etui. Persönliche Übergabe in Paris, in Europa per verfolgtem Versand.",
-    twoWays: "Zwei Lieferoptionen",
-    way1Title: "Privater Termin",
-    way1Body:
-      "Paris, Berlin oder London. Anprobe, Anpassung, danach Korrektur- oder Sonnengläser.",
-    way2Title: "Lieferung im Etui",
-    way2Body: "Persönlich in Paris; überall sonst in Europa per verfolgtem Versand.",
+      "Geliefert im eigenen Etui. Verfolgter Versand in ganz Europa.",
+    deliveryEyebrow: "Lieferung",
+    deliveryTitle: "Im Etui, europaweit.",
+    deliveryBody:
+      "Jedes Stück wird im eigenen Etui per verfolgtem Versand in ganz Europa ausgeliefert.",
     ctaCollection: "Zur Kollektion",
     ctaEcrire: "Kontaktieren Sie uns",
     section4Eyebrow: "",
@@ -1550,18 +1539,13 @@ const de: Dictionary = {
         b: "Sie erhalten innerhalb von 24 Werkstunden eine schriftliche Empfehlung inklusive nächster Schritte.",
       },
     ],
-    rendezvousEyebrow: "Privater Termin",
-    rendezvousTitle: "Anprobe vor Ort.",
-    rendezvousBody:
-      "Private Beratungstermine in Paris, Berlin oder London. Erwähnen Sie Ihren Wunschstandort in der Anfrage.",
-    rendezvousCities: ["Paris", "Berlin", "London"],
     expectEyebrow: "Was Sie erhalten",
     expectTitle: "Inhalt der Beratung.",
     expectItems: [
       "Empfehlung zu Silhouette und Modell, abgestimmt auf Gesichtsform und Nutzung.",
       "Vorschlag zum Farbton, passend zu Hautton und Garderobe.",
       "Hinweise zu Trage-Anlass und Alltagstauglichkeit.",
-      "Nächster Schritt: Online-Bestellung oder privater Termin.",
+      "Nächster Schritt: Online-Bestellung, geliefert im Etui.",
     ],
   },
   journal: {
@@ -1813,8 +1797,9 @@ const de: Dictionary = {
   },
   pieces: {
     "roi-rouge": {
-      tagline: "Rechteck, rotes Acetat mit goldener Ausführung.",
-      chapter: "Rechteck · Rouge",
+      tagline:
+        "Tiefrotes Acetat. Silberne Details. Eine markante Silhouette mit unverkennbarer Präsenz.",
+      chapter: "Caractère · Rouge",
       place: "Statement-Modell für den Abend",
       time: "Abend",
       silhouette: "Rechteck mit weichen Ecken, klarer Kante.",
@@ -1829,8 +1814,9 @@ const de: Dictionary = {
       teintes: [{ name: "Rouge Ember" }, { name: "Rouge Profond" }],
     },
     "roi-noir": {
-      tagline: "Panto, waldgrünes Acetat mit Bronze-Nieten.",
-      chapter: "Panto · Vert sous-bois",
+      tagline:
+        "Tiefschwarzes Acetat. Dezente Silberdetails. Klassische Form, souverän interpretiert.",
+      chapter: "Élégance · Noir",
       place: "Alltagsmodell mit Charakter",
       time: "Tag",
       silhouette: "Hohe Panto-Form, geschlossene Linie, weiche Kante.",
@@ -1841,8 +1827,9 @@ const de: Dictionary = {
       teintes: [{ name: "Noir Encre" }, { name: "Noir Fumé" }],
     },
     "roi-cristal": {
-      tagline: "Oval, Kristall-Acetat mit silbernen Scharnieren.",
-      chapter: "Oval · Cristal",
+      tagline:
+        "Kristallklares Acetat. Silberne Details. Leichtigkeit in ihrer elegantesten Form.",
+      chapter: "Lumière · Cristal",
       place: "Diskretes Alltagsmodell",
       time: "Tag",
       silhouette: "Gestrecktes Oval, sehr feine kristalline Kante.",
@@ -1857,8 +1844,9 @@ const de: Dictionary = {
       teintes: [{ name: "Blanc de Neige" }, { name: "Blanc Nacré" }],
     },
     "roi-emeraude": {
-      tagline: "Panto, smaragdgrünes Acetat mit goldener Ausführung.",
-      chapter: "Panto maskulin · Émeraude",
+      tagline:
+        "Smaragdgrünes Acetat. Silberne Details. Ausdrucksstark, ohne laut zu sein.",
+      chapter: "Distinction · Émeraude",
       place: "Maskuline Linie für Abend und Business",
       time: "Abend",
       silhouette: "Maskuline Panto-Form, gemeißelte Kante, lange Bügel.",
@@ -1966,14 +1954,14 @@ const en: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "House",
     contactEyebrow: "Contact",
-    houseIntro: "French eyewear house.\nParis · Berlin · London.",
+    houseIntro: "Independent eyewear house.\nShort edition.",
     contactWriteUs: "Write to us",
     ctaCollection: "View collection",
   },
   footer: {
     petiteMaisonFr: "French eyewear house",
-    ligne1: "French eyewear house.",
-    ligne2: "Online sales, by appointment in Paris, Berlin and London.",
+    ligne1: "Independent eyewear house.",
+    ligne2: "Collection available exclusively online, shipped across Europe.",
     columnMaison: "House",
     columnCollection: "Collection",
     columnMentions: "Legal",
@@ -1983,12 +1971,12 @@ const en: Dictionary = {
     labelAccessibilite: "Accessibility",
     labelRetractation: "Right of withdrawal",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "French eyewear house",
-    editorialTag2: "Paris · Berlin · London",
+    editorialTag: "Independent eyewear house",
+    editorialTag2: "Short edition",
   },
   newsletter: {
     label: "The house letter",
-    description: "New pieces, journal, appointments. Sent sparingly.",
+    description: "New pieces, journal, news from the house. Sent sparingly.",
     placeholder: "your@email.com",
     submit: "Subscribe",
     formAria: "Subscribe to the house letter",
@@ -2001,10 +1989,10 @@ const en: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · The collection",
+      eyebrow: "The collection · Roi",
       title1: "See the world from",
       title2: "your own perspective.",
-      lede: "Roi. The collection.",
+      lede: "",
       ctaCollection: "View collection",
       ctaConseil: "Ask for advice",
       ctaAtelier: "The house",
@@ -2050,12 +2038,12 @@ const en: Dictionary = {
     lede:
       "Italian acetate, metal hinges, hand assembled in Paris.\n€78.90 per model, prescription or sun lenses included.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
-    subtitles2: "Paris · Berlin · London",
+    subtitles2: "Short edition",
     editorialTitle1: "Exclusively online.",
-    editorialTitle2: "Private appointments on request.",
+    editorialTitle2: "Shipped across Europe.",
     editorialBody:
-      "The collection is available exclusively online. Private appointments in Paris, Berlin and London.",
-    editorialCta: "Book an appointment",
+      "The collection is available exclusively online and ships in its dedicated case across Europe.",
+    editorialCta: "View collection",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
@@ -2079,13 +2067,11 @@ const en: Dictionary = {
     prixParPiece: "Price per model",
     niPlusNiMoins: "Prescription or sun lenses included.",
     editionBreveBody:
-      "Delivered in its dedicated case. Hand-delivered in Paris, tracked shipping elsewhere in Europe.",
-    twoWays: "Two delivery options",
-    way1Title: "Private appointment",
-    way1Body:
-      "Paris, Berlin or London. Try-on, fitting, then prescription or sun lenses.",
-    way2Title: "Delivery in its case",
-    way2Body: "Hand-delivered in Paris; tracked shipping elsewhere in Europe.",
+      "Delivered in its dedicated case. Tracked shipping across Europe.",
+    deliveryEyebrow: "Delivery",
+    deliveryTitle: "In its case, across Europe.",
+    deliveryBody:
+      "Every piece ships in its dedicated case by tracked delivery across Europe.",
     ctaCollection: "View collection",
     ctaEcrire: "Contact us",
     section4Eyebrow: "",
@@ -2297,18 +2283,13 @@ const en: Dictionary = {
       { t: "We review", b: "Our master optician reviews your request and selects the right model from the collection." },
       { t: "We reply", b: "You receive a written recommendation and next steps within 24 working hours." },
     ],
-    rendezvousEyebrow: "Private appointment",
-    rendezvousTitle: "Try on in person.",
-    rendezvousBody:
-      "Private appointments in Paris, Berlin or London. Mention your preferred city in the request.",
-    rendezvousCities: ["Paris", "Berlin", "London"],
     expectEyebrow: "What you receive",
     expectTitle: "Advice contents.",
     expectItems: [
       "Silhouette and model recommendation, matched to your face shape and use.",
       "Tone suggestion, matched to complexion and wardrobe.",
       "Wear notes for everyday use, evening and work.",
-      "Next step: online order or private appointment.",
+      "Next step: online order, delivered in its case.",
     ],
   },
   journal: {
@@ -2436,8 +2417,9 @@ const en: Dictionary = {
   },
   pieces: {
     "roi-rouge": {
-      tagline: "Rectangle, red acetate with gold finish.",
-      chapter: "Rectangle · Rouge",
+      tagline:
+        "Deep red acetate. Silver details. A pronounced silhouette with unmistakable presence.",
+      chapter: "Caractère · Rouge",
       place: "Statement model for evening wear",
       time: "Evening",
       silhouette: "Rectangle with softened corners, clean edge.",
@@ -2448,8 +2430,9 @@ const en: Dictionary = {
       teintes: [{ name: "Rouge Ember" }, { name: "Rouge Profond" }],
     },
     "roi-noir": {
-      tagline: "Panto, forest-green acetate with bronze rivets.",
-      chapter: "Panto · Vert sous-bois",
+      tagline:
+        "Deep black acetate. Discreet silver details. A classic shape, interpreted with poise.",
+      chapter: "Élégance · Noir",
       place: "Everyday model with character",
       time: "Day",
       silhouette: "High panto, closed line, soft edge.",
@@ -2460,8 +2443,9 @@ const en: Dictionary = {
       teintes: [{ name: "Noir Encre" }, { name: "Noir Fumé" }],
     },
     "roi-cristal": {
-      tagline: "Oval, crystal acetate with silver hinges.",
-      chapter: "Oval · Cristal",
+      tagline:
+        "Crystal-clear acetate. Silver details. Lightness in its most elegant form.",
+      chapter: "Lumière · Cristal",
       place: "Discreet everyday model",
       time: "Day",
       silhouette: "Elongated oval, very fine crystalline edge.",
@@ -2472,8 +2456,9 @@ const en: Dictionary = {
       teintes: [{ name: "Blanc de Neige" }, { name: "Blanc Nacré" }],
     },
     "roi-emeraude": {
-      tagline: "Panto, emerald acetate with gold finish.",
-      chapter: "Masculine Panto · Émeraude",
+      tagline:
+        "Emerald green acetate. Silver details. Expressive, without raising its voice.",
+      chapter: "Distinction · Émeraude",
       place: "Masculine line for evening and business",
       time: "Evening",
       silhouette: "Masculine panto, sculpted edge, long temples.",
@@ -2577,14 +2562,14 @@ const it: Dictionary = {
     feedback: "Feedback",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contatto",
-    houseIntro: "Maison francese di occhialeria.\nParigi · Berlino · Londra.",
+    houseIntro: "Maison indipendente di occhialeria.\nEdizione in piccola tiratura.",
     contactWriteUs: "Scriveteci",
     ctaCollection: "Vedi la collezione",
   },
   footer: {
     petiteMaisonFr: "Maison francese di occhialeria",
-    ligne1: "Maison francese di occhialeria.",
-    ligne2: "Vendita online, su appuntamento a Parigi, Berlino e Londra.",
+    ligne1: "Maison indipendente di occhialeria.",
+    ligne2: "Collezione esclusivamente online, spedita in tutta Europa.",
     columnMaison: "Maison",
     columnCollection: "Collezione",
     columnMentions: "Legale",
@@ -2594,12 +2579,12 @@ const it: Dictionary = {
     labelAccessibilite: "Accessibilità",
     labelRetractation: "Diritto di recesso",
     copyright: "© L’Atelier d’Or",
-    editorialTag: "Maison francese di occhialeria",
-    editorialTag2: "Parigi · Berlino · Londra",
+    editorialTag: "Maison indipendente di occhialeria",
+    editorialTag2: "Edizione in piccola tiratura",
   },
   newsletter: {
     label: "La lettera della maison",
-    description: "Nuovi pezzi, journal, appuntamenti. Inviata con parsimonia.",
+    description: "Nuovi pezzi, journal, notizie dalla maison. Inviata con parsimonia.",
     placeholder: "voi@email.com",
     submit: "Iscriversi",
     formAria: "Iscrizione alla lettera della maison",
@@ -2612,10 +2597,10 @@ const it: Dictionary = {
   },
   home: {
     hero: {
-      eyebrow: "Roi · La collezione",
+      eyebrow: "La collezione · Roi",
       title1: "Guardate il mondo dalla",
       title2: "vostra prospettiva.",
-      lede: "Roi. La collezione.",
+      lede: "",
       ctaCollection: "Vedi la collezione",
       ctaConseil: "Chiedere consiglio",
       ctaAtelier: "La maison",
@@ -2661,12 +2646,12 @@ const it: Dictionary = {
     lede:
       "Acetato italiano, cerniere metalliche, montaggio a mano a Parigi.\n78,90 € a modello, lenti correttive o da sole incluse.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
-    subtitles2: "Parigi · Berlino · Londra",
+    subtitles2: "Edizione in piccola tiratura",
     editorialTitle1: "Esclusivamente online.",
-    editorialTitle2: "Appuntamenti privati su richiesta.",
+    editorialTitle2: "Spedita in tutta Europa.",
     editorialBody:
-      "La collezione è disponibile esclusivamente online. Appuntamenti privati a Parigi, Berlino e Londra.",
-    editorialCta: "Prenota un appuntamento",
+      "La collezione è disponibile esclusivamente online e viene spedita nel suo astuccio in tutta Europa.",
+    editorialCta: "Vedi la collezione",
   },
   piece: {
     metaDescriptionSuffix: (name, price) =>
@@ -2690,13 +2675,11 @@ const it: Dictionary = {
     prixParPiece: "Prezzo a modello",
     niPlusNiMoins: "Lenti correttive o da sole incluse.",
     editionBreveBody:
-      "Consegnato nel suo astuccio dedicato. Consegna a mano a Parigi, trasporto tracciato altrove in Europa.",
-    twoWays: "Due opzioni di consegna",
-    way1Title: "Appuntamento privato",
-    way1Body:
-      "Parigi, Berlino o Londra. Prova, regolazione, poi lenti correttive o da sole.",
-    way2Title: "Consegna nel suo astuccio",
-    way2Body: "A mano a Parigi; trasporto tracciato altrove in Europa.",
+      "Consegnato nel suo astuccio dedicato. Trasporto tracciato in tutta Europa.",
+    deliveryEyebrow: "Consegna",
+    deliveryTitle: "Nel suo astuccio, in tutta Europa.",
+    deliveryBody:
+      "Ogni pezzo viene spedito nel suo astuccio dedicato con corriere tracciato in tutta Europa.",
     ctaCollection: "Vedi la collezione",
     ctaEcrire: "Contattaci",
     section4Eyebrow: "",
@@ -2907,18 +2890,13 @@ const it: Dictionary = {
       { t: "Noi esaminiamo", b: "Il nostro mastro ottico esamina la vostra richiesta e seleziona il modello adatto nella collezione." },
       { t: "Noi rispondiamo", b: "Entro 24 ore lavorative ricevete una raccomandazione scritta e i prossimi passi." },
     ],
-    rendezvousEyebrow: "Appuntamento privato",
-    rendezvousTitle: "Prova sul posto.",
-    rendezvousBody:
-      "Appuntamenti privati a Parigi, Berlino o Londra. Specificate la vostra città preferita nella richiesta.",
-    rendezvousCities: ["Parigi", "Berlino", "Londra"],
     expectEyebrow: "Ciò che ricevete",
     expectTitle: "Contenuto della consulenza.",
     expectItems: [
       "Raccomandazione di silhouette e modello, in base alla forma del viso e all’uso.",
       "Suggerimento di tonalità, in base a incarnato e guardaroba.",
       "Note di porto per uso quotidiano, sera e lavoro.",
-      "Prossimo passo: ordine online o appuntamento privato.",
+      "Prossimo passo: ordine online, consegnato nel suo astuccio.",
     ],
   },
   journal: {
@@ -3046,8 +3024,9 @@ const it: Dictionary = {
   },
   pieces: {
     "roi-rouge": {
-      tagline: "Rettangolo, acetato rosso con finitura dorata.",
-      chapter: "Rettangolo · Rouge",
+      tagline:
+        "Acetato rosso profondo. Dettagli argentati. Una silhouette marcata, dalla presenza inconfondibile.",
+      chapter: "Caractère · Rouge",
       place: "Modello statement per la sera",
       time: "Sera",
       silhouette: "Rettangolo dagli angoli ammorbiditi, bordo netto.",
@@ -3058,8 +3037,9 @@ const it: Dictionary = {
       teintes: [{ name: "Rouge Ember" }, { name: "Rouge Profond" }],
     },
     "roi-noir": {
-      tagline: "Panto, acetato verde bosco con rivetti bronzo.",
-      chapter: "Panto · Vert sous-bois",
+      tagline:
+        "Acetato nero profondo. Dettagli argentati discreti. Una forma classica, interpretata con sicurezza.",
+      chapter: "Élégance · Noir",
       place: "Modello quotidiano con carattere",
       time: "Giorno",
       silhouette: "Panto alto, linea chiusa, bordo morbido.",
@@ -3070,8 +3050,9 @@ const it: Dictionary = {
       teintes: [{ name: "Noir Encre" }, { name: "Noir Fumé" }],
     },
     "roi-cristal": {
-      tagline: "Ovale, acetato cristallo con cerniere argentate.",
-      chapter: "Ovale · Cristal",
+      tagline:
+        "Acetato cristallino. Dettagli argentati. La leggerezza nella sua forma più elegante.",
+      chapter: "Lumière · Cristal",
       place: "Modello discreto per il quotidiano",
       time: "Giorno",
       silhouette: "Ovale allungato, bordo cristallino molto sottile.",
@@ -3082,8 +3063,9 @@ const it: Dictionary = {
       teintes: [{ name: "Blanc de Neige" }, { name: "Blanc Nacré" }],
     },
     "roi-emeraude": {
-      tagline: "Panto, acetato smeraldo con finitura dorata.",
-      chapter: "Panto maschile · Émeraude",
+      tagline:
+        "Acetato verde smeraldo. Dettagli argentati. Espressivo, senza alzare la voce.",
+      chapter: "Distinction · Émeraude",
       place: "Linea maschile per sera e business",
       time: "Sera",
       silhouette: "Panto maschile, bordo scolpito, aste lunghe.",

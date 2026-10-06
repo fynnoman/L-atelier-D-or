@@ -172,16 +172,18 @@ export default function ScrollVideoHero() {
                     {t.home.hero.title1} <br />
                     {t.home.hero.title2}
                   </h1>
-                  <p
-                    className="n-body mt-6 md:mt-8 max-w-[46ch]"
-                    style={{
-                      fontSize: "clamp(14px, 1.1vw, 17px)",
-                      color: "rgba(255,255,255,0.78)",
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {t.home.hero.lede}
-                  </p>
+                  {t.home.hero.lede && (
+                    <p
+                      className="n-body mt-6 md:mt-8 max-w-[46ch]"
+                      style={{
+                        fontSize: "clamp(14px, 1.1vw, 17px)",
+                        color: "rgba(255,255,255,0.78)",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {t.home.hero.lede}
+                    </p>
+                  )}
                   <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-4 md:gap-5">
                     <Link
                       href="/collection"

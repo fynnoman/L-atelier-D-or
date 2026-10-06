@@ -48,8 +48,6 @@ export default function CollectionIndexClient() {
             style={{ borderColor: "var(--n-line-soft)" }}
           >
             <span className="n-mono opacity-60">{t.collectionIndex.subtitles}</span>
-            <span className="n-mono opacity-60">{t.collectionIndex.subtitles2}</span>
-            <span className="n-mono opacity-60">{t.collectionIndex.subtitles2}</span>
           </div>
         </div>
       </section>

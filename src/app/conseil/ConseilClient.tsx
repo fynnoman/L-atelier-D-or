@@ -138,51 +138,6 @@ export default function ConseilClient() {
         </div>
       </section>
 
-      {/* Rendez-vous privé */}
-      <section
-        className="relative py-24 md:py-32"
-        style={{ background: "var(--n-ink)", color: "var(--n-bg)" }}
-      >
-        <div className="n-page">
-          <div className="grid grid-cols-12 gap-x-6 items-end">
-            <div className="col-span-12 md:col-span-7">
-              <PageEyebrow label={t.conseil.rendezvousEyebrow} className="mb-6" />
-              <h2
-                className="n-display leading-[1.04]"
-                style={{ fontSize: "clamp(32px, 5vw, 80px)", fontWeight: 300 }}
-              >
-                {t.conseil.rendezvousTitle}
-              </h2>
-            </div>
-            <div className="col-span-12 md:col-span-4 md:col-start-9 mt-10 md:mt-0">
-              <p
-                className="n-serif leading-[1.55] max-w-[36ch] opacity-80"
-                style={{ fontSize: "16px" }}
-              >
-                {t.conseil.rendezvousBody}
-              </p>
-            </div>
-          </div>
-
-          <div
-            className="mt-16 pt-10 flex flex-wrap gap-x-14 gap-y-4 border-t"
-            style={{ borderColor: "rgba(237,227,206,0.22)" }}
-          >
-            {t.conseil.rendezvousCities.map((c) => (
-              <span
-                key={c}
-                className="n-display leading-none"
-                style={{
-                  fontSize: "clamp(28px, 4vw, 56px)",
-                  fontWeight: 300,
-                }}
-              >
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
