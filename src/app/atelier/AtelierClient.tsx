@@ -74,7 +74,13 @@ export default function AtelierClient() {
       {/* Image break */}
       <section className="relative">
         <div className="n-page">
-          <MaskedImage tone="warm" ratio="21 / 9" />
+          <MaskedImage
+            tone="warm"
+            ratio="21 / 9"
+            src="/atelier/boutique-shelf.png"
+            alt="Présentoir de la boutique L'Atelier d'Or, lunettes alignées sur une étagère de travertin."
+            objectPosition="50% 55%"
+          />
         </div>
       </section>
 
