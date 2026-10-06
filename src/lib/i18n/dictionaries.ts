@@ -415,7 +415,7 @@ const fr: Dictionary = {
     fermerMenu: "Fermer le menu",
     skipToContent: "Aller au contenu",
     voyezLeMonde1: "Voyez le monde depuis",
-    voyezLeMonde2: "votre propre perspective.",
+    voyezLeMonde2: "votre propre perspective",
     quatrePiecesParAn: "Roi. La collection.",
     editionBreveDescription: "",
     edition: "",
@@ -455,11 +455,11 @@ const fr: Dictionary = {
     editorialTag2: "Édition confidentielle",
   },
   newsletter: {
-    label: "La lettre de la maison",
+    label: "Lettre de la maison",
     description:
-      "Nouvelles pièces, actualités de la maison. Envoyée avec parcimonie.",
-    placeholder: "votre@email.com",
-    submit: "S’inscrire",
+      "Découvrez les nouvelles collections, les pièces sélectionnées et les actualités de L’Atelier d’Or, directement par e-mail.",
+    placeholder: "Votre adresse e-mail",
+    submit: "S’inscrire à la newsletter",
     formAria: "Inscription à la lettre de la maison",
     submitting: "…",
     ok: "✓",
@@ -472,7 +472,7 @@ const fr: Dictionary = {
     hero: {
       eyebrow: "La collection · Roi",
       title1: "Voyez le monde depuis",
-      title2: "votre propre perspective.",
+      title2: "votre propre perspective",
       lede: "",
       ctaCollection: "Voir la collection",
       ctaConseil: "Demander conseil",
@@ -503,7 +503,7 @@ const fr: Dictionary = {
     endCall: {
       eyebrow: "Roi · La collection",
       line1: "Voyez le monde depuis",
-      line2: "votre propre perspective.",
+      line2: "votre propre perspective",
       body: "Roi. Quatre modèles. Disponible en ligne.",
       ctaCollection: "Voir la collection",
       ctaAtelier: "À propos",
@@ -725,7 +725,7 @@ const fr: Dictionary = {
   conseil: {
     metaTitle: "Conseil personnalisé",
     metaDescription:
-      "Conseil personnalisé par notre maître opticien. Réponse sous 24 heures.",
+      "Conseil personnalisé par notre équipe professionnelle. Réponse sous 24 heures.",
     eyebrowNum: "",
     eyebrowLabel: "Conseil",
     title1: "Conseil",
@@ -757,14 +757,14 @@ const fr: Dictionary = {
     emailBackToCard: "Retour au formulaire",
     emailStowCard: "Fermer",
     footnoteA: "CONSEIL · RÉPONSE SOUS 24 HEURES",
-    footnoteB: "L’Atelier d’Or — Paris",
+    footnoteB: "L’Atelier d’Or",
     errorEmpty: "Merci d’indiquer votre nom et votre message.",
     errorSetup: "Le service est en cours de configuration. Veuillez réessayer plus tard.",
     errorSend: "Votre message n’a pas été envoyé. Veuillez réessayer.",
     pocket: "",
     noscriptWrite: "Pour un conseil personnel, écrivez à",
     processEyebrow: "Déroulé",
-    processTitle: "Conseil par notre maître opticien.",
+    processTitle: "Conseil par notre équipe professionnelle.",
     processLede:
       "Chaque demande est examinée individuellement et suivie d’une réponse personnelle sous 24 heures ouvrées.",
     steps: [
@@ -774,7 +774,7 @@ const fr: Dictionary = {
       },
       {
         t: "Nous étudions",
-        b: "Notre maître opticien étudie votre demande et sélectionne le modèle adapté dans la collection.",
+        b: "Notre équipe professionnelle étudie votre demande et sélectionne le modèle adapté dans la collection.",
       },
       {
         t: "Nous répondons",
@@ -1106,13 +1106,13 @@ const fr: Dictionary = {
   cahiers: {
     "geste-juste": {
       rubric: "Fabrication",
-      title: "Montage à la main, à Paris.",
+      title: "Montage à la main.",
       chapo:
-        "Chaque monture est montée et finie à la main dans notre atelier partenaire parisien.",
+        "Chaque monture est montée et finie à la main dans notre atelier partenaire.",
       read: "5 min",
       date: "Septembre",
       body: [
-        "Chaque monture Roi est fabriquée à Paris : coupe, fraisage, cintrage, polissage, rivetage et finition sont réalisés dans notre atelier partenaire.",
+        "Chaque monture Roi est fabriquée dans notre atelier partenaire : coupe, fraisage, cintrage, polissage, rivetage et finition.",
         "Le montage à la main permet un contrôle précis de chaque arête, de chaque charnière et de chaque surface. Ce qu’une machine ferait plus vite effacerait la ligne du dessin.",
         "Le fini est inspecté à l’œil nu sous lumière rasante. Une monture ne quitte l’atelier qu’une fois charnières, rivets et polissage parfaitement conformes.",
         "Chaque modèle reste réglable chez tout opticien : charnières et branches sont vissées de manière classique, sans collage.",
@@ -1142,7 +1142,7 @@ const fr: Dictionary = {
       date: "Août",
       body: [
         "Dans la distribution classique, la plus grande partie du prix de vente est captée par les boutiques, grossistes et intermédiaires.",
-        "Nous vendons exclusivement en ligne, directement depuis l’atelier parisien. Le prix reflète uniquement le produit : acétate, métal, temps de montage.",
+        "Nous vendons exclusivement en ligne, directement depuis notre atelier. Le prix reflète uniquement le produit : acétate, métal, temps de montage.",
         "L’acétate provient de manufactures italiennes qui fournissent les grandes maisons depuis des générations. Les plaques sont sélectionnées par nos soins.",
         "Chaque monture est contrôlée à chaque étape de la fabrication. Aucun stock intermédiaire, aucune série non vérifiée.",
         "Le résultat : une monture de qualité manufacturière à un prix qui reflète la production, pas la marge des intermédiaires.",
@@ -1177,7 +1177,7 @@ const de: Dictionary = {
     fermerMenu: "Menü schließen",
     skipToContent: "Zum Inhalt springen",
     voyezLeMonde1: "Sehen Sie die Welt aus",
-    voyezLeMonde2: "Ihrer eigenen Perspektive.",
+    voyezLeMonde2: "Ihrer eigenen Perspektive",
     quatrePiecesParAn: "Roi. Die Kollektion.",
     editionBreveDescription: "",
     edition: "",
@@ -1217,11 +1217,11 @@ const de: Dictionary = {
     editorialTag2: "Edition in kleiner Auflage",
   },
   newsletter: {
-    label: "Der Brief des Hauses",
+    label: "Brief des Hauses",
     description:
-      "Neue Stücke, Neuigkeiten aus der Maison. Mit Zurückhaltung verschickt.",
-    placeholder: "ihre@email.de",
-    submit: "Anmelden",
+      "Entdecken Sie neue Kollektionen, ausgewählte Modelle und Neuigkeiten von L’Atelier d’Or, direkt per E-Mail.",
+    placeholder: "Ihre E-Mail-Adresse",
+    submit: "Zum Newsletter anmelden",
     formAria: "Anmeldung zum Brief des Hauses",
     submitting: "…",
     ok: "✓",
@@ -1234,7 +1234,7 @@ const de: Dictionary = {
     hero: {
       eyebrow: "Die Kollektion · Roi",
       title1: "Sehen Sie die Welt aus",
-      title2: "Ihrer eigenen Perspektive.",
+      title2: "Ihrer eigenen Perspektive",
       lede: "",
       ctaCollection: "Zur Kollektion",
       ctaConseil: "Beratung anfragen",
@@ -1265,7 +1265,7 @@ const de: Dictionary = {
     endCall: {
       eyebrow: "Roi · Die Kollektion",
       line1: "Sehen Sie die Welt aus",
-      line2: "Ihrer eigenen Perspektive.",
+      line2: "Ihrer eigenen Perspektive",
       body: "Roi. Vier Modelle. Online erhältlich.",
       ctaCollection: "Zur Kollektion",
       ctaAtelier: "Über uns",
@@ -1487,7 +1487,7 @@ const de: Dictionary = {
   conseil: {
     metaTitle: "Persönliche Beratung",
     metaDescription:
-      "Individuelle Beratung durch unseren Meisteroptiker. Antwort innerhalb von 24 Stunden.",
+      "Individuelle Beratung durch unser professionelles Team. Antwort innerhalb von 24 Stunden.",
     eyebrowNum: "",
     eyebrowLabel: "Beratung",
     title1: "Persönliche",
@@ -1519,14 +1519,14 @@ const de: Dictionary = {
     emailBackToCard: "Zurück zum Formular",
     emailStowCard: "Schließen",
     footnoteA: "BERATUNG · ANTWORT INNERHALB VON 24 STUNDEN",
-    footnoteB: "L’Atelier d’Or — Paris",
+    footnoteB: "L’Atelier d’Or",
     errorEmpty: "Bitte Name und Nachricht angeben.",
     errorSetup: "Der Dienst wird derzeit eingerichtet. Bitte später erneut versuchen.",
     errorSend: "Ihre Nachricht wurde nicht gesendet. Bitte erneut versuchen.",
     pocket: "",
     noscriptWrite: "Für eine persönliche Beratung schreiben Sie an",
     processEyebrow: "Ablauf",
-    processTitle: "Beratung durch unseren Meisteroptiker.",
+    processTitle: "Beratung durch unser professionelles Team.",
     processLede:
       "Jede Anfrage wird individuell geprüft und innerhalb von 24 Werkstunden persönlich beantwortet.",
     steps: [
@@ -1536,7 +1536,7 @@ const de: Dictionary = {
       },
       {
         t: "Wir prüfen",
-        b: "Unser Meisteroptiker prüft Ihre Anfrage und wählt das passende Modell aus der Kollektion.",
+        b: "Unser professionelles Team prüft Ihre Anfrage und wählt das passende Modell aus der Kollektion.",
       },
       {
         t: "Wir antworten",
@@ -1868,13 +1868,13 @@ const de: Dictionary = {
   cahiers: {
     "geste-juste": {
       rubric: "Fertigung",
-      title: "Handmontage in Paris.",
+      title: "Handmontage.",
       chapo:
-        "Jede Fassung wird in unserem Pariser Partneratelier von Hand montiert und finisiert.",
+        "Jede Fassung wird in unserem Partneratelier von Hand montiert und finisiert.",
       read: "5 Min",
       date: "September",
       body: [
-        "Jede Roi-Fassung durchläuft die gesamte Fertigung in Paris. Zuschnitt, Fräsen, Biegen, Polieren, Nieten und Finish erfolgen in unserem Partneratelier.",
+        "Jede Roi-Fassung durchläuft die gesamte Fertigung in unserem Partneratelier. Zuschnitt, Fräsen, Biegen, Polieren, Nieten und Finish erfolgen vor Ort.",
         "Die Handmontage erlaubt die präzise Kontrolle jeder Kante, jedes Scharniers und jeder Oberfläche. Was eine Maschine schneller erledigen kann, würde die Linie des Entwurfs verwischen.",
         "Der Finish wird mit bloßem Auge unter streifendem Licht geprüft. Eine Fassung verlässt die Werkstatt erst, wenn Scharniere, Nieten und Polish einwandfrei sind.",
         "Jedes Modell ist bei jedem Optiker regulierbar – Scharniere und Bügel sind klassisch verschraubt, nicht verklebt.",
@@ -1904,7 +1904,7 @@ const de: Dictionary = {
       date: "August",
       body: [
         "Bei konventionellem Vertrieb wird der größte Teil des Verkaufspreises von Boutiquen, Großhandel und Distribution einbehalten.",
-        "Wir verkaufen ausschließlich online, direkt aus dem Pariser Atelier. Der Preis spiegelt ausschließlich das Produkt wider: Acetat, Metall, Montagezeit.",
+        "Wir verkaufen ausschließlich online, direkt aus unserem Atelier. Der Preis spiegelt ausschließlich das Produkt wider: Acetat, Metall, Montagezeit.",
         "Das Acetat beziehen wir von italienischen Manufakturen, die seit Generationen die großen Häuser der Branche beliefern. Die Platten wählen wir selbst aus.",
         "Jede Fassung wird in jedem Fertigungsschritt kontrolliert. Keine Zwischenlagerung, keine Charge wird ungeprüft ausgeliefert.",
         "Das Ergebnis: eine Fassung in Manufakturqualität zu einem Preis, der die Produktion abbildet – nicht die Marge der Zwischenhändler.",
@@ -1939,7 +1939,7 @@ const en: Dictionary = {
     fermerMenu: "Close menu",
     skipToContent: "Skip to content",
     voyezLeMonde1: "See the world from",
-    voyezLeMonde2: "your own perspective.",
+    voyezLeMonde2: "your own perspective",
     quatrePiecesParAn: "Roi. The collection.",
     editionBreveDescription: "",
     edition: "",
@@ -1979,10 +1979,11 @@ const en: Dictionary = {
     editorialTag2: "Short edition",
   },
   newsletter: {
-    label: "The house letter",
-    description: "New pieces, news from the house. Sent sparingly.",
-    placeholder: "your@email.com",
-    submit: "Subscribe",
+    label: "House letter",
+    description:
+      "Discover new collections, selected pieces and news from L’Atelier d’Or, directly by email.",
+    placeholder: "Your email address",
+    submit: "Subscribe to the newsletter",
     formAria: "Subscribe to the house letter",
     submitting: "…",
     ok: "✓",
@@ -1995,7 +1996,7 @@ const en: Dictionary = {
     hero: {
       eyebrow: "The collection · Roi",
       title1: "See the world from",
-      title2: "your own perspective.",
+      title2: "your own perspective",
       lede: "",
       ctaCollection: "View collection",
       ctaConseil: "Ask for advice",
@@ -2024,7 +2025,7 @@ const en: Dictionary = {
     endCall: {
       eyebrow: "Roi · The collection",
       line1: "See the world from",
-      line2: "your own perspective.",
+      line2: "your own perspective",
       body: "Roi. Four models. Available online.",
       ctaCollection: "View collection",
       ctaAtelier: "About",
@@ -2242,7 +2243,7 @@ const en: Dictionary = {
   conseil: {
     metaTitle: "Personal advice",
     metaDescription:
-      "Personal advice from our master optician. Reply within 24 hours.",
+      "Personal advice from our professional team. Reply within 24 hours.",
     eyebrowNum: "",
     eyebrowLabel: "Advice",
     title1: "Personal",
@@ -2274,19 +2275,19 @@ const en: Dictionary = {
     emailBackToCard: "Back to form",
     emailStowCard: "Close",
     footnoteA: "ADVICE · REPLY WITHIN 24 HOURS",
-    footnoteB: "L’Atelier d’Or — Paris",
+    footnoteB: "L’Atelier d’Or",
     errorEmpty: "Please provide your name and message.",
     errorSetup: "The service is being set up. Please try later.",
     errorSend: "Your message was not sent. Please try again.",
     pocket: "",
     noscriptWrite: "For personal advice, write to",
     processEyebrow: "Process",
-    processTitle: "Advice from our master optician.",
+    processTitle: "Advice from our professional team.",
     processLede:
       "Each request is reviewed individually and answered personally within 24 working hours.",
     steps: [
       { t: "You write to us", b: "Describe your need: model, silhouette, tone, prescription, daily use." },
-      { t: "We review", b: "Our master optician reviews your request and selects the right model from the collection." },
+      { t: "We review", b: "Our professional team reviews your request and selects the right model from the collection." },
       { t: "We reply", b: "You receive a written recommendation and next steps within 24 working hours." },
     ],
     expectEyebrow: "What you receive",
@@ -2478,13 +2479,13 @@ const en: Dictionary = {
   cahiers: {
     "geste-juste": {
       rubric: "Manufacturing",
-      title: "Hand assembled in Paris.",
+      title: "Hand assembled.",
       chapo:
-        "Every frame is assembled and finished by hand in our Paris partner workshop.",
+        "Every frame is assembled and finished by hand in our partner workshop.",
       read: "5 min",
       date: "September",
       body: [
-        "Every Roi frame goes through the entire manufacturing process in Paris. Cutting, milling, bending, polishing, riveting and finishing are all carried out in our partner workshop.",
+        "Every Roi frame goes through the entire manufacturing process in our partner workshop. Cutting, milling, bending, polishing, riveting and finishing are all carried out on site.",
         "Hand assembly allows precise control over every edge, every hinge and every surface. What a machine could do faster would blur the line of the design.",
         "The finish is inspected by eye under raking light. A frame does not leave the workshop until hinges, rivets and polishing are flawless.",
         "Every model remains adjustable at any optician: hinges and temples are classically screwed, not glued.",
@@ -2514,7 +2515,7 @@ const en: Dictionary = {
       date: "August",
       body: [
         "In conventional distribution, most of the retail price is captured by boutiques, wholesalers and intermediaries.",
-        "We sell exclusively online, straight from the Paris workshop. The price reflects only the product: acetate, metal, assembly time.",
+        "We sell exclusively online, straight from our workshop. The price reflects only the product: acetate, metal, assembly time.",
         "Acetate comes from Italian manufactures that have supplied the great eyewear houses for generations. We select the plates ourselves.",
         "Every frame is inspected at each manufacturing step. No intermediate stock, no unchecked batch is ever shipped.",
         "The result: a frame of manufacture-grade quality at a price that reflects production, not the margin of middlemen.",
@@ -2549,7 +2550,7 @@ const it: Dictionary = {
     fermerMenu: "Chiudi il menu",
     skipToContent: "Vai al contenuto",
     voyezLeMonde1: "Guardate il mondo dalla",
-    voyezLeMonde2: "vostra prospettiva.",
+    voyezLeMonde2: "vostra prospettiva",
     quatrePiecesParAn: "Roi. La collezione.",
     editionBreveDescription: "",
     edition: "",
@@ -2589,10 +2590,11 @@ const it: Dictionary = {
     editorialTag2: "Edizione in piccola tiratura",
   },
   newsletter: {
-    label: "La lettera della maison",
-    description: "Nuovi pezzi, notizie dalla maison. Inviata con parsimonia.",
-    placeholder: "voi@email.com",
-    submit: "Iscriversi",
+    label: "Lettera della maison",
+    description:
+      "Scoprite nuove collezioni, modelli selezionati e novità di L’Atelier d’Or, direttamente via e-mail.",
+    placeholder: "Il vostro indirizzo e-mail",
+    submit: "Iscriviti alla newsletter",
     formAria: "Iscrizione alla lettera della maison",
     submitting: "…",
     ok: "✓",
@@ -2605,7 +2607,7 @@ const it: Dictionary = {
     hero: {
       eyebrow: "La collezione · Roi",
       title1: "Guardate il mondo dalla",
-      title2: "vostra prospettiva.",
+      title2: "vostra prospettiva",
       lede: "",
       ctaCollection: "Vedi la collezione",
       ctaConseil: "Chiedere consiglio",
@@ -2634,7 +2636,7 @@ const it: Dictionary = {
     endCall: {
       eyebrow: "Roi · La collezione",
       line1: "Guardate il mondo dalla",
-      line2: "vostra prospettiva.",
+      line2: "vostra prospettiva",
       body: "Roi. Quattro modelli. Disponibile online.",
       ctaCollection: "Vedi la collezione",
       ctaAtelier: "Chi siamo",
@@ -2851,7 +2853,7 @@ const it: Dictionary = {
   conseil: {
     metaTitle: "Consulenza personale",
     metaDescription:
-      "Consulenza personale dal nostro mastro ottico. Risposta entro 24 ore.",
+      "Consulenza personale dal nostro team professionale. Risposta entro 24 ore.",
     eyebrowNum: "",
     eyebrowLabel: "Consulenza",
     title1: "Consulenza",
@@ -2883,19 +2885,19 @@ const it: Dictionary = {
     emailBackToCard: "Torna al modulo",
     emailStowCard: "Chiudi",
     footnoteA: "CONSULENZA · RISPOSTA ENTRO 24 ORE",
-    footnoteB: "L’Atelier d’Or — Paris",
+    footnoteB: "L’Atelier d’Or",
     errorEmpty: "Si prega di indicare nome e messaggio.",
     errorSetup: "Il servizio è in configurazione. Riprovate più tardi.",
     errorSend: "Il vostro messaggio non è stato inviato. Riprovate.",
     pocket: "",
     noscriptWrite: "Per una consulenza personale, scrivete a",
     processEyebrow: "Processo",
-    processTitle: "Consulenza dal nostro mastro ottico.",
+    processTitle: "Consulenza dal nostro team professionale.",
     processLede:
       "Ogni richiesta è esaminata individualmente e ricevuta una risposta personale entro 24 ore lavorative.",
     steps: [
       { t: "Voi ci scrivete", b: "Descrivete il vostro bisogno: modello, silhouette, tonalità, correzione, uso quotidiano." },
-      { t: "Noi esaminiamo", b: "Il nostro mastro ottico esamina la vostra richiesta e seleziona il modello adatto nella collezione." },
+      { t: "Noi esaminiamo", b: "Il nostro team professionale esamina la vostra richiesta e seleziona il modello adatto nella collezione." },
       { t: "Noi rispondiamo", b: "Entro 24 ore lavorative ricevete una raccomandazione scritta e i prossimi passi." },
     ],
     expectEyebrow: "Ciò che ricevete",
@@ -3087,13 +3089,13 @@ const it: Dictionary = {
   cahiers: {
     "geste-juste": {
       rubric: "Produzione",
-      title: "Montaggio a mano, a Parigi.",
+      title: "Montaggio a mano.",
       chapo:
-        "Ogni montatura è assemblata e rifinita a mano nel nostro atelier partner parigino.",
+        "Ogni montatura è assemblata e rifinita a mano nel nostro atelier partner.",
       read: "5 min",
       date: "Settembre",
       body: [
-        "Ogni montatura Roi è prodotta a Parigi: taglio, fresatura, piegatura, lucidatura, rivettatura e finitura avvengono nel nostro atelier partner.",
+        "Ogni montatura Roi è prodotta nel nostro atelier partner: taglio, fresatura, piegatura, lucidatura, rivettatura e finitura avvengono in sede.",
         "Il montaggio a mano permette un controllo preciso di ogni bordo, cerniera e superficie. Ciò che una macchina farebbe più veloce cancellerebbe la linea del disegno.",
         "Il finissaggio viene ispezionato a occhio nudo sotto luce radente. Una montatura esce dall’atelier solo quando cerniere, rivetti e lucidatura sono perfetti.",
         "Ogni modello resta regolabile da qualunque ottico: cerniere e aste sono avvitate in modo classico, non incollate.",
@@ -3123,7 +3125,7 @@ const it: Dictionary = {
       date: "Agosto",
       body: [
         "Nella distribuzione classica, la maggior parte del prezzo di vendita è trattenuta da boutique, grossisti e intermediari.",
-        "Vendiamo esclusivamente online, direttamente dall’atelier parigino. Il prezzo riflette solo il prodotto: acetato, metallo, tempo di montaggio.",
+        "Vendiamo esclusivamente online, direttamente dal nostro atelier. Il prezzo riflette solo il prodotto: acetato, metallo, tempo di montaggio.",
         "L’acetato proviene da manifatture italiane che riforniscono le grandi maison da generazioni. Le lastre sono selezionate direttamente da noi.",
         "Ogni montatura è controllata in ogni fase di produzione. Nessun magazzino intermedio, nessuna partita non verificata.",
         "Il risultato: una montatura di qualità manifatturiera a un prezzo che riflette la produzione, non il margine degli intermediari.",

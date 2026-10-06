@@ -23,7 +23,7 @@ export function organizationJsonLd(siteUrl: string) {
     url: siteUrl,
     logo: `${siteUrl}/logo.png`,
     description:
-      "Maison française de lunetterie. Acétate italien, montage à la main, à Paris.",
+      "Lunettes faites main. Acétate premium, charnières métalliques.",
   };
 }
 

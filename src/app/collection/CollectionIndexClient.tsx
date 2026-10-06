@@ -1,9 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
-import PageEyebrow from "@/components/PageEyebrow";
 import { PIECES } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
@@ -15,43 +13,6 @@ export default function CollectionIndexClient() {
 
   return (
     <>
-      <section className="relative pt-40 md:pt-52 pb-24 overflow-hidden">
-        <div className="n-page">
-          <PageEyebrow
-            numeral={t.collectionIndex.eyebrowNumeral}
-            label={t.collectionIndex.eyebrowLabel}
-            className="mb-14"
-          />
-
-          <div className="grid grid-cols-12 gap-x-6 items-end">
-            <div className="col-span-12 md:col-span-9">
-              <LineReveal
-                as="h1"
-                className="n-display leading-[0.94]"
-                lines={t.collectionIndex.title}
-                delayStep={120}
-                style={{ fontSize: "clamp(64px, 12vw, 210px)", color: "var(--n-ink)" }}
-              />
-            </div>
-            <div className="col-span-12 md:col-span-3 mt-10 md:mt-0">
-              <p
-                className="n-serif text-[19px] leading-[1.55] max-w-[30ch]"
-                style={{ color: "var(--n-muted)", whiteSpace: "pre-line" }}
-              >
-                {t.collectionIndex.lede}
-              </p>
-            </div>
-          </div>
-
-          <div
-            className="mt-20 flex flex-wrap items-baseline gap-x-10 gap-y-4 pt-8 border-t"
-            style={{ borderColor: "var(--n-line-soft)" }}
-          >
-            <span className="n-mono opacity-60">{t.collectionIndex.subtitles}</span>
-          </div>
-        </div>
-      </section>
-
       {PIECES.map((piece, i) => {
         const loc = localizePiece(piece, locale);
         const flip = i % 2 === 1;
@@ -60,7 +21,8 @@ export default function CollectionIndexClient() {
             key={piece.slug}
             className="relative overflow-hidden"
             style={{
-              paddingBlock: "clamp(80px, 12vh, 160px)",
+              paddingTop: i === 0 ? "clamp(160px, 20vh, 220px)" : "clamp(80px, 12vh, 160px)",
+              paddingBottom: "clamp(80px, 12vh, 160px)",
               background: i === 0 ? "var(--n-bg)" : i === 1 ? "var(--n-bg-warm)" : i === 2 ? "var(--n-bg-cool)" : "var(--n-bg)",
             }}
           >
