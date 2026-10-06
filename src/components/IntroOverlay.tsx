@@ -62,6 +62,12 @@ export default function IntroOverlay({
   const dismiss = () => {
     if (dismissedRef.current) return;
     dismissedRef.current = true;
+    const v = videoRef.current;
+    if (v) {
+      try {
+        v.pause();
+      } catch {}
+    }
     setFading(true);
     try {
       window.sessionStorage.setItem(SESSION_KEY, "1");
@@ -102,6 +108,10 @@ export default function IntroOverlay({
         onTimeUpdate={onTimeUpdate}
         onEnded={dismiss}
         className="w-full h-full object-cover"
+        style={{
+          opacity: fading ? 0 : 1,
+          transition: "opacity 160ms linear",
+        }}
       >
         {videoSrcMobile && (
           <source
