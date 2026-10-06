@@ -152,20 +152,20 @@ export default function PieceClient({ piece }: { piece: Piece }) {
         </div>
 
         <div className="n-page mt-16 grid grid-cols-12 gap-6">
-          {loc.notes.map((note, i) => (
+          {loc.notes.map((note) => (
             <div
               key={note}
-              className="col-span-6 md:col-span-3 p-8 border n-rise"
+              className="col-span-6 md:col-span-3 p-8 border n-rise flex items-center justify-center"
               style={{
                 borderColor: "var(--n-line)",
                 borderRadius: "clamp(18px, 1.6vw, 26px)",
                 background: "var(--n-bg)",
                 boxShadow: "0 1px 2px rgba(10,10,10,0.04), 0 12px 32px rgba(10,10,10,0.06)",
+                minHeight: "140px",
               }}
             >
-              <span className="n-mono opacity-60 block mb-4">{t.piece.noteLabel(i + 1)}</span>
               <span
-                className="n-serif text-[26px] leading-[1.15]"
+                className="n-serif text-[26px] leading-[1.15] text-center"
                 style={{ color: "var(--n-ink)" }}
               >
                 {note}
@@ -235,8 +235,8 @@ export default function PieceClient({ piece }: { piece: Piece }) {
           color: "#0A0A0A",
         }}
       >
-        <div className="n-page grid grid-cols-12 gap-x-6 items-center">
-          <div className="col-span-12 md:col-span-6">
+        <div className="n-page">
+          <div className="max-w-[42rem]">
             <PageEyebrow numeral={t.piece.section3Eyebrow} label={t.piece.section3Label} className="mb-8" />
             <div className="flex items-baseline gap-8 mb-8">
               <span
@@ -260,36 +260,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             >
               {t.piece.editionBreveBody}
             </p>
-          </div>
-
-          <div className="col-span-12 md:col-span-5 md:col-start-8 mt-14 md:mt-0">
-            <div
-              className="p-10 border"
-              style={{
-                borderColor: "var(--n-line)",
-                background: "var(--n-bg)",
-                borderRadius: "clamp(20px, 1.8vw, 32px)",
-                boxShadow: "0 1px 2px rgba(10,10,10,0.04), 0 24px 48px rgba(10,10,10,0.08)",
-              }}
-            >
-              <div className="n-eyebrow mb-4">{t.piece.deliveryEyebrow}</div>
-              <h3 className="n-serif text-[22px] leading-[1.25] mb-3">
-                {t.piece.deliveryTitle}
-              </h3>
-              <p
-                className="n-serif text-[15px] leading-[1.55] max-w-[38ch]"
-                style={{ color: "var(--n-muted)" }}
-              >
-                {t.piece.deliveryBody}
-              </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <Link href="/collection" className="n-cta">{t.piece.ctaCollection}</Link>
-                <Link href="/conseil" className="n-link">
-                  {t.piece.ctaEcrire}
-                </Link>
-              </div>
-            </div>
           </div>
         </div>
       </section>

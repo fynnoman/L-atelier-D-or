@@ -27,10 +27,9 @@ export default function PieceSwitcher({ current }: { current: Piece["slug"] }) {
                 className="relative block w-full aspect-square overflow-hidden transition-transform duration-500 ease-out group-hover:scale-[0.98]"
                 style={{
                   background: `linear-gradient(135deg, ${primary} 0%, ${secondary} 100%)`,
-                  border: active
-                    ? "2px solid var(--n-ink)"
-                    : "1px solid var(--n-line)",
                   borderRadius: "clamp(6px, 0.6vw, 10px)",
+                  outline: active ? "2px solid var(--n-ink)" : "none",
+                  outlineOffset: active ? "2px" : undefined,
                 }}
               >
                 {p.image && (
