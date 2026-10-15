@@ -197,8 +197,8 @@ export default function CollectionShowcase({ pieces }: { pieces: Piece[] }) {
               <span className="n-eyebrow block mb-10">{t.home.showcase.eyebrow}</span>
             )}
             <h2
-              className="n-display leading-[0.94]"
-              style={{ fontSize: "clamp(40px, 7vw, 112px)", fontWeight: 300, whiteSpace: "nowrap" }}
+              className="n-product-name leading-[0.98]"
+              style={{ fontSize: "clamp(36px, 5.6vw, 88px)" }}
             >
               {t.home.showcase.title1 && (
                 <>
