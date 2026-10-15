@@ -116,11 +116,12 @@ html[data-nouveau-mood="emeraude"] .n-footer-logo {
   filter: invert(1);
 }
 
-/* Nav-Wordmark bei dunklen Mood-Themes vollflächig weiss zeichnen. */
+/* Nav-Wordmark bei dunklen Mood-Themes vollflächig weiss zeichnen.
+   !important noetig, weil <Wordmark> inline filter: none setzt. */
 html[data-nouveau-mood="rouge"] header img,
 html[data-nouveau-mood="foret"] header img,
 html[data-nouveau-mood="emeraude"] header img {
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1) !important;
 }
 
 /* Header adapte son fond au mood, sans jamais devenir décoratif. */
@@ -207,6 +208,7 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   letter-spacing: 0;
   text-transform: none;
   line-height: 1.05;
+  white-space: nowrap;
 }
 
 /* Velours — bordeaux tamisé, aged-wine, qui se pose sur le beige sans crier. */

@@ -60,7 +60,7 @@ export default function CollectionIndexClient() {
                   <div className="n-eyebrow mb-6">{loc.chapter}</div>
                   <h2
                     className="n-product-name mb-6"
-                    style={{ fontSize: "clamp(72px, 10vw, 148px)", lineHeight: 1 }}
+                    style={{ fontSize: "clamp(40px, 5.6vw, 84px)", lineHeight: 1 }}
                   >
                     {piece.name}
                   </h2>

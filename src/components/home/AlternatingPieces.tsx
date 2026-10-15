@@ -87,7 +87,7 @@ function PieceSection({
             <h2
               className="n-product-name mb-8"
               style={{
-                fontSize: "clamp(72px, 10vw, 148px)",
+                fontSize: "clamp(40px, 5.6vw, 84px)",
                 lineHeight: 1,
                 color: isVelour ? "#EDE3CE" : undefined,
               }}

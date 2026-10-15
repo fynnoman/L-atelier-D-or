@@ -162,7 +162,7 @@ function PieceCard({ piece }: { piece: Piece }) {
             <div className="n-meta opacity-55 mb-3">{t.home.showcase.piece}</div>
             <div
               className="n-product-name leading-none"
-              style={{ fontSize: "clamp(36px, 4.2vw, 56px)" }}
+              style={{ fontSize: "clamp(22px, 2.4vw, 32px)" }}
             >
               {piece.name}
             </div>

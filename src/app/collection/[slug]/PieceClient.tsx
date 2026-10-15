@@ -31,7 +31,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                 className="n-product-name leading-[1]"
                 lines={[piece.name]}
                 delayStep={0}
-                style={{ fontSize: "clamp(52px, 6.4vw, 104px)", fontWeight: 400 }}
+                style={{ fontSize: "clamp(32px, 3.8vw, 60px)", fontWeight: 400 }}
               />
             </div>
             <div className="col-span-12 md:col-span-5 mt-3 md:mt-0">
@@ -260,7 +260,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                   </div>
                   <div className="mt-6 flex items-baseline justify-between">
                     <div>
-                      <div className="n-product-name leading-none" style={{ fontSize: "32px" }}>{p.name}</div>
+                      <div className="n-product-name leading-none" style={{ fontSize: "22px" }}>{p.name}</div>
                       <div className="n-serif-italic text-[15px] mt-2" style={{ color: "var(--n-muted)" }}>
                         {pl.tagline}
                       </div>
