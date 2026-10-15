@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif, Fraunces } from "next/font/google";
+import { Inter, Instrument_Serif, Fraunces, Pinyon_Script } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -32,6 +32,13 @@ const instrument = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+const pinyon = Pinyon_Script({
+  variable: "--font-pinyon",
+  subsets: ["latin"],
+  weight: "400",
   display: "swap",
 });
 
@@ -101,7 +108,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="fr"
-      className={`${inter.variable} ${fraunces.variable} ${instrument.variable}`}
+      className={`${inter.variable} ${fraunces.variable} ${instrument.variable} ${pinyon.variable}`}
     >
       <body>
         <StructuredData data={organizationJsonLd(siteUrl)} />

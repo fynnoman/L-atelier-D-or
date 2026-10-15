@@ -79,17 +79,28 @@ export default function Footer() {
             >
               <div className="n-eyebrow">{col.title}</div>
               <ul className="flex flex-col gap-4">
-                {col.items.map((it) => (
-                  <li key={it.href}>
-                    <Link
-                      href={it.href}
-                      className="n-body text-[15px] leading-[1.4] hover:opacity-70 transition-opacity"
-                      style={{ color: "var(--n-ink)" }}
-                    >
-                      {it.label}
-                    </Link>
-                  </li>
-                ))}
+                {col.items.map((it) => {
+                  const isPieceLink = it.label.startsWith("Roi ");
+                  return (
+                    <li key={it.href}>
+                      <Link
+                        href={it.href}
+                        className={
+                          isPieceLink
+                            ? "n-product-name hover:opacity-70 transition-opacity"
+                            : "n-body text-[15px] leading-[1.4] hover:opacity-70 transition-opacity"
+                        }
+                        style={
+                          isPieceLink
+                            ? { color: "var(--n-ink)", fontSize: "22px", lineHeight: 1.1 }
+                            : { color: "var(--n-ink)" }
+                        }
+                      >
+                        {it.label}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

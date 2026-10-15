@@ -105,12 +105,20 @@ export default function IntroOverlay({
         muted
         playsInline
         preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
+        controlsList="nodownload noremoteplayback nofullscreen"
         onTimeUpdate={onTimeUpdate}
         onEnded={dismiss}
         className="w-full h-full object-cover"
         style={{
           opacity: fading ? 0 : 1,
           transition: "opacity 160ms linear",
+          transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
+          willChange: "transform, opacity",
+          filter: "contrast(1.04) saturate(1.06)",
         }}
       >
         {videoSrcMobile && (
@@ -122,6 +130,15 @@ export default function IntroOverlay({
         )}
         <source src={videoSrc} type="video/mp4" />
       </video>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 mix-blend-overlay"
+        style={{
+          background:
+            "radial-gradient(120% 80% at 50% 50%, rgba(255,255,255,0.04) 0%, rgba(0,0,0,0) 55%)",
+        }}
+      />
 
       <div
         aria-hidden

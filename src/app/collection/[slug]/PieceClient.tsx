@@ -28,10 +28,10 @@ export default function PieceClient({ piece }: { piece: Piece }) {
             <div className="col-span-12 md:col-span-7">
               <LineReveal
                 as="h1"
-                className="n-display leading-[1]"
+                className="n-product-name leading-[1]"
                 lines={[piece.name]}
                 delayStep={0}
-                style={{ fontSize: "clamp(32px, 4.2vw, 64px)", fontWeight: 300 }}
+                style={{ fontSize: "clamp(52px, 6.4vw, 104px)", fontWeight: 400 }}
               />
             </div>
             <div className="col-span-12 md:col-span-5 mt-3 md:mt-0">
@@ -226,44 +226,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
         </div>
       </section>
 
-      <section
-        className="relative py-32"
-        style={{
-          background: "var(--n-bg-warm)",
-          ["--n-ink" as string]: "#0A0A0A",
-          ["--n-muted" as string]: "#3A342D",
-          color: "#0A0A0A",
-        }}
-      >
-        <div className="n-page">
-          <div className="max-w-[42rem]">
-            <PageEyebrow numeral={t.piece.section3Eyebrow} label={t.piece.section3Label} className="mb-8" />
-            <div className="flex items-baseline gap-8 mb-8">
-              <span
-                className="n-display leading-none"
-                style={{ fontSize: "clamp(44px, 6vw, 96px)", fontWeight: 300, color: "#0A0A0A" }}
-              >
-                {formatPrice(piece.priceEuro, locale)}
-              </span>
-              <div className="flex flex-col">
-                <span className="n-mono" style={{ color: "#0A0A0A" }}>
-                  {t.piece.prixParPiece}
-                </span>
-                <span className="n-mono" style={{ color: "#0A0A0A" }}>
-                  {t.piece.niPlusNiMoins}
-                </span>
-              </div>
-            </div>
-            <p
-              className="n-serif text-[19px] leading-[1.5] max-w-[42ch]"
-              style={{ color: "#3A342D" }}
-            >
-              {t.piece.editionBreveBody}
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="relative py-28">
         <div className="n-page">
           <PageEyebrow numeral={t.piece.section4Eyebrow} label={t.piece.section4Label} className="mb-14" />
@@ -293,12 +255,12 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                         boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
                       }}
                     >
-                      <span className="n-eyebrow">{p.name}</span>
+                      <span className="n-product-name" style={{ fontSize: "16px", lineHeight: 1, letterSpacing: 0, textTransform: "none", color: "var(--n-ink)" }}>{p.name}</span>
                     </div>
                   </div>
                   <div className="mt-6 flex items-baseline justify-between">
                     <div>
-                      <div className="n-serif text-[22px] leading-none">{p.name}</div>
+                      <div className="n-product-name leading-none" style={{ fontSize: "32px" }}>{p.name}</div>
                       <div className="n-serif-italic text-[15px] mt-2" style={{ color: "var(--n-muted)" }}>
                         {pl.tagline}
                       </div>

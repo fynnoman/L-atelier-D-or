@@ -85,10 +85,10 @@ function PieceSection({
             </div>
 
             <h2
-              className="n-display leading-[0.94] mb-8"
+              className="n-product-name mb-8"
               style={{
-                fontSize: "clamp(48px, 7vw, 108px)",
-                fontWeight: 300,
+                fontSize: "clamp(72px, 10vw, 148px)",
+                lineHeight: 1,
                 color: isVelour ? "#EDE3CE" : undefined,
               }}
             >

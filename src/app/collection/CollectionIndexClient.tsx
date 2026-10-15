@@ -50,7 +50,7 @@ export default function CollectionIndexClient() {
                       boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
                     }}
                   >
-                    <span className="n-eyebrow">{piece.name}</span>
+                    <span className="n-product-name" style={{ fontSize: "18px", lineHeight: 1, letterSpacing: 0, textTransform: "none", color: "var(--n-ink)" }}>{piece.name}</span>
                   </div>
                 </div>
 
@@ -59,8 +59,8 @@ export default function CollectionIndexClient() {
                 >
                   <div className="n-eyebrow mb-6">{loc.chapter}</div>
                   <h2
-                    className="n-display leading-[0.95] mb-6"
-                    style={{ fontSize: "clamp(48px, 7vw, 108px)" }}
+                    className="n-product-name mb-6"
+                    style={{ fontSize: "clamp(72px, 10vw, 148px)", lineHeight: 1 }}
                   >
                     {piece.name}
                   </h2>
