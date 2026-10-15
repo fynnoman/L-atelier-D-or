@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
+import IntroOverlay from "@/components/IntroOverlay";
 import StructuredData, {
   organizationJsonLd,
   websiteJsonLd,
@@ -116,6 +117,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div data-nouveau>
             <SkipLink />
             <Reveal />
+            <IntroOverlay
+              videoSrc="/video/hero.mp4"
+              videoSrcMobile="/video/hero-mobile.mp4"
+              posterSrc="/video/hero-poster.jpg"
+              dismissAt={8}
+            />
             <Nav />
             <main id="main" className="relative">{children}</main>
             <Footer />
