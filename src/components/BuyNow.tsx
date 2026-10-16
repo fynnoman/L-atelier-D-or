@@ -9,7 +9,21 @@ type Props = {
   style?: React.CSSProperties;
 };
 
-const SHOPIFY_SHOP = process.env.NEXT_PUBLIC_SHOPIFY_SHOP;
+const RAW_SHOP = process.env.NEXT_PUBLIC_SHOPIFY_SHOP;
+
+/**
+ * Erwartet eine reine Domain ("latelierdor.com" oder "latelier-dor.myshopify.com").
+ * Falls jemand aus Versehen "https://..." oder einen Admin-Pfad eintraegt,
+ * reduzieren wir das defensiv auf die reine Host-Komponente.
+ */
+function normalizeShop(input: string | undefined): string | null {
+  if (!input) return null;
+  const trimmed = input.trim().replace(/^https?:\/\//, "").replace(/\/.*$/, "");
+  if (!trimmed || trimmed.includes("admin.shopify.com")) return null;
+  return trimmed;
+}
+
+const SHOPIFY_SHOP = normalizeShop(RAW_SHOP);
 
 export default function BuyNow({
   piece,
