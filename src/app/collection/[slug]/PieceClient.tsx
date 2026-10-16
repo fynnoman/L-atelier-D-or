@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import BuyNow from "@/components/BuyNow";
 import LineReveal from "@/components/LineReveal";
 import MaskedImage from "@/components/MaskedImage";
 import PageEyebrow from "@/components/PageEyebrow";
@@ -10,6 +11,13 @@ import { PIECES, type Piece } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
 import { localizePiece } from "@/lib/i18n/content";
+
+const BUY_LABEL: Record<"fr" | "de" | "en" | "it", string> = {
+  fr: "Commander",
+  de: "Jetzt bestellen",
+  en: "Order now",
+  it: "Ordina ora",
+};
 
 export default function PieceClient({ piece }: { piece: Piece }) {
   const t = useT();
@@ -117,13 +125,16 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                 </p>
               </div>
             </div>
-            <div className="flex items-baseline gap-6 pt-4 border-t" style={{ borderColor: "var(--n-line-soft)" }}>
+            <div className="flex flex-col gap-4 pt-4 border-t" style={{ borderColor: "var(--n-line-soft)" }}>
               <span className="n-serif leading-none" style={{ fontSize: "24px" }}>
                 {formatPrice(piece.priceEuro, locale)}
               </span>
-              <Link href="/conseil" className="n-link">
-                {t.piece.ctaEcrire}
-              </Link>
+              <div className="flex items-baseline gap-6 flex-wrap">
+                <BuyNow piece={piece} label={BUY_LABEL[locale]} className="n-cta" />
+                <Link href="/conseil" className="n-link">
+                  {t.piece.ctaEcrire}
+                </Link>
+              </div>
             </div>
           </aside>
         </div>
