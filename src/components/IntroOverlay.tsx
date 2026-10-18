@@ -3,8 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useT } from "@/lib/i18n/LanguageContext";
 
-const SESSION_KEY = "lad_intro_seen_v3";
-
+/**
+ * Zeigt die Intro genau bei frischen Seitenaufrufen auf "/".
+ *
+ * Da diese Komponente in layout.tsx liegt, bleibt sie waehrend SPA-Navigationen
+ * gemountet und der useEffect feuert nur einmal pro Full-Page-Load. Dadurch
+ * triggert die Intro bei externen Zugaengen und Hard-Reloads auf "/", aber
+ * nicht wenn der User intern von einer Subseite zurueck auf "/" navigiert.
+ */
 export default function IntroOverlay({
   videoSrc,
   videoSrcMobile,
@@ -14,7 +20,6 @@ export default function IntroOverlay({
   videoSrc: string;
   videoSrcMobile?: string;
   posterSrc?: string;
-  /** Sekunde, ab der die Intro sich zurueckzieht. */
   dismissAt?: number;
 }) {
   const [mounted, setMounted] = useState(false);
@@ -28,15 +33,10 @@ export default function IntroOverlay({
   useEffect(() => {
     setMounted(true);
     if (typeof window === "undefined") return;
-    let seen = false;
-    try {
-      seen = window.sessionStorage.getItem(SESSION_KEY) === "1";
-    } catch {}
-    if (!seen) {
-      setVisible(true);
-      document.documentElement.style.overflow = "hidden";
-      document.body.style.overflow = "hidden";
-    }
+    if (window.location.pathname !== "/") return;
+    setVisible(true);
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
@@ -57,9 +57,6 @@ export default function IntroOverlay({
       } catch {}
     }
     setFading(true);
-    try {
-      window.sessionStorage.setItem(SESSION_KEY, "1");
-    } catch {}
     window.setTimeout(() => {
       setVisible(false);
       document.documentElement.style.overflow = "";
@@ -100,6 +97,7 @@ export default function IntroOverlay({
         opacity: fading ? 0 : 1,
         transitionDuration: "900ms",
         transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+        isolation: "isolate",
       }}
     >
       <video
@@ -116,7 +114,6 @@ export default function IntroOverlay({
         onEnded={dismiss}
         onError={dismiss}
         onStalled={() => {
-          // Falls das Video nach dismissAt stalled, zumindest nach weiteren 2s raus.
           if (fallbackTimerRef.current != null) return;
           fallbackTimerRef.current = window.setTimeout(dismiss, 2000);
         }}
@@ -127,10 +124,19 @@ export default function IntroOverlay({
           transform: "translateZ(0)",
           backfaceVisibility: "hidden",
           WebkitBackfaceVisibility: "hidden",
-          willChange: "transform, opacity",
-          filter: "contrast(1.05) saturate(1.08)",
         }}
       >
+        {videoSrcMobile && (
+          <source
+            src={videoSrcMobile.replace(/\.mp4$/, ".webm")}
+            type="video/webm"
+            media="(max-width: 768px)"
+          />
+        )}
+        <source
+          src={videoSrc.replace(/\.mp4$/, ".webm")}
+          type="video/webm"
+        />
         {videoSrcMobile && (
           <source
             src={videoSrcMobile}
@@ -143,19 +149,10 @@ export default function IntroOverlay({
 
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-overlay"
-        style={{
-          background:
-            "radial-gradient(120% 80% at 50% 50%, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 55%)",
-        }}
-      />
-
-      <div
-        aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.55) 100%)",
+            "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
         }}
       />
 
