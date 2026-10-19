@@ -33,7 +33,14 @@ export default function IntroOverlay({
   useEffect(() => {
     setMounted(true);
     if (typeof window === "undefined") return;
-    if (window.location.pathname !== "/") return;
+    // Alte Session-Keys aus frueheren Versionen aufraeumen, damit zombiegecachte
+    // Clients beim naechsten Full-Reload sauber sind.
+    try {
+      window.sessionStorage.removeItem("lad_intro_seen_v2");
+      window.sessionStorage.removeItem("lad_intro_seen_v3");
+    } catch {}
+    const forced = new URLSearchParams(window.location.search).has("intro");
+    if (!forced && window.location.pathname !== "/") return;
     setVisible(true);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
