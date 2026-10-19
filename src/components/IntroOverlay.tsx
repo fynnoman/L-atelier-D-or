@@ -91,13 +91,12 @@ export default function IntroOverlay({
   return (
     <div
       aria-hidden={fading}
-      className="fixed inset-0 z-[100] flex items-center justify-center transition-opacity"
+      className="fixed inset-0 z-[100] overflow-hidden transition-opacity"
       style={{
         background: "#000",
         opacity: fading ? 0 : 1,
         transitionDuration: "900ms",
         transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
-        isolation: "isolate",
       }}
     >
       <video
@@ -106,10 +105,8 @@ export default function IntroOverlay({
         autoPlay
         muted
         playsInline
-        preload="auto"
-        disablePictureInPicture
-        disableRemotePlayback
-        controlsList="nodownload noremoteplayback nofullscreen"
+        preload="metadata"
+        aria-hidden
         onTimeUpdate={onTimeUpdate}
         onEnded={dismiss}
         onError={dismiss}
@@ -117,26 +114,12 @@ export default function IntroOverlay({
           if (fallbackTimerRef.current != null) return;
           fallbackTimerRef.current = window.setTimeout(dismiss, 2000);
         }}
-        className="w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover"
         style={{
           opacity: fading ? 0 : 1,
           transition: "opacity 160ms linear",
-          transform: "translateZ(0)",
-          backfaceVisibility: "hidden",
-          WebkitBackfaceVisibility: "hidden",
         }}
       >
-        {videoSrcMobile && (
-          <source
-            src={videoSrcMobile.replace(/\.mp4$/, ".webm")}
-            type="video/webm"
-            media="(max-width: 768px)"
-          />
-        )}
-        <source
-          src={videoSrc.replace(/\.mp4$/, ".webm")}
-          type="video/webm"
-        />
         {videoSrcMobile && (
           <source
             src={videoSrcMobile}
