@@ -1652,45 +1652,108 @@ const de: Dictionary = {
     },
     privacy: {
       metaTitle: "Datenschutz",
-      metaDescription: "Was die Maison erhebt, was sie nie erheben wird, und Ihre Rechte.",
+      metaDescription: "Datenschutzerklärung von L’Atelier d’Or gemäß DSGVO: Verantwortlicher, verarbeitete Daten, Rechtsgrundlagen und Ihre Rechte.",
       numeral: "",
       rubric: "Datenschutz",
-      title: "Ihre Kontaktdaten verlassen niemals die Maison.",
+      title: "Datenschutzerklärung.",
       chapo:
-        "Was wir erheben, was wir niemals erheben werden, und was Sie jederzeit von uns verlangen können.",
+        "Diese Erklärung informiert Sie darüber, welche personenbezogenen Daten wir beim Besuch dieser Website verarbeiten, auf welcher Rechtsgrundlage dies geschieht und welche Rechte Sie haben.",
       sections: [
         {
-          title: "Was die Maison erhebt",
+          title: "Verantwortlicher",
           body: [
-            "Ausschließlich die Angaben, die Sie uns freiwillig über die Seite „Beratung“ übermitteln: Name, E-Mail-Adresse und die Nachricht, die Sie beifügen.",
-            "Wir erheben keinerlei Verhaltensdaten, keine Werbe-Profile und keine Tracking-Identifikatoren Dritter.",
+            "Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:",
+            "Kalil Youssef (Einzelunternehmer), L’Atelier d’Or, Saarbrücker Str. 56, 66359 Bous, Deutschland.",
+            "E-Mail: info@latelierdor.com.",
           ],
         },
         {
-          title: "Was die Maison nicht tut",
+          title: "Allgemeines zur Datenverarbeitung",
           body: [
-            "Wir verkaufen Ihre Kontaktdaten nicht. Wir teilen sie mit keiner Werbeagentur, keinem Werbenetzwerk und keinem kommerziellen Partner.",
-            "Wir setzen keine Tracker zu Zwecken der Fremdreichweitenmessung und keine Retargeting-Werkzeuge ein.",
+            "Wir verarbeiten personenbezogene Daten unserer Besucherinnen und Besucher grundsätzlich nur, soweit dies zur Bereitstellung einer funktionsfähigen Website sowie unserer Inhalte und Leistungen erforderlich ist oder soweit Sie uns Daten freiwillig übermitteln.",
+            "Rechtsgrundlage für die Verarbeitung ist – je nach Zweck – Art. 6 Abs. 1 lit. a DSGVO (Einwilligung), Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen) oder Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einem sicheren, stabilen und ansprechenden Online-Auftritt).",
           ],
         },
         {
-          title: "Cookies",
+          title: "Bereitstellung der Website und Hosting",
           body: [
-            "Die Website verwendet ausschließlich unbedingt erforderliche Cookies – Anzeige, Barrierefreiheits-Präferenzen, Cache.",
-            "Keine Cookies zur Fremdreichweitenmessung, keine Werbetracker.",
+            "Diese Website wird gehostet durch Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA. Beim Aufruf werden Datenverkehrsdaten (insbesondere IP-Adresse, Zeitpunkt der Anfrage, aufgerufene URL, HTTP-Statuscode, User-Agent) kurzfristig durch den Hoster verarbeitet, um die Auslieferung der Seiten zu ermöglichen und die technische Sicherheit zu gewährleisten.",
+            "Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Für die Datenübermittlung in die USA stützen wir uns auf das EU-US Data Privacy Framework; Vercel ist nach diesem Rahmen zertifiziert.",
           ],
         },
         {
-          title: "Ihre Rechte",
+          title: "Server-Logfiles",
           body: [
-            "Gemäß Datenschutz-Grundverordnung (DSGVO) haben Sie das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung und Übertragbarkeit Ihrer personenbezogenen Daten.",
-            "Sie können diese Rechte über die Seite „Beratung“ geltend machen. Wir antworten innerhalb von vierundzwanzig Werkstunden.",
+            "Unser Hoster erhebt automatisch Informationen in sogenannten Server-Logfiles, die Ihr Browser beim Aufruf der Website übermittelt. Erfasst werden regelmäßig: IP-Adresse, Datum und Uhrzeit der Anfrage, Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL sowie die aufgerufene Seite.",
+            "Eine Zusammenführung dieser Daten mit anderen Datenquellen oder eine Auswertung zu Werbezwecken findet durch uns nicht statt. Logdaten werden vom Hoster für einen begrenzten Zeitraum zur Fehleranalyse und Abwehr von Missbrauch gespeichert und anschließend gelöscht.",
+          ],
+        },
+        {
+          title: "Kontaktaufnahme per E-Mail und über das Beratungsformular",
+          body: [
+            "Wenn Sie uns über die Seite „Beratung“ eine Anfrage senden, öffnet das Formular Ihr lokal installiertes E-Mail-Programm und erstellt eine vorbereitete E-Mail an info@latelierdor.com. Die Absendung erfolgt durch Sie selbst über Ihren eigenen E-Mail-Dienst. Wir speichern Ihre Daten nicht in einer eigenen Datenbank.",
+            "Nach Eingang verarbeiten wir die von Ihnen übermittelten Angaben (Name, E-Mail-Adresse, Nachricht) ausschließlich zur Beantwortung Ihrer Anfrage.",
+            "Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage auf einen Vertragsschluss gerichtet ist, im Übrigen Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Kundenanfragen).",
+          ],
+        },
+        {
+          title: "Cookies und lokale Speicherung",
+          body: [
+            "Diese Website setzt keine Tracking-, Analyse- oder Werbe-Cookies ein.",
+            "Zur Speicherung Ihrer Spracheinstellung verwenden wir ausschließlich den lokalen Speicher Ihres Browsers (localStorage, Schlüssel „lad_lang_v1“). Diese Information verlässt Ihr Gerät nicht und ist zur komfortablen Nutzung der Website technisch erforderlich. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO sowie § 25 Abs. 2 Nr. 2 TDDDG. Sie können den lokalen Speicher jederzeit über die Einstellungen Ihres Browsers löschen.",
+          ],
+        },
+        {
+          title: "Schriftarten",
+          body: [
+            "Zur einheitlichen Darstellung von Schriftarten setzen wir Webfonts ein (Inter, Fraunces, Instrument Serif, Pinyon Script). Diese Schriften werden lokal von unserem eigenen Server ausgeliefert; es findet keine Verbindung Ihres Browsers zu Servern von Google oder anderen Drittanbietern statt.",
+          ],
+        },
+        {
+          title: "Weiterleitung zum Shop",
+          body: [
+            "Soweit Sie auf einen Kauf-Link klicken, werden Sie zu einer Checkout-Seite von Shopify weitergeleitet. Für die dort stattfindende Datenverarbeitung ist der jeweilige Shop-Betreiber bzw. Shopify eigenständig verantwortlich. Weitere Informationen entnehmen Sie bitte der Datenschutzerklärung des Zielsystems.",
+          ],
+        },
+        {
+          title: "Empfänger und Weitergabe von Daten",
+          body: [
+            "Eine Weitergabe Ihrer personenbezogenen Daten an Dritte findet grundsätzlich nicht statt. Ausnahmen gelten nur, soweit dies zur Erfüllung einer Anfrage erforderlich ist, Sie ausdrücklich eingewilligt haben oder wir hierzu gesetzlich verpflichtet sind.",
+            "Als Auftragsverarbeiter im Sinne des Art. 28 DSGVO ist unser Hosting-Dienstleister Vercel Inc. eingebunden; mit ihm besteht ein entsprechender Auftragsverarbeitungsvertrag.",
           ],
         },
         {
           title: "Speicherdauer",
           body: [
-            "Der Schriftverkehr wird für die Dauer des Gesprächs aufbewahrt und auf einfache Anfrage gelöscht. Keine verlängerte Speicherung ohne angegebenen Grund.",
+            "Wir speichern personenbezogene Daten nur so lange, wie es für die Erfüllung des jeweiligen Zwecks erforderlich ist oder gesetzliche Aufbewahrungspflichten (insbesondere handels- und steuerrechtlicher Art) bestehen.",
+            "E-Mail-Korrespondenz zu Ihrer Beratungsanfrage wird gelöscht, sobald die Anfrage abschließend bearbeitet ist und keine gesetzlichen Aufbewahrungspflichten entgegenstehen – spätestens jedoch auf Ihr Verlangen.",
+          ],
+        },
+        {
+          title: "Ihre Rechte",
+          body: [
+            "Sie haben uns gegenüber folgende Rechte hinsichtlich der Sie betreffenden personenbezogenen Daten: Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) und Widerspruch gegen die Verarbeitung (Art. 21 DSGVO).",
+            "Soweit die Verarbeitung auf einer Einwilligung beruht, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen (Art. 7 Abs. 3 DSGVO).",
+            "Zur Ausübung Ihrer Rechte genügt eine formlose Nachricht an info@latelierdor.com.",
+          ],
+        },
+        {
+          title: "Beschwerderecht bei einer Aufsichtsbehörde",
+          body: [
+            "Unbeschadet eines anderweitigen verwaltungsrechtlichen oder gerichtlichen Rechtsbehelfs steht Ihnen gemäß Art. 77 DSGVO ein Beschwerderecht bei einer Aufsichtsbehörde zu, insbesondere in dem Mitgliedstaat Ihres Aufenthaltsorts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes.",
+            "Für L’Atelier d’Or zuständig ist das Unabhängige Datenschutzzentrum Saarland, Fritz-Dobisch-Str. 12, 66111 Saarbrücken.",
+          ],
+        },
+        {
+          title: "Keine automatisierte Entscheidungsfindung",
+          body: [
+            "Eine automatisierte Entscheidungsfindung einschließlich Profiling im Sinne des Art. 22 DSGVO findet nicht statt.",
+          ],
+        },
+        {
+          title: "Aktualität und Änderung dieser Datenschutzerklärung",
+          body: [
+            "Diese Datenschutzerklärung ist aktuell gültig. Durch die Weiterentwicklung der Website oder aufgrund geänderter gesetzlicher bzw. behördlicher Vorgaben kann es erforderlich werden, diese Erklärung anzupassen. Die jeweils aktuelle Fassung ist unter dieser URL abrufbar.",
           ],
         },
       ],
