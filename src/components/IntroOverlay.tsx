@@ -76,6 +76,7 @@ export default function IntroOverlay({
     if (!visible) return;
     const v = videoRef.current;
     if (!v) return;
+    try { v.playbackRate = 2.7; } catch {}
     v.play().catch(() => {});
     fallbackTimerRef.current = window.setTimeout(() => {
       dismiss();

@@ -121,7 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               videoSrc="/video/hero.mp4"
               videoSrcMobile="/video/hero-mobile.mp4"
               posterSrc="/video/hero-poster.jpg"
-              dismissAt={8}
+              dismissAt={3}
             />
             <Nav />
             <main id="main" className="relative">{children}</main>
