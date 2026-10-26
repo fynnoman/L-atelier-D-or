@@ -28,6 +28,7 @@ export default function IntroOverlay({
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
+  const hasPlayedRef = useRef(false);
   const t = useT();
 
   useEffect(() => {
@@ -112,12 +113,25 @@ export default function IntroOverlay({
         autoPlay
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         aria-hidden
         onTimeUpdate={onTimeUpdate}
+        onPlaying={() => {
+          hasPlayedRef.current = true;
+        }}
         onEnded={dismiss}
-        onError={dismiss}
+        onError={(e) => {
+          // Browser bubbeln error-Events von <source>-Kindern hoch; echter
+          // Video-Fehler liegt nur vor, wenn videoRef.error gesetzt ist oder
+          // keine Quelle mehr geladen werden kann.
+          if (e.target !== videoRef.current) return;
+          const v = videoRef.current;
+          if (!v) return;
+          if (!v.error && v.networkState !== 3 /* NETWORK_NO_SOURCE */) return;
+          dismiss();
+        }}
         onStalled={() => {
+          if (!hasPlayedRef.current) return;
           if (fallbackTimerRef.current != null) return;
           fallbackTimerRef.current = window.setTimeout(dismiss, 2000);
         }}

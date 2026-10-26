@@ -32,7 +32,7 @@
 .card { position:absolute; top:240px; left:50%; width:91%; height:415px; padding:25px 34px 28px; transform:translate(-50%, 0); transition:transform 1400ms cubic-bezier(.32,.02,.18,1), box-shadow 1400ms; background:repeating-linear-gradient(7deg, #a99a7505 0, #a99a7505 1px, transparent 1px, transparent 3px), linear-gradient(115deg, #fcf7e9, #f3ead6 80%, #e7dcc4); border:1px solid #fff9e9; box-shadow:0 3px 12px #120a0c66; }
 .experience[data-card-out=true] .card { transform:translate(-50%, -205px); box-shadow:0 16px 27px #10080a66; }
 .cardHeader { text-align:center; margin-bottom:22px; }
-.cardBrand { display:block; font-family:var(--font-instrument), Georgia, serif; font-style:italic; font-size:30px; }
+.cardBrand { display:block; margin:0 auto; height:34px; width:auto; }
 .cardNumber { display:block; font-size:7px; letter-spacing:.22em; margin:7px 0 18px; color:#95836a; }
 .cardHeader h2 { font-family:var(--font-fraunces), Georgia, serif; font-size:19px; font-weight:400; }
 .fields { border:0; padding:0; margin:0; min-width:0; opacity:0; transition:opacity 500ms; }
@@ -78,7 +78,7 @@
   .card { top:311px; width:94%; height:474px; padding:23px 17px; }
   .experience[data-card-out=true] .card { transform:translate(-50%, -287px); }
   .cardHeader { margin-bottom:18px; }
-  .cardBrand { font-size:29px; }
+  .cardBrand { height:32px; }
   .cardHeader h2 { font-size:18px; }
   .identity { grid-template-columns:1fr; gap:12px; margin-bottom:14px; }
   .fields input, .fields textarea { font-size:20px; }

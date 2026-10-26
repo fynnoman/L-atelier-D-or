@@ -109,7 +109,6 @@ export default function ConseilEcrin() {
           <div className={styles.base} aria-hidden="true">
             <div className={styles.velvet}>
               <ConseilGlasses className={styles.glasses} />
-              <span className={styles.baseSignature}>{t.conseil.baseSignature}</span>
             </div>
           </div>
           <div className={styles.hinge} aria-hidden="true" />
@@ -121,7 +120,7 @@ export default function ConseilEcrin() {
               <div className={styles.cardTrack}>
                 <div className={styles.card} id="conseil-card" inert={!cardOut}>
                   <header className={styles.cardHeader}>
-                    <span className={styles.cardBrand}>{t.conseil.cardBrand}</span>
+                    <img className={styles.cardBrand} src="/logo.png" alt={t.conseil.cardBrand} draggable={false} />
                     <span className={styles.cardNumber}>{t.conseil.cardNumber}</span>
                     <h2>{t.conseil.cardHeader}</h2>
                   </header>
@@ -152,7 +151,7 @@ export default function ConseilEcrin() {
         </div>
         <button ref={openerRef} className={styles.openButton} onClick={() => { setError(""); setPhase("opening"); }} disabled={phase !== "closed"} aria-expanded={isOpen} aria-controls="conseil-card"><span>{t.conseil.openLabel}</span><span aria-hidden="true">↗</span></button>
       </div>
-      <div className={styles.footnote}><span>{t.conseil.footnoteA}</span><span>{t.conseil.footnoteB}</span></div>
+      <div className={styles.footnote}><span>{t.conseil.footnoteA}</span></div>
       {recipient && (
         <noscript>
           <p>{t.conseil.noscriptWrite} <a href={`mailto:${recipient}`}>{recipient}</a>.</p>

@@ -741,7 +741,7 @@ const fr: Dictionary = {
     baseSignature: "L’ATELIER D’OR",
     cardBrand: "L’Atelier d’Or",
     cardNumber: "DEMANDE DE CONSEIL",
-    cardHeader: "Votre conseil personnel",
+    cardHeader: "Conseil par notre équipe",
     nameLabel: "Votre nom",
     emailLabel: "Votre e-mail",
     messageLabel: "Comment pouvons-nous vous conseiller ?",
@@ -1168,7 +1168,7 @@ const de: Dictionary = {
   common: {
     editionBreve: "",
     numeroteeALaMain: "",
-    petiteMaison: "Französisches Brillenhaus",
+    petiteMaison: "Französische Brillen-Maison",
     ventEnLigne: "Online-Verkauf.",
     voir: "Ansehen",
     voirLaPiece: "Zum Modell",
@@ -1202,17 +1202,17 @@ const de: Dictionary = {
     questions: "Fragen",
     conseil: "Beratung",
     feedback: "Feedback",
-    maisonEyebrow: "Haus",
+    maisonEyebrow: "Maison",
     contactEyebrow: "Kontakt",
     houseIntro: "Handgefertigte Brillen.\nEdition in kleiner Auflage.",
     contactWriteUs: "Schreiben Sie uns",
     ctaCollection: "Zur Kollektion",
   },
   footer: {
-    petiteMaisonFr: "Französisches Brillenhaus",
+    petiteMaisonFr: "Französische Brillen-Maison",
     ligne1: "Handgefertigte Brillen.",
     ligne2: "Kollektion ausschließlich online, Lieferung weltweit.",
-    columnMaison: "Haus",
+    columnMaison: "Maison",
     columnCollection: "Kollektion",
     columnMentions: "Rechtliches",
     labelPremiereCollection: "",
@@ -1225,12 +1225,12 @@ const de: Dictionary = {
     editorialTag2: "Edition in kleiner Auflage",
   },
   newsletter: {
-    label: "Brief des Hauses",
+    label: "Brief der Maison",
     description:
       "Entdecken Sie neue Kollektionen, ausgewählte Modelle und Neuigkeiten von L’Atelier d’Or, direkt per E-Mail.",
     placeholder: "Ihre E-Mail-Adresse",
     submit: "Zum Newsletter anmelden",
-    formAria: "Anmeldung zum Brief des Hauses",
+    formAria: "Anmeldung zum Brief der Maison",
     submitting: "…",
     ok: "✓",
     errorEmpty: "Bitte eine gültige Adresse.",
@@ -1487,7 +1487,7 @@ const de: Dictionary = {
         qas: [
           { q: "Wie reinige ich mein Stück?", a: "Verwenden Sie ein sauberes Mikrofasertuch, trocken oder leicht angefeuchtet. Vermeiden Sie scharfe Reiniger, Lösungsmittel und Alkohol – sie greifen die Oberfläche an." },
           { q: "Wie bewahre ich mein Stück auf?", a: "Im dafür vorgesehenen Etui, geschützt vor Hitze und dauerhaft direktem Licht." },
-          { q: "Was tun bei loser Schraube oder verbogenem Bügel?", a: "Ein Optiker kann anpassen oder nachziehen. Für eine Anpassung durch das Haus schreiben Sie uns." },
+          { q: "Was tun bei loser Schraube oder verbogenem Bügel?", a: "Ein Optiker kann anpassen oder nachziehen. Für eine Anpassung durch die Maison schreiben Sie uns." },
         ],
       },
     ],
@@ -1511,7 +1511,7 @@ const de: Dictionary = {
     baseSignature: "L’ATELIER D’OR",
     cardBrand: "L’Atelier d’Or",
     cardNumber: "BERATUNGSANFRAGE",
-    cardHeader: "Ihre persönliche Beratung",
+    cardHeader: "Beratung durch unser Team",
     nameLabel: "Ihr Name",
     emailLabel: "Ihre E-Mail",
     messageLabel: "Wie können wir Sie beraten?",
@@ -1586,65 +1586,88 @@ const de: Dictionary = {
     articleWord: "Artikel",
     mentions: {
       metaTitle: "Impressum",
-      metaDescription: "Rechtliche Angaben zur Website von L’Atelier d’Or. Gesellschaft in Gründung.",
+      metaDescription: "Angaben gemäß § 5 TMG und § 55 Abs. 2 RStV zur Website von L’Atelier d’Or.",
       numeral: "",
       rubric: "Impressum",
-      title: "Heft — Diskretion.",
-      chapo: "Was das Haus in aller Form ist. Nicht mehr, nicht weniger.",
+      title: "Impressum.",
+      chapo: "Angaben gemäß § 5 TMG.",
       sections: [
         {
-          title: "Status der Website",
+          title: "Anbieter",
           body: [
-            "L’Atelier d’Or ist ein Haus in Gründung. Die vorliegende Website wird zu redaktionellen Zwecken bereitgestellt und führt derzeit keine Verkäufe an die Öffentlichkeit durch.",
-            "Die endgültigen rechtlichen Angaben – Firma, Sitz, Handelsregister/SIRET, Kapital, verantwortlich für die Veröffentlichung, Hosting – werden hier veröffentlicht, sobald die Gesellschaft eingetragen ist.",
-          ],
-        },
-        {
-          title: "Herausgeber",
-          body: [
-            "L’Atelier d’Or (vorläufige Bezeichnung).",
-            "Kontaktdaten des Herausgebers werden auf schriftliche Anfrage über das Kontaktformular mitgeteilt.",
-          ],
-        },
-        {
-          title: "Hosting",
-          body: [
-            "Die Website wird bei Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA, gehostet.",
-          ],
-        },
-        {
-          title: "Urheberrecht",
-          body: [
-            "Sämtliche Inhalte der Website – Texte, Fotografien, Zeichnungen, Marken, Logos – sind nach französischem und internationalem Recht des geistigen Eigentums geschützt.",
-            "Jede Vervielfältigung, Darstellung oder Verbreitung, ganz oder teilweise, bedarf der vorherigen schriftlichen Zustimmung des Hauses.",
+            "L’Atelier d’Or",
+            "Kalil Youssef (Einzelunternehmer)",
+            "Saarbrücker Str. 56",
+            "66359 Bous",
+            "Deutschland",
           ],
         },
         {
           title: "Kontakt",
           body: [
-            "Anfragen zu Inhalt oder Nutzung der Website richten Sie bitte über die Seite „Beratung“.",
+            "E-Mail: info@latelierdor.com",
+          ],
+        },
+        {
+          title: "Umsatzsteuer",
+          body: [
+            "Eine Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz liegt derzeit nicht vor.",
+          ],
+        },
+        {
+          title: "Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV",
+          body: [
+            "Kalil Youssef",
+            "Saarbrücker Str. 56, 66359 Bous",
+          ],
+        },
+        {
+          title: "Hosting",
+          body: [
+            "Die Website wird gehostet durch Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789, USA.",
+          ],
+        },
+        {
+          title: "Haftung für Inhalte",
+          body: [
+            "Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf dieser Website nach den allgemeinen Gesetzen verantwortlich.",
+            "Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt.",
+          ],
+        },
+        {
+          title: "Haftung für Links",
+          body: [
+            "Diese Website enthält gegebenenfalls Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber verantwortlich.",
+            "Zum Zeitpunkt der Verlinkung wurden die verlinkten Seiten auf mögliche Rechtsverstöße überprüft. Eine permanente inhaltliche Kontrolle ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden derartige Links umgehend entfernt.",
+          ],
+        },
+        {
+          title: "Urheberrecht",
+          body: [
+            "Die durch die Betreiber erstellten Inhalte und Werke auf dieser Website unterliegen dem deutschen Urheberrecht. Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Urhebers.",
+            "Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.",
           ],
         },
       ],
     },
     privacy: {
       metaTitle: "Datenschutz",
-      metaDescription: "Was das Haus erhebt, was es nie erheben wird, und Ihre Rechte.",
+      metaDescription: "Was die Maison erhebt, was sie nie erheben wird, und Ihre Rechte.",
       numeral: "",
       rubric: "Datenschutz",
-      title: "Ihre Kontaktdaten verlassen niemals das Haus.",
+      title: "Ihre Kontaktdaten verlassen niemals die Maison.",
       chapo:
         "Was wir erheben, was wir niemals erheben werden, und was Sie jederzeit von uns verlangen können.",
       sections: [
         {
-          title: "Was das Haus erhebt",
+          title: "Was die Maison erhebt",
           body: [
             "Ausschließlich die Angaben, die Sie uns freiwillig über die Seite „Beratung“ übermitteln: Name, E-Mail-Adresse und die Nachricht, die Sie beifügen.",
             "Wir erheben keinerlei Verhaltensdaten, keine Werbe-Profile und keine Tracking-Identifikatoren Dritter.",
           ],
         },
         {
-          title: "Was das Haus nicht tut",
+          title: "Was die Maison nicht tut",
           body: [
             "Wir verkaufen Ihre Kontaktdaten nicht. Wir teilen sie mit keiner Werbeagentur, keinem Werbenetzwerk und keinem kommerziellen Partner.",
             "Wir setzen keine Tracker zu Zwecken der Fremdreichweitenmessung und keine Retargeting-Werkzeuge ein.",
@@ -2275,7 +2298,7 @@ const en: Dictionary = {
     baseSignature: "L’ATELIER D’OR",
     cardBrand: "L’Atelier d’Or",
     cardNumber: "ADVICE REQUEST",
-    cardHeader: "Your personal advice",
+    cardHeader: "Advice from our team",
     nameLabel: "Your name",
     emailLabel: "Your email",
     messageLabel: "How can we advise you?",
@@ -2905,7 +2928,7 @@ const it: Dictionary = {
     baseSignature: "L’ATELIER D’OR",
     cardBrand: "L’Atelier d’Or",
     cardNumber: "RICHIESTA DI CONSULENZA",
-    cardHeader: "La vostra consulenza personale",
+    cardHeader: "Consulenza dal nostro team",
     nameLabel: "Il vostro nome",
     emailLabel: "La vostra e-mail",
     messageLabel: "Come possiamo consigliarvi?",

@@ -147,12 +147,6 @@ export default function Nav() {
                 {t.nav.houseIntro}
               </p>
             </div>
-            <div>
-              <div className="n-eyebrow mb-4">{t.nav.contactEyebrow}</div>
-              <Link href="/conseil" className="n-link">
-                {t.nav.contactWriteUs}
-              </Link>
-            </div>
             <Link href="/collection" className="n-cta self-start">
               {t.nav.ctaCollection}
             </Link>
