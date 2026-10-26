@@ -512,14 +512,14 @@ const fr: Dictionary = {
   collectionIndex: {
     metaTitle: "La Collection — Roi.",
     metaDescription:
-      "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate premium, charnières métalliques, 78,90 € l’exemplaire.",
+      "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate premium, charnières métalliques, 64,90 € l’exemplaire.",
     breadcrumbHome: "Accueil",
     breadcrumbCollection: "Collection",
     eyebrowNumeral: "",
     eyebrowLabel: "Roi",
     title: ["Roi.", "La collection.", "Quatre modèles."],
     lede:
-      "Acétate premium, charnières métalliques. Façonné selon mes propres idées.\n78,90 € par modèle, verres correcteurs ou solaires inclus.",
+      "Acétate premium, charnières métalliques. Façonné selon mes propres idées.\n64,90 € par modèle, verres correcteurs ou solaires inclus.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Édition confidentielle",
     editorialTitle1: "Exclusivement en ligne.",
@@ -675,7 +675,7 @@ const fr: Dictionary = {
         title: "La pièce",
         eyebrow: "Le produit",
         qas: [
-          { q: "Combien coûte une pièce Roi ?", a: "Chaque pièce de la collection Roi est proposée à 78,90 €. Ni plus, ni moins." },
+          { q: "Combien coûte une pièce Roi ?", a: "Chaque pièce de la collection Roi est proposée à 64,90 €. Ni plus, ni moins." },
           { q: "Combien de modèles composent la collection ?", a: "La première collection comprend quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude." },
           { q: "Chaque exemplaire est-il numéroté ?", a: "Oui. Chaque exemplaire est numéroté à la main, un par un." },
           { q: "Puis-je choisir entre plusieurs coloris ?", a: "Chaque pièce a une teinte définie. Les quatre atmosphères correspondent aux quatre pièces." },
@@ -1145,7 +1145,7 @@ const fr: Dictionary = {
       rubric: "Prix",
       title: "Vente directe : notre modèle de prix.",
       chapo:
-        "78,90 € par modèle. Directement de l’atelier, sans intermédiaire.",
+        "64,90 € par modèle. Directement de l’atelier, sans intermédiaire.",
       read: "4 min",
       date: "Août",
       body: [
@@ -1282,14 +1282,14 @@ const de: Dictionary = {
   collectionIndex: {
     metaTitle: "Die Kollektion – Roi.",
     metaDescription:
-      "Roi. Vier Fassungen: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Premium-Acetat, Metallscharniere, 78,90 € pro Stück.",
+      "Roi. Vier Fassungen: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Premium-Acetat, Metallscharniere, 64,90 € pro Stück.",
     breadcrumbHome: "Startseite",
     breadcrumbCollection: "Kollektion",
     eyebrowNumeral: "",
     eyebrowLabel: "Roi",
     title: ["Roi.", "Die Kollektion.", "Vier Modelle."],
     lede:
-      "Premium-Acetat, Metallscharniere. Nach meinen eigenen Vorstellungen gefertigt.\n78,90 € pro Modell, inkl. Korrektur- oder Sonnengläser.",
+      "Premium-Acetat, Metallscharniere. Nach meinen eigenen Vorstellungen gefertigt.\n64,90 € pro Modell, inkl. Korrektur- oder Sonnengläser.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edition in kleiner Auflage",
     editorialTitle1: "Exklusiv online.",
@@ -1445,7 +1445,7 @@ const de: Dictionary = {
         title: "Das Stück",
         eyebrow: "Das Produkt",
         qas: [
-          { q: "Was kostet ein Roi-Stück?", a: "Jedes Stück der Roi-Kollektion wird zu 78,90 € angeboten. Nicht mehr, nicht weniger." },
+          { q: "Was kostet ein Roi-Stück?", a: "Jedes Stück der Roi-Kollektion wird zu 64,90 € angeboten. Nicht mehr, nicht weniger." },
           { q: "Wie viele Modelle umfasst die Kollektion?", a: "Die erste Kollektion umfasst vier Stücke: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude." },
           { q: "Ist jedes Exemplar nummeriert?", a: "Ja. Jedes Exemplar ist von Hand nummeriert, Stück für Stück." },
           { q: "Kann ich zwischen mehreren Farbtönen wählen?", a: "Jedes Stück hat einen festgelegten Farbton. Die vier Atmosphären entsprechen den vier Stücken." },
@@ -2001,7 +2001,7 @@ const de: Dictionary = {
       rubric: "Preis",
       title: "Direktverkauf: unser Preismodell.",
       chapo:
-        "78,90 € pro Modell. Direkt aus dem Atelier, ohne Zwischenhandel.",
+        "64,90 € pro Modell. Direkt aus dem Atelier, ohne Zwischenhandel.",
       read: "4 Min",
       date: "August",
       body: [
@@ -2136,14 +2136,14 @@ const en: Dictionary = {
   collectionIndex: {
     metaTitle: "The Collection — Roi.",
     metaDescription:
-      "Roi. Four pieces: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Premium acetate, metal hinges, €78.90 each.",
+      "Roi. Four pieces: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Premium acetate, metal hinges, €64.90 each.",
     breadcrumbHome: "Home",
     breadcrumbCollection: "Collection",
     eyebrowNumeral: "",
     eyebrowLabel: "Roi",
     title: ["Roi.", "The collection.", "Four models."],
     lede:
-      "Premium acetate, metal hinges. Made to my own vision.\n€78.90 per model, prescription or sun lenses included.",
+      "Premium acetate, metal hinges. Made to my own vision.\n€64.90 per model, prescription or sun lenses included.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Short edition",
     editorialTitle1: "Exclusively online.",
@@ -2299,7 +2299,7 @@ const en: Dictionary = {
         title: "The piece",
         eyebrow: "The product",
         qas: [
-          { q: "How much is a Roi piece?", a: "Each piece of the Roi collection is offered at €78.90. No more, no less." },
+          { q: "How much is a Roi piece?", a: "Each piece of the Roi collection is offered at €64.90. No more, no less." },
           { q: "How many models are in the collection?", a: "The first collection has four pieces: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude." },
           { q: "Is each piece numbered?", a: "Yes. Each piece is numbered by hand, one by one." },
           { q: "Can I choose between several colours?", a: "Each piece has a defined tone. The four atmospheres correspond to the four pieces." },
@@ -2632,7 +2632,7 @@ const en: Dictionary = {
       rubric: "Price",
       title: "Direct sales: our pricing model.",
       chapo:
-        "€78.90 per model. Straight from the workshop, no middlemen.",
+        "€64.90 per model. Straight from the workshop, no middlemen.",
       read: "4 min",
       date: "August",
       body: [
@@ -2767,14 +2767,14 @@ const it: Dictionary = {
   collectionIndex: {
     metaTitle: "La Collezione — Roi.",
     metaDescription:
-      "Roi. Quattro pezzi: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acetato premium, cerniere metalliche, 78,90 € a pezzo.",
+      "Roi. Quattro pezzi: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acetato premium, cerniere metalliche, 64,90 € a pezzo.",
     breadcrumbHome: "Home",
     breadcrumbCollection: "Collezione",
     eyebrowNumeral: "",
     eyebrowLabel: "Roi",
     title: ["Roi.", "La collezione.", "Quattro modelli."],
     lede:
-      "Acetato premium, cerniere metalliche. Realizzato secondo le mie idee.\n78,90 € a modello, lenti correttive o da sole incluse.",
+      "Acetato premium, cerniere metalliche. Realizzato secondo le mie idee.\n64,90 € a modello, lenti correttive o da sole incluse.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edizione in piccola tiratura",
     editorialTitle1: "Esclusivamente online.",
@@ -2929,7 +2929,7 @@ const it: Dictionary = {
         title: "Il pezzo",
         eyebrow: "Il prodotto",
         qas: [
-          { q: "Quanto costa un pezzo Roi?", a: "Ogni pezzo della collezione Roi è proposto a 78,90 €. Né più, né meno." },
+          { q: "Quanto costa un pezzo Roi?", a: "Ogni pezzo della collezione Roi è proposto a 64,90 €. Né più, né meno." },
           { q: "Quanti modelli compongono la collezione?", a: "La prima collezione comprende quattro pezzi: Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude." },
           { q: "Ogni esemplare è numerato?", a: "Sì. Ogni esemplare è numerato a mano, uno per uno." },
           { q: "Posso scegliere tra più colori?", a: "Ogni pezzo ha una tonalità definita. Le quattro atmosfere corrispondono ai quattro pezzi." },
@@ -3262,7 +3262,7 @@ const it: Dictionary = {
       rubric: "Prezzo",
       title: "Vendita diretta: il nostro modello di prezzo.",
       chapo:
-        "78,90 € a modello. Direttamente dall’atelier, senza intermediari.",
+        "64,90 € a modello. Direttamente dall’atelier, senza intermediari.",
       read: "4 min",
       date: "Agosto",
       body: [

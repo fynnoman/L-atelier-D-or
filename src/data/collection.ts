@@ -27,7 +27,7 @@ export type Piece = {
    */
   video?: string;
   videoPoster?: string;
-  priceEuro: 78.9;
+  priceEuro: 64.9;
   /** Shopify Variant-ID fuer Direct-Checkout. Leer = Button faellt auf /conseil zurueck. */
   shopifyVariantId?: string;
 };
@@ -58,7 +58,7 @@ export const PIECES: Piece[] = [
     mood: "rouge",
     image: "/models/roi-rouge.jpg",
     imageWorn: "/models/roi-rouge-worn.jpg",
-    priceEuro: 78.9,
+    priceEuro: 64.9,
     shopifyVariantId: "66231401480541",
   },
   {
@@ -86,7 +86,7 @@ export const PIECES: Piece[] = [
     mood: "foret",
     image: "/models/roi-noir.jpg",
     imageWorn: "/models/roi-noir-worn.jpg",
-    priceEuro: 78.9,
+    priceEuro: 64.9,
     shopifyVariantId: "66231401513309",
   },
   {
@@ -114,7 +114,7 @@ export const PIECES: Piece[] = [
     mood: "cristal",
     image: "/models/roi-cristal.jpg",
     imageWorn: "/models/roi-cristal-worn.jpg",
-    priceEuro: 78.9,
+    priceEuro: 64.9,
     shopifyVariantId: "66231402103133",
   },
   {
@@ -142,7 +142,7 @@ export const PIECES: Piece[] = [
     mood: "emeraude",
     image: "/models/roi-emeraude.jpg",
     imageWorn: "/models/roi-emeraude-worn.jpg",
-    priceEuro: 78.9,
+    priceEuro: 64.9,
     shopifyVariantId: "66231402135901",
   },
 ];

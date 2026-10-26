@@ -8,7 +8,7 @@ const siteUrl =
 export const metadata = {
   title: "La Collection — Roi.",
   description:
-    "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate italien, montage à la main, 78,90 € l'exemplaire.",
+    "Roi. Quatre pièces : Roi Rouge, Roi Noir, Roi Cristal, Roi Émeraude. Acétate italien, montage à la main, 64,90 € l'exemplaire.",
   alternates: { canonical: "/collection" },
 };
 
