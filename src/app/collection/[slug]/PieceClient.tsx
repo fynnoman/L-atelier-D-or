@@ -3,11 +3,10 @@
 import Link from "next/link";
 import BuyNow from "@/components/BuyNow";
 import LineReveal from "@/components/LineReveal";
-import MaskedImage from "@/components/MaskedImage";
 import PageEyebrow from "@/components/PageEyebrow";
 import ProductGallery from "@/components/ProductGallery";
 import PieceSwitcher from "@/components/PieceSwitcher";
-import { PIECES, type Piece } from "@/data/collection";
+import type { Piece } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
 import { localizePiece } from "@/lib/i18n/content";
@@ -23,7 +22,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
   const t = useT();
   const locale = useLocale();
   const loc = localizePiece(piece, locale);
-  const others = PIECES.filter((p) => p.slug !== piece.slug);
   const wornAlt = locale === "de" ? `${piece.name} — getragen` : `${piece.name} — portée`;
   const studioAlt = locale === "de" ? `${piece.name} — Studio` : `${piece.name} — Studio`;
   return (
@@ -237,53 +235,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
         </div>
       </section>
 
-      <section className="relative py-28">
-        <div className="n-page">
-          <PageEyebrow numeral={t.piece.section4Eyebrow} label={t.piece.section4Label} className="mb-14" />
-          <div className="grid grid-cols-12 gap-x-6 gap-y-14">
-            {others.map((p) => {
-              const pl = localizePiece(p, locale);
-              return (
-                <Link
-                  key={p.slug}
-                  href={`/collection/${p.slug}`}
-                  className="col-span-12 md:col-span-4 group block"
-                >
-                  <div className="relative">
-                    <MaskedImage
-                      src={p.image}
-                      tone={p.mood === "foret" ? "foret" : p.mood === "cristal" ? "cristal" : p.mood === "emeraude" ? "emeraude" : "rouge"}
-                      ratio="4 / 5"
-                    />
-                    <div
-                      className="absolute top-4 left-4 flex items-center gap-3 px-3 py-2"
-                      style={{
-                        background: "rgba(237, 227, 206, 0.72)",
-                        border: "1px solid var(--n-line)",
-                        borderRadius: "9999px",
-                        backdropFilter: "saturate(1.4) blur(14px)",
-                        WebkitBackdropFilter: "saturate(1.4) blur(14px)",
-                        boxShadow: "0 4px 14px rgba(10,10,10,0.12)",
-                      }}
-                    >
-                      <span className="n-product-name" style={{ fontSize: "16px", lineHeight: 1, letterSpacing: 0, textTransform: "none", color: "var(--n-ink)" }}>{p.name}</span>
-                    </div>
-                  </div>
-                  <div className="mt-6 flex items-baseline justify-between">
-                    <div>
-                      <div className="n-product-name leading-none" style={{ fontSize: "22px" }}>{p.name}</div>
-                      <div className="n-serif-italic text-[15px] mt-2" style={{ color: "var(--n-muted)" }}>
-                        {pl.tagline}
-                      </div>
-                    </div>
-                    <span className="n-mono opacity-60">{formatPrice(p.priceEuro, locale)}</span>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

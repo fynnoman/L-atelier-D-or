@@ -7,33 +7,67 @@
    ———————————————————————————————————————————————— */
 
 html:has([data-nouveau]) {
-  background: #EDE3CE;
+  background: #000000;
 }
 
 html:has([data-nouveau]) body {
-  background: #EDE3CE;
-  color: #0A0A0A;
+  background: #000000;
+  color: #F2F2F2;
   font-family: var(--font-inter), "Söhne", "Helvetica Neue", Helvetica, sans-serif;
 }
 
+/* ————————————————————————————————————————————————
+   Intro overlay → site reveal
+   Website holds its breath behind the intro, then pulls into focus.
+   ———————————————————————————————————————————————— */
+
+[data-site-stage] {
+  transform-origin: 50% 50%;
+  will-change: transform, filter, opacity;
+}
+
+html[data-intro="playing"] [data-site-stage] {
+  transform: scale(1.04);
+  filter: blur(6px);
+  opacity: 0.45;
+  transition: none;
+}
+
+html[data-intro="transitioning"] [data-site-stage] {
+  transform: scale(1);
+  filter: blur(0);
+  opacity: 1;
+  transition:
+    transform 1700ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 1300ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 1300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html[data-intro="done"] [data-site-stage] {
+  transform: none;
+  filter: none;
+  opacity: 1;
+}
+
 [data-nouveau] {
-  /* Palette — beige & noir. */
-  --n-bg: #EDE3CE;
-  --n-bg-2: #E4D8BD;
-  --n-bg-3: #D8C9A6;
-  --n-bg-warm: #E9DCBE;
-  --n-bg-cool: #E1D6BF;
-  --n-ink: #0A0A0A;
-  --n-ink-2: #1A1A1A;
-  --n-muted: #6B5F48;
-  --n-muted-2: #948667;
+  /* Palette — noir éditorial. Blanc pour le texte. Bordeaux réservé aux
+     moments dramatiques (Manifesto, EndCall, Roi Rouge). */
+  --n-bg: #000000;
+  --n-bg-2: #0A0A0A;
+  --n-bg-3: #141414;
+  --n-bg-warm: #0E0C0A;
+  --n-bg-cool: #0A0C0E;
+  --n-ink: #F2F2F2;
+  --n-ink-2: #E6E6E6;
+  --n-muted: #8E8E93;
+  --n-muted-2: #6E6E72;
 
-  /* Une seule teinte d'accent, utilisée avec parcimonie. */
-  --n-accent: #7E5F26;
+  /* Accent or discret, utilisé avec parcimonie. */
+  --n-accent: #C9A96E;
 
-  /* Filets */
-  --n-line: rgba(10, 10, 10, 0.14);
-  --n-line-soft: rgba(10, 10, 10, 0.08);
+  /* Filets — fins sur noir */
+  --n-line: rgba(242, 242, 242, 0.14);
+  --n-line-soft: rgba(242, 242, 242, 0.07);
 
   /* Rythmes */
   --n-ease: cubic-bezier(0.16, 1, 0.3, 1);
@@ -51,91 +85,38 @@ html:has([data-nouveau]) body {
   min-height: 100vh;
 }
 
-/* Moods des pages produit — la photographie dicte, on passe à un fond neutre teinté. */
-html[data-nouveau-mood="rouge"]     { background: #100A08; }
-html[data-nouveau-mood="foret"]     { background: #0A0F0B; }
-html[data-nouveau-mood="cristal"]   { background: #F2F3F4; }
-html[data-nouveau-mood="emeraude"]  { background: #0A0A10; }
-
-html[data-nouveau-mood="rouge"] body,
-html[data-nouveau-mood="foret"] body,
-html[data-nouveau-mood="emeraude"] body {
+/* Moods des pages produit — toute la site reste blanc Apple.
+   Le mood ne sert plus qu'à colorer un accent subtil. */
+html[data-nouveau-mood] { background: #FFFFFF; }
+html[data-nouveau-mood] body {
   background: transparent;
-  color: #EDEAE3;
-}
-html[data-nouveau-mood="cristal"] body {
-  background: transparent;
-  color: #0F1216;
+  color: #0A0A0A;
 }
 
 html[data-nouveau-mood="rouge"] [data-nouveau] {
-  --n-bg: #100A08;
-  --n-bg-2: #180E0B;
-  --n-ink: #EDEAE3;
-  --n-muted: #A69684;
-  --n-line: rgba(237, 234, 227, 0.14);
-  --n-line-soft: rgba(237, 234, 227, 0.07);
-  background: #100A08;
-  color: #EDEAE3;
+  --n-accent: #B9324A;
 }
 html[data-nouveau-mood="foret"] [data-nouveau] {
-  --n-bg: #0A0F0B;
-  --n-bg-2: #101812;
-  --n-ink: #E3E8DE;
-  --n-muted: #95A392;
-  --n-line: rgba(227, 232, 222, 0.14);
-  --n-line-soft: rgba(227, 232, 222, 0.07);
-  background: #0A0F0B;
-  color: #E3E8DE;
+  --n-accent: #3F6648;
 }
 html[data-nouveau-mood="cristal"] [data-nouveau] {
-  --n-bg: #F2F3F4;
-  --n-bg-2: #E8EAEC;
-  --n-ink: #0F1216;
-  --n-muted: #5E656C;
-  --n-line: rgba(15, 18, 22, 0.12);
-  --n-line-soft: rgba(15, 18, 22, 0.06);
-  background: #F2F3F4;
-  color: #0F1216;
+  --n-accent: #4C5560;
 }
 html[data-nouveau-mood="emeraude"] [data-nouveau] {
-  --n-bg: #0A0A10;
-  --n-bg-2: #12121C;
-  --n-ink: #E7E5EA;
-  --n-muted: #9A97A2;
-  --n-line: rgba(231, 229, 234, 0.14);
-  --n-line-soft: rgba(231, 229, 234, 0.07);
-  background: #0A0A10;
-  color: #E7E5EA;
+  --n-accent: #1F6952;
 }
 
-/* Footer logo invertieren bei dunklen Mood-Themes, damit es sichtbar bleibt. */
-html[data-nouveau-mood="rouge"] .n-footer-logo,
-html[data-nouveau-mood="foret"] .n-footer-logo,
-html[data-nouveau-mood="emeraude"] .n-footer-logo {
-  filter: invert(1);
+/* Navbar — schwarzes Milchglas mit weißer Schrift, überall identisch.
+   Das weiße Logo /logo-white.png braucht keinen Filter mehr. */
+header[data-milk-glass] img {
+  filter: none !important;
 }
-
-/* Nav-Wordmark bei dunklen Mood-Themes vollflächig weiss zeichnen.
-   !important noetig, weil <Wordmark> inline filter: none setzt. */
-html[data-nouveau-mood="rouge"] header img,
-html[data-nouveau-mood="foret"] header img,
-html[data-nouveau-mood="emeraude"] header img {
-  filter: brightness(0) invert(1) !important;
-}
-
-/* Header adapte son fond au mood, sans jamais devenir décoratif. */
-html[data-nouveau-mood] [data-nouveau] > header {
-  background: transparent !important;
-  color: inherit;
-  border-bottom-color: transparent !important;
-}
-html[data-nouveau-mood] [data-nouveau] > header[style*="blur"] {
-  background: rgba(10, 8, 6, 0.55) !important;
-  border-bottom: 1px solid var(--n-line-soft) !important;
-}
-html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
-  background: rgba(255, 255, 255, 0.7) !important;
+header[data-milk-glass],
+header[data-milk-glass] a,
+header[data-milk-glass] button,
+header[data-milk-glass] .n-meta,
+header[data-milk-glass] .n-eyebrow {
+  color: #FFFFFF !important;
 }
 
 /* ————————————————————————————————————————————————
@@ -473,6 +454,13 @@ html[data-nouveau-mood="cristal"] [data-nouveau] > header[style*="blur"] {
   overflow: hidden;
   display: block;
   padding-bottom: 0.18em;
+}
+/* Pinyon Script braucht viel mehr Raum unten für seine Schwünge,
+   sonst werden Buchstabenschleifen angeschnitten und das sieht
+   aus wie kleine weiße Pünktchen unter der Schrift. */
+[data-nouveau] .n-product-name .n-line-mask,
+[data-nouveau] .n-line-mask.n-line-mask-script {
+  padding-bottom: 0.45em;
 }
 [data-nouveau] .n-line-mask > .n-line {
   display: block;

@@ -109,23 +109,30 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fr"
       className={`${inter.variable} ${fraunces.variable} ${instrument.variable} ${pinyon.variable}`}
+      suppressHydrationWarning
     >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var p=location.pathname;var q=location.search;var forced=q.indexOf('intro')>=0;if(forced||p==='/'){document.documentElement.setAttribute('data-intro','playing');}}catch(e){}})();`,
+          }}
+        />
         <StructuredData data={organizationJsonLd(siteUrl)} />
         <StructuredData data={websiteJsonLd(siteUrl)} />
         <LanguageProvider>
           <div data-nouveau>
-            <SkipLink />
-            <Reveal />
             <IntroOverlay
-              videoSrc="/video/hero.mp4"
-              videoSrcMobile="/video/hero-mobile.mp4"
+              videoSrc="/video/intro.mp4"
+              videoSrcMobile="/video/intro-mobile.mp4"
               posterSrc="/video/hero-poster.jpg"
-              dismissAt={3}
             />
-            <Nav />
-            <main id="main" className="relative">{children}</main>
-            <Footer />
+            <div data-site-stage>
+              <SkipLink />
+              <Reveal />
+              <Nav />
+              <main id="main" className="relative">{children}</main>
+              <Footer />
+            </div>
           </div>
         </LanguageProvider>
       </body>

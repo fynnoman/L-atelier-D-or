@@ -58,12 +58,11 @@ export default function ScrollVideoHero() {
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
         <img
-          src="/logo.png"
+          src="/logo-white.png"
           alt=""
           style={{
             height: "22px",
             width: "auto",
-            filter: "invert(1)",
             opacity: 0.82,
           }}
           draggable={false}

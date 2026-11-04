@@ -21,7 +21,7 @@ export default function Wordmark({ className, size = "md", invert = false }: Pro
       aria-label="L'Atelier d'Or"
     >
       <img
-        src="/logo.png"
+        src="/logo-white.png"
         alt="L'Atelier d'Or"
         style={{
           height: `${h}px`,

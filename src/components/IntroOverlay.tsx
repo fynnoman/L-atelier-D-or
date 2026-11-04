@@ -15,16 +15,17 @@ export default function IntroOverlay({
   videoSrc,
   videoSrcMobile,
   posterSrc,
-  dismissAt = 8,
+  fallbackSeconds = 14,
 }: {
   videoSrc: string;
   videoSrcMobile?: string;
   posterSrc?: string;
-  dismissAt?: number;
+  fallbackSeconds?: number;
 }) {
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
+  const [exitPhase, setExitPhase] = useState<"idle" | "flash" | "unmount">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
@@ -34,8 +35,6 @@ export default function IntroOverlay({
   useEffect(() => {
     setMounted(true);
     if (typeof window === "undefined") return;
-    // Alte Session-Keys aus frueheren Versionen aufraeumen, damit zombiegecachte
-    // Clients beim naechsten Full-Reload sauber sind.
     try {
       window.sessionStorage.removeItem("lad_intro_seen_v2");
       window.sessionStorage.removeItem("lad_intro_seen_v3");
@@ -45,9 +44,11 @@ export default function IntroOverlay({
     setVisible(true);
     document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.documentElement.setAttribute("data-intro", "playing");
     return () => {
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
+      document.documentElement.removeAttribute("data-intro");
     };
   }, []);
 
@@ -64,118 +65,143 @@ export default function IntroOverlay({
         v.pause();
       } catch {}
     }
-    setFading(true);
+    // Phase 1: light flash sweep across the viewport + pull content into focus
+    setExitPhase("flash");
+    document.documentElement.setAttribute("data-intro", "transitioning");
+    // Phase 2: begin the fade/scale out
     window.setTimeout(() => {
+      setFading(true);
+    }, 180);
+    // Phase 3: unmount after the full transition
+    window.setTimeout(() => {
+      setExitPhase("unmount");
       setVisible(false);
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
-    }, 900);
+      document.documentElement.setAttribute("data-intro", "done");
+    }, 1500);
   };
 
   useEffect(() => {
     if (!visible) return;
     const v = videoRef.current;
     if (!v) return;
-    try { v.playbackRate = 2.7; } catch {}
     v.play().catch(() => {});
     fallbackTimerRef.current = window.setTimeout(() => {
       dismiss();
-    }, (dismissAt + 2) * 1000);
+    }, fallbackSeconds * 1000);
     return () => {
       if (fallbackTimerRef.current != null) {
         window.clearTimeout(fallbackTimerRef.current);
         fallbackTimerRef.current = null;
       }
     };
-  }, [visible, dismissAt]);
-
-  const onTimeUpdate = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    if (v.currentTime >= dismissAt) dismiss();
-  };
+  }, [visible, fallbackSeconds]);
 
   if (!mounted || !visible) return null;
 
   return (
     <div
       aria-hidden={fading}
-      className="fixed inset-0 z-[100] overflow-hidden transition-opacity"
+      className="fixed inset-0 z-[100] overflow-hidden"
       style={{
         background: "#000",
         opacity: fading ? 0 : 1,
-        transitionDuration: "900ms",
-        transitionTimingFunction: "cubic-bezier(0.22,1,0.36,1)",
+        transition:
+          "opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
+        willChange: "opacity",
       }}
     >
-      <video
-        ref={videoRef}
-        poster={posterSrc}
-        autoPlay
-        muted
-        playsInline
-        preload="auto"
-        aria-hidden
-        onTimeUpdate={onTimeUpdate}
-        onPlaying={() => {
-          hasPlayedRef.current = true;
-        }}
-        onEnded={dismiss}
-        onError={(e) => {
-          // Browser bubbeln error-Events von <source>-Kindern hoch; echter
-          // Video-Fehler liegt nur vor, wenn videoRef.error gesetzt ist oder
-          // keine Quelle mehr geladen werden kann.
-          if (e.target !== videoRef.current) return;
-          const v = videoRef.current;
-          if (!v) return;
-          if (!v.error && v.networkState !== 3 /* NETWORK_NO_SOURCE */) return;
-          dismiss();
-        }}
-        onStalled={() => {
-          if (!hasPlayedRef.current) return;
-          if (fallbackTimerRef.current != null) return;
-          fallbackTimerRef.current = window.setTimeout(dismiss, 2000);
-        }}
-        className="absolute inset-0 w-full h-full object-cover"
+      <div
+        className="absolute inset-0"
         style={{
-          opacity: fading ? 0 : 1,
-          transition: "opacity 160ms linear",
+          transform: fading ? "scale(1.06)" : "none",
+          filter: fading ? "blur(10px)" : "none",
+          transition:
+            "transform 1400ms cubic-bezier(0.4, 0, 0.2, 1), filter 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
+          willChange: fading ? "transform, filter" : "auto",
         }}
       >
-        {videoSrcMobile && (
-          <source
-            src={videoSrcMobile}
-            type="video/mp4"
-            media="(max-width: 768px)"
-          />
-        )}
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+        <video
+          ref={videoRef}
+          poster={posterSrc}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden
+          onPlaying={() => {
+            hasPlayedRef.current = true;
+          }}
+          onEnded={dismiss}
+          onError={(e) => {
+            if (e.target !== videoRef.current) return;
+            const v = videoRef.current;
+            if (!v) return;
+            if (!v.error && v.networkState !== 3) return;
+            dismiss();
+          }}
+          onStalled={() => {
+            if (!hasPlayedRef.current) return;
+            if (fallbackTimerRef.current != null) return;
+            fallbackTimerRef.current = window.setTimeout(dismiss, 2500);
+          }}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          {videoSrcMobile && (
+            <source
+              src={videoSrcMobile}
+              type="video/mp4"
+              media="(max-width: 768px)"
+            />
+          )}
+          <source src={videoSrc} type="video/mp4" />
+        </video>
 
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Light sweep flash across the viewport at the transition moment */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
+            "linear-gradient(115deg, transparent 20%, rgba(237, 227, 206, 0.22) 48%, rgba(237, 227, 206, 0.42) 52%, rgba(237, 227, 206, 0.22) 56%, transparent 80%)",
+          backgroundSize: "260% 100%",
+          backgroundPosition: exitPhase === "idle" ? "120% 0" : "-120% 0",
+          opacity: exitPhase === "idle" ? 0 : exitPhase === "flash" ? 1 : 0,
+          transition:
+            "background-position 1300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 900ms ease-out",
+          mixBlendMode: "screen",
         }}
       />
 
       <div
         aria-hidden
         className="pointer-events-none absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-4"
+        style={{
+          opacity: fading ? 0 : 1,
+          transition: "opacity 600ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       >
         <span
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
         <img
-          src="/logo.png"
+          src="/logo-white.png"
           alt="L'Atelier d'Or"
           style={{
             height: "clamp(28px, 3.2vw, 44px)",
             width: "auto",
-            filter: "brightness(0) invert(1)",
           }}
           draggable={false}
         />
@@ -195,6 +221,9 @@ export default function IntroOverlay({
           letterSpacing: "0.24em",
           textTransform: "uppercase",
           fontWeight: 500,
+          opacity: fading ? 0 : 1,
+          transitionDuration: "600ms",
+          transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
         }}
       >
         {t.common.passerIntro}

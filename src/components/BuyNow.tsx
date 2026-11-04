@@ -32,10 +32,8 @@ export default function BuyNow({
   className,
   style,
 }: Props) {
-  const variantId = piece.shopifyVariantId?.trim();
-
-  if (variantId && SHOPIFY_SHOP) {
-    const url = `https://${SHOPIFY_SHOP}/cart/${variantId}:1`;
+  if (SHOPIFY_SHOP) {
+    const url = `https://${SHOPIFY_SHOP}/products/${piece.slug}`;
     return (
       <a href={url} className={className} style={style}>
         {label}

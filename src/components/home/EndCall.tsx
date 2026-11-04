@@ -30,7 +30,7 @@ export default function EndCall() {
               delayStep={140}
               style={{
                 fontSize: "clamp(32px, 5vw, 76px)",
-                color: "var(--n-bg)",
+                color: "#EDE3CE",
               }}
             />
 
@@ -48,14 +48,14 @@ export default function EndCall() {
               <Link
                 href="/collection"
                 className="n-cta n-cta-ghost"
-                style={{ color: "var(--n-bg)", borderColor: "var(--n-bg)" }}
+                style={{ color: "#EDE3CE", borderColor: "#EDE3CE" }}
               >
                 {t.home.endCall.ctaCollection}
               </Link>
               <Link
                 href="/atelier"
                 className="n-link"
-                style={{ color: "var(--n-bg)" }}
+                style={{ color: "#EDE3CE" }}
               >
                 {t.home.endCall.ctaAtelier}
               </Link>

@@ -519,7 +519,7 @@ const fr: Dictionary = {
     eyebrowLabel: "Roi",
     title: ["Roi.", "La collection.", "Quatre modèles."],
     lede:
-      "Acétate premium, charnières métalliques. Façonné selon mes propres idées.\n64,90 € par modèle, verres correcteurs ou solaires inclus.",
+      "Acétate premium, charnières métalliques. Chaque ligne, pensée.\n64,90 € par modèle.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Édition confidentielle",
     editorialTitle1: "Exclusivement en ligne.",
@@ -1289,7 +1289,7 @@ const de: Dictionary = {
     eyebrowLabel: "Roi",
     title: ["Roi.", "Die Kollektion.", "Vier Modelle."],
     lede:
-      "Premium-Acetat, Metallscharniere. Nach meinen eigenen Vorstellungen gefertigt.\n64,90 € pro Modell, inkl. Korrektur- oder Sonnengläser.",
+      "Premium-Acetat, Metallscharniere. Jede Linie bedacht.\n64,90 € pro Modell.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edition in kleiner Auflage",
     editorialTitle1: "Exklusiv online.",
@@ -2143,7 +2143,7 @@ const en: Dictionary = {
     eyebrowLabel: "Roi",
     title: ["Roi.", "The collection.", "Four models."],
     lede:
-      "Premium acetate, metal hinges. Made to my own vision.\n€64.90 per model, prescription or sun lenses included.",
+      "Premium acetate, metal hinges. Every line considered.\n€64.90 per model.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Short edition",
     editorialTitle1: "Exclusively online.",
@@ -2774,7 +2774,7 @@ const it: Dictionary = {
     eyebrowLabel: "Roi",
     title: ["Roi.", "La collezione.", "Quattro modelli."],
     lede:
-      "Acetato premium, cerniere metalliche. Realizzato secondo le mie idee.\n64,90 € a modello, lenti correttive o da sole incluse.",
+      "Acetato premium, cerniere metalliche. Ogni linea, pensata.\n64,90 € a modello.",
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edizione in piccola tiratura",
     editorialTitle1: "Esclusivamente online.",

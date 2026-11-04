@@ -41,17 +41,22 @@ export default function Nav() {
   return (
     <>
       <header
+        data-milk-glass
         className={clsx(
           "fixed top-0 left-0 right-0 z-40 transition-all duration-500",
           scrolled ? "py-3" : "py-5"
         )}
         style={{
-          backdropFilter: scrolled ? "blur(14px)" : "none",
-          background: scrolled ? "rgba(255, 255, 255, 0.72)" : "transparent",
-          borderBottom: scrolled
-            ? "1px solid var(--n-line-soft)"
-            : "1px solid transparent",
-          color: "inherit",
+          backdropFilter: "blur(22px) saturate(1.4)",
+          WebkitBackdropFilter: "blur(22px) saturate(1.4)",
+          background: scrolled
+            ? "rgba(10, 10, 10, 0.72)"
+            : "rgba(10, 10, 10, 0.55)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.10)",
+          boxShadow: scrolled
+            ? "0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 8px 32px -18px rgba(0, 0, 0, 0.6)"
+            : "0 1px 0 rgba(255, 255, 255, 0.06) inset",
+          color: "#FFFFFF",
         }}
       >
         <div className="n-page grid grid-cols-3 items-center gap-6">
