@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Reveal from "@/components/Reveal";
 import IntroOverlay from "@/components/IntroOverlay";
+import SmoothScroll from "@/components/SmoothScroll";
 import StructuredData, {
   organizationJsonLd,
   websiteJsonLd,
@@ -120,6 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <StructuredData data={organizationJsonLd(siteUrl)} />
         <StructuredData data={websiteJsonLd(siteUrl)} />
         <LanguageProvider>
+          <SmoothScroll />
           <div data-nouveau>
             <IntroOverlay
               videoSrc="/video/intro.mp4"
