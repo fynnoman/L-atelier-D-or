@@ -72,7 +72,7 @@ export default function LanguageSwitcher({
         className="absolute right-0 mt-3 min-w-[132px] overflow-hidden transition-[opacity,transform] duration-200"
         style={{
           background: onDark ? "rgba(20,18,16,0.94)" : "rgba(255,255,255,0.96)",
-          color: onDark ? "#EDE3CE" : "var(--n-ink)",
+          color: onDark ? "#EDE3CE" : "#171717",
           border: `1px solid ${onDark ? "rgba(237,227,206,0.16)" : "var(--n-line-soft)"}`,
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
