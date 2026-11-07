@@ -125,7 +125,7 @@ export default function Footer() {
         </div>
         <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
-          <p className="n-meta opacity-55">{t.footer.copyright}</p>
+          <p className="n-meta opacity-60">{t.footer.copyright}</p>
           <Link
             href="/mentions-legales"
             className="n-meta opacity-55 hover:opacity-80 transition-opacity"
