@@ -22,7 +22,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
   const t = useT();
   const locale = useLocale();
   const loc = localizePiece(piece, locale);
-  const wornAlt = locale === "de" ? `${piece.name} — getragen` : `${piece.name} — portée`;
   const studioAlt = locale === "de" ? `${piece.name} — Studio` : `${piece.name} — Studio`;
   return (
     <>
@@ -75,17 +74,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                         src: piece.image,
                         alt: studioAlt,
                         fit: "contain" as const,
-                      },
-                    ]
-                  : []),
-                ...(piece.imageWorn
-                  ? [
-                      {
-                        kind: "image" as const,
-                        src: piece.imageWorn,
-                        alt: wornAlt,
-                        fit: "cover" as const,
-                        position: "50% 30%",
                       },
                     ]
                   : []),
@@ -209,17 +197,6 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                       src: piece.image,
                       alt: studioAlt,
                       fit: "contain" as const,
-                    },
-                  ]
-                : []),
-              ...(piece.imageWorn
-                ? [
-                    {
-                      kind: "image" as const,
-                      src: piece.imageWorn,
-                      alt: wornAlt,
-                      fit: "cover" as const,
-                      position: "50% 30%",
                     },
                   ]
                 : []),
