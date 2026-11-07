@@ -26,7 +26,9 @@ export default function Wordmark({ className, size = "md", invert = false }: Pro
         style={{
           height: `${h}px`,
           width: "auto",
+          maxWidth: "none",
           display: "block",
+          flexShrink: 0,
           filter: invert ? "invert(1)" : "none",
         }}
         draggable={false}

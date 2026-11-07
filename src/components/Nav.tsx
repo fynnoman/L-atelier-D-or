@@ -60,19 +60,19 @@ export default function Nav() {
           color: "#FFFFFF",
         }}
       >
-        <div className="n-page grid grid-cols-3 items-center gap-6">
+        <div className="n-page flex items-center justify-between gap-4 md:grid md:grid-cols-3 md:gap-6">
           {/* Utility gauche — reserviert, aktuell leer */}
           <div aria-hidden className="hidden md:block" />
 
           {/* Wordmark centré */}
-          <div className="flex justify-start md:justify-center col-start-1 md:col-start-2">
+          <div className="flex justify-start md:justify-center shrink-0">
             <Link href="/" className="inline-flex items-center gap-3 group">
               <Wordmark size={scrolled ? "sm" : "md"} />
             </Link>
           </div>
 
           {/* Menu button droite */}
-          <div className="flex justify-end items-center gap-6">
+          <div className="flex justify-end items-center gap-4 md:gap-6 shrink-0">
             <nav aria-label="Primär" className="hidden md:flex items-center gap-8">
               {LINKS.map((l) => {
                 const active =
