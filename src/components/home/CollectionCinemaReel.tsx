@@ -51,54 +51,29 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   const t = useT();
   const locale = useLocale();
   const N = pieces.length;
-  const [progress, setProgress] = useState(0);
+  const [desktopIndex, setDesktopIndex] = useState(0);
   const [mobileIndex, setMobileIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  const activeIndex = isMobile ? mobileIndex : desktopIndex;
+  const goTo = (i: number) => isMobile ? setMobileIndex(i) : setDesktopIndex(i);
   const touchStart = useRef<{ x: number; y: number } | null>(null);
 
-  useEffect(() => {
-    const el = sectionRef.current;
-    if (!el) return;
-    if (window.matchMedia("(max-width: 767px)").matches) return;
-
-    let ticking = false;
-    const compute = () => {
-      ticking = false;
-      const rect = el.getBoundingClientRect();
-      const viewport = window.innerHeight;
-      const total = rect.height - viewport;
-      if (total <= 0) {
-        setProgress(0);
-        return;
-      }
-      const scrolled = -rect.top;
-      const p = Math.max(0, Math.min(1, scrolled / total));
-      setProgress(p);
-    };
-
-    const onScroll = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(compute);
-    };
-
-    compute();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", compute);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", compute);
-    };
-  }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="collection-cinema-reel relative h-[100svh] md:h-auto"
-      style={{ ["--desktop-reel-height" as string]: `${N * 130}vh` }}
+      className="collection-cinema-reel relative h-[100svh]"
       aria-label="Collection Roi"
     >
-      <style>{`@media (min-width: 768px) { .collection-cinema-reel { height: var(--desktop-reel-height); } } @media (max-width: 767px) { .collection-piece { opacity: 0 !important; pointer-events: none !important; } .collection-piece.mobile-active { opacity: 1 !important; pointer-events: auto !important; } }`}</style>
-      <div className="collection-cinema-reel-inner sticky top-0 h-[100svh] md:h-screen overflow-hidden"
+      
+      <div className="collection-cinema-reel-inner relative h-[100svh] overflow-hidden"
         onTouchStart={(e) => { touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
         onTouchEnd={(e) => {
           if (!touchStart.current || window.innerWidth >= 768) return;
@@ -116,8 +91,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
             piece={piece}
             index={i}
             total={N}
-            progress={progress}
-            mobileActive={i === mobileIndex}
+            active={i === activeIndex}
             locale={locale}
             ctaLabel={t.home.alternating.voirLaPiece}
           />
@@ -125,77 +99,48 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
 
         <ProgressRail
           pieces={pieces}
-          progress={progress}
-          mobileIndex={mobileIndex}
+          activeIndex={activeIndex}
           total={N}
         />
+        <div className="absolute bottom-5 md:bottom-8 right-6 md:right-12 z-10 flex items-center gap-4" style={{ color: "#FFFFFF" }}>
+          <button type="button" aria-label="Vorheriges Modell" disabled={activeIndex === 0} onClick={() => goTo(Math.max(0, activeIndex - 1))} className="rounded-full border border-white/40 bg-black/50 px-4 py-2 disabled:opacity-30">←</button>
+          <span className="text-sm tabular-nums">{activeIndex + 1} / {N}</span>
+          <button type="button" aria-label="Nächstes Modell" disabled={activeIndex === N - 1} onClick={() => goTo(Math.min(N - 1, activeIndex + 1))} className="rounded-full border border-white/40 bg-black/50 px-4 py-2 disabled:opacity-30">→</button>
+        </div>
       </div>
     </section>
   );
-}
-
-function pieceWeight(progress: number, index: number, total: number) {
-  const slab = 1 / total;
-  const center = (index + 0.5) * slab;
-  const fadeIn = index === 0 ? center - slab : center - slab * 0.5;
-  const holdIn = center - slab * 0.35;
-  const holdOut = center + slab * 0.35;
-  const fadeOut = index === total - 1 ? center + slab : center + slab * 0.5;
-
-  if (progress <= fadeIn) return 0;
-  if (index === total - 1 && progress >= holdIn) return 1;
-  if (progress >= fadeOut) return 0;
-  if (progress >= holdIn && progress <= holdOut) return 1;
-  if (progress < holdIn) {
-    return (progress - fadeIn) / (holdIn - fadeIn);
-  }
-  return 1 - (progress - holdOut) / (fadeOut - holdOut);
-}
-
-function pieceShift(progress: number, index: number, total: number) {
-  const slab = 1 / total;
-  const center = (index + 0.5) * slab;
-  const fadeIn = index === 0 ? center - slab : center - slab * 0.5;
-  const fadeOut = index === total - 1 ? center + slab : center + slab * 0.5;
-
-  if (progress <= fadeIn) return 60;
-  if (progress >= fadeOut) return -60;
-  const span = fadeOut - fadeIn;
-  const t = (progress - fadeIn) / span;
-  return 60 - 120 * t;
 }
 
 function PieceCanvas({
   piece,
   index,
   total,
-  progress,
   locale,
   ctaLabel,
-  mobileActive,
+  active,
 }: {
   piece: Piece;
   index: number;
   total: number;
-  progress: number;
+  active: boolean;
   locale: "fr" | "de" | "en" | "it";
   ctaLabel: string;
-  mobileActive: boolean;
 }) {
   const loc = localizePiece(piece, locale);
   const palette = PALETTES[piece.mood];
-  const weight = pieceWeight(progress, index, total);
-  const shift = pieceShift(progress, index, total);
-  const imgShift = shift * 1.3;
+  const weight = active ? 1 : 0;
+  const shift = 0;
+  const imgShift = 0;
 
   return (
     <div
-      className={`collection-piece absolute inset-0 transition-opacity duration-300 ${mobileActive ? "mobile-active" : ""}`}
+      className="collection-piece absolute inset-0 transition-opacity duration-300"
       style={{
         opacity: weight,
         background: palette.bg,
         pointerEvents: weight > 0.6 ? "auto" : "none",
-        transition: "opacity 120ms linear",
+        transition: "opacity 300ms ease",
       }}
       aria-hidden={weight < 0.6}
     >
@@ -361,13 +306,11 @@ function PieceCanvas({
 
 function ProgressRail({
   pieces,
-  progress,
-  mobileIndex,
+  activeIndex,
   total,
 }: {
   pieces: Piece[];
-  progress: number;
-  mobileIndex: number;
+  activeIndex: number;
   total: number;
 }) {
   return (
@@ -376,12 +319,12 @@ function ProgressRail({
       className="absolute top-1/2 left-6 md:left-10 -translate-y-1/2 z-[3] flex flex-col items-center gap-5"
     >
       {pieces.map((piece, i) => {
-        const active = pieceWeight(progress, i, total);
+        const active = i === activeIndex ? 1 : 0;
         const palette = PALETTES[piece.mood];
         return (
           <span
             key={piece.slug}
-            className={`block rounded-full ${i === mobileIndex ? "mobile-dot-active" : ""}`}
+            className="block rounded-full"
             style={{
               width: 6,
               height: 6,
