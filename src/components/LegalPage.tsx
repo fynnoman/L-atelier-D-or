@@ -71,6 +71,14 @@ export default function LegalPage({ kind }: { kind: LegalKey }) {
               </article>
             ))}
           </div>
+          {kind === "mentions" && (
+            <p
+              className="n-serif text-[17px] leading-[1.6] mt-16"
+              style={{ color: "var(--n-ink)" }}
+            >
+              {t.legal.mentionsRightsReserved}
+            </p>
+          )}
         </div>
       </section>
     </>
