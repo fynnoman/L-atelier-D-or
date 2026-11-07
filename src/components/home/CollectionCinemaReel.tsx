@@ -52,10 +52,13 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   const locale = useLocale();
   const N = pieces.length;
   const [progress, setProgress] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
 
     let ticking = false;
     const compute = () => {
@@ -90,11 +93,23 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   return (
     <section
       ref={sectionRef}
-      className="relative"
-      style={{ height: `${N * 130}vh` }}
+      className="collection-cinema-reel relative h-[100svh] md:h-auto"
+      style={{ ["--desktop-reel-height" as string]: `${N * 130}vh` }}
       aria-label="Collection Roi"
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <style>{`@media (min-width: 768px) { .collection-cinema-reel { height: var(--desktop-reel-height); } } @media (max-width: 767px) { .collection-piece { opacity: 0 !important; pointer-events: none !important; } .collection-piece.mobile-active { opacity: 1 !important; pointer-events: auto !important; } }`}</style>
+      <div className="collection-cinema-reel-inner sticky top-0 h-[100svh] md:h-screen overflow-hidden"
+        onTouchStart={(e) => { touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
+        onTouchEnd={(e) => {
+          if (!touchStart.current || window.innerWidth >= 768) return;
+          const dx = e.changedTouches[0].clientX - touchStart.current.x;
+          const dy = e.changedTouches[0].clientY - touchStart.current.y;
+          touchStart.current = null;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+            setMobileIndex((i) => Math.max(0, Math.min(N - 1, i + (dx < 0 ? 1 : -1))));
+          }
+        }}
+      >
         {pieces.map((piece, i) => (
           <PieceCanvas
             key={piece.slug}
@@ -102,6 +117,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
             index={i}
             total={N}
             progress={progress}
+            mobileActive={i === mobileIndex}
             locale={locale}
             ctaLabel={t.home.alternating.voirLaPiece}
           />
@@ -110,6 +126,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
         <ProgressRail
           pieces={pieces}
           progress={progress}
+          mobileIndex={mobileIndex}
           total={N}
         />
       </div>
@@ -126,6 +143,7 @@ function pieceWeight(progress: number, index: number, total: number) {
   const fadeOut = index === total - 1 ? center + slab : center + slab * 0.5;
 
   if (progress <= fadeIn) return 0;
+  if (index === total - 1 && progress >= holdIn) return 1;
   if (progress >= fadeOut) return 0;
   if (progress >= holdIn && progress <= holdOut) return 1;
   if (progress < holdIn) {
@@ -154,6 +172,7 @@ function PieceCanvas({
   progress,
   locale,
   ctaLabel,
+  mobileActive,
 }: {
   piece: Piece;
   index: number;
@@ -161,6 +180,7 @@ function PieceCanvas({
   progress: number;
   locale: "fr" | "de" | "en" | "it";
   ctaLabel: string;
+  mobileActive: boolean;
 }) {
   const loc = localizePiece(piece, locale);
   const palette = PALETTES[piece.mood];
@@ -170,7 +190,7 @@ function PieceCanvas({
 
   return (
     <div
-      className="absolute inset-0"
+      className={`collection-piece absolute inset-0 transition-opacity duration-300 ${mobileActive ? "mobile-active" : ""}`}
       style={{
         opacity: weight,
         background: palette.bg,
@@ -342,10 +362,12 @@ function PieceCanvas({
 function ProgressRail({
   pieces,
   progress,
+  mobileIndex,
   total,
 }: {
   pieces: Piece[];
   progress: number;
+  mobileIndex: number;
   total: number;
 }) {
   return (
@@ -359,7 +381,7 @@ function ProgressRail({
         return (
           <span
             key={piece.slug}
-            className="block rounded-full"
+            className={`block rounded-full ${i === mobileIndex ? "mobile-dot-active" : ""}`}
             style={{
               width: 6,
               height: 6,
