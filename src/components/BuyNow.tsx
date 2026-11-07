@@ -14,7 +14,7 @@ export default function BuyNow({
   className,
   style,
 }: Props) {
-  const url = `https://shop.latelierdor.com/${piece.slug}`;
+  const url = `https://shop.latelierdor.com/products/${piece.slug}`;
   return (
     <a href={url} className={className} style={style}>
       {label}
