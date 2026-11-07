@@ -1,4 +1,5 @@
 import LegalPage from "@/components/LegalPage";
+import ReturnRequestForm from "@/components/ReturnRequestForm";
 
 export const metadata = {
   title: "Droit de rétractation",
@@ -8,5 +9,5 @@ export const metadata = {
 };
 
 export default function RetractationPage() {
-  return <LegalPage kind="retractation" />;
+  return <><LegalPage kind="retractation" /><ReturnRequestForm /></>;
 }
