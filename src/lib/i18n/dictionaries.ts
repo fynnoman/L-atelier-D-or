@@ -322,6 +322,7 @@ export type Dictionary = {
   };
   legal: {
     articleWord: string;
+    mentionsRightsReserved: string;
     mentions: {
       metaTitle: string;
       metaDescription: string;
@@ -814,6 +815,7 @@ const fr: Dictionary = {
   },
   legal: {
     articleWord: "Article",
+    mentionsRightsReserved: "Tous droits réservés.",
     mentions: {
       metaTitle: "Mentions légales",
       metaDescription: "Informations légales du site de L’Atelier d’Or. Site en cours de constitution.",
@@ -1584,6 +1586,7 @@ const de: Dictionary = {
   },
   legal: {
     articleWord: "Artikel",
+    mentionsRightsReserved: "Alle Rechte vorbehalten.",
     mentions: {
       metaTitle: "Impressum",
       metaDescription: "Angaben gemäß § 5 TMG und § 55 Abs. 2 RStV zur Website von L’Atelier d’Or.",
@@ -2424,6 +2427,7 @@ const en: Dictionary = {
   },
   legal: {
     articleWord: "Article",
+    mentionsRightsReserved: "All rights reserved.",
     mentions: {
       metaTitle: "Legal notice",
       metaDescription: "Legal information for the L’Atelier d’Or website. Company in formation.",
@@ -3054,6 +3058,7 @@ const it: Dictionary = {
   },
   legal: {
     articleWord: "Articolo",
+    mentionsRightsReserved: "Tutti i diritti riservati.",
     mentions: {
       metaTitle: "Note legali",
       metaDescription: "Informazioni legali del sito di L’Atelier d’Or. Società in costituzione.",
