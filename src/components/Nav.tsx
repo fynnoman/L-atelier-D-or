@@ -25,6 +25,7 @@ export default function Nav() {
     { href: "/avis", label: t.nav.avis },
     { href: "/faq", label: t.nav.questions },
     { href: "/conseil", label: t.nav.conseil },
+    { href: "/retractation", label: t.nav.returns },
   ];
 
   useEffect(() => {
