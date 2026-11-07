@@ -106,6 +106,16 @@ export default function Footer() {
           ))}
         </div>
 
+        <div className="mt-16 flex flex-col md:flex-row gap-8 md:gap-16">
+          <div className="flex flex-col gap-2">
+            <span className="n-eyebrow">Kontakt · Information & Rücksendungen</span>
+            <a className="n-body text-[15px] hover:opacity-70 transition-opacity" href="mailto:info@latelierdor.com">info@latelierdor.com</a>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="n-eyebrow">Geschäftsanfragen & Partnerschaften</span>
+            <a className="n-body text-[15px] hover:opacity-70 transition-opacity" href="mailto:founder@latelierdor.com">founder@latelierdor.com</a>
+          </div>
+        </div>
         <div className="n-hair-full mt-24 mb-8" />
         <div className="flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <p className="n-meta opacity-55">{t.footer.copyright}</p>
