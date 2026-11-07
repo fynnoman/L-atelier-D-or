@@ -38,6 +38,7 @@ export type Dictionary = {
     questions: string;
     conseil: string;
     feedback: string;
+    returns: string;
     maisonEyebrow: string;
     contactEyebrow: string;
     houseIntro: string;
@@ -433,6 +434,7 @@ const fr: Dictionary = {
     questions: "Questions",
     conseil: "Conseil",
     feedback: "Feedback",
+    returns: "Retours et rétractation",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contact",
     houseIntro: "Lunettes faites main.\nÉdition confidentielle.",
@@ -1204,6 +1206,7 @@ const de: Dictionary = {
     questions: "Fragen",
     conseil: "Beratung",
     feedback: "Feedback",
+    returns: "Rücksendung & Widerruf",
     maisonEyebrow: "Maison",
     contactEyebrow: "Kontakt",
     houseIntro: "Handgefertigte Brillen.\nEdition in kleiner Auflage.",
@@ -2061,6 +2064,7 @@ const en: Dictionary = {
     questions: "Questions",
     conseil: "Advice",
     feedback: "Feedback",
+    returns: "Returns & cancellations",
     maisonEyebrow: "House",
     contactEyebrow: "Contact",
     houseIntro: "Handcrafted eyewear.\nShort edition.",
@@ -2693,6 +2697,7 @@ const it: Dictionary = {
     questions: "Domande",
     conseil: "Consiglio",
     feedback: "Feedback",
+    returns: "Resi e recesso",
     maisonEyebrow: "Maison",
     contactEyebrow: "Contatto",
     houseIntro: "Occhiali fatti a mano.\nEdizione in piccola tiratura.",
