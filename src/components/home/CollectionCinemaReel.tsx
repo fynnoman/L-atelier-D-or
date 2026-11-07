@@ -52,10 +52,13 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   const locale = useLocale();
   const N = pieces.length;
   const [progress, setProgress] = useState(0);
+  const [mobileIndex, setMobileIndex] = useState(0);
+  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+    if (window.matchMedia("(max-width: 767px)").matches) return;
 
     let ticking = false;
     const compute = () => {
@@ -90,11 +93,23 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   return (
     <section
       ref={sectionRef}
-      className="relative"
-      style={{ height: `${N * 130}vh` }}
+      className="collection-cinema-reel relative h-[100svh] md:h-auto"
+      style={{ ["--desktop-reel-height" as string]: `${N * 130}vh` }}
       aria-label="Collection Roi"
     >
-      <div className="sticky top-0 h-screen overflow-hidden">
+      <style>{`@media (min-width: 768px) { .collection-cinema-reel { height: var(--desktop-reel-height); } }`}</style>
+      <div className="collection-cinema-reel-inner sticky top-0 h-[100svh] md:h-screen overflow-hidden"
+        onTouchStart={(e) => { touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
+        onTouchEnd={(e) => {
+          if (!touchStart.current || window.innerWidth >= 768) return;
+          const dx = e.changedTouches[0].clientX - touchStart.current.x;
+          const dy = e.changedTouches[0].clientY - touchStart.current.y;
+          touchStart.current = null;
+          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
+            setMobileIndex((i) => Math.max(0, Math.min(N - 1, i + (dx < 0 ? 1 : -1))));
+          }
+        }}
+      >
         {pieces.map((piece, i) => (
           <PieceCanvas
             key={piece.slug}
@@ -102,6 +117,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
             index={i}
             total={N}
             progress={progress}
+            mobileActive={i === mobileIndex}
             locale={locale}
             ctaLabel={t.home.alternating.voirLaPiece}
           />
@@ -110,6 +126,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
         <ProgressRail
           pieces={pieces}
           progress={progress}
+          mobileIndex={mobileIndex}
           total={N}
         />
       </div>
@@ -126,6 +143,7 @@ function pieceWeight(progress: number, index: number, total: number) {
   const fadeOut = index === total - 1 ? center + slab : center + slab * 0.5;
 
   if (progress <= fadeIn) return 0;
+  if (index === total - 1 && progress >= holdIn) return 1;
   if (progress >= fadeOut) return 0;
   if (progress >= holdIn && progress <= holdOut) return 1;
   if (progress < holdIn) {
@@ -154,6 +172,7 @@ function PieceCanvas({
   progress,
   locale,
   ctaLabel,
+  mobileActive,
 }: {
   piece: Piece;
   index: number;
@@ -161,6 +180,7 @@ function PieceCanvas({
   progress: number;
   locale: "fr" | "de" | "en" | "it";
   ctaLabel: string;
+  mobileActive: boolean;
 }) {
   const loc = localizePiece(piece, locale);
   const palette = PALETTES[piece.mood];
@@ -170,14 +190,14 @@ function PieceCanvas({
 
   return (
     <div
-      className="absolute inset-0"
+      className="absolute inset-0 transition-opacity duration-300"
       style={{
-        opacity: weight,
+        opacity: typeof window !== "undefined" && window.innerWidth < 768 ? (mobileActive ? 1 : 0) : weight,
         background: palette.bg,
-        pointerEvents: weight > 0.6 ? "auto" : "none",
+        pointerEvents: typeof window !== "undefined" && window.innerWidth < 768 ? (mobileActive ? "auto" : "none") : (weight > 0.6 ? "auto" : "none"),
         transition: "opacity 120ms linear",
       }}
-      aria-hidden={weight < 0.6}
+      aria-hidden={typeof window !== "undefined" && window.innerWidth < 768 ? !mobileActive : weight < 0.6}
     >
       <div
         aria-hidden
@@ -342,10 +362,12 @@ function PieceCanvas({
 function ProgressRail({
   pieces,
   progress,
+  mobileIndex,
   total,
 }: {
   pieces: Piece[];
   progress: number;
+  mobileIndex: number;
   total: number;
 }) {
   return (
@@ -354,7 +376,7 @@ function ProgressRail({
       className="absolute top-1/2 left-6 md:left-10 -translate-y-1/2 z-[3] flex flex-col items-center gap-5"
     >
       {pieces.map((piece, i) => {
-        const active = pieceWeight(progress, i, total);
+        const active = typeof window !== "undefined" && window.innerWidth < 768 ? (i === mobileIndex ? 1 : 0) : pieceWeight(progress, i, total);
         const palette = PALETTES[piece.mood];
         return (
           <span
