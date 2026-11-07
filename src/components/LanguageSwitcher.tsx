@@ -38,7 +38,7 @@ export default function LanguageSwitcher({
   const active = LOCALES.find((l) => l.code === locale) ?? LOCALES[0];
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="relative isolate z-[70]">
       <button
         type="button"
         className="n-meta inline-flex items-center gap-2 transition-opacity"
@@ -69,11 +69,11 @@ export default function LanguageSwitcher({
       <ul
         role="listbox"
         aria-label={t.langSwitcher.label}
-        className="absolute right-0 mt-3 min-w-[132px] overflow-hidden transition-[opacity,transform] duration-200"
+        className="absolute right-0 top-full mt-3 min-w-[160px] overflow-hidden transition-[opacity,transform] duration-200"
         style={{
-          background: onDark ? "rgba(20,18,16,0.94)" : "rgba(255,255,255,0.96)",
-          color: onDark ? "#EDE3CE" : "#171717",
-          border: `1px solid ${onDark ? "rgba(237,227,206,0.16)" : "var(--n-line-soft)"}`,
+          background: "#171717",
+          color: "#FFFFFF",
+          border: "1px solid rgba(255,255,255,0.2)",
           backdropFilter: "blur(14px)",
           WebkitBackdropFilter: "blur(14px)",
           borderRadius: "clamp(6px, 0.6vw, 10px)",
@@ -81,7 +81,7 @@ export default function LanguageSwitcher({
           opacity: open ? 1 : 0,
           transform: open ? "translateY(0)" : "translateY(-4px)",
           pointerEvents: open ? "auto" : "none",
-          zIndex: 60,
+          zIndex: 100,
         }}
       >
         {LOCALES.map((l) => {
@@ -96,7 +96,8 @@ export default function LanguageSwitcher({
                 }}
                 className="w-full flex items-center justify-between px-4 py-3 n-meta transition-opacity"
                 style={{
-                  color: "inherit",
+                  color: "#FFFFFF",
+                  WebkitTextFillColor: "#FFFFFF",
                   letterSpacing: "0.14em",
                   opacity: isActive ? 1 : 0.62,
                   background: "transparent",
