@@ -710,6 +710,7 @@ const fr: Dictionary = {
         title: "Le retour",
         eyebrow: "Retour & échange",
         qas: [
+          { q: "Combien coûte un retour ?", a: "Les retours depuis l’Allemagne sont gratuits. Depuis les autres pays, les frais de retour sont à votre charge et varient selon le pays.", pending: false },
           { q: "Puis-je retourner ma pièce ?", a: "En cours de rédaction. Les conditions de retour seront publiées à l’ouverture de la boutique. Le droit de rétractation légal de quatorze jours s’applique en tout état de cause aux acheteurs consommateurs dans l’Union européenne.", pending: true },
           { q: "Comment procéder à un retour ?", a: "En cours de rédaction.", pending: true },
         ],
@@ -971,7 +972,7 @@ const fr: Dictionary = {
           title: "Retour de la pièce",
           body: [
             "La pièce doit nous être retournée dans son écrin, complète et non altérée, dans les quatorze jours suivant votre déclaration.",
-            "Les frais de retour restent à votre charge, sauf indication contraire de notre part.",
+            "Les retours expédiés depuis l’Allemagne sont gratuits. Pour les retours expédiés depuis d’autres pays, les frais de retour sont à votre charge et varient selon le pays d’expédition.",
           ],
         },
         {
@@ -1482,6 +1483,7 @@ const de: Dictionary = {
         title: "Die Rücksendung",
         eyebrow: "Rücksendung & Umtausch",
         qas: [
+          { q: "Was kostet eine Rücksendung?", a: "Rücksendungen aus Deutschland sind kostenlos. Aus anderen Ländern ist die Rücksendung kostenpflichtig; die Kosten hängen vom Versandland ab.", pending: false },
           { q: "Kann ich mein Stück zurücksenden?", a: "Wird derzeit verfasst. Die Rücksendebedingungen werden zur Eröffnung des Geschäfts veröffentlicht. Für Verbraucher in der Europäischen Union gilt in jedem Fall das gesetzliche vierzehntägige Widerrufsrecht.", pending: true },
           { q: "Wie sende ich zurück?", a: "Wird derzeit verfasst.", pending: true },
         ],
@@ -1829,7 +1831,7 @@ const de: Dictionary = {
           title: "Rücksendung des Stücks",
           body: [
             "Das Stück muss uns im eigenen Etui, vollständig und unverändert, innerhalb von vierzehn Tagen nach Ihrer Erklärung zugesandt werden.",
-            "Die Rücksendekosten trägt der Käufer, sofern nicht ausdrücklich anders vereinbart.",
+            "Rücksendungen aus Deutschland sind kostenlos. Bei Rücksendungen aus anderen Ländern trägt der Käufer die Rücksendekosten; deren Höhe hängt vom Versandland ab.",
           ],
         },
         {
@@ -2334,6 +2336,7 @@ const en: Dictionary = {
         title: "Returns",
         eyebrow: "Return & exchange",
         qas: [
+          { q: "How much does a return cost?", a: "Returns from Germany are free. Returns from other countries are not free; costs vary by country.", pending: false },
           { q: "Can I return my piece?", a: "Being written. Return conditions will be published when the store opens. The statutory fourteen-day right of withdrawal applies in any case to consumer buyers in the European Union.", pending: true },
           { q: "How do I return a piece?", a: "Being written.", pending: true },
         ],
@@ -2486,7 +2489,7 @@ const en: Dictionary = {
       sections: [
         { title: "Deadline", body: ["You have fourteen calendar days from the day you receive the piece to exercise your right of withdrawal, without giving any reason.", "This right applies to consumer buyers in the European Union, under the Consumer Code and Directive 2011/83/EU."] },
         { title: "How to notify us", body: ["To exercise your right of withdrawal, write to us via the “Advice” page or by email, indicating the name on the order and the piece number, before the fourteen-day deadline expires.", "An unambiguous written statement is sufficient. We acknowledge receipt without delay and send you the return procedure."] },
-        { title: "Return of the piece", body: ["The piece must be returned to us in its case, complete and unaltered, within fourteen days following your statement.", "Return shipping costs are at your charge, unless otherwise stated by us."] },
+        { title: "Return of the piece", body: ["The piece must be returned to us in its case, complete and unaltered, within fourteen days following your statement.", "Returns shipped from Germany are free of charge. For returns shipped from other countries, return shipping is not free; costs depend on the country of dispatch."] },
         { title: "Refund", body: ["The piece is refunded no later than fourteen days after receipt of the return, using the payment method used for the purchase, unless otherwise agreed.", "Initial shipping costs are refunded in the same timeframe, except for the extra cost of a shipping method more expensive than standard delivery."] },
         { title: "Exceptions", body: ["Personalised pieces — fitting of prescription lenses to your visual correction — are not subject to the right of withdrawal, under article L.221-28 of the Consumer Code.", "For any question on this special case, write to us: we study each situation."] },
       ],
@@ -2966,6 +2969,7 @@ const it: Dictionary = {
         title: "Il reso",
         eyebrow: "Reso & cambio",
         qas: [
+          { q: "Quanto costa un reso?", a: "I resi spediti dalla Germania sono gratuiti. Dagli altri paesi le spese di reso sono a carico del cliente e variano in base al paese.", pending: false },
           { q: "Posso restituire il mio pezzo?", a: "In fase di stesura. Le condizioni di reso saranno pubblicate all’apertura del negozio. Il diritto di recesso legale di quattordici giorni si applica in ogni caso agli acquirenti consumatori nell’Unione europea.", pending: true },
           { q: "Come procedere con un reso?", a: "In fase di stesura.", pending: true },
         ],
