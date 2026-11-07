@@ -97,7 +97,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
       style={{ ["--desktop-reel-height" as string]: `${N * 130}vh` }}
       aria-label="Collection Roi"
     >
-      <style>{`@media (min-width: 768px) { .collection-cinema-reel { height: var(--desktop-reel-height); } }`}</style>
+      <style>{`@media (min-width: 768px) { .collection-cinema-reel { height: var(--desktop-reel-height); } } @media (max-width: 767px) { .collection-piece { opacity: 0 !important; pointer-events: none !important; } .collection-piece.mobile-active { opacity: 1 !important; pointer-events: auto !important; } }`}</style>
       <div className="collection-cinema-reel-inner sticky top-0 h-[100svh] md:h-screen overflow-hidden"
         onTouchStart={(e) => { touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
         onTouchEnd={(e) => {
@@ -190,14 +190,14 @@ function PieceCanvas({
 
   return (
     <div
-      className="absolute inset-0 transition-opacity duration-300"
+      className={`collection-piece absolute inset-0 transition-opacity duration-300 ${mobileActive ? "mobile-active" : ""}`}
       style={{
-        opacity: typeof window !== "undefined" && window.innerWidth < 768 ? (mobileActive ? 1 : 0) : weight,
+        opacity: weight,
         background: palette.bg,
-        pointerEvents: typeof window !== "undefined" && window.innerWidth < 768 ? (mobileActive ? "auto" : "none") : (weight > 0.6 ? "auto" : "none"),
+        pointerEvents: weight > 0.6 ? "auto" : "none",
         transition: "opacity 120ms linear",
       }}
-      aria-hidden={typeof window !== "undefined" && window.innerWidth < 768 ? !mobileActive : weight < 0.6}
+      aria-hidden={weight < 0.6}
     >
       <div
         aria-hidden
@@ -376,12 +376,12 @@ function ProgressRail({
       className="absolute top-1/2 left-6 md:left-10 -translate-y-1/2 z-[3] flex flex-col items-center gap-5"
     >
       {pieces.map((piece, i) => {
-        const active = typeof window !== "undefined" && window.innerWidth < 768 ? (i === mobileIndex ? 1 : 0) : pieceWeight(progress, i, total);
+        const active = pieceWeight(progress, i, total);
         const palette = PALETTES[piece.mood];
         return (
           <span
             key={piece.slug}
-            className="block rounded-full"
+            className={`block rounded-full ${i === mobileIndex ? "mobile-dot-active" : ""}`}
             style={{
               width: 6,
               height: 6,
