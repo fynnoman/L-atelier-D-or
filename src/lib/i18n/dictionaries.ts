@@ -444,7 +444,7 @@ const fr: Dictionary = {
   footer: {
     petiteMaisonFr: "Maison française de lunetterie",
     ligne1: "Lunettes faites main.",
-    ligne2: "Collection exclusivement en ligne, livrée dans le monde entier.",
+    ligne2: "Collection exclusivement en ligne, livrée partout en Europe.",
     columnMaison: "Maison",
     columnCollection: "Collection",
     columnMentions: "Mentions",
@@ -526,9 +526,9 @@ const fr: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Édition confidentielle",
     editorialTitle1: "Exclusivement en ligne.",
-    editorialTitle2: "Livrée dans le monde entier.",
+    editorialTitle2: "Livrée partout en Europe.",
     editorialBody:
-      "La collection est disponible exclusivement en ligne, livrée dans son écrin dans le monde entier.",
+      "La collection est disponible exclusivement en ligne, livrée dans son écrin partout en Europe.",
     editorialCta: "Voir la collection",
   },
   piece: {
@@ -553,11 +553,11 @@ const fr: Dictionary = {
     prixParPiece: "Prix par modèle",
     niPlusNiMoins: "Verres correcteurs ou solaires inclus.",
     editionBreveBody:
-      "Livré dans son écrin dédié. Transport suivi dans le monde entier.",
+      "Livré dans son écrin dédié. Livraison gratuite partout en Europe en 3 à 5 jours.",
     deliveryEyebrow: "Livraison",
-    deliveryTitle: "Dans son écrin, dans le monde entier.",
+    deliveryTitle: "Dans son écrin, livraison gratuite partout en Europe.",
     deliveryBody:
-      "Chaque pièce est expédiée dans son écrin dédié, par transport suivi dans le monde entier.",
+      "Chaque pièce est expédiée dans son écrin dédié, par transport suivi partout en Europe.",
     ctaCollection: "Voir la collection",
     ctaEcrire: "Nous contacter",
     section4Eyebrow: "",
@@ -701,9 +701,9 @@ const fr: Dictionary = {
         title: "La livraison",
         eyebrow: "Livraison",
         qas: [
-          { q: "Où livrez-vous ?", a: "En cours de rédaction. Les zones de livraison seront communiquées à l’ouverture de la boutique.", pending: true },
-          { q: "Quels sont les délais ?", a: "En cours de rédaction. Les délais indicatifs seront communiqués à l’ouverture.", pending: true },
-          { q: "Quels sont les frais de port ?", a: "En cours de rédaction. La grille sera publiée à l’ouverture.", pending: true },
+          { q: "Où livrez-vous ?", a: "Nous livrons dans tous les pays d’Europe.", pending: false },
+          { q: "Quels sont les délais ?", a: "La livraison prend 3 à 5 jours.", pending: false },
+          { q: "Quels sont les frais de port ?", a: "La livraison est gratuite.", pending: false },
         ],
       },
       {
@@ -1216,7 +1216,7 @@ const de: Dictionary = {
   footer: {
     petiteMaisonFr: "Französische Brillen-Maison",
     ligne1: "Handgefertigte Brillen.",
-    ligne2: "Kollektion ausschließlich online, Lieferung weltweit.",
+    ligne2: "Kollektion ausschließlich online, Lieferung europaweit.",
     columnMaison: "Maison",
     columnCollection: "Kollektion",
     columnMentions: "Rechtliches",
@@ -1298,9 +1298,9 @@ const de: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edition in kleiner Auflage",
     editorialTitle1: "Exklusiv online.",
-    editorialTitle2: "Lieferung weltweit.",
+    editorialTitle2: "Lieferung europaweit.",
     editorialBody:
-      "Die Kollektion ist ausschließlich online erhältlich und wird im Etui weltweit versendet.",
+      "Die Kollektion ist ausschließlich online erhältlich und wird im Etui europaweit versendet.",
     editorialCta: "Zur Kollektion",
   },
   piece: {
@@ -1325,11 +1325,11 @@ const de: Dictionary = {
     prixParPiece: "Preis pro Modell",
     niPlusNiMoins: "Korrektur- oder Sonnengläser inklusive.",
     editionBreveBody:
-      "Geliefert im eigenen Etui. Verfolgter Versand weltweit.",
+      "Geliefert im eigenen Etui. Kostenloser Versand europaweit in 3 bis 5 Tagen.",
     deliveryEyebrow: "Lieferung",
-    deliveryTitle: "Im Etui, weltweit.",
+    deliveryTitle: "Im Etui, kostenlos europaweit.",
     deliveryBody:
-      "Jedes Stück wird im eigenen Etui per verfolgtem Versand weltweit ausgeliefert.",
+      "Jedes Stück wird im eigenen Etui per verfolgtem Versand europaweit ausgeliefert.",
     ctaCollection: "Zur Kollektion",
     ctaEcrire: "Kontaktieren Sie uns",
     section4Eyebrow: "",
@@ -1473,9 +1473,9 @@ const de: Dictionary = {
         title: "Die Lieferung",
         eyebrow: "Lieferung",
         qas: [
-          { q: "Wohin liefern Sie?", a: "Wird derzeit verfasst. Die Liefergebiete werden zur Eröffnung des Geschäfts bekanntgegeben.", pending: true },
-          { q: "Welche Lieferzeiten gelten?", a: "Wird derzeit verfasst. Richtwerte werden zur Eröffnung bekanntgegeben.", pending: true },
-          { q: "Wie hoch sind die Versandkosten?", a: "Wird derzeit verfasst. Die Übersicht folgt zur Eröffnung.", pending: true },
+          { q: "Wohin liefern Sie?", a: "Wir liefern in alle Länder Europas.", pending: false },
+          { q: "Welche Lieferzeiten gelten?", a: "Die Lieferzeit beträgt 3 bis 5 Tage.", pending: false },
+          { q: "Wie hoch sind die Versandkosten?", a: "Der Versand ist kostenlos.", pending: false },
         ],
       },
       {
@@ -2074,7 +2074,7 @@ const en: Dictionary = {
   footer: {
     petiteMaisonFr: "French eyewear house",
     ligne1: "Handcrafted eyewear.",
-    ligne2: "Collection available exclusively online, shipped worldwide.",
+    ligne2: "Collection available exclusively online, shipped across Europe.",
     columnMaison: "House",
     columnCollection: "Collection",
     columnMentions: "Legal",
@@ -2154,9 +2154,9 @@ const en: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Short edition",
     editorialTitle1: "Exclusively online.",
-    editorialTitle2: "Shipped worldwide.",
+    editorialTitle2: "Shipped across Europe.",
     editorialBody:
-      "The collection is available exclusively online and ships in its dedicated case worldwide.",
+      "The collection is available exclusively online and ships in its dedicated case across Europe.",
     editorialCta: "View collection",
   },
   piece: {
@@ -2181,11 +2181,11 @@ const en: Dictionary = {
     prixParPiece: "Price per model",
     niPlusNiMoins: "Prescription or sun lenses included.",
     editionBreveBody:
-      "Delivered in its dedicated case. Tracked shipping worldwide.",
+      "Delivered in its dedicated case. Free shipping across Europe in 3 to 5 days.",
     deliveryEyebrow: "Delivery",
-    deliveryTitle: "In its case, worldwide.",
+    deliveryTitle: "In its case, free shipping across Europe.",
     deliveryBody:
-      "Every piece ships in its dedicated case by tracked delivery worldwide.",
+      "Every piece ships in its dedicated case by tracked delivery across Europe.",
     ctaCollection: "View collection",
     ctaEcrire: "Contact us",
     section4Eyebrow: "",
@@ -2325,9 +2325,9 @@ const en: Dictionary = {
         title: "Delivery",
         eyebrow: "Delivery",
         qas: [
-          { q: "Where do you deliver?", a: "Being written. Delivery zones will be announced when the store opens.", pending: true },
-          { q: "What are the lead times?", a: "Being written. Indicative times will be shared at opening.", pending: true },
-          { q: "What are the shipping fees?", a: "Being written. The grid will be published at opening.", pending: true },
+          { q: "Where do you deliver?", a: "We deliver to all European countries.", pending: false },
+          { q: "What are the lead times?", a: "Delivery takes 3 to 5 days.", pending: false },
+          { q: "What are the shipping fees?", a: "Shipping is free.", pending: false },
         ],
       },
       {
@@ -2707,7 +2707,7 @@ const it: Dictionary = {
   footer: {
     petiteMaisonFr: "Maison francese di occhialeria",
     ligne1: "Occhiali fatti a mano.",
-    ligne2: "Collezione esclusivamente online, spedita in tutto il mondo.",
+    ligne2: "Collezione esclusivamente online, spedita in tutta Europa.",
     columnMaison: "Maison",
     columnCollection: "Collezione",
     columnMentions: "Legale",
@@ -2787,9 +2787,9 @@ const it: Dictionary = {
     subtitles: "Rouge · Noir · Cristal · Émeraude",
     subtitles2: "Edizione in piccola tiratura",
     editorialTitle1: "Esclusivamente online.",
-    editorialTitle2: "Spedita in tutto il mondo.",
+    editorialTitle2: "Spedita in tutta Europa.",
     editorialBody:
-      "La collezione è disponibile esclusivamente online e viene spedita nel suo astuccio in tutto il mondo.",
+      "La collezione è disponibile esclusivamente online e viene spedita nel suo astuccio in tutta Europa.",
     editorialCta: "Vedi la collezione",
   },
   piece: {
@@ -2814,11 +2814,11 @@ const it: Dictionary = {
     prixParPiece: "Prezzo a modello",
     niPlusNiMoins: "Lenti correttive o da sole incluse.",
     editionBreveBody:
-      "Consegnato nel suo astuccio dedicato. Trasporto tracciato in tutto il mondo.",
+      "Consegnato nel suo astuccio dedicato. Trasporto tracciato in tutta Europa.",
     deliveryEyebrow: "Consegna",
-    deliveryTitle: "Nel suo astuccio, in tutto il mondo.",
+    deliveryTitle: "Nel suo astuccio, in tutta Europa.",
     deliveryBody:
-      "Ogni pezzo viene spedito nel suo astuccio dedicato con corriere tracciato in tutto il mondo.",
+      "Ogni pezzo viene spedito nel suo astuccio dedicato con corriere tracciato in tutta Europa.",
     ctaCollection: "Vedi la collezione",
     ctaEcrire: "Contattaci",
     section4Eyebrow: "",
@@ -2957,9 +2957,9 @@ const it: Dictionary = {
         title: "La consegna",
         eyebrow: "Consegna",
         qas: [
-          { q: "Dove consegnate?", a: "In fase di stesura. Le zone di consegna saranno comunicate all’apertura del negozio.", pending: true },
-          { q: "Quali sono i tempi?", a: "In fase di stesura. I tempi indicativi saranno comunicati all’apertura.", pending: true },
-          { q: "Quali sono le spese di spedizione?", a: "In fase di stesura. La griglia sarà pubblicata all’apertura.", pending: true },
+          { q: "Dove consegnate?", a: "Consegniamo in tutti i paesi europei.", pending: false },
+          { q: "Quali sono i tempi?", a: "La consegna richiede da 3 a 5 giorni.", pending: false },
+          { q: "Quali sono le spese di spedizione?", a: "La spedizione è gratuita.", pending: false },
         ],
       },
       {
