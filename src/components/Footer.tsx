@@ -2,10 +2,17 @@
 
 import Link from "next/link";
 import NewsletterSignup from "./NewsletterSignup";
-import { useT } from "@/lib/i18n/LanguageContext";
+import { useT, useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function Footer() {
   const t = useT();
+  const { locale } = useLanguage();
+  const contactLabels = {
+    de: ["Kontakt · Informationen & Rücksendungen", "Geschäftsanfragen & Partnerschaften"],
+    fr: ["Contact · Informations et retours", "Demandes professionnelles et partenariats"],
+    en: ["Contact · Information & returns", "Business inquiries & partnerships"],
+    it: ["Contatti · Informazioni e resi", "Richieste commerciali e collaborazioni"],
+  }[locale];
 
   const COLUMNS: { title: string; items: { href: string; label: string }[] }[] = [
     {
@@ -108,11 +115,11 @@ export default function Footer() {
 
         <div className="mt-16 flex flex-col md:flex-row gap-8 md:gap-16">
           <div className="flex flex-col gap-2">
-            <span className="n-eyebrow">Kontakt · Information & Rücksendungen</span>
+            <span className="n-eyebrow">{contactLabels[0]}</span>
             <a className="n-body text-[15px] hover:opacity-70 transition-opacity" href="mailto:info@latelierdor.com">info@latelierdor.com</a>
           </div>
           <div className="flex flex-col gap-2">
-            <span className="n-eyebrow">Geschäftsanfragen & Partnerschaften</span>
+            <span className="n-eyebrow">{contactLabels[1]}</span>
             <a className="n-body text-[15px] hover:opacity-70 transition-opacity" href="mailto:founder@latelierdor.com">founder@latelierdor.com</a>
           </div>
         </div>
