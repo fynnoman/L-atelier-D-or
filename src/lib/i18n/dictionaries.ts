@@ -712,7 +712,7 @@ const fr: Dictionary = {
         qas: [
           { q: "Combien coûte un retour ?", a: "Les retours depuis l’Allemagne sont gratuits. Depuis les autres pays, les frais de retour sont à votre charge et varient selon le pays.", pending: false },
           { q: "Puis-je retourner ma pièce ?", a: "En cours de rédaction. Les conditions de retour seront publiées à l’ouverture de la boutique. Le droit de rétractation légal de quatorze jours s’applique en tout état de cause aux acheteurs consommateurs dans l’Union européenne.", pending: true },
-          { q: "Comment procéder à un retour ?", a: "En cours de rédaction.", pending: true },
+          { q: "Comment procéder à un retour ?", a: "1. Ouvrez « Retours et rétractation » dans le menu. 2. Remplissez le formulaire sur la page de rétractation. 3. Envoyez réellement l’e-mail préparé depuis votre messagerie. 4. Attendez nos instructions de retour. Les retours depuis l’Allemagne sont gratuits ; depuis les autres pays, ils sont payants.", pending: false },
         ],
       },
       {
@@ -1485,7 +1485,7 @@ const de: Dictionary = {
         qas: [
           { q: "Was kostet eine Rücksendung?", a: "Rücksendungen aus Deutschland sind kostenlos. Aus anderen Ländern ist die Rücksendung kostenpflichtig; die Kosten hängen vom Versandland ab.", pending: false },
           { q: "Kann ich mein Stück zurücksenden?", a: "Wird derzeit verfasst. Die Rücksendebedingungen werden zur Eröffnung des Geschäfts veröffentlicht. Für Verbraucher in der Europäischen Union gilt in jedem Fall das gesetzliche vierzehntägige Widerrufsrecht.", pending: true },
-          { q: "Wie sende ich zurück?", a: "Wird derzeit verfasst.", pending: true },
+          { q: "Wie sende ich zurück?", a: "1. Öffnen Sie im Menü „Rücksendung & Widerruf“. 2. Füllen Sie das Formular auf der Widerrufsseite aus. 3. Senden Sie die vorbereitete E-Mail aus Ihrem E-Mail-Programm tatsächlich ab. 4. Warten Sie auf unsere Rücksendeanweisungen. Rücksendungen aus Deutschland sind kostenlos, aus anderen Ländern kostenpflichtig.", pending: false },
         ],
       },
       {
@@ -2338,7 +2338,7 @@ const en: Dictionary = {
         qas: [
           { q: "How much does a return cost?", a: "Returns from Germany are free. Returns from other countries are not free; costs vary by country.", pending: false },
           { q: "Can I return my piece?", a: "Being written. Return conditions will be published when the store opens. The statutory fourteen-day right of withdrawal applies in any case to consumer buyers in the European Union.", pending: true },
-          { q: "How do I return a piece?", a: "Being written.", pending: true },
+          { q: "How do I return a piece?", a: "1. Open “Returns & cancellations” in the menu. 2. Fill in the form on the withdrawal page. 3. Send the prepared email from your email app. 4. Wait for our return instructions. Returns shipped from Germany are free; returns from other countries are not.", pending: false },
         ],
       },
       {
@@ -2971,7 +2971,7 @@ const it: Dictionary = {
         qas: [
           { q: "Quanto costa un reso?", a: "I resi spediti dalla Germania sono gratuiti. Dagli altri paesi le spese di reso sono a carico del cliente e variano in base al paese.", pending: false },
           { q: "Posso restituire il mio pezzo?", a: "In fase di stesura. Le condizioni di reso saranno pubblicate all’apertura del negozio. Il diritto di recesso legale di quattordici giorni si applica in ogni caso agli acquirenti consumatori nell’Unione europea.", pending: true },
-          { q: "Come procedere con un reso?", a: "In fase di stesura.", pending: true },
+          { q: "Come procedere con un reso?", a: "1. Apri « Resi e recesso » nel menu. 2. Compila il modulo nella pagina di recesso. 3. Invia effettivamente l’e-mail preparata dal tuo programma di posta. 4. Attendi le nostre istruzioni per il reso. I resi dalla Germania sono gratuiti; dagli altri paesi sono a pagamento.", pending: false },
         ],
       },
       {
