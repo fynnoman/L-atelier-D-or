@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import type { Piece } from "@/data/collection";
 import { useLocale, useT } from "@/lib/i18n/LanguageContext";
 import { formatPrice } from "@/lib/i18n/format";
@@ -48,64 +48,98 @@ const PALETTES: Record<Piece["mood"], MoodPalette> = {
 
 export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
   const sectionRef = useRef<HTMLElement>(null);
+  const pieceRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const dotRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const t = useT();
   const locale = useLocale();
   const N = pieces.length;
-  const [desktopIndex, setDesktopIndex] = useState(0);
-  const [mobileIndex, setMobileIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  const activeIndex = isMobile ? mobileIndex : desktopIndex;
-  const goTo = (i: number) => isMobile ? setMobileIndex(i) : setDesktopIndex(i);
-  const touchStart = useRef<{ x: number; y: number } | null>(null);
 
+  // Scroll-gesteuert: Fortschritt per rAF, direkt ins DOM geschrieben
+  // (kein React-Re-Render pro Scroll-Frame).
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    let raf = 0;
+    let last = -1;
+    const apply = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      const p = total > 0 ? Math.max(0, Math.min(1, -rect.top / total)) : 0;
+      if (Math.abs(p - last) < 0.0005) return;
+      last = p;
+      const f = p * (N - 1);
+      for (let i = 0; i < N; i++) {
+        const w = Math.max(0, Math.min(1, 1.5 - Math.abs(f - i) * 3));
+        const node = pieceRefs.current[i];
+        if (node) {
+          node.style.opacity = String(w);
+          node.style.pointerEvents = w > 0.6 ? "auto" : "none";
+          node.setAttribute("aria-hidden", w < 0.6 ? "true" : "false");
+        }
+        const dot = dotRefs.current[i];
+        if (dot) {
+          const a = Math.max(0, 1 - Math.abs(f - i));
+          dot.style.opacity = String(0.35 + 0.65 * a);
+          dot.style.transform = `scale(${1 + 0.9 * a})`;
+        }
+      }
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(apply);
+    };
+    apply();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [N]);
 
   return (
     <section
       ref={sectionRef}
-      className="collection-cinema-reel relative h-[100svh]"
+      className="collection-cinema-reel relative"
+      style={{ height: `${N * 100}svh` }}
       aria-label="Collection Roi"
     >
-      
-      <div className="collection-cinema-reel-inner relative h-[100svh] overflow-hidden"
-        onTouchStart={(e) => { touchStart.current = { x: e.touches[0].clientX, y: e.touches[0].clientY }; }}
-        onTouchEnd={(e) => {
-          if (!touchStart.current || window.innerWidth >= 768) return;
-          const dx = e.changedTouches[0].clientX - touchStart.current.x;
-          const dy = e.changedTouches[0].clientY - touchStart.current.y;
-          touchStart.current = null;
-          if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.2) {
-            setMobileIndex((i) => Math.max(0, Math.min(N - 1, i + (dx < 0 ? 1 : -1))));
-          }
-        }}
-      >
+      <div className="collection-cinema-reel-inner sticky top-0 h-[100svh] overflow-hidden">
         {pieces.map((piece, i) => (
           <PieceCanvas
             key={piece.slug}
             piece={piece}
             index={i}
             total={N}
-            active={i === activeIndex}
             locale={locale}
             ctaLabel={t.home.alternating.voirLaPiece}
+            innerRef={(node) => {
+              pieceRefs.current[i] = node;
+            }}
           />
         ))}
 
-        <ProgressRail
-          pieces={pieces}
-          activeIndex={activeIndex}
-          total={N}
-        />
-        <div className="absolute bottom-5 md:bottom-8 right-6 md:right-12 z-10 flex items-center gap-4" style={{ color: "#FFFFFF" }}>
-          <button type="button" aria-label="Vorheriges Modell" disabled={activeIndex === 0} onClick={() => goTo(Math.max(0, activeIndex - 1))} className="rounded-full border border-white/40 bg-black/50 px-4 py-2 disabled:opacity-30">←</button>
-          <span className="text-sm tabular-nums">{activeIndex + 1} / {N}</span>
-          <button type="button" aria-label="Nächstes Modell" disabled={activeIndex === N - 1} onClick={() => goTo(Math.min(N - 1, activeIndex + 1))} className="rounded-full border border-white/40 bg-black/50 px-4 py-2 disabled:opacity-30">→</button>
+        <div
+          aria-hidden
+          className="absolute top-1/2 left-6 md:left-10 -translate-y-1/2 z-[3] flex flex-col items-center gap-5"
+        >
+          {pieces.map((piece, i) => (
+            <span
+              key={piece.slug}
+              ref={(node) => {
+                dotRefs.current[i] = node;
+              }}
+              className="block rounded-full"
+              style={{
+                width: 6,
+                height: 6,
+                background: PALETTES[piece.mood].accent,
+                opacity: i === 0 ? 1 : 0.35,
+                transform: `scale(${i === 0 ? 1.9 : 1})`,
+              }}
+            />
+          ))}
         </div>
       </div>
     </section>
@@ -118,29 +152,28 @@ function PieceCanvas({
   total,
   locale,
   ctaLabel,
-  active,
+  innerRef,
 }: {
   piece: Piece;
   index: number;
   total: number;
-  active: boolean;
+  innerRef: (node: HTMLDivElement | null) => void;
   locale: "fr" | "de" | "en" | "it";
   ctaLabel: string;
 }) {
   const loc = localizePiece(piece, locale);
   const palette = PALETTES[piece.mood];
-  const weight = active ? 1 : 0;
-  const shift = 0;
-  const imgShift = 0;
+  const weight = index === 0 ? 1 : 0;
 
   return (
     <div
-      className="collection-piece absolute inset-0 transition-opacity duration-300"
+      ref={innerRef}
+      className="collection-piece absolute inset-0"
       style={{
         opacity: weight,
         background: palette.bg,
         pointerEvents: weight > 0.6 ? "auto" : "none",
-        transition: "opacity 300ms ease",
+        willChange: "opacity",
       }}
       aria-hidden={weight < 0.6}
     >
@@ -168,10 +201,6 @@ function PieceCanvas({
         <div className="grid grid-cols-12 gap-x-6 h-full items-center">
           <div
             className="col-span-12 md:col-span-6 relative z-[2]"
-            style={{
-              transform: `translate3d(0, ${shift}px, 0)`,
-              willChange: "transform",
-            }}
           >
             <div className="flex items-center gap-4 mb-10">
               <span
@@ -257,10 +286,6 @@ function PieceCanvas({
 
           <div
             className="col-span-12 md:col-span-6 relative z-[1]"
-            style={{
-              transform: `translate3d(0, ${imgShift}px, 0)`,
-              willChange: "transform",
-            }}
           >
             <div
               className="relative mx-auto"
@@ -304,38 +329,3 @@ function PieceCanvas({
   );
 }
 
-function ProgressRail({
-  pieces,
-  activeIndex,
-  total,
-}: {
-  pieces: Piece[];
-  activeIndex: number;
-  total: number;
-}) {
-  return (
-    <div
-      aria-hidden
-      className="absolute top-1/2 left-6 md:left-10 -translate-y-1/2 z-[3] flex flex-col items-center gap-5"
-    >
-      {pieces.map((piece, i) => {
-        const active = i === activeIndex ? 1 : 0;
-        const palette = PALETTES[piece.mood];
-        return (
-          <span
-            key={piece.slug}
-            className="block rounded-full"
-            style={{
-              width: 6,
-              height: 6,
-              background: palette.accent,
-              opacity: 0.35 + 0.65 * active,
-              transform: `scale(${1 + 0.9 * active})`,
-              transition: "opacity 160ms linear, transform 160ms linear",
-            }}
-          />
-        );
-      })}
-    </div>
-  );
-}
