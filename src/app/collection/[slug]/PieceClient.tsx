@@ -179,34 +179,17 @@ export default function PieceClient({ piece }: { piece: Piece }) {
           <ProductGallery
             ratio="16 / 10"
             slides={[
-              ...(piece.video
-                ? [
-                    {
-                      kind: "video" as const,
-                      src: piece.video,
-                      poster: piece.videoPoster,
-                      alt: studioAlt,
-                      fit: "cover" as const,
-                    },
-                  ]
-                : []),
-              ...(piece.image
+              ...(piece.imageWorn
                 ? [
                     {
                       kind: "image" as const,
-                      src: piece.image,
-                      alt: studioAlt,
-                      fit: "contain" as const,
+                      src: piece.imageWorn,
+                      alt: `${piece.name} — portée`,
+                      fit: "cover" as const,
+                      position: "50% 30%",
                     },
                   ]
                 : []),
-              ...(piece.extraImages ?? []).map((src, i) => ({
-                kind: "image" as const,
-                src,
-                alt: `${piece.name} · ${i + 1}`,
-                fit: "cover" as const,
-                position: "50% 50%",
-              })),
             ]}
           />
         </div>
