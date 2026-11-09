@@ -61,7 +61,6 @@ export const PIECES: Piece[] = [
     extraImages: [
       "/models/roi-rouge-front.png",
       "/models/roi-rouge-back.png",
-      "/models/roi-rouge-side.png",
     ],
     priceEuro: 64.9,
     shopifyVariantId: "66231401480541",

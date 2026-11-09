@@ -81,7 +81,7 @@ export default function PieceClient({ piece }: { piece: Piece }) {
                   kind: "image" as const,
                   src,
                   alt: `${piece.name} · ${i + 1}`,
-                  fit: "cover" as const,
+                  fit: "contain" as const,
                   position: "50% 50%",
                 })),
               ]}
