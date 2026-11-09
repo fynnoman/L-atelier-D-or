@@ -118,12 +118,13 @@ export default function ScrollVideoHero() {
                 {t.home.hero.eyebrow}
               </span>
               <h1
-                className="n-quote max-w-[18ch]"
+                className="n-product-name max-w-[18ch]"
                 style={{
-                  fontSize: "clamp(40px, 7.4vw, 136px)",
-                  lineHeight: 1.02,
+                  fontSize: "clamp(44px, 7.8vw, 150px)",
+                  lineHeight: 1.12,
                   color: "#FFFFFF",
-                  paddingBottom: "0.08em",
+                  paddingBottom: "0.14em",
+                  whiteSpace: "normal",
                 }}
               >
                 {t.home.hero.title1} <br />
