@@ -56,11 +56,12 @@ export const PIECES: Piece[] = [
     notes: ["cuir patiné", "tabac clair", "poivre long", "cire noire"],
     scene: "Le velours tient la lumière plus longtemps que la peau.",
     mood: "rouge",
-    image: "/models/roi-rouge.jpg",
-    imageWorn: "/models/roi-rouge-worn.jpg",
+    image: "/models/roi-rouge.png",
+    imageWorn: "/models/roi-rouge-worn.png",
     extraImages: [
       "/models/roi-rouge-front.png",
       "/models/roi-rouge-back.png",
+      "/models/roi-rouge-side.png",
     ],
     priceEuro: 64.9,
     shopifyVariantId: "66231401480541",
@@ -89,7 +90,7 @@ export const PIECES: Piece[] = [
     scene: "Bois humide, tweed sec. Rien de trop.",
     mood: "foret",
     image: "/models/roi-noir.jpg",
-    imageWorn: "/models/roi-noir-worn.jpg",
+    imageWorn: "/models/roi-noir-worn.png",
     extraImages: [
       "/models/roi-noir-front.png",
       "/models/roi-noir-back.png",
@@ -121,7 +122,7 @@ export const PIECES: Piece[] = [
     scene: "Un jour pâle, une lumière qui ne trahit personne.",
     mood: "cristal",
     image: "/models/roi-cristal.png",
-    imageWorn: "/models/roi-cristal-worn.jpg",
+    imageWorn: "/models/roi-cristal-worn.png",
     extraImages: [
       "/models/roi-cristal-front.png",
       "/models/roi-cristal-back.png",
@@ -153,7 +154,7 @@ export const PIECES: Piece[] = [
     scene: "Les verres tintent, les bougies vacillent, quelqu’un rit doucement.",
     mood: "emeraude",
     image: "/models/roi-emeraude.png",
-    imageWorn: "/models/roi-emeraude-worn.jpg",
+    imageWorn: "/models/roi-emeraude-worn.png",
     extraImages: [
       "/models/roi-emeraude-front.png",
       "/models/roi-emeraude-back.png",

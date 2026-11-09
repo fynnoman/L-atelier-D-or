@@ -173,25 +173,27 @@ export default function PieceClient({ piece }: { piece: Piece }) {
 
       </section>
 
-      {/* Éditorial gallery — grand format, horizontal swipe */}
+      {/* Éditorial gallery — grand format portrait */}
       <section className="relative pb-16 md:pb-24">
         <div className="n-page">
-          <ProductGallery
-            ratio="16 / 10"
-            slides={[
-              ...(piece.imageWorn
-                ? [
-                    {
-                      kind: "image" as const,
-                      src: piece.imageWorn,
-                      alt: `${piece.name} — portée`,
-                      fit: "cover" as const,
-                      position: "50% 30%",
-                    },
-                  ]
-                : []),
-            ]}
-          />
+          <div className="max-w-3xl mx-auto">
+            <ProductGallery
+              ratio="4 / 5"
+              slides={[
+                ...(piece.imageWorn
+                  ? [
+                      {
+                        kind: "image" as const,
+                        src: piece.imageWorn,
+                        alt: `${piece.name} — portée`,
+                        fit: "cover" as const,
+                        position: "50% 50%",
+                      },
+                    ]
+                  : []),
+              ]}
+            />
+          </div>
         </div>
       </section>
 
