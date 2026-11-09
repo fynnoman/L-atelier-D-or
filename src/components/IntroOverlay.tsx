@@ -86,6 +86,11 @@ export default function IntroOverlay({
     if (!visible) return;
     const v = videoRef.current;
     if (!v) return;
+    try {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+    } catch {}
     v.play().catch(() => {});
     fallbackTimerRef.current = window.setTimeout(() => {
       dismiss();

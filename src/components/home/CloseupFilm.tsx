@@ -21,10 +21,20 @@ export default function CloseupFilm({
     const s = sectionRef.current;
     if (!v || !s) return;
 
+    try {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+    } catch {}
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
+            try {
+              v.muted = true;
+              v.playsInline = true;
+            } catch {}
             v.play().catch(() => {});
           } else {
             v.pause();

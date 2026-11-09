@@ -11,6 +11,11 @@ export default function ScrollVideoHero() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+    try {
+      v.muted = true;
+      v.defaultMuted = true;
+      v.playsInline = true;
+    } catch {}
     v.play().catch(() => {});
   }, []);
 
