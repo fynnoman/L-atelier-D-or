@@ -134,6 +134,7 @@ export default function IntroOverlay({
           muted
           playsInline
           preload="auto"
+          disableRemotePlayback
           aria-hidden
           onPlaying={() => {
             hasPlayedRef.current = true;
