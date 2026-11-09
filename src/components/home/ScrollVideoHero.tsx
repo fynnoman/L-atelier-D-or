@@ -109,7 +109,12 @@ export default function ScrollVideoHero() {
         />
       </div>
 
-      <div className="absolute inset-0 flex items-end z-10 pointer-events-none">
+      <div
+        className="absolute inset-0 flex items-end z-10 pointer-events-none"
+        style={{
+          paddingTop: "max(96px, env(safe-area-inset-top, 0px) + 80px)",
+        }}
+      >
         <div
           className="n-page w-full pointer-events-auto"
           style={{
@@ -134,10 +139,10 @@ export default function ScrollVideoHero() {
               <h1
                 className="n-product-name max-w-[18ch]"
                 style={{
-                  fontSize: "clamp(44px, 7.8vw, 150px)",
-                  lineHeight: 1.12,
+                  fontSize: "clamp(38px, 6.2vw, 112px)",
+                  lineHeight: 1.08,
                   color: "#FFFFFF",
-                  paddingBottom: "0.14em",
+                  paddingBottom: "0.1em",
                   whiteSpace: "normal",
                 }}
               >
