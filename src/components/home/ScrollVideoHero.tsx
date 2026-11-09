@@ -11,12 +11,25 @@ export default function ScrollVideoHero() {
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
-    try {
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-    } catch {}
-    v.play().catch(() => {});
+    const tryPlay = () => {
+      try {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.playsInline = true;
+      } catch {}
+      const p = v.play();
+      if (p && typeof p.then === "function") p.catch(() => {});
+    };
+    tryPlay();
+    const onReady = () => tryPlay();
+    v.addEventListener("loadedmetadata", onReady);
+    v.addEventListener("loadeddata", onReady);
+    v.addEventListener("canplay", onReady);
+    return () => {
+      v.removeEventListener("loadedmetadata", onReady);
+      v.removeEventListener("loadeddata", onReady);
+      v.removeEventListener("canplay", onReady);
+    };
   }, []);
 
   return (
@@ -32,7 +45,8 @@ export default function ScrollVideoHero() {
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
+        disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden
       >

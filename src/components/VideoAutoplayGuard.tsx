@@ -4,20 +4,26 @@ import { useEffect } from "react";
 
 /**
  * Forces every <video autoplay> on the page to actually autoplay,
- * even in Safari (incl. Low Power Mode) and reduced-data iOS states.
+ * even in Safari / iOS.
  *
- * Why: the autoplay HTML attribute is a hint. Browsers can still refuse
- * if `muted` / `playsinline` are not set *before* play() is called in JS.
- * MutationObserver catches videos added by client-rendered components.
- * A one-shot user-gesture fallback resumes anything still paused.
+ * Realities this handles:
+ *  - play() called before media data is ready -> wait for loadedmetadata/canplay
+ *  - muted/playsInline set as attribute only, not programmatic -> set in JS too
+ *  - late-mounted React videos -> MutationObserver
+ *  - tab refocus, first user gesture -> retry
+ *  - transient failures -> short retry burst
+ *
+ * NOT fixable in JS (hard platform limit): iOS Low Power Mode disables
+ * autoplay entirely. Only a user tap starts the video there.
  */
 export default function VideoAutoplayGuard() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
     const paused = new Set<HTMLVideoElement>();
+    const primed = new WeakSet<HTMLVideoElement>();
 
-    const tryPlay = (v: HTMLVideoElement) => {
+    const ensureFlags = (v: HTMLVideoElement) => {
       try {
         v.muted = true;
         v.defaultMuted = true;
@@ -26,9 +32,19 @@ export default function VideoAutoplayGuard() {
         v.setAttribute("playsinline", "");
         v.setAttribute("webkit-playsinline", "");
       } catch {}
+    };
+
+    const tryPlay = (v: HTMLVideoElement) => {
+      if (!v.isConnected) {
+        paused.delete(v);
+        return;
+      }
+      ensureFlags(v);
       const p = v.play();
       if (p && typeof p.then === "function") {
-        p.catch(() => {
+        p.then(() => {
+          paused.delete(v);
+        }).catch(() => {
           paused.add(v);
         });
       }
@@ -36,7 +52,32 @@ export default function VideoAutoplayGuard() {
 
     const prime = (v: HTMLVideoElement) => {
       if (!v.autoplay && !v.hasAttribute("autoplay")) return;
-      if (!v.paused) return;
+      if (primed.has(v)) {
+        if (v.paused) tryPlay(v);
+        return;
+      }
+      primed.add(v);
+      ensureFlags(v);
+
+      const onReady = () => {
+        if (v.paused) tryPlay(v);
+      };
+      v.addEventListener("loadedmetadata", onReady);
+      v.addEventListener("loadeddata", onReady);
+      v.addEventListener("canplay", onReady);
+      v.addEventListener("canplaythrough", onReady);
+
+      // Short retry burst for the first few seconds after mount.
+      let attempts = 0;
+      const burst = window.setInterval(() => {
+        attempts += 1;
+        if (!v.isConnected || !v.paused || attempts > 12) {
+          window.clearInterval(burst);
+          return;
+        }
+        tryPlay(v);
+      }, 400);
+
       tryPlay(v);
     };
 
@@ -68,7 +109,6 @@ export default function VideoAutoplayGuard() {
           return;
         }
         tryPlay(v);
-        if (!v.paused) paused.delete(v);
       });
     };
 
@@ -78,6 +118,7 @@ export default function VideoAutoplayGuard() {
       window.addEventListener(e, onEvent, { passive: true, capture: true })
     );
     document.addEventListener("visibilitychange", onEvent);
+    window.addEventListener("pageshow", onEvent);
 
     return () => {
       mo.disconnect();
@@ -85,6 +126,7 @@ export default function VideoAutoplayGuard() {
         window.removeEventListener(e, onEvent, { capture: true } as EventListenerOptions)
       );
       document.removeEventListener("visibilitychange", onEvent);
+      window.removeEventListener("pageshow", onEvent);
     };
   }, []);
 
