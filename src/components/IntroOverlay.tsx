@@ -1,21 +1,14 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Wordmark from "./Wordmark";
 import { useT } from "@/lib/i18n/LanguageContext";
 
-/**
- * Zeigt die Intro genau bei frischen Seitenaufrufen auf "/".
- *
- * Da diese Komponente in layout.tsx liegt, bleibt sie waehrend SPA-Navigationen
- * gemountet und der useEffect feuert nur einmal pro Full-Page-Load. Dadurch
- * triggert die Intro bei externen Zugaengen und Hard-Reloads auf "/", aber
- * nicht wenn der User intern von einer Subseite zurueck auf "/" navigiert.
- */
 export default function IntroOverlay({
   videoSrc,
   videoSrcMobile,
   posterSrc,
-  fallbackSeconds = 14,
+  fallbackSeconds = 6,
 }: {
   videoSrc: string;
   videoSrcMobile?: string;
@@ -25,11 +18,9 @@ export default function IntroOverlay({
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
-  const [exitPhase, setExitPhase] = useState<"idle" | "flash" | "unmount">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
-  const hasPlayedRef = useRef(false);
   const t = useT();
 
   useEffect(() => {
@@ -65,37 +56,39 @@ export default function IntroOverlay({
         v.pause();
       } catch {}
     }
-    // Phase 1: light flash sweep across the viewport + pull content into focus
-    setExitPhase("flash");
     document.documentElement.setAttribute("data-intro", "transitioning");
-    // Phase 2: begin the fade/scale out
+    setFading(true);
     window.setTimeout(() => {
-      setFading(true);
-    }, 180);
-    // Phase 3: unmount after the full transition
-    window.setTimeout(() => {
-      setExitPhase("unmount");
       setVisible(false);
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.documentElement.setAttribute("data-intro", "done");
-    }, 1500);
+    }, 900);
   };
 
   useEffect(() => {
     if (!visible) return;
     const v = videoRef.current;
     if (!v) return;
-    try {
-      v.muted = true;
-      v.defaultMuted = true;
-      v.playsInline = true;
-    } catch {}
-    v.play().catch(() => {});
-    fallbackTimerRef.current = window.setTimeout(() => {
-      dismiss();
-    }, fallbackSeconds * 1000);
+    const tryPlay = () => {
+      try {
+        v.muted = true;
+        v.defaultMuted = true;
+        v.playsInline = true;
+      } catch {}
+      const p = v.play();
+      if (p && typeof p.then === "function") p.catch(() => {});
+    };
+    tryPlay();
+    const onReady = () => tryPlay();
+    v.addEventListener("loadedmetadata", onReady);
+    v.addEventListener("loadeddata", onReady);
+    v.addEventListener("canplay", onReady);
+    fallbackTimerRef.current = window.setTimeout(dismiss, fallbackSeconds * 1000);
     return () => {
+      v.removeEventListener("loadedmetadata", onReady);
+      v.removeEventListener("loadeddata", onReady);
+      v.removeEventListener("canplay", onReady);
       if (fallbackTimerRef.current != null) {
         window.clearTimeout(fallbackTimerRef.current);
         fallbackTimerRef.current = null;
@@ -106,93 +99,50 @@ export default function IntroOverlay({
   if (!mounted || !visible) return null;
 
   return (
-    <div
+    <section
       aria-hidden={fading}
       className="fixed inset-0 z-[100] overflow-hidden"
       style={{
-        background: "#000",
+        background: "#0A0A0A",
         opacity: fading ? 0 : 1,
-        transition:
-          "opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
-        willChange: "opacity",
+        transition: "opacity 900ms cubic-bezier(0.4, 0, 0.2, 1)",
       }}
     >
-      <div
-        className="absolute inset-0"
-        style={{
-          transform: fading ? "scale(1.06)" : "none",
-          filter: fading ? "blur(10px)" : "none",
-          transition:
-            "transform 1400ms cubic-bezier(0.4, 0, 0.2, 1), filter 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
-          willChange: fading ? "transform, filter" : "auto",
-        }}
+      <video
+        ref={videoRef}
+        poster={posterSrc}
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        disableRemotePlayback
+        onEnded={dismiss}
+        className="absolute inset-0 w-full h-full object-cover"
+        aria-hidden
       >
-        <video
-          ref={videoRef}
-          poster={posterSrc}
-          autoPlay
-          muted
-          playsInline
-          preload="auto"
-          disableRemotePlayback
-          aria-hidden
-          onPlaying={() => {
-            hasPlayedRef.current = true;
-          }}
-          onEnded={dismiss}
-          onError={(e) => {
-            if (e.target !== videoRef.current) return;
-            const v = videoRef.current;
-            if (!v) return;
-            if (!v.error && v.networkState !== 3) return;
-            dismiss();
-          }}
-          onStalled={() => {
-            if (!hasPlayedRef.current) return;
-            if (fallbackTimerRef.current != null) return;
-            fallbackTimerRef.current = window.setTimeout(dismiss, 2500);
-          }}
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          {videoSrcMobile && (
-            <source
-              src={videoSrcMobile}
-              type="video/mp4"
-              media="(max-width: 768px)"
-            />
-          )}
-          <source src={videoSrc} type="video/mp4" />
-        </video>
+        {videoSrcMobile && (
+          <source
+            src={videoSrcMobile}
+            type="video/mp4"
+            media="(max-width: 768px)"
+          />
+        )}
+        <source src={videoSrc} type="video/mp4" />
+      </video>
 
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Light sweep flash across the viewport at the transition moment */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(115deg, transparent 20%, rgba(237, 227, 206, 0.22) 48%, rgba(237, 227, 206, 0.42) 52%, rgba(237, 227, 206, 0.22) 56%, transparent 80%)",
-          backgroundSize: "260% 100%",
-          backgroundPosition: exitPhase === "idle" ? "120% 0" : "-120% 0",
-          opacity: exitPhase === "idle" ? 0 : exitPhase === "flash" ? 1 : 0,
-          transition:
-            "background-position 1300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 900ms ease-out",
-          mixBlendMode: "screen",
+            "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
         }}
       />
 
       <div
         aria-hidden
-        className="pointer-events-none absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-4"
+        className="pointer-events-none absolute top-8 left-1/2 -translate-x-1/2 flex items-center gap-4 z-10"
         style={{
           opacity: fading ? 0 : 1,
           transition: "opacity 600ms cubic-bezier(0.4, 0, 0.2, 1)",
@@ -202,15 +152,7 @@ export default function IntroOverlay({
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
-        <img
-          src="/logo-white.png"
-          alt="L'Atelier d'Or"
-          style={{
-            height: "clamp(28px, 3.2vw, 44px)",
-            width: "auto",
-          }}
-          draggable={false}
-        />
+        <Wordmark size="md" />
         <span
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
@@ -220,7 +162,7 @@ export default function IntroOverlay({
       <button
         type="button"
         onClick={dismiss}
-        className="absolute bottom-8 right-8 md:bottom-10 md:right-10 flex items-center gap-3 transition-opacity hover:opacity-100"
+        className="absolute bottom-8 right-8 md:bottom-10 md:right-10 flex items-center gap-3 z-10"
         style={{
           color: "rgba(255,255,255,0.7)",
           fontSize: "11px",
@@ -238,6 +180,6 @@ export default function IntroOverlay({
           style={{ background: "rgba(255,255,255,0.6)" }}
         />
       </button>
-    </div>
+    </section>
   );
 }
