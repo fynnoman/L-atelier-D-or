@@ -18,6 +18,7 @@ export default function IntroOverlay({
   const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [fading, setFading] = useState(false);
+  const [exitPhase, setExitPhase] = useState<"idle" | "flash" | "unmount">("idle");
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
@@ -56,14 +57,18 @@ export default function IntroOverlay({
         v.pause();
       } catch {}
     }
+    setExitPhase("flash");
     document.documentElement.setAttribute("data-intro", "transitioning");
-    setFading(true);
     window.setTimeout(() => {
+      setFading(true);
+    }, 180);
+    window.setTimeout(() => {
+      setExitPhase("unmount");
       setVisible(false);
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.documentElement.setAttribute("data-intro", "done");
-    }, 900);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -99,44 +104,71 @@ export default function IntroOverlay({
   if (!mounted || !visible) return null;
 
   return (
-    <section
+    <div
       aria-hidden={fading}
       className="fixed inset-0 z-[100] overflow-hidden"
       style={{
-        background: "#0A0A0A",
+        background: "#000",
         opacity: fading ? 0 : 1,
-        transition: "opacity 900ms cubic-bezier(0.4, 0, 0.2, 1)",
+        transition: "opacity 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
+        willChange: "opacity",
       }}
     >
-      <video
-        ref={videoRef}
-        poster={posterSrc}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        disableRemotePlayback
-        onEnded={dismiss}
-        className="absolute inset-0 w-full h-full object-cover"
-        aria-hidden
+      <div
+        className="absolute inset-0"
+        style={{
+          transform: fading ? "scale(1.06)" : "none",
+          filter: fading ? "blur(10px)" : "none",
+          transition:
+            "transform 1400ms cubic-bezier(0.4, 0, 0.2, 1), filter 1200ms cubic-bezier(0.4, 0, 0.2, 1)",
+          willChange: fading ? "transform, filter" : "auto",
+        }}
       >
-        {videoSrcMobile && (
-          <source
-            src={videoSrcMobile}
-            type="video/mp4"
-            media="(max-width: 768px)"
-          />
-        )}
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+        <video
+          ref={videoRef}
+          poster={posterSrc}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disableRemotePlayback
+          onEnded={dismiss}
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden
+        >
+          {videoSrcMobile && (
+            <source
+              src={videoSrcMobile}
+              type="video/mp4"
+              media="(max-width: 768px)"
+            />
+          )}
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
+          }}
+        />
+      </div>
 
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(120% 80% at 50% 50%, rgba(0,0,0,0) 55%, rgba(0,0,0,0.5) 100%)",
+            "linear-gradient(115deg, transparent 20%, rgba(237, 227, 206, 0.22) 48%, rgba(237, 227, 206, 0.42) 52%, rgba(237, 227, 206, 0.22) 56%, transparent 80%)",
+          backgroundSize: "260% 100%",
+          backgroundPosition: exitPhase === "idle" ? "120% 0" : "-120% 0",
+          opacity: exitPhase === "idle" ? 0 : exitPhase === "flash" ? 1 : 0,
+          transition:
+            "background-position 1300ms cubic-bezier(0.4, 0, 0.2, 1), opacity 900ms ease-out",
+          mixBlendMode: "screen",
         }}
       />
 
@@ -180,6 +212,6 @@ export default function IntroOverlay({
           style={{ background: "rgba(255,255,255,0.6)" }}
         />
       </button>
-    </section>
+    </div>
   );
 }
