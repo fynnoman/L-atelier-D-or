@@ -3,19 +3,29 @@ import type { NextRequest } from "next/server";
 
 const USERNAME = "latelierdor";
 const PASSWORD = "Kalolhater123!";
-const REALM = "L'Atelier d'Or";
 
 function unauthorized() {
   return new NextResponse("Authentication required.", {
     status: 401,
     headers: {
-      "WWW-Authenticate": `Basic realm="${REALM}", charset="UTF-8"`,
+      "WWW-Authenticate": 'Basic realm="Site", charset="UTF-8"',
       "Cache-Control": "no-store",
     },
   });
 }
 
-export function proxy(request: NextRequest) {
+export default function proxy(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  if (
+    pathname.startsWith("/_next/") ||
+    pathname === "/favicon.ico" ||
+    pathname === "/robots.txt" ||
+    pathname === "/sitemap.xml"
+  ) {
+    return NextResponse.next();
+  }
+
   const header = request.headers.get("authorization");
   if (!header || !header.toLowerCase().startsWith("basic ")) {
     return unauthorized();
@@ -37,8 +47,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    // Match everything except Next internals, static assets, and metadata files.
-    "/((?!_next/static|_next/image|_next/data|favicon.ico|favicon-16x16.png|favicon-32x32.png|apple-touch-icon.png|android-chrome-192x192.png|android-chrome-512x512.png|site.webmanifest|robots.txt|sitemap.xml|og-image.jpg).*)",
-  ],
+  matcher: "/:path*",
 };

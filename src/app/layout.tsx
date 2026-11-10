@@ -124,8 +124,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <VideoAutoplayGuard />
           <div data-nouveau>
             <IntroOverlay
-              videoSrc="/video/intro-v2.mp4"
-              videoSrcMobile="/video/intro-mobile-v2.mp4"
+              videoSrc="/video/intro.mp4"
+              videoSrcMobile="/video/intro-mobile.mp4"
               posterSrc="/video/hero-poster.jpg"
             />
             <div data-site-stage>
