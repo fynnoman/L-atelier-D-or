@@ -6,51 +6,28 @@ type Props = {
   invert?: boolean;
 };
 
-const HEIGHT_DESKTOP = {
-  sm: 40,
-  md: 60,
-  lg: 72,
-  xl: 96,
+const FONT_SIZE = {
+  sm: "clamp(18px, 2.4vw, 24px)",
+  md: "clamp(22px, 3vw, 30px)",
+  lg: "clamp(28px, 3.8vw, 40px)",
+  xl: "clamp(38px, 5vw, 56px)",
 } as const;
-
-const HEIGHT_MOBILE = {
-  sm: 26,
-  md: 32,
-  lg: 40,
-  xl: 56,
-} as const;
-
-const LOGO_ASPECT = 2171 / 724;
 
 export default function Wordmark({ className, size = "md", invert = false }: Props) {
-  const hDesktop = HEIGHT_DESKTOP[size];
-  const hMobile = HEIGHT_MOBILE[size];
   return (
     <span
-      className={clsx("inline-flex items-center leading-none", className)}
-      aria-label="L'Atelier d'Or"
+      className={clsx("inline-flex items-baseline leading-none n-brand", className)}
+      aria-label="L'atelier d'or"
       style={{
-        height: `clamp(${hMobile}px, ${hMobile}px + 1vw, ${hDesktop}px)`,
-        aspectRatio: `${LOGO_ASPECT}`,
+        fontSize: FONT_SIZE[size],
+        letterSpacing: "0.01em",
+        color: invert ? "#0A0A0A" : "#FFFFFF",
+        gap: "0.9em",
+        whiteSpace: "nowrap",
       }}
     >
-      <img
-        src="/logo-white.png"
-        alt="L'Atelier d'Or"
-        width={2171}
-        height={724}
-        style={{
-          height: "100%",
-          width: "auto",
-          maxWidth: "none",
-          display: "block",
-          flexShrink: 0,
-          objectFit: "contain",
-          aspectRatio: `${LOGO_ASPECT}`,
-          filter: invert ? "invert(1)" : "none",
-        }}
-        draggable={false}
-      />
+      <span>L&rsquo;atelier</span>
+      <span>d&rsquo;or</span>
     </span>
   );
 }
