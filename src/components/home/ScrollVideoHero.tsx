@@ -20,27 +20,15 @@ export default function ScrollVideoHero() {
       const p = v.play();
       if (p && typeof p.then === "function") p.catch(() => {});
     };
-    // Warte auf das Ende der Intro, damit nicht zwei Videos gleichzeitig dekodieren.
-    const introState = () => document.documentElement.getAttribute("data-intro");
-    const startWhenReady = () => {
-      const s = introState();
-      if (s === null || s === "done") tryPlay();
-    };
-    startWhenReady();
-    const onReady = () => startWhenReady();
+    tryPlay();
+    const onReady = () => tryPlay();
     v.addEventListener("loadedmetadata", onReady);
     v.addEventListener("loadeddata", onReady);
     v.addEventListener("canplay", onReady);
-    const mo = new MutationObserver(startWhenReady);
-    mo.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["data-intro"],
-    });
     return () => {
       v.removeEventListener("loadedmetadata", onReady);
       v.removeEventListener("loadeddata", onReady);
       v.removeEventListener("canplay", onReady);
-      mo.disconnect();
     };
   }, []);
 
@@ -52,11 +40,11 @@ export default function ScrollVideoHero() {
     >
       <video
         ref={videoRef}
-        poster="/video/hero-loop-poster.jpg"
+        autoPlay
         muted
         loop
         playsInline
-        preload="metadata"
+        preload="auto"
         disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden
