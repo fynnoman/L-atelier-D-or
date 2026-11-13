@@ -44,8 +44,7 @@ const pinyon = Pinyon_Script({
 });
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://laterlierdor-fynn-schulzs-projects.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://laterlierdor.com";
 
 export const metadata: Metadata = {
   title: {

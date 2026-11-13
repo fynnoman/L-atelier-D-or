@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ScrollVideoHero from "@/components/home/ScrollVideoHero";
 import Manifesto from "@/components/home/Manifesto";
 import CloseupFilm from "@/components/home/CloseupFilm";
@@ -6,6 +7,13 @@ import WornGallery from "@/components/home/WornGallery";
 import AvisTeaser from "@/components/home/AvisTeaser";
 import EndCall from "@/components/home/EndCall";
 import { PIECES } from "@/data/collection";
+
+export const metadata: Metadata = {
+  title: "L'Atelier d'Or — Maison française de lunetterie",
+  description:
+    "Voyez le monde depuis votre propre perspective. La collection Roi en quatre pièces : Rouge, Noir, Cristal, Émeraude.",
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (

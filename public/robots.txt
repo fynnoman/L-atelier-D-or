@@ -49,4 +49,4 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-Sitemap: https://laterlierdor-fynn-schulzs-projects.vercel.app/sitemap.xml
+Sitemap: https://laterlierdor.com/sitemap.xml

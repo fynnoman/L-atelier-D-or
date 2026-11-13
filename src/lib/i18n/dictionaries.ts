@@ -33,7 +33,6 @@ export type Dictionary = {
     edition: string;
     collection: string;
     atelier: string;
-    journal: string;
     avis: string;
     questions: string;
     conseil: string;
@@ -301,26 +300,6 @@ export type Dictionary = {
     expectTitle: string;
     expectItems: string[];
   };
-  journal: {
-    metaTitle: string;
-    metaDescription: string;
-    eyebrowNum: string;
-    eyebrowLabel: string;
-    title1: string;
-    title2: string;
-    title3: string;
-    lede: string;
-    readCahier: string;
-  };
-  cahier: {
-    labelChapter: (numeral: string) => string;
-    signatureSuffix: string;
-    piecesEyebrowNum: string;
-    piecesEyebrowLabel: string;
-    othersEyebrowNum: string;
-    othersEyebrowLabel: string;
-    cahierN: (n: string) => string;
-  };
   legal: {
     articleWord: string;
     mentionsRightsReserved: string;
@@ -379,16 +358,6 @@ export type Dictionary = {
       teintes: { name: string }[];
     };
   };
-  cahiers: {
-    [slug: string]: {
-      rubric: string;
-      title: string;
-      chapo: string;
-      read: string;
-      date: string;
-      body: string[];
-    };
-  };
   langSwitcher: {
     label: string;
     fr: string;
@@ -429,7 +398,6 @@ const fr: Dictionary = {
     edition: "",
     collection: "Collection",
     atelier: "Atelier",
-    journal: "Journal",
     avis: "Avis",
     questions: "Questions",
     conseil: "Conseil",
@@ -793,28 +761,6 @@ const fr: Dictionary = {
       "Prochaine étape : commande en ligne, livrée dans son écrin.",
     ],
   },
-  journal: {
-    metaTitle: "Journal",
-    metaDescription:
-      "Design, matériaux, fabrication — ce qui compose la collection Roi.",
-    eyebrowNum: "",
-    eyebrowLabel: "Journal",
-    title1: "Journal.",
-    title2: "",
-    title3: "",
-    lede:
-      "Design, matériaux, fabrication. Les coulisses de la collection Roi.",
-    readCahier: "Lire l’article",
-  },
-  cahier: {
-    labelChapter: (numeral) => `${numeral}`,
-    signatureSuffix: "L’Atelier d’Or",
-    piecesEyebrowNum: "",
-    piecesEyebrowLabel: "Voir la collection",
-    othersEyebrowNum: "",
-    othersEyebrowLabel: "Autres articles",
-    cahierN: (n) => `Article ${n}`,
-  },
   legal: {
     articleWord: "Article",
     mentionsRightsReserved: "Tous droits réservés.",
@@ -1115,52 +1061,6 @@ const fr: Dictionary = {
       teintes: [{ name: "Vert Émeraude" }, { name: "Vert Forêt" }],
     },
   },
-  cahiers: {
-    "geste-juste": {
-      rubric: "Fabrication",
-      title: "Montage à la main.",
-      chapo:
-        "Chaque monture est montée et finie à la main dans notre atelier partenaire.",
-      read: "5 min",
-      date: "Septembre",
-      body: [
-        "Chaque monture Roi est fabriquée dans notre atelier partenaire : coupe, fraisage, cintrage, polissage, rivetage et finition.",
-        "Le montage à la main permet un contrôle précis de chaque arête, de chaque charnière et de chaque surface. Ce qu’une machine ferait plus vite effacerait la ligne du dessin.",
-        "Le fini est inspecté à l’œil nu sous lumière rasante. Une monture ne quitte l’atelier qu’une fois charnières, rivets et polissage parfaitement conformes.",
-        "Chaque modèle reste réglable chez tout opticien : charnières et branches sont vissées de manière classique, sans collage.",
-      ],
-    },
-    "quatre-atmospheres": {
-      rubric: "Collection",
-      title: "Rouge, Noir, Cristal, Émeraude.",
-      chapo:
-        "Rectangle, Panto, Ovale et Panto masculine : les quatre modèles de la collection Roi.",
-      read: "4 min",
-      date: "Septembre",
-      body: [
-        "Roi réunit quatre modèles en acétate premium avec finitions métalliques.",
-        "Roi Rouge : silhouette rectangle, acétate rouge coloré dans la masse, charnières argentées. Modèle statement, lignes franches.",
-        "Roi Noir : panto haute, acétate noir profond, rivets argentés. La monture la plus fermée de la collection.",
-        "Roi Cristal : ovale allongé, acétate cristal translucide, charnières argentées. Le modèle le plus discret.",
-        "Roi Émeraude : panto masculine, acétate émeraude, finition argentée. Branches longues, arête sculptée.",
-      ],
-    },
-    "quatre-vingts-euros": {
-      rubric: "Prix",
-      title: "Vente directe : notre modèle de prix.",
-      chapo:
-        "64,90 € par modèle. Directement de l’atelier, sans intermédiaire.",
-      read: "4 min",
-      date: "Août",
-      body: [
-        "Dans la distribution classique, la plus grande partie du prix de vente est captée par les boutiques, grossistes et intermédiaires.",
-        "Nous vendons exclusivement en ligne, directement depuis notre atelier. Le prix reflète uniquement le produit : acétate, métal, temps de montage.",
-        "L’acétate provient de manufactures italiennes qui fournissent les grandes maisons depuis des générations. Les plaques sont sélectionnées par nos soins.",
-        "Chaque monture est contrôlée à chaque étape de la fabrication. Aucun stock intermédiaire, aucune série non vérifiée.",
-        "Le résultat : une monture de qualité manufacturière à un prix qui reflète la production, pas la marge des intermédiaires.",
-      ],
-    },
-  },
   langSwitcher: {
     label: "Langue",
     fr: "Français",
@@ -1201,7 +1101,6 @@ const de: Dictionary = {
     edition: "",
     collection: "Kollektion",
     atelier: "Atelier",
-    journal: "Journal",
     avis: "Bewertungen",
     questions: "Fragen",
     conseil: "Beratung",
@@ -1564,28 +1463,6 @@ const de: Dictionary = {
       "Hinweise zu Trage-Anlass und Alltagstauglichkeit.",
       "Nächster Schritt: Online-Bestellung, geliefert im Etui.",
     ],
-  },
-  journal: {
-    metaTitle: "Journal",
-    metaDescription:
-      "Design, Materialien, Fertigung – was die Kollektion Roi ausmacht.",
-    eyebrowNum: "",
-    eyebrowLabel: "Journal",
-    title1: "Journal.",
-    title2: "",
-    title3: "",
-    lede:
-      "Design, Materialien, Fertigung. Hintergründe zur Kollektion Roi.",
-    readCahier: "Artikel lesen",
-  },
-  cahier: {
-    labelChapter: (numeral) => `${numeral}`,
-    signatureSuffix: "L’Atelier d’Or",
-    piecesEyebrowNum: "",
-    piecesEyebrowLabel: "Kollektion ansehen",
-    othersEyebrowNum: "",
-    othersEyebrowLabel: "Weitere Artikel",
-    cahierN: (n) => `Artikel ${n}`,
   },
   legal: {
     articleWord: "Artikel",
@@ -1973,52 +1850,6 @@ const de: Dictionary = {
       teintes: [{ name: "Vert Émeraude" }, { name: "Vert Forêt" }],
     },
   },
-  cahiers: {
-    "geste-juste": {
-      rubric: "Fertigung",
-      title: "Handmontage.",
-      chapo:
-        "Jede Fassung wird in unserem Partneratelier von Hand montiert und finisiert.",
-      read: "5 Min",
-      date: "September",
-      body: [
-        "Jede Roi-Fassung durchläuft die gesamte Fertigung in unserem Partneratelier. Zuschnitt, Fräsen, Biegen, Polieren, Nieten und Finish erfolgen vor Ort.",
-        "Die Handmontage erlaubt die präzise Kontrolle jeder Kante, jedes Scharniers und jeder Oberfläche. Was eine Maschine schneller erledigen kann, würde die Linie des Entwurfs verwischen.",
-        "Der Finish wird mit bloßem Auge unter streifendem Licht geprüft. Eine Fassung verlässt die Werkstatt erst, wenn Scharniere, Nieten und Polish einwandfrei sind.",
-        "Jedes Modell ist bei jedem Optiker regulierbar – Scharniere und Bügel sind klassisch verschraubt, nicht verklebt.",
-      ],
-    },
-    "quatre-atmospheres": {
-      rubric: "Kollektion",
-      title: "Rouge, Noir, Cristal, Émeraude.",
-      chapo:
-        "Rechteck, Panto, Oval und Panto maskulin: die vier Modelle der Kollektion Roi.",
-      read: "4 Min",
-      date: "September",
-      body: [
-        "Roi besteht aus vier Modellen in Premium-Acetat mit metallischem Finish.",
-        "Roi Rouge: Rechteck-Silhouette, rotes Acetat, silberne Scharniere. Statement-Modell für klare Linien.",
-        "Roi Noir: hohe Panto-Form, tiefschwarzes Acetat, silberne Nieten. Die geschlossenste Fassung der Kollektion.",
-        "Roi Cristal: gestrecktes Oval, transluzentes Kristall-Acetat, silberne Scharniere. Das diskreteste Modell.",
-        "Roi Émeraude: maskuline Panto-Form, smaragdgrünes Acetat, silberne Ausführung. Lange Bügel, gemeißelte Kante.",
-      ],
-    },
-    "quatre-vingts-euros": {
-      rubric: "Preis",
-      title: "Direktverkauf: unser Preismodell.",
-      chapo:
-        "64,90 € pro Modell. Direkt aus dem Atelier, ohne Zwischenhandel.",
-      read: "4 Min",
-      date: "August",
-      body: [
-        "Bei konventionellem Vertrieb wird der größte Teil des Verkaufspreises von Boutiquen, Großhandel und Distribution einbehalten.",
-        "Wir verkaufen ausschließlich online, direkt aus unserem Atelier. Der Preis spiegelt ausschließlich das Produkt wider: Acetat, Metall, Montagezeit.",
-        "Das Acetat beziehen wir von italienischen Manufakturen, die seit Generationen die großen Häuser der Branche beliefern. Die Platten wählen wir selbst aus.",
-        "Jede Fassung wird in jedem Fertigungsschritt kontrolliert. Keine Zwischenlagerung, keine Charge wird ungeprüft ausgeliefert.",
-        "Das Ergebnis: eine Fassung in Manufakturqualität zu einem Preis, der die Produktion abbildet – nicht die Marge der Zwischenhändler.",
-      ],
-    },
-  },
   langSwitcher: {
     label: "Sprache",
     fr: "Français",
@@ -2059,7 +1890,6 @@ const en: Dictionary = {
     edition: "",
     collection: "Collection",
     atelier: "House",
-    journal: "Journal",
     avis: "Reviews",
     questions: "Questions",
     conseil: "Advice",
@@ -2408,27 +2238,6 @@ const en: Dictionary = {
       "Next step: online order, delivered in its case.",
     ],
   },
-  journal: {
-    metaTitle: "Journal",
-    metaDescription:
-      "Design, materials, manufacturing — behind the Roi collection.",
-    eyebrowNum: "",
-    eyebrowLabel: "Journal",
-    title1: "Journal.",
-    title2: "",
-    title3: "",
-    lede: "Design, materials, manufacturing. Background on the Roi collection.",
-    readCahier: "Read article",
-  },
-  cahier: {
-    labelChapter: (numeral) => `${numeral}`,
-    signatureSuffix: "L’Atelier d’Or",
-    piecesEyebrowNum: "",
-    piecesEyebrowLabel: "View collection",
-    othersEyebrowNum: "",
-    othersEyebrowLabel: "More articles",
-    cahierN: (n) => `Article ${n}`,
-  },
   legal: {
     articleWord: "Article",
     mentionsRightsReserved: "All rights reserved.",
@@ -2606,52 +2415,6 @@ const en: Dictionary = {
       teintes: [{ name: "Vert Émeraude" }, { name: "Vert Forêt" }],
     },
   },
-  cahiers: {
-    "geste-juste": {
-      rubric: "Manufacturing",
-      title: "Hand assembled.",
-      chapo:
-        "Every frame is assembled and finished by hand in our partner workshop.",
-      read: "5 min",
-      date: "September",
-      body: [
-        "Every Roi frame goes through the entire manufacturing process in our partner workshop. Cutting, milling, bending, polishing, riveting and finishing are all carried out on site.",
-        "Hand assembly allows precise control over every edge, every hinge and every surface. What a machine could do faster would blur the line of the design.",
-        "The finish is inspected by eye under raking light. A frame does not leave the workshop until hinges, rivets and polishing are flawless.",
-        "Every model remains adjustable at any optician: hinges and temples are classically screwed, not glued.",
-      ],
-    },
-    "quatre-atmospheres": {
-      rubric: "Collection",
-      title: "Rouge, Noir, Cristal, Émeraude.",
-      chapo:
-        "Rectangle, Panto, Oval and masculine Panto: the four models of the Roi collection.",
-      read: "4 min",
-      date: "September",
-      body: [
-        "Roi consists of four models in premium acetate with metal finishes.",
-        "Roi Rouge: rectangle silhouette, red mass-dyed acetate, silver hinges. Statement model with clean lines.",
-        "Roi Noir: high panto, deep black acetate, silver rivets. The most closed frame in the collection.",
-        "Roi Cristal: elongated oval, translucent crystal acetate, silver hinges. The most discreet model.",
-        "Roi Émeraude: masculine panto, emerald acetate, silver finish. Long temples, sculpted edge.",
-      ],
-    },
-    "quatre-vingts-euros": {
-      rubric: "Price",
-      title: "Direct sales: our pricing model.",
-      chapo:
-        "€64.90 per model. Straight from the workshop, no middlemen.",
-      read: "4 min",
-      date: "August",
-      body: [
-        "In conventional distribution, most of the retail price is captured by boutiques, wholesalers and intermediaries.",
-        "We sell exclusively online, straight from our workshop. The price reflects only the product: acetate, metal, assembly time.",
-        "Acetate comes from Italian manufactures that have supplied the great eyewear houses for generations. We select the plates ourselves.",
-        "Every frame is inspected at each manufacturing step. No intermediate stock, no unchecked batch is ever shipped.",
-        "The result: a frame of manufacture-grade quality at a price that reflects production, not the margin of middlemen.",
-      ],
-    },
-  },
   langSwitcher: {
     label: "Language",
     fr: "Français",
@@ -2692,7 +2455,6 @@ const it: Dictionary = {
     edition: "",
     collection: "Collezione",
     atelier: "Maison",
-    journal: "Journal",
     avis: "Recensioni",
     questions: "Domande",
     conseil: "Consiglio",
@@ -3040,27 +2802,6 @@ const it: Dictionary = {
       "Prossimo passo: ordine online, consegnato nel suo astuccio.",
     ],
   },
-  journal: {
-    metaTitle: "Journal",
-    metaDescription:
-      "Design, materiali, produzione — cosa compone la collezione Roi.",
-    eyebrowNum: "",
-    eyebrowLabel: "Journal",
-    title1: "Journal.",
-    title2: "",
-    title3: "",
-    lede: "Design, materiali, produzione. Dietro le quinte della collezione Roi.",
-    readCahier: "Leggi l’articolo",
-  },
-  cahier: {
-    labelChapter: (numeral) => `${numeral}`,
-    signatureSuffix: "L’Atelier d’Or",
-    piecesEyebrowNum: "",
-    piecesEyebrowLabel: "Vedi la collezione",
-    othersEyebrowNum: "",
-    othersEyebrowLabel: "Altri articoli",
-    cahierN: (n) => `Articolo ${n}`,
-  },
   legal: {
     articleWord: "Articolo",
     mentionsRightsReserved: "Tutti i diritti riservati.",
@@ -3236,52 +2977,6 @@ const it: Dictionary = {
       notes: ["Marcato", "Profondo", "Presente", "Business"],
       scene: "",
       teintes: [{ name: "Vert Émeraude" }, { name: "Vert Forêt" }],
-    },
-  },
-  cahiers: {
-    "geste-juste": {
-      rubric: "Produzione",
-      title: "Montaggio a mano.",
-      chapo:
-        "Ogni montatura è assemblata e rifinita a mano nel nostro atelier partner.",
-      read: "5 min",
-      date: "Settembre",
-      body: [
-        "Ogni montatura Roi è prodotta nel nostro atelier partner: taglio, fresatura, piegatura, lucidatura, rivettatura e finitura avvengono in sede.",
-        "Il montaggio a mano permette un controllo preciso di ogni bordo, cerniera e superficie. Ciò che una macchina farebbe più veloce cancellerebbe la linea del disegno.",
-        "Il finissaggio viene ispezionato a occhio nudo sotto luce radente. Una montatura esce dall’atelier solo quando cerniere, rivetti e lucidatura sono perfetti.",
-        "Ogni modello resta regolabile da qualunque ottico: cerniere e aste sono avvitate in modo classico, non incollate.",
-      ],
-    },
-    "quatre-atmospheres": {
-      rubric: "Collezione",
-      title: "Rouge, Noir, Cristal, Émeraude.",
-      chapo:
-        "Rettangolo, Panto, Ovale e Panto maschile: i quattro modelli della collezione Roi.",
-      read: "4 min",
-      date: "Settembre",
-      body: [
-        "Roi comprende quattro modelli in acetato premium con finiture metalliche.",
-        "Roi Rouge: silhouette rettangolo, acetato rosso colorato in massa, cerniere argentate. Modello statement, linee nette.",
-        "Roi Noir: panto alto, acetato nero profondo, rivetti argentati. La montatura più chiusa della collezione.",
-        "Roi Cristal: ovale allungato, acetato cristallo traslucido, cerniere argentate. Il modello più discreto.",
-        "Roi Émeraude: panto maschile, acetato smeraldo, finitura argentata. Aste lunghe, bordo scolpito.",
-      ],
-    },
-    "quatre-vingts-euros": {
-      rubric: "Prezzo",
-      title: "Vendita diretta: il nostro modello di prezzo.",
-      chapo:
-        "64,90 € a modello. Direttamente dall’atelier, senza intermediari.",
-      read: "4 min",
-      date: "Agosto",
-      body: [
-        "Nella distribuzione classica, la maggior parte del prezzo di vendita è trattenuta da boutique, grossisti e intermediari.",
-        "Vendiamo esclusivamente online, direttamente dal nostro atelier. Il prezzo riflette solo il prodotto: acetato, metallo, tempo di montaggio.",
-        "L’acetato proviene da manifatture italiane che riforniscono le grandi maison da generazioni. Le lastre sono selezionate direttamente da noi.",
-        "Ogni montatura è controllata in ogni fase di produzione. Nessun magazzino intermedio, nessuna partita non verificata.",
-        "Il risultato: una montatura di qualità manifatturiera a un prezzo che riflette la produzione, non il margine degli intermediari.",
-      ],
     },
   },
   langSwitcher: {

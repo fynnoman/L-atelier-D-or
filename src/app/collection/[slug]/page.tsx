@@ -8,8 +8,7 @@ import { PIECES, getPiece, formatEuro } from "@/data/collection";
 import PieceClient from "./PieceClient";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  "https://laterlierdor-fynn-schulzs-projects.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://laterlierdor.com";
 
 type Params = Promise<{ slug: string }>;
 

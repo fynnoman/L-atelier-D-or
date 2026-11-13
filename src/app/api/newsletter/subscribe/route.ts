@@ -19,6 +19,8 @@ import { Resend } from "resend";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://laterlierdor.com";
+
 function welcomeHtml(_email: string) {
   return `<!doctype html>
 <html><body style="margin:0;padding:0;background:#F4F0E8;font-family:'Instrument Serif','Fraunces',Georgia,serif;color:#0A0A0A;">
@@ -41,7 +43,7 @@ function welcomeHtml(_email: string) {
           <p style="font:400 16px/1.6 'Instrument Serif',Georgia,serif;color:#3A342D;margin:0 0 32px;">
             En attendant, la collection Roi se découvre en ligne.
           </p>
-          <a href="https://laterlierdor.vercel.app/collection"
+          <a href="${SITE_URL}/collection"
              style="display:inline-block;font:500 11px/1 'Inter',Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#F4F0E8;background:#0A0A0A;padding:14px 22px;text-decoration:none;">
             Voir la collection
           </a>
@@ -67,7 +69,7 @@ function welcomeText() {
     "nouvelles pièces, actualités de la maison. Rien de plus.",
     "",
     "En attendant, la collection Roi se découvre en ligne :",
-    "https://laterlierdor.vercel.app/collection",
+    `${SITE_URL}/collection`,
     "",
     "— L'Atelier d'Or",
     "Édition confidentielle",
