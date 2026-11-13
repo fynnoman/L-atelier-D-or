@@ -126,7 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <IntroOverlay
               videoSrc="/video/intro.mp4"
               videoSrcMobile="/video/intro-mobile.mp4"
-              posterSrc="/video/hero-poster.jpg"
             />
             <div data-site-stage>
               <SkipLink />

@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Wordmark from "./Wordmark";
 import { useT } from "@/lib/i18n/LanguageContext";
 
 export default function IntroOverlay({
@@ -184,7 +183,13 @@ export default function IntroOverlay({
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
         />
-        <Wordmark size="md" />
+        <img
+          src="/logo-wordmark.png"
+          alt="L'Atelier d'Or"
+          draggable={false}
+          className="block w-auto"
+          style={{ height: "clamp(44px, 5.5vw, 72px)" }}
+        />
         <span
           className="block h-px w-8"
           style={{ background: "rgba(255,255,255,0.5)" }}
