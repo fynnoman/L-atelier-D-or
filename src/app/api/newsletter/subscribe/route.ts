@@ -7,14 +7,14 @@ import { Resend } from "resend";
  * Benötigte Environment-Variablen (server-only, niemals `NEXT_PUBLIC_`):
  *
  *   RESEND_API_KEY              — API-Key aus dem Resend-Dashboard.
- *   NEWSLETTER_FROM_EMAIL       — Absender-Adresse, z.B. "L'Atelier d'Or <lettre@laterlierdor.com>".
+ *   CONTACT_FROM_EMAIL          — Absender, z.B. "L'Atelier d'Or <info@laterlierdor.com>".
  *                                 Die Domain muss in Resend verifiziert sein.
  *   NEWSLETTER_AUDIENCE_ID      — optional: Audience-ID, falls die Adresse in
  *                                 eine Resend-Audience aufgenommen werden soll.
- *   NEWSLETTER_INTERNAL_TO      — optional: interne Benachrichtigungs-Adresse
+ *   CONTACT_TO_EMAIL            — optional: interne Benachrichtigungs-Adresse
  *                                 (bekommt eine kurze Info-Mail bei jeder Anmeldung).
  *
- * Ohne RESEND_API_KEY antwortet die Route mit 503 und einer klaren Meldung.
+ * Ohne RESEND_API_KEY oder CONTACT_FROM_EMAIL antwortet die Route mit 503.
  */
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -78,7 +78,7 @@ function welcomeText() {
 
 export async function POST(req: Request) {
   const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.NEWSLETTER_FROM_EMAIL;
+  const from = process.env.CONTACT_FROM_EMAIL;
 
   if (!apiKey || !from) {
     return NextResponse.json(
@@ -134,7 +134,7 @@ export async function POST(req: Request) {
     }
 
     // Optional: interne Benachrichtigung
-    const internalTo = process.env.NEWSLETTER_INTERNAL_TO;
+    const internalTo = process.env.CONTACT_TO_EMAIL;
     if (internalTo) {
       try {
         await resend.emails.send({

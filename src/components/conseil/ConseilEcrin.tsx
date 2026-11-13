@@ -7,8 +7,6 @@ import ConseilGlasses from "./ConseilGlasses";
 import { useT } from "@/lib/i18n/LanguageContext";
 
 type Phase = "closed" | "opening" | "drawing" | "writing" | "sending" | "thanks" | "email" | "stowing" | "closing";
-const endpoint = process.env.NEXT_PUBLIC_CONSEIL_ENDPOINT;
-const accessKey = process.env.NEXT_PUBLIC_CONSEIL_ACCESS_KEY;
 const recipient = process.env.NEXT_PUBLIC_CONSEIL_EMAIL || "";
 
 export default function ConseilEcrin() {
@@ -63,31 +61,25 @@ export default function ConseilEcrin() {
       return;
     }
     setError("");
-    if (!endpoint) {
-      if (recipient) {
-        // A mail client cannot confirm delivery. Never show the sent state here.
-        const body = `${message}\n\n${name}\n${email}`;
-        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(t.conseil.cardHeader + " — " + name)}&body=${encodeURIComponent(body)}`;
-        setPhase("email");
-      } else {
-        setError(t.conseil.errorSetup);
-      }
-      return;
-    }
     busyRef.current = true;
     setPhase("sending");
     const controller = new AbortController();
     requestRef.current = controller;
     const timeout = window.setTimeout(() => controller.abort(), 15000);
-    const payload: Record<string, string> = { name, email, message };
-    if (accessKey) payload.access_key = accessKey;
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch("/api/conseil", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({ name, email, message }),
         signal: controller.signal,
       });
+      if (response.status === 503 && recipient) {
+        // Resend nicht konfiguriert → mailto als Fallback, damit die Anfrage nicht verloren geht.
+        const body = `${message}\n\n${name}\n${email}`;
+        window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(t.conseil.cardHeader + " — " + name)}&body=${encodeURIComponent(body)}`;
+        setPhase("email");
+        return;
+      }
       if (!response.ok) throw new Error("Delivery rejected");
       formRef.current?.reset();
       setPhase("thanks");

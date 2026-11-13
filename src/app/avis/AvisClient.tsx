@@ -6,8 +6,6 @@ import LineReveal from "@/components/LineReveal";
 import { useT } from "@/lib/i18n/LanguageContext";
 
 type Status = "idle" | "sending" | "ok" | "error";
-const endpoint = process.env.NEXT_PUBLIC_FEEDBACK_ENDPOINT;
-const accessKey = process.env.NEXT_PUBLIC_FEEDBACK_ACCESS_KEY;
 const recipient = process.env.NEXT_PUBLIC_FEEDBACK_EMAIL || "";
 
 export default function AvisClient() {
@@ -36,45 +34,41 @@ export default function AvisClient() {
       return;
     }
     setError("");
-    if (!endpoint && !recipient) {
-      setStatus("error");
-      setError(t.feedback.errorSetup);
-      return;
-    }
     busyRef.current = true;
     setStatus("sending");
     const controller = new AbortController();
     requestRef.current = controller;
     const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
-      if (endpoint) {
-        const payload: Record<string, string> = {
+      const res = await fetch("/api/feedback", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
           name,
           email,
           model,
           rating,
           message,
           consent: consent ? "yes" : "no",
-        };
-        if (accessKey) payload.access_key = accessKey;
-        const res = await fetch(endpoint, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify(payload),
-          signal: controller.signal,
-        });
-        if (!res.ok) throw new Error("Rejected");
-      } else if (recipient) {
+        }),
+        signal: controller.signal,
+      });
+      if (res.status === 503 && recipient) {
+        // Resend nicht konfiguriert → mailto als Fallback.
         const body = `${message}\n\n— ${name}\n${email}\nModel: ${model}\nRating: ${rating}\nConsent: ${
           consent ? "yes" : "no"
         }`;
         window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(
           `Feedback — ${name}`
         )}&body=${encodeURIComponent(body)}`;
+        formRef.current?.reset();
+        setStatus("ok");
+        return;
       }
+      if (!res.ok) throw new Error("Rejected");
       formRef.current?.reset();
       setStatus("ok");
     } catch {
