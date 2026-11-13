@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { clsx } from "clsx";
-import Wordmark from "./Wordmark";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useT } from "@/lib/i18n/LanguageContext";
 
@@ -66,8 +65,18 @@ export default function Nav() {
 
           {/* Wordmark centré */}
           <div className="flex justify-start md:justify-center shrink-0">
-            <Link href="/" className="inline-flex items-center gap-3 group">
-              <Wordmark size={scrolled ? "sm" : "md"} />
+            <Link href="/" className="inline-flex items-center gap-3 group" aria-label="L'Atelier d'Or">
+              <img
+                src="/logo-wordmark.png"
+                alt="L'Atelier d'Or"
+                draggable={false}
+                className="block w-auto transition-all duration-500"
+                style={{
+                  height: scrolled
+                    ? "clamp(32px, 4.2vw, 52px)"
+                    : "clamp(40px, 5.2vw, 68px)",
+                }}
+              />
             </Link>
           </div>
 

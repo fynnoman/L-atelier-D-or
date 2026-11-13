@@ -59,7 +59,7 @@ export default function Footer() {
           style={{ borderColor: "var(--n-line-soft)" }}
         >
           <img
-            src="/logo-white.png"
+            src="/logo-wordmark.png"
             alt="L'Atelier d'Or"
             className="n-footer-logo block max-w-full"
             style={{ height: "clamp(56px, 10vw, 160px)", width: "auto" }}
