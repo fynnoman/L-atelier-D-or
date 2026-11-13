@@ -23,6 +23,10 @@ html:has([data-nouveau]) body {
 
 [data-site-stage] {
   transform-origin: 50% 50%;
+}
+
+html[data-intro="playing"] [data-site-stage],
+html[data-intro="transitioning"] [data-site-stage] {
   will-change: transform, filter, opacity;
 }
 
@@ -38,15 +42,16 @@ html[data-intro="transitioning"] [data-site-stage] {
   filter: blur(0);
   opacity: 1;
   transition:
-    transform 1700ms cubic-bezier(0.4, 0, 0.2, 1),
-    filter 1300ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 1300ms cubic-bezier(0.4, 0, 0.2, 1);
+    transform 1100ms cubic-bezier(0.4, 0, 0.2, 1),
+    filter 700ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 900ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html[data-intro="done"] [data-site-stage] {
   transform: none;
   filter: none;
   opacity: 1;
+  will-change: auto;
 }
 
 [data-nouveau] {

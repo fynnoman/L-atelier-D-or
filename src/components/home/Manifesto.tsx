@@ -110,14 +110,12 @@ function LineReveal({
   const end = start + 0.18;
   const opacity = useTransform(progress, [start, end], [0, 1]);
   const y = useTransform(progress, [start, end], [24, 0]);
-  const filter = useTransform(progress, [start, end], ["blur(8px)", "blur(0px)"]);
 
   return (
     <motion.span
       style={{
         opacity,
         y,
-        filter,
         display: "block",
       }}
     >

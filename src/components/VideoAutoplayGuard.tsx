@@ -22,6 +22,8 @@ export default function VideoAutoplayGuard() {
 
     const paused = new Set<HTMLVideoElement>();
     const primed = new WeakSet<HTMLVideoElement>();
+    const bursts = new Set<number>();
+    const readyListeners = new Map<HTMLVideoElement, () => void>();
 
     const ensureFlags = (v: HTMLVideoElement) => {
       try {
@@ -66,6 +68,7 @@ export default function VideoAutoplayGuard() {
       v.addEventListener("loadeddata", onReady);
       v.addEventListener("canplay", onReady);
       v.addEventListener("canplaythrough", onReady);
+      readyListeners.set(v, onReady);
 
       // Short retry burst for the first few seconds after mount.
       let attempts = 0;
@@ -73,10 +76,12 @@ export default function VideoAutoplayGuard() {
         attempts += 1;
         if (!v.isConnected || !v.paused || attempts > 12) {
           window.clearInterval(burst);
+          bursts.delete(burst);
           return;
         }
         tryPlay(v);
       }, 400);
+      bursts.add(burst);
 
       tryPlay(v);
     };
@@ -100,7 +105,8 @@ export default function VideoAutoplayGuard() {
         });
       }
     });
-    mo.observe(document.documentElement, { childList: true, subtree: true });
+    const scope = document.getElementById("main") ?? document.body;
+    mo.observe(scope, { childList: true, subtree: true });
 
     const kickAll = () => {
       paused.forEach((v) => {
@@ -127,6 +133,15 @@ export default function VideoAutoplayGuard() {
       );
       document.removeEventListener("visibilitychange", onEvent);
       window.removeEventListener("pageshow", onEvent);
+      bursts.forEach((id) => window.clearInterval(id));
+      bursts.clear();
+      readyListeners.forEach((fn, v) => {
+        v.removeEventListener("loadedmetadata", fn);
+        v.removeEventListener("loadeddata", fn);
+        v.removeEventListener("canplay", fn);
+        v.removeEventListener("canplaythrough", fn);
+      });
+      readyListeners.clear();
     };
   }, []);
 

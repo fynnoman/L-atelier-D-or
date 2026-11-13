@@ -21,6 +21,8 @@ export default function IntroOverlay({
   const videoRef = useRef<HTMLVideoElement>(null);
   const dismissedRef = useRef(false);
   const fallbackTimerRef = useRef<number | null>(null);
+  const fadeTimerRef = useRef<number | null>(null);
+  const unmountTimerRef = useRef<number | null>(null);
   const t = useT();
 
   useEffect(() => {
@@ -58,17 +60,32 @@ export default function IntroOverlay({
     }
     setExitPhase("flash");
     document.documentElement.setAttribute("data-intro", "transitioning");
-    window.setTimeout(() => {
+    fadeTimerRef.current = window.setTimeout(() => {
       setFading(true);
+      fadeTimerRef.current = null;
     }, 180);
-    window.setTimeout(() => {
+    unmountTimerRef.current = window.setTimeout(() => {
       setExitPhase("unmount");
       setVisible(false);
       document.documentElement.style.overflow = "";
       document.body.style.overflow = "";
       document.documentElement.setAttribute("data-intro", "done");
+      unmountTimerRef.current = null;
     }, 1500);
   };
+
+  useEffect(() => {
+    return () => {
+      if (fadeTimerRef.current != null) {
+        window.clearTimeout(fadeTimerRef.current);
+        fadeTimerRef.current = null;
+      }
+      if (unmountTimerRef.current != null) {
+        window.clearTimeout(unmountTimerRef.current);
+        unmountTimerRef.current = null;
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (!visible) return;
@@ -186,6 +203,8 @@ export default function IntroOverlay({
         <img
           src="/logo-wordmark.png"
           alt="L'Atelier d'Or"
+          width={1916}
+          height={821}
           draggable={false}
           className="block w-auto"
           style={{ height: "clamp(44px, 5.5vw, 72px)" }}

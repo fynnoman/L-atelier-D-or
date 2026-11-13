@@ -34,14 +34,25 @@ export default function Reveal() {
 
     bind();
 
-    const mo = new MutationObserver(() => bind());
-    mo.observe(document.body, { childList: true, subtree: true });
+    // rAF-debounced + scoped auf den Content-Bereich, damit Nav/Footer/Intro-Mutations keinen Rescan triggern.
+    let rebindRaf = 0;
+    const scheduleBind = () => {
+      if (rebindRaf) return;
+      rebindRaf = requestAnimationFrame(() => {
+        rebindRaf = 0;
+        bind();
+      });
+    };
+    const scope = document.getElementById("main") ?? document.body;
+    const mo = new MutationObserver(scheduleBind);
+    mo.observe(scope, { childList: true, subtree: true });
 
     return () => {
       mo.disconnect();
       io?.disconnect();
       io = null;
       els.clear();
+      if (rebindRaf) cancelAnimationFrame(rebindRaf);
     };
   }, []);
 

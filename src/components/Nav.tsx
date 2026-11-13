@@ -28,7 +28,10 @@ export default function Nav() {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    const onScroll = () => {
+      const next = window.scrollY > 24;
+      setScrolled((prev) => (prev === next ? prev : next));
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
@@ -47,8 +50,8 @@ export default function Nav() {
           scrolled ? "py-3" : "py-5"
         )}
         style={{
-          backdropFilter: "blur(22px) saturate(1.4)",
-          WebkitBackdropFilter: "blur(22px) saturate(1.4)",
+          backdropFilter: scrolled ? "blur(22px) saturate(1.4)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(22px) saturate(1.4)" : "none",
           background: scrolled
             ? "rgba(10, 10, 10, 0.72)"
             : "rgba(10, 10, 10, 0.55)",
@@ -69,6 +72,8 @@ export default function Nav() {
               <img
                 src="/logo-wordmark.png"
                 alt="L'Atelier d'Or"
+                width={1916}
+                height={821}
                 draggable={false}
                 className="block w-auto transition-all duration-500"
                 style={{

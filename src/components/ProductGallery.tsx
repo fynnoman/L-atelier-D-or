@@ -47,7 +47,8 @@ export default function ProductGallery({
       raf = requestAnimationFrame(() => {
         raf = null;
         if (t.clientWidth > 0) {
-          setIndex(Math.round(t.scrollLeft / t.clientWidth));
+          const i = Math.round(t.scrollLeft / t.clientWidth);
+          setIndex((prev) => (prev === i ? prev : i));
         }
       });
     };
@@ -57,6 +58,29 @@ export default function ProductGallery({
       t.removeEventListener("scroll", onScroll);
     };
   }, []);
+
+  // Nur das sichtbare Video dekodieren. Alle anderen pausieren.
+  useEffect(() => {
+    const t = trackRef.current;
+    if (!t) return;
+    const videos = Array.from(t.querySelectorAll<HTMLVideoElement>("video"));
+    if (videos.length === 0) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const v = e.target as HTMLVideoElement;
+          if (e.isIntersecting && e.intersectionRatio > 0.5) {
+            v.play().catch(() => {});
+          } else {
+            v.pause();
+          }
+        }
+      },
+      { root: t, threshold: [0, 0.5, 1] }
+    );
+    videos.forEach((v) => io.observe(v));
+    return () => io.disconnect();
+  }, [slides]);
 
   return (
     <div className="relative select-none">
@@ -79,11 +103,10 @@ export default function ProductGallery({
               <video
                 src={s.src}
                 poster={s.poster}
-                autoPlay
                 muted
                 loop
                 playsInline
-                preload={i === 0 ? "auto" : "metadata"}
+                preload={i === 0 ? "metadata" : "none"}
                 aria-label={s.alt}
                 className="absolute inset-0 w-full h-full"
                 style={{

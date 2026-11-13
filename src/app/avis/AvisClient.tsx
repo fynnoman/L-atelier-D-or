@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 import LineReveal from "@/components/LineReveal";
 import { useT } from "@/lib/i18n/LanguageContext";
 
@@ -16,6 +16,9 @@ export default function AvisClient() {
   const [error, setError] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
   const busyRef = useRef(false);
+  const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(() => () => requestRef.current?.abort(), []);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -40,6 +43,9 @@ export default function AvisClient() {
     }
     busyRef.current = true;
     setStatus("sending");
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timeout = window.setTimeout(() => controller.abort(), 15000);
     try {
       if (endpoint) {
         const payload: Record<string, string> = {
@@ -58,6 +64,7 @@ export default function AvisClient() {
             Accept: "application/json",
           },
           body: JSON.stringify(payload),
+          signal: controller.signal,
         });
         if (!res.ok) throw new Error("Rejected");
       } else if (recipient) {
@@ -74,7 +81,9 @@ export default function AvisClient() {
       setStatus("error");
       setError(t.feedback.errorSend);
     } finally {
+      window.clearTimeout(timeout);
       busyRef.current = false;
+      requestRef.current = null;
     }
   }
 

@@ -75,6 +75,7 @@ export default function CollectionCinemaReel({ pieces }: { pieces: Piece[] }) {
         if (node) {
           node.style.opacity = String(w);
           node.style.pointerEvents = w > 0.6 ? "auto" : "none";
+          node.style.willChange = w > 0.02 && w < 0.98 ? "opacity" : "auto";
           node.setAttribute("aria-hidden", w < 0.6 ? "true" : "false");
         }
         const dot = dotRefs.current[i];
@@ -173,7 +174,6 @@ function PieceCanvas({
         opacity: weight,
         background: palette.bg,
         pointerEvents: weight > 0.6 ? "auto" : "none",
-        willChange: "opacity",
       }}
       aria-hidden={weight < 0.6}
     >

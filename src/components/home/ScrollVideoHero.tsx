@@ -20,15 +20,27 @@ export default function ScrollVideoHero() {
       const p = v.play();
       if (p && typeof p.then === "function") p.catch(() => {});
     };
-    tryPlay();
-    const onReady = () => tryPlay();
+    // Warte auf das Ende der Intro, damit nicht zwei Videos gleichzeitig dekodieren.
+    const introState = () => document.documentElement.getAttribute("data-intro");
+    const startWhenReady = () => {
+      const s = introState();
+      if (s === null || s === "done") tryPlay();
+    };
+    startWhenReady();
+    const onReady = () => startWhenReady();
     v.addEventListener("loadedmetadata", onReady);
     v.addEventListener("loadeddata", onReady);
     v.addEventListener("canplay", onReady);
+    const mo = new MutationObserver(startWhenReady);
+    mo.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-intro"],
+    });
     return () => {
       v.removeEventListener("loadedmetadata", onReady);
       v.removeEventListener("loadeddata", onReady);
       v.removeEventListener("canplay", onReady);
+      mo.disconnect();
     };
   }, []);
 
@@ -41,11 +53,10 @@ export default function ScrollVideoHero() {
       <video
         ref={videoRef}
         poster="/video/hero-loop-poster.jpg"
-        autoPlay
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         disableRemotePlayback
         className="absolute inset-0 w-full h-full object-cover"
         aria-hidden
@@ -79,6 +90,8 @@ export default function ScrollVideoHero() {
         <img
           src="/logo-white.png"
           alt=""
+          width={2171}
+          height={724}
           style={{
             height: "22px",
             width: "auto",
