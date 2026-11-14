@@ -69,7 +69,7 @@ export default function ScrollVideoHero() {
       {/* Ecken-Marker oben links */}
       <div
         aria-hidden
-        className="absolute top-6 left-6 md:top-8 md:left-8 flex items-center gap-3 z-10"
+        className="hidden md:flex absolute top-8 left-8 items-center gap-3 z-10"
       >
         <span
           className="block h-px w-8"
